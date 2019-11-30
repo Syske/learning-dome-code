@@ -1,0 +1,13 @@
+package ${package.Mapper};
+
+
+/**********************************************
+ * 描述：$!{table.comment}
+ *
+ * @author ${author}
+ * @version 1.0
+ * @date： ${date}
+ *********************************************/
+public interface ${table.mapperName} {
+
+}

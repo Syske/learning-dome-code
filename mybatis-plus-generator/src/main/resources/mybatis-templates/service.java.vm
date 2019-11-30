@@ -1,0 +1,18 @@
+package ${package.Service};
+
+import ${package.Entity}.${entity};
+
+/**********************************************
+ * 描述：$!{table.comment}
+ *
+ * @author ${author}
+ * @version 1.0
+ * @date： ${date}
+ *********************************************/
+#if(${kotlin})
+interface ${table.serviceName}
+#else
+public interface ${table.serviceName} {
+
+}
+#end
