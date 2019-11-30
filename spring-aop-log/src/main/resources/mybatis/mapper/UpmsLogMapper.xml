@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.syske.mybatisplus.dao.mapper.UpmsLogMapper">
+
+    <!-- 开启二级缓存 -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="io.github.syske.entity.UpmsLog">
+        <id column="log_id" property="logId" />
+        <result column="description" property="description" />
+        <result column="username" property="username" />
+        <result column="start_time" property="startTime" />
+        <result column="spend_time" property="spendTime" />
+        <result column="base_path" property="basePath" />
+        <result column="uri" property="uri" />
+        <result column="url" property="url" />
+        <result column="method" property="method" />
+        <result column="parameter" property="parameter" />
+        <result column="user_agent" property="userAgent" />
+        <result column="ip" property="ip" />
+        <result column="result_" property="result" />
+        <result column="permissions" property="permissions" />
+        <result column="createtime" property="createtime" />
+        <result column="user_id" property="userId" />
+        <result column="appid" property="appid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        log_id AS logId, description, username, start_time AS startTime, spend_time AS spendTime, base_path AS basePath, uri, url, method, parameter, user_agent AS userAgent, ip, result_ AS result, permissions, createtime, user_id AS userId, appid
+    </sql>
+
+</mapper>
