@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ireport-demo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b3d5e4e1-d3f8-446d-952d-724571f940fb">
 	<property name="ireport.zoom" value="1.2100000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="16"/>
 	<subDataset name="test" uuid="3234304e-333d-4afa-87f3-890e416942ad">
 		<queryString>
 			<![CDATA[select count(*) count from user]]>
@@ -30,6 +30,12 @@ where username=$P{username}]]>
 	</variable>
 	<variable name="salary_sum" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{salary}]]></variableExpression>
+	</variable>
+	<variable name="username1" class="java.lang.Integer">
+		<variableExpression><![CDATA[0]]></variableExpression>
+	</variable>
+	<variable name="username2" class="java.lang.Integer">
+		<variableExpression><![CDATA[1]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -110,7 +116,7 @@ where username=$P{username}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="" isBlankWhenNull="false">
 				<reportElement x="208" y="0" width="137" height="27" uuid="f2c06cb4-4894-4c9c-b654-11de56e73426"/>
 				<box>
 					<leftPen lineWidth="0.75"/>
@@ -142,8 +148,12 @@ where username=$P{username}]]>
 				<textElement textAlignment="Center">
 					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[column footer]]></text>
+				<text><![CDATA[领导签字：]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="369" y="15" width="100" height="20" uuid="541715a5-dd29-4744-8506-6c3390958658"/>
+				<textFieldExpression><![CDATA[( $F{age}==24 ? $V{username1} : $V{username2} )]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>

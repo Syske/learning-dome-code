@@ -9,3 +9,4 @@
 - 基于spring boot DRUID数据源的密码加密及数据源监控：druid-datasouce-decrypt
 - IReport报表设计示例：ireport-demo
 - IReport与web项目整合：ireport-use-in-web
+- spring-boot-demo：spring boot模板，用于快速构建springboot项目，包含前端页面及前端框架
