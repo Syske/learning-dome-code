@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.syske.dao.mapper.ServerInfoMapper">
+
+    <!-- 开启二级缓存 -->
+<!--    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="io.github.syske.dao.model.ServerInfo">
+        <id column="id" property="id" />
+        <result column="host_id" property="hostId" />
+        <result column="port" property="port" />
+        <result column="description" property="description" />
+        <result column="comments" property="comments" />
+    </resultMap>
+
+    <!-- 查询端口及端口信息 -->
+    <resultMap id="PortInfoResultMap" type="io.github.syske.dao.model.ServerPortInfo">
+        <id column="id" property="id" />
+        <result column="name" property="name"/>
+        <result column="ip" property="ip" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="server_id" property="serverId" />
+        <result column="port" property="port" />
+        <result column="description" property="description" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, host_id AS hostId, port, description, comments
+    </sql>
+
+
+    <select id="listServerInfo" resultMap="PortInfoResultMap">
+        select a.id,a.host_id,b.name,b.ip,a.port,b.username,b.password,a.description
+    from server_info a left join host_info b on a.host_id=b.id
+</select>
+
+</mapper>

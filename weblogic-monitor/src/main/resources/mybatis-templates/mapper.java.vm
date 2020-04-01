@@ -1,0 +1,15 @@
+package ${package.Mapper};
+
+import org.springframework.stereotype.Repository;
+
+/**********************************************
+ * 描述：$!{table.comment}
+ *
+ * @author ${author}
+ * @version 1.0
+ * @date： ${date}
+ *********************************************/
+@Repository
+public interface ${table.mapperName} {
+
+}

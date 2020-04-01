@@ -1,0 +1,73 @@
+package ${package.Controller};
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ResponseBody;
+import ${package.Service}.${table.serviceName};
+import ${package.Entity}.${entity};
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+
+import java.util.List;
+
+#if(${restControllerStyle})
+import org.springframework.web.bind.annotation.RestController;
+#else
+import org.springframework.stereotype.Controller;
+#end
+
+/**********************************************
+ * 描述：$!{table.comment}
+ *
+ * @author ${author}
+ * @version 1.0
+ * @date： ${date}
+ *********************************************/
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@Api(value = "$!{table.comment}", description = "$!{table.comment}")
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+public class ${table.controllerName} {
+
+    private static Logger _log = LoggerFactory.getLogger(${table.controllerName}.class);
+
+    @Autowired
+    private ${table.serviceName} service;
+
+
+    @ApiOperation("新增")
+    @RequestMapping("/add")
+    @ResponseBody
+    public boolean add${entity}(${entity} entity) {
+        return service.insert(entity);
+        }
+
+    @ApiOperation("查询")
+    @RequestMapping("/list")
+    @ResponseBody
+    public List<${entity}> list${entity}(${entity} entity) {
+        EntityWrapper<${entity}> serviceEntityWrapper = new EntityWrapper<>(entity);
+        return service.selectList(serviceEntityWrapper);
+    }
+
+    @ApiOperation("更新")
+    @RequestMapping("/update")
+    @ResponseBody
+    public boolean update${entity}ById(${entity} entity) {
+        return service.updateById(entity);
+    }
+
+    @ApiOperation("删除")
+    @RequestMapping("/delete")
+    @ResponseBody
+    public boolean delete${entity}ById(${entity} entity) {
+        return service.deleteById(entity);
+    }
+}
