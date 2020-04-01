@@ -1,0 +1,34 @@
+server:
+  port: 8088
+  servlet:
+  # 项目名称（根节点）
+    context-path: /sso
+spring:
+  application:
+    name: SSO
+  cache:
+    type: redis
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    # 连接超时时间（ms)
+    timeout: 5000
+    # 高版本springboot中使用jedis或者lettuce
+    jedis:
+      pool:
+        # 连接池最大连接数（负值表示无限制）
+        max-active: 8
+        # 连接池最大阻塞等待时间（负值无限制)
+        max-wait: 5000
+        # 最大空闲链接数
+        max-idle: 8
+        # 最小空闲链接数
+        min-idle: 1
+  #mvc:
+  #  static-path-pattern: /static/**
+  thymeleaf:
+    cache: false
+# jwt过期时间，单位分钟
+jwt_expire_time: 60

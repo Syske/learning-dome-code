@@ -1,0 +1,22 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**********************************************
+ * 描述：$!{table.comment}
+ *
+ * @author ${author}
+ * @version 1.0
+ * @date： ${date}
+ *********************************************/
+@Service("")
+public class ${table.serviceImplName} implements ${table.serviceName} {
+
+    private static Logger _log = LoggerFactory.getLogger(${table.serviceImplName}.class);
+}

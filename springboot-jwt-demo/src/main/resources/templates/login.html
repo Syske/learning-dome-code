@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>认证中心</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <link rel="stylesheet" th:href="@{css/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{css/login/style.default.css}" id="theme-stylesheet">
+    <link rel="stylesheet" th:href="@{css/font-Awesome/font-Awesome.min.css}" id="font-stylesheet">
+    <link id="new-stylesheet" rel="stylesheet">
+</head>
+<body>
+<div class="page login-page">
+    <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="info d-flex">
+                        <div class="content">
+                            <div class="logo">
+                                <h1>欢迎登录</h1>
+                            </div>
+                            <p>省级医疗保险管理中心</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 bg-white">
+                    <div class="form d-flex align-items-center">
+                        <div class="content">
+                            <form class="form-validate" id="loginForm" novalidate="novalidate">
+                                <div class="form-group">
+                                    <input id="login-username" type="text" name="userName" required="" data-msg="请输入用户名"
+                                           placeholder="用户名" class="input-material is-valid" aria-invalid="false">
+                                </div>
+                                <div class="form-group">
+                                    <input id="login-password" type="password" name="passWord" required=""
+                                           data-msg="请输入密码"
+                                           placeholder="密码" class="input-material">
+                                </div>
+                            </form>
+                            <button id="login" class="btn btn-primary">登录</button>
+                            <div style="margin-top: -40px;">
+
+                                <div class="custom-control custom-checkbox " style="float: right;">
+                                    <input type="checkbox" class="custom-control-input" id="check2">
+                                    <label class="custom-control-label" for="check2">自动登录</label>
+                                </div>
+                                <div class="custom-control custom-checkbox " style="float: right;">
+                                    <input type="checkbox" class="custom-control-input" id="check1">
+                                    <label class="custom-control-label" for="check1">记住密码&nbsp;&nbsp;</label>
+                                </div>
+                            </div>
+
+                            <br>
+                            <small>暂时不提供注册入口，请通过身份证号（社保号）和密码登陆！</small>
+                            <!--<a href="register.html" class="signup">&nbsp;注册</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{js/jquery/jquery-3.4.1.min.js}"></script>
+<script th:src="@{js/bootstrap/bootstrap.min.js}"></script>
+<script th:src="@{js/jquery-validation/jquery.validate.min.js}"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>-->
+<script th:src="@{js/main.js}"></script>
+
+<script>
+    $(function () {
+
+        validateForm();
+
+        $("#login").click(function () {
+            var val = $("#loginForm").valid();
+            if(val) {
+                doLogin();
+            } else {
+                alert("表单验证不通过")
+            }
+            //doLogin();
+            //validateForm();
+        });
+
+        /*判断上次是否勾选记住密码和自动登录*/
+        var check1s = localStorage.getItem("check1");
+        var check2s = localStorage.getItem("check2");
+        var oldName = localStorage.getItem("userName");
+        var oldPass = localStorage.getItem("passWord");
+        if (check1s == "true") {
+            $("#login-username").val(oldName);
+            $("#login-password").val(oldPass);
+            $("#check1").prop('checked', true);
+        } else {
+            $("#login-username").val('');
+            $("#login-password").val('');
+            $("#check1").prop('checked', false);
+        }
+        if (check2s == "true") {
+            $("#check2").prop('checked', true);
+            doLogin();
+            //location="https://www.baidu.com?userName="+oldName+"&passWord="+oldPass;//添加退出当前账号功能
+        } else {
+            $("#check2").prop('checked', false);
+        }
+    });
+
+    $(function () {
+        var token = localStorage.getItem("Access-token");
+        console.log(token)
+        if (token != null && token.length > 0 && token != undefined)
+            checkUserStatus(token);
+
+    });
+
+    function checkUserStatus(token) {
+        //有token，检查token是否还有效
+        $.ajax({
+            type: 'post',
+            url: "/sso/checkJwt",
+            beforeSend: function (request) {      //使用beforeSend
+                request.setRequestHeader("authorization", token);
+                request.setRequestHeader("Content-Type", "application/json");
+            },
+            data: {"token": token},
+            success: function (res) {
+                console.log(res);
+                console.log(encodeURI(res.data));
+                if (res.data === true) {
+                    var redirect = getUrlParam("redirect");
+                    if (redirect != null)
+                        window.location.href = redirect;
+                    else
+                        window.location.href = "/sso/index";
+                } else {
+                    localStorage.removeItem("Access-token");
+                }
+            }
+        });
+    }
+
+
+    function doLogin() {
+            var userName = $("#login-username").val();
+            var passWord = $("#login-password").val();
+            /*获取当前输入的账号密码*/
+            localStorage.setItem("userName", userName)
+            localStorage.setItem("passWord", passWord)
+            /*获取记住密码  自动登录的 checkbox的值*/
+            var check1 = $("#check1").prop('checked');
+            var check2 = $('#check2').prop('checked');
+            localStorage.setItem("check1", check1);
+            localStorage.setItem("check2", check2);
+            $.ajax({
+                type: 'post',
+                url: "/sso/login",
+                contentType: "application/json",
+                dataType: 'json',
+                data: JSON.stringify({username: userName, password: passWord}),
+                success: function (res) {
+                    console.log(res)
+                    if (res.code == 1) {
+                        localStorage.setItem("Access-token", res.data);
+                        var redirect = getUrlParam("redirect");
+                        if (redirect != null)
+                            window.location.href = redirect;
+                        else
+                            window.location.href = "/sso/index";
+                    } else {
+                        $("#login-password").val();
+                        alert("账号或密码错误");
+                    }
+                }
+            });
+
+
+    }
+
+    function validateForm() {
+        // 身份证号码验证
+        $.validator.addMethod("isIdCardNo", function (val, element) {
+            return this.optional(element) || isCardNo(val);
+        }, "请正确输入您的身份证号码");
+        $("#loginForm").validate({
+            onfocusout: function(element) { $(element).valid(); },
+            rules: {
+                userName: {
+                    required: true,
+                    isIdCardNo: true
+                },
+                passWord: {
+                    minlength: 4,
+                    required: true
+                },
+            },
+            //这里的message我要说一下因为官方提供的默认是英文提示如果你想换为你自己的术话就这么写
+            messages: {
+                userName: {
+                    required: "用户名为必填项",
+                    isIdCardNo: "请输入正确的社保号（身份证号）"
+                },
+                passWord: {
+                    minlength: "请确认密码长度是否有误",
+                    required: "请输入密码"
+                }
+            },
+            focusCleanup: true
+        });
+
+
+    }
+
+    function isCardNo(card) {
+        // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
+        var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        return reg.test(card)
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        主机管理
+        <small>管理需要监控的主机</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+        <li class="active">主机管理</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">主机列表</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="box-body">
+                                    <button id="add-Modal-button" type="button" class="btn btn-info"
+                                            data-toggle="modal">
+                                        <!-- data-target="#modal-add"-->
+                                        新增主机
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-sm-6"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="dataTable" class="table table-bordered table-hover dataTable" role="grid"
+                                       aria-describedby="example2_info">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+
+
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+    <!-- /.row -->
+</section>
+
+<div class="modal fade" id="modal-add" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">新增主机</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addForm">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-4 control-label">主机名称</label>
+
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-newspaper-o"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="inputEmail3"
+                                           name="name" placeholder="名称">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">主机IP</label>
+
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-laptop"></i>
+                                    </div>
+                                    <input type="text" class="form-control" name="ip"
+                                           data-inputmask="'alias': 'ip'" data-mask="">
+                                </div>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-4 control-label">控制台用户名</label>
+
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-user-plus"></i>
+                                    </div>
+                                    <input type="text" class="form-control" name="username" id="inputEmail4"
+                                           placeholder="用户名">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword6" class="col-sm-4 control-label">控制台密码</label>
+
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                    <input type="password" class="form-control" name="password" id="inputPassword5"
+                                           placeholder="密码">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword6" class="col-sm-4 control-label">请再次输入密码</label>
+
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                    <input type="password" class="form-control" id="inputPassword6" name="again_password" placeholder="确认密码">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-add-close" type="button" class="btn btn-default pull-left">关闭</button>
+                <button id="modal-add-save" type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-edit" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">编辑主机</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="editForm">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-4 control-label">主机名称</label>
+
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-newspaper-o"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="edit-name"
+                                           name="name" placeholder="名称">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">主机IP</label>
+
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-laptop"></i>
+                                    </div>
+                                    <input type="text" class="form-control" name="ip"
+                                           data-inputmask="'alias': 'ip'" data-mask="">
+                                </div>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-4 control-label">控制台用户名</label>
+
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-user-plus"></i>
+                                    </div>
+                                    <input type="text" class="form-control" name="username" id="edit-username"
+                                           placeholder="用户名">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword6" class="col-sm-4 control-label">控制台密码</label>
+
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                    <input type="password" class="form-control" name="password" id="edit-password"
+                                           placeholder="密码">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword6" class="col-sm-4 control-label">请再次输入密码</label>
+
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-key"></i>
+                                    </div>
+                                    <input type="password" class="form-control" name="password_again" id="add-password"
+                                           placeholder="确认密码">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-edit-close" type="button" class="btn btn-default pull-left">关闭</button>
+                <button id="modal-edit-save" type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="modal-add-server" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">新增服务</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addServerPortForm">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-4 control-label">服务端口</label>
+
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-newspaper-o"></i>
+                                    </div>
+                                    <input type="text" class="form-control"
+                                           name="port" placeholder="端口">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">服务描述</label>
+
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-laptop"></i>
+                                    </div>
+                                    <input type="text" class="form-control" name="description" placeholder="描述">
+                                </div>
+                            </div>
+                            <input id="serverId" type="hidden" class="form-control" name="hostId">
+
+                            <!-- /.input group -->
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-addServerPort-close" type="button" class="btn btn-default pull-left"
+                        data-dismiss="modal">关闭
+                </button>
+                <button id="modal-addServerPort-save" type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.content -->
+<script type="text/javascript">
+    $(function () {
+        queryServer();
+        $("#modal-add-save").click(function () {
+            addModalSave()
+        });
+
+        $("#modal-add-close").click(function () {
+            addModalClose()
+        });
+
+        $("#modal-edit-save").click(function () {
+            editModalSave()
+        });
+
+        $("#modal-edit-close").click(function () {
+            editModalClose()
+        });
+
+        $("#modal-addServerPort-save").click(function () {
+            addModalServerPortSave()
+        });
+
+        $("#modal-addServerPort-close").click(function () {
+            addModalServerPortClose()
+        });
+    });
+
+    $(function () {
+        $("#add-Modal-button").click(function () {
+            $("#addForm")[0].reset();
+            $("#modal-add").modal('show');
+        });
+        //Initialize Select2 Elements
+        $('.select2').select2()
+        //Money Euro
+        $('[data-mask]').inputmask()
+    });
+
+    function addServerModal(id) {
+        $("#addServerPortForm")[0].reset();
+        $("#serverId").val(id);
+        $("#modal-add-server #add-port").inputmask("0-65535")
+        $("#modal-add-server").modal('show');
+
+    }
+
+
+    function addModalClose() {
+        $("#addForm")[0].reset();
+        $("#modal-add").modal('hide');
+    }
+
+    function addModalServerPortClose() {
+        $("#addServerPortForm")[0].reset();
+    }
+
+    function addModalSave() {
+        addFormValidator();
+       /* $.ajax({
+            type: "post", //提交方式
+            dataType: "json", //数据类型
+            data: $("#addForm").serialize(),//自定义数据参数，视情况添加
+            url: "/hostInfo/add", //请求url
+            success: function (data) { //提交成功的回调函数
+                $("#modal-add").modal('hide');
+                queryServer();
+            }
+        });*/
+    }
+
+    function addFormValidator() {
+        console.log("校验表单")
+        $("#addForm").bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                name: {
+                    message: '主机名校验失败',
+                    validators: {
+                        notEmpty: {
+                            message: '主机名不能为空'
+                        }
+                    }
+                },
+                ip: {
+                    validators: {
+                        notEmpty: {
+                            message: '主机ip地址不能为空'
+                        }
+                    }
+                },
+                username: {
+                    validators: {
+                        notEmpty: {
+                            message: 'domain控制台用户名不能为空'
+                        }
+                    }
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: 'domain控制台密码不能为空'
+                        },
+                        identical: {
+                            field: 'again_password',
+                            message: '密码与确认密码不一致！'
+                        },
+                    }
+                },
+                again_password: {
+                    validators: {
+                        notEmpty: {
+                            message: '确认密码与密码不一致！'
+                        }
+                    }
+                }
+            }
+
+        });
+    }
+
+    function addModalServerPortSave() {
+        $.ajax({
+            type: "post", //提交方式
+            dataType: "json", //数据类型
+            data: $("#addServerPortForm").serialize(),//自定义数据参数，视情况添加
+            url: "/serverInfo/add", //请求url
+            success: function (data) { //提交成功的回调函数
+                var dataString = eval(data);
+                //console.log(dataString);
+                $("#modal-add-server").modal('hide');
+            }
+        });
+    }
+</script>
