@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SwaggerDemoController {
 
     @ResponseBody
-    @ApiOperation(value = "历年就医费用汇总统计",httpMethod = "POST")
-    @RequestMapping("/listFeestatisticsOverTheYears")
-    public TestEntity listFeestatisticsOverTheYears(TestEntity testEntity) {
+    @ApiOperation(value = "swagger2示例接口描述",httpMethod = "POST")
+    @RequestMapping("/list")
+    public TestEntity listTest(TestEntity testEntity) {
         return testEntity;
     }
 }

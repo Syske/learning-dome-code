@@ -17,8 +17,8 @@ public class TestEntity implements Serializable {
     @ApiModelProperty(name = "name",value = "名称：用户名称", required =true, notes = "这个是提示信息")
     private String name;
     // id
-    @ApiModelProperty(value = "就医地编码，默认为61990001",
-            allowableValues = "61010001,61020001,61030001,61040001,61050001,61060001,61070001,61080001,61090001,61100001,61110001,61120001,61990001")
+    @ApiModelProperty(value = "用户id，默认为010001",
+            allowableValues = "010001,020001,030001,040001,050001,060001,070001,080001,090001,100001,110001,120001,990001")
 
     private String id;
 
