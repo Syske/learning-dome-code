@@ -64,7 +64,7 @@ public class JwtShiroRealm extends AuthorizingRealm  {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken auth) throws AuthenticationException {
         String token = (String) auth.getCredentials();
         if (token == null) {
-            throw new NullPointerException("jwtToken 不允许为空");
+            throw new AuthenticationException("jwtToken 不允许为空");
         }
         // 解密获得username，用于和数据库进行对比
         String username = JwtUtil.getUsername(CommonConstant.PREFIX_USER_TOKEN + token);

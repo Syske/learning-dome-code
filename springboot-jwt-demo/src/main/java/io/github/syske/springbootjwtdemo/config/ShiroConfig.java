@@ -74,6 +74,7 @@ public class ShiroConfig {
         filterRuleMap.put("/js/**","anon");
         filterRuleMap.put("/index","anon");
         filterRuleMap.put("/login","anon");
+        filterRuleMap.put("/","anon");
         filterRuleMap.put("/userLogin","anon");
         filterRuleMap.put("/logout","logout");//配置退出 过滤器,其中的具体的退出代码Shiro已经实现
         filterRuleMap.put("/**","authc");//过滤链定义，从上向下顺序执行，一般将/**放在最为下边

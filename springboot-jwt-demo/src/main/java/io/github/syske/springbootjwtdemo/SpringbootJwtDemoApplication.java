@@ -11,7 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
-@RestController
 @EnableScheduling
 @ServletComponentScan
 public class SpringbootJwtDemoApplication {

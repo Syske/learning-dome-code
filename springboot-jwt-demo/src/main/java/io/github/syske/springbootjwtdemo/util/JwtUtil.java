@@ -29,9 +29,9 @@ public class JwtUtil {
      * Description: 生成一个jwt字符串
      *
      * @param username    用户名
-     * @param timeOut 超时时间（单位s）
+     * @param timeOut 超时时间（单位ms）
      * @return java.lang.String
-     * @author fanxb
+     * @author syske
      * @date 2019/3/4 17:26
      */
     public static String encode(String username, String secret, long timeOut) {
@@ -51,7 +51,7 @@ public class JwtUtil {
      * @param token  token
      * @param secret secret
      * @return java.util.Map<java.lang.String                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               com.auth0.jwt.interfaces.Claim>
-     * @author fanxb
+     * @author syske
      * @date 2019/3/4 18:14
      */
     public static Map<String, Claim> decode(String token, String secret) {
@@ -82,7 +82,7 @@ public class JwtUtil {
             return jwt.getClaim("username").asString();
         } catch (JWTDecodeException e) {
             logger.error("获取用户名信息失败：", e);
-            return null;
+            throw new AuthorizationException("获取用户名信息失败");
         }
     }
 }
