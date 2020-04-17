@@ -2,7 +2,7 @@
 
 本仓库用于存放个人学习的dome代码，目前包含如下内容：
 
-- shiro-quickstart：shiro示例
+- [shiro-quickstart](./shiro-quickstart)：shiro示例
 - shiro-spring：shiro与spring整合
 - spring-aop-log：基于spring AOP的日志记录实现
 - mybatis-plus-generator：基于mybatis-plus的代码自动生成器
