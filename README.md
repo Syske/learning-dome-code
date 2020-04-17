@@ -23,3 +23,6 @@
 - [codeoptimization](./codeoptimization)：代码优化测试
 - [springbootsso](./springbootsso)：springboot整合Oauth2单点登陆项目，还有点问题，后续继续优化
 - [lamubda](./lamubda)：lamubda表达式学习demo
+- [spring-boot-swagger2-demo](./spring-boot-swagger2-demo)：springboot整合swagger2
+- [spring-cloud-demo](./spring-cloud-demo)：spring cloud示例
+- [springboot-shiro-cas-demo](./springboot-shiro-cas-demo)：springboot整合shiro、cas，实现单点登陆，这个项目还没跑通，后续继续研究
