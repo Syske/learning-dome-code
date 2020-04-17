@@ -21,7 +21,7 @@ public class InfoController {
         return new ResponseEntity<Object>(principal, HttpStatus.OK);
     }
 
-    @GetMapping("/login")
+    @GetMapping("/success")
     public String loginSuccess() {
         return "loginSuccess";
     }
