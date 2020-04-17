@@ -13,11 +13,11 @@
 - [springboot-jwt-demo](./springboot-jwt-demo)：jwt与springboot整合示例
 - [encrypt-util](./encrypt-util)：加密解密工具类
 - [imagUtils](./imagUtils)：图片处理工具类
-- [imagUtils](./imagUtils)：jdbc核心示例代码
-- [imagUtils](./imagUtils)：awt示例代码
+- [jdbc-demo](./jdbc-demo)：jdbc核心示例代码
+- [awt-demo](./awt-demo)：awt示例代码
 - [virusBroadcast](./virusBroadcast)：新冠仿真代码
 - [weblogic-monitor](./weblogic-monitor)：weblogic监控项目
-- [weblogic-monitor](./weblogic-monitor)：nio示例
+- [nio-demo](./nio-demo)：nio示例
 - [pdf-sign-test](./pdf-sign-test)：pdf电子签章
 - [Itext-pdf](./Itext-pdf)：Itext生成pdf文件示例
 - [codeoptimization](./codeoptimization)：代码优化测试
