@@ -1,0 +1,180 @@
+server:
+  port: 8082
+#阿里巴巴druid数据源配置
+spring:
+  #profiles:
+  #      include: datasource
+  datasource:
+      type: com.alibaba.druid.pool.DruidDataSource
+      druid:
+        primary:
+          #监控统计拦截的filters
+          driver-class-name: oracle.jdbc.driver.OracleDriver
+          username: your-username
+          password: your-password
+          url: jdbc:oracle:thin:@127.0.0.1:1521:test
+          publickey: your-public-key
+          connection-properties: config.decrypt=true;publickey=${spring.datasource.druid.primary.publickey};password=${spring.datasource.druid.primary.password}
+          password-callback-class-name: io.github.syske.springbootdruidmoredatasources.config.datasource.DbPasswordCallback
+           # 连接池的配置信息
+          # 初始化时建立物理连接的个数
+          initial-size: 3
+          # 连接池最小连接数
+          min-idle: 3
+          # 连接池最大连接数
+          max-active: 20
+          # 获取连接时最大等待时间，单位毫秒
+          max-wait: 60000
+          # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+          test-while-idle: true
+          # 既作为检测的间隔时间又作为testWhileIdel执行的依据
+          time-between-connect-error-millis: 60000
+          # 销毁线程时检测当前连接的最后活动时间和当前时间差大于该值时，关闭当前连接
+          min-evictable-idle-time-millis: 30000
+          # 用来检测连接是否有效的sql 必须是一个查询语句
+          # mysql中为 select 'x'
+          # oracle中为 select 1 from dual
+          validationQuery: select 1 from dual
+          # 申请连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true
+          test-on-borrow: false
+          # 归还连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true
+          test-on-return: false
+          # 是否缓存preparedStatement,mysql5.5+建议开启
+          pool-prepared-statements: true
+          # 当值大于0时poolPreparedStatements会自动修改为true
+          max-pool-prepared-statement-per-connection-size: 20
+          # 合并多个DruidDataSource的监控数据
+          use-global-data-source-stat: false
+        one:
+            #监控统计拦截的filters
+            driver-class-name: oracle.jdbc.driver.OracleDriver
+            username: your-username
+            password: your-password
+            url: jdbc:oracle:thin:@127.0.0.1:1521:test
+            publickey: your-public-key
+            connection-properties: config.decrypt=true;publickey=${spring.datasource.druid.one.publickey};password=${spring.datasource.druid.one.password}
+            password-callback-class-name: io.github.syske.springbootdruidmoredatasources.config.datasource.DbPasswordCallback
+            # 连接池的配置信息
+            # 初始化时建立物理连接的个数
+            initial-size: 3
+            # 连接池最小连接数
+            min-idle: 3
+            # 连接池最大连接数
+            max-active: 20
+            # 获取连接时最大等待时间，单位毫秒
+            max-wait: 60000
+            # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+            test-while-idle: true
+            # 既作为检测的间隔时间又作为testWhileIdel执行的依据
+            time-between-connect-error-millis: 60000
+            # 销毁线程时检测当前连接的最后活动时间和当前时间差大于该值时，关闭当前连接
+            min-evictable-idle-time-millis: 30000
+            # 用来检测连接是否有效的sql 必须是一个查询语句
+            # mysql中为 select 'x'
+            # oracle中为 select 1 from dual
+            validationQuery: select 1 from dual
+            # 申请连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true
+            test-on-borrow: false
+            # 归还连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true
+            test-on-return: false
+            # 是否缓存preparedStatement,mysql5.5+建议开启
+            pool-prepared-statements: true
+            # 当值大于0时poolPreparedStatements会自动修改为true
+            max-pool-prepared-statement-per-connection-size: 20
+            # 合并多个DruidDataSource的监控数据
+            use-global-data-source-stat: false
+        two:
+            #监控统计拦截的filters
+            driver-class-name: oracle.jdbc.driver.OracleDriver
+            username: your-username
+            password: your-password
+            url: jdbc:oracle:thin:@127.0.0.1:1521:test
+            publickey: your-public-key
+            connection-properties: config.decrypt=true;publickey=${spring.datasource.druid.two.publickey};password=${spring.datasource.druid.two.password}
+            password-callback-class-name: io.github.syske.springbootdruidmoredatasources.config.datasource.DbPasswordCallback
+            # 连接池的配置信息
+            # 初始化时建立物理连接的个数
+            initial-size: 3
+            # 连接池最小连接数
+            min-idle: 3
+            # 连接池最大连接数
+            max-active: 20
+            # 获取连接时最大等待时间，单位毫秒
+            max-wait: 60000
+            # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+            test-while-idle: true
+            # 既作为检测的间隔时间又作为testWhileIdel执行的依据
+            time-between-connect-error-millis: 60000
+            # 销毁线程时检测当前连接的最后活动时间和当前时间差大于该值时，关闭当前连接
+            min-evictable-idle-time-millis: 30000
+            # 用来检测连接是否有效的sql 必须是一个查询语句
+            # mysql中为 select 'x'
+            # oracle中为 select 1 from dual
+            validationQuery: select 1 from dual
+            # 申请连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true
+            test-on-borrow: false
+            # 归还连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true
+            test-on-return: false
+            # 是否缓存preparedStatement,mysql5.5+建议开启
+            pool-prepared-statements: true
+            # 当值大于0时poolPreparedStatements会自动修改为true
+            max-pool-prepared-statement-per-connection-size: 20
+            # 合并多个DruidDataSource的监控数据
+            use-global-data-source-stat: false
+        filter:
+          config:
+            enabled: true
+        # 配置扩展插件
+        #监控统计拦截的filters
+        filters: stat,wall,slf4j
+        # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+        connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        # 定时输出统计信息到日志中，并每次输出日志会导致清零（reset）连接池相关的计数器。
+        time-between-log-stats-millis: 300000
+        # 配置DruidStatFilter
+        web-stat-filter:
+          enabled: true
+          url-pattern: '/*'
+          exclusions: '*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*'
+        # 配置DruidStatViewServlet
+        stat-view-servlet:
+          # 是否启用StatViewServlet（监控页面）默认值为false（考虑到安全问题默认并未启动，如需启用建议设置密码或白名单以保障安全）
+          enabled: true
+          url-pattern: '/druid/*'
+          # IP白名单(没有配置或者为空，则允许所有访问)
+          allow: 127.0.0.1,10.189.187.131
+          # IP黑名单 (存在共同时，deny优先于allow)
+          deny: 192.168.0.128
+          # 禁用HTML页面上的“Reset All”功能
+          reset-enable: false
+          # 登录名
+          login-username: admin
+          # 登录密码
+          login-password: admin
+
+
+
+
+
+  #jedis和lettuce都是Java连接redis的客户端.
+  thymeleaf:
+    cache: false
+
+
+mybatis-plus:
+  #MybatisMapper映射路径
+  typeAliasesPackage: com.pansky.medicare.*.model
+  #mybatis配置文件路径，这里需要根据你具体的路径配置
+  #config-location: classpath:mybatis/mybatis-config.xml
+  global-config:
+    db-column-underline: false
+      #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 3
+    key-generator: com.baomidou.mybatisplus.incrementer.OracleKeyGenerator
+  #mpper路径，这里需要根据你具体的路径配置
+  mapper-locations: classpath*:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    jdbc-type-for-null: 'null'
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
