@@ -1,11 +1,5 @@
 package io.github.syske.springbootwebservicedemo.config;
 
-/**
- * @program: springboot-webservice-demo
- * @description: webservice配置类
- * @author: syske
- * @create: 2020-04-28 12:27
- */
 import io.github.syske.springbootwebservicedemo.service.Hello2Service;
 import io.github.syske.springbootwebservicedemo.service.HelloService;
 import org.apache.cxf.Bus;
@@ -20,10 +14,10 @@ import org.springframework.context.annotation.Configuration;
 import javax.xml.ws.Endpoint;
 
 /**
- * @Title: WebServiceConfig.java
- * @Description: TODO(WebService配置)
- * @Author: 爱飘de小子  16:13
- * @Date: 2018年08月03日 16点13分
+ * @program: springboot-webservice-demo
+ * @description: webservice配置类
+ * @author: syske
+ * @create: 2020-04-28 12:27
  */
 @Configuration
 public class WebServiceConfig {
