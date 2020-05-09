@@ -43,10 +43,10 @@ public class JmxWeblogic {
     public static MBeanServerConnection initConnection() throws IOException,
             MalformedURLException, MalformedObjectNameException {
         String protocol = "t3";
-        String hostname = "10.189.130.88";
+        String hostname = "127.0.0.1";
         String portString = "8201";
         String username = "weblogic";
-        String password = "ydjy%*88_2019";
+        String password = "weblogic2019";
         Integer portInteger = Integer.valueOf(portString);
         int port = portInteger.intValue();
         String jndiroot = "/jndi/";
@@ -163,10 +163,10 @@ public class JmxWeblogic {
         JmxWeblogic weblogic = new JmxWeblogic();
        // initConnection();
         String protocol = "t3";
-        String hostname = "10.190.131.78";
+        String hostname = "127.0.01";
         String portString = "9712";
         String username = "weblogic";
-        String password = "szyb%*78_2020";
+        String password = "weblogic2020";
         MBeanServerConnection mBeanServerConnection = initConnection(protocol, hostname, portString, username, password);
 
         runtimeService = new ObjectName(RUNTIMESERVICEMBEAN);

@@ -2,3 +2,4 @@ server:
  port: 8880
  servlet:
   context-path: /auth
+

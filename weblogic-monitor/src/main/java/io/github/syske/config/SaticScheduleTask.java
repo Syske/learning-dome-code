@@ -38,7 +38,7 @@ public class SaticScheduleTask {
 
 
     /**
-     * 每30秒获取并保存服务运行记录
+     * 每120秒获取并保存服务运行记录
      */
     @Scheduled(fixedRate = 120000)
     public void getServerData() {

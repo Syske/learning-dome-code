@@ -135,10 +135,10 @@ public class WeblogicMonitorUtil {
         JmxWeblogic weblogic = new JmxWeblogic();
         // initConnection();
         String protocol = "t3";
-        String hostname = "10.189.130.88";
+        String hostname = "127.0.0.1";
         String portString = "8201";
         String username = "weblogic";
-        String password = "ydjy%*88_2019";
+        String password = "weblogic2019";
         MBeanServerConnection mBeanServerConnection = initConnection(protocol, hostname, portString, username, password);
 
         ObjectName runtimeService = new ObjectName(RUNTIMESERVICEMBEAN);

@@ -23,7 +23,7 @@ import com.alibaba.druid.support.http.WebStatFilter;
  * 访问地址: http://localhost:8080/druid
  * 账号: admin
  * 密码: admin
- * @author ouyangjun
+ * @author syske
  */
 @Configuration
 public class DruidServletConfiguration {
