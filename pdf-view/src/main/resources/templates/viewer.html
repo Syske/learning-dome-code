@@ -7,9 +7,11 @@
     <meta name="google" content="notranslate">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>PDF.js viewer</title>
-    <script src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/pdf-js/base64.js"></script>
-    <script type="text/javascript" src="/pdf-js/jquery.base64.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <!--<script src="vali-theme/js/jquery.min.js"></script>-->
+    <script type="text/javascript" src="js/typedarray.js"></script>
+    <script type="text/javascript" src="base64.js"></script>
+    <script type="text/javascript" src="jquery.base64.js"></script>
     <script type="text/javascript">
         if (!window.btoa) window.btoa = $.base64.btoa
         if (!window.atob) window.atob = $.base64.atob
@@ -31,8 +33,7 @@
         var pdfUrl = document.location.search.substring(1);
         if (null == pdfUrl || "" == pdfUrl) {
             var BASE64_MARKER = ';base64,';//声明文件流编码格式
-            var preFileId = "";
-            var pdfAsDataUri = "";
+
             var pdfAsDataUri = sessionStorage.getItem("_imgUrl");//这里就是pdf文件的base64码，我是通过session传递base64的
             var pdfAsArray = convertDataURIToBinary(pdfAsDataUri);
             DEFAULT_URL = pdfAsArray;
@@ -54,10 +55,10 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="/pdf-js/viewer.css">
-    <link rel="resource" type="application/l10n" href="/pdf-js/locale/locale.properties">
-    <script src="/pdf-js/build/pdf.js"></script>
-    <script src="/pdf-js/viewer.js"></script>
+    <link rel="stylesheet" href="viewer.css">
+    <link rel="resource" type="application/l10n" href="locale/locale.properties">
+    <script src="build/pdf.js"></script>
+    <script src="viewer.js"></script>
 </head>
 
 <body tabindex="1" class="loadingInProgress">

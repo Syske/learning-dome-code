@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("pc/file")
 public class FileManagerController {
 
-    private String remotUrl = "http://10.190.131.118/szyb/";
+    private String remotUrl = "http://10.190.131.118/";
 
     @RequestMapping("/download")
     @ResponseBody
