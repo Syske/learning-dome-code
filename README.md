@@ -32,4 +32,4 @@
 28. [pdf-view](./pdf-view)：pdf文件预览平台
 29. [springboot-cxf](./springboot-cxf)：spring boot整合cxf（官方示例版）
 30. [springboot-cxf](./api-gateway-demo)：springCloud应用网关简单示例
-31.[springboot-oauth2-demo](./springboot-oauth2-demo)：springboot-oauth2简单演示
+31. [springboot-oauth2-demo](./springboot-oauth2-demo)：springboot-oauth2简单演示
