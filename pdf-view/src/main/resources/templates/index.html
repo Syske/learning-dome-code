@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <title>陕西省医疗保险管理中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="css/sweetalert.css">
+</head>
+<body>
+<script src="js/jquery.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+       // alert(getUrlParam("fileName"));
+        //getBase64Str("payment-voucher-of-insurance/004f9367-61a2-4bd8-a722-6eac115d0b13-980000097670-signed.pdf");
+        getBase64Str(getUrlParam("fileName"));
+    })
+
+
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+
+
+
+    function getBase64Str(fileName) {
+        var url = "pc/file/download";
+        notice();
+        $.ajax({
+            type: 'POST',
+            url: url,//路径
+            data: {"fileName": fileName},//数据，这里使用的是Json格式进行传输
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+            success: function (data) {
+                if (data.success) {
+                    sessionStorage.setItem("_imgUrl", data.obj);
+                    showPdfWindow()
+                } else {
+                    swal("错误信息", "获取文件失败", "error");
+                }
+                //swal.close();
+            },
+            error:function () {
+                swal("错误信息", "获取文件失败", "error");
+            }
+        });
+    }
+
+    function showPdfWindow() {
+        var frameSrc = "/viewer";
+        window.location.href = frameSrc;
+    }
+
+    function notice() {
+        swal({
+            title: "请稍等",
+            text: "数据加载中",
+            type: "info",
+            showCancelButton: false,
+            closeOnConfirm: false,
+            showConfirmButton: false,
+            showLoaderOnConfirm: false,
+        });
+    }
+</script>
+
+</body>
+</html>
