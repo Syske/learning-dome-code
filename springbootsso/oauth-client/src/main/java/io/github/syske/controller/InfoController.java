@@ -30,4 +30,9 @@ public class InfoController {
     public String indexPage() {
         return "index";
     }
+
+    @GetMapping("/login")
+    public String loginPage() {
+        return "loginSuccess";
+    }
 }
