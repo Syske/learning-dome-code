@@ -23,3 +23,4 @@
 - [codeoptimization](./codeoptimization)：代码优化测试
 - [springbootsso](./springbootsso)：springboot整合Oauth2单点登陆项目，还有点问题，后续继续优化
 - [lamubda](./lamubda)：lamubda表达式学习demo
+- [custom-annotation-demo](./custom-annotation-demo)：spring-boot自定义注解实现拦截器解耦
