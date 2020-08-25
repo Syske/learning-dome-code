@@ -34,3 +34,8 @@
 30. [api-gateway-demo](./api-gateway-demo)：springCloud应用网关简单示例
 31. [springboot-oauth2-demo](./springboot-oauth2-demo)：springboot-oauth2简单演示
 32. [custom-annotation-demo](./custom-annotation-demo)：spring-boot自定义注解实现拦截器解耦
+33. [springboot-jdbc-mybatis-demo](./springboot-jdbc-mybatis-demo)：spring-boot + jdbc + mybatis整合
+34. [syske-pan](./syske-pan)：仿百度云盘（目前项目刚创建 :joy:）
+35. [springboot-learning](./springboot-learning)：springboot日常学习笔记
+36. [velocity-templete-to-pdf](./velocity-templete-to-pdf)：Java操作pdf表单模板，生成定式文件
+37. [data-proccess](./data-proccess)：处理中国气象数据，提取24小时各类气象参数
