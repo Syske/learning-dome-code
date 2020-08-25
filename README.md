@@ -33,3 +33,4 @@
 29. [springboot-cxf](./springboot-cxf)：spring boot整合cxf（官方示例版）
 30. [api-gateway-demo](./api-gateway-demo)：springCloud应用网关简单示例
 31. [springboot-oauth2-demo](./springboot-oauth2-demo)：springboot-oauth2简单演示
+32. [custom-annotation-demo](./custom-annotation-demo)：spring-boot自定义注解实现拦截器解耦

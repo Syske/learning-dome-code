@@ -40,8 +40,8 @@ function goLogin() {
     alert("无认证信息，即将跳转到登录页面");
     var redirect = getUrlParam("redirect");
     if(redirect != null)
-        window.location.href = encodeURI("/userLogin?redirect=" + redirect);
+        window.location.href = encodeURI("/sso/userLogin?redirect=" + redirect);
     else
-        window.location.href = encodeURI("/userLogin?redirect=" + "/sso/index");
+        window.location.href = encodeURI("/sso/userLogin?redirect=" + "/sso/index");
 
 }

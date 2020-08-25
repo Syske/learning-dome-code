@@ -24,6 +24,7 @@ import java.util.Map;
  * @create: 2020-03-20 23:13
  */
 @RestController
+@RequestMapping(value = "error")
 public class TokenErrorController extends BasicErrorController {
 
     public TokenErrorController(ErrorAttributes errorAttributes) {
@@ -31,8 +32,9 @@ public class TokenErrorController extends BasicErrorController {
     }
 
     @Override
-    @RequestMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(produces = {MediaType.ALL_VALUE})
     public ResponseEntity<Map<String, Object>> error(HttpServletRequest request) {
         return new ResponseEntity<>(ReturnEntity.failedResultMap(1, "未知错误"), HttpStatus.OK);
     }
+
 }

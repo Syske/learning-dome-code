@@ -11,7 +11,6 @@ import java.io.IOException;
  * @create: 2020-03-21 14:51
  */
 
-@WebFilter(filterName="xssFilter",urlPatterns="/*")
 public class XssFilter implements Filter {
 
     @Override
