@@ -1,0 +1,3 @@
+$rankMap.get("cq")
+${rankMap.get("cq").get(0)}
+${rankMap.get("cq").get(0).getValue()}
