@@ -1,5 +1,6 @@
 package io.github.syske.pdfview.utils;
 
+import io.github.syske.pdfview.exception.FileDownloadException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sun.misc.BASE64Decoder;
@@ -33,7 +34,7 @@ public class Base64Util {
      *  3.建立从底层输入流中读取数据的BufferedInputStream缓冲输出流对象；
      *  4.使用BufferedOutputStream和FileOutputSteam输出数据到指定的文件中
      */
-    public static void base64StringToPDF(String base64String, File file){
+    public static void base64StringToPDF(String base64String, File file) throws FileDownloadException {
         BASE64Decoder decoder = new BASE64Decoder();
         BufferedInputStream bin = null;
         FileOutputStream fout = null;
@@ -59,14 +60,16 @@ public class Base64Util {
             //刷新此输出流并强制写出所有缓冲的输出字节，必须这行代码，否则有可能有问题
             bout.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("未知错误", e);
+            throw new FileDownloadException("未知错误");
         } finally {
             try {
                 bout.close();
                 fout.close();
                 bin.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error("未知错误", e);
+                throw new FileDownloadException("未知错误");
             }
         }
     }
@@ -76,7 +79,7 @@ public class Base64Util {
      * @param file
      * @return
      */
-    public static String remotePdfToBase64(String file) {
+    public static String remotePdfToBase64(String file) throws FileDownloadException{
         BASE64Encoder encoder = new BASE64Encoder();
         InputStream fin =null;
         BufferedInputStream bin =null;
@@ -100,9 +103,11 @@ public class Base64Util {
             return encoder.encodeBuffer(bytes).trim();
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            log.error("文件未找到", e);
+            throw new FileDownloadException("文件未找到，请确认文件是否存在");
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("未知错误", e);
+            throw new FileDownloadException("未知错误");
         } finally {
             try {
                 if (fin != null)
@@ -114,10 +119,10 @@ public class Base64Util {
                 if (bout != null)
                     bout.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error("未知错误", e);
+                throw new FileDownloadException("未知错误");
             }
         }
-        return null;
     }
 
 

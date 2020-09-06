@@ -1,0 +1,12 @@
+
+server:
+  port: 8099
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    username: test
+    password: test
+    url: jdbc:oracle:thin:@127.0.0.1:1521/test
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: io.github.syske.springbootjdbcmybatisdemo.entity
