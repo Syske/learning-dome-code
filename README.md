@@ -39,3 +39,4 @@
 35. [springboot-learning](./springboot-learning)：springboot日常学习笔记
 36. [velocity-templete-to-pdf](./velocity-templete-to-pdf)：Java操作pdf表单模板，生成定式文件
 37. [data-proccess](./data-proccess)：处理中国气象数据，提取24小时各类气象参数
+38. [logger-demo](./logger-demo)：探讨日志使用问题及门面日志的优势
