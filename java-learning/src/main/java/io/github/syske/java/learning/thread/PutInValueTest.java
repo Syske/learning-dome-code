@@ -4,15 +4,16 @@ import javax.sound.midi.Soundbank;
 
 public class PutInValueTest {
     public static void main(String[] args) {
-        //String s = "234324";
-        //String s = new String("234324");
+//        String s = "234324";
+        String s = new String("234324");
 //        int s = 1232;
-//        printlnStr(s);
-//        System.out.println(s);
-        Person p = new Person();
+        printlnStr(s);
+        System.out.println(s);
+    /*    Person p = new Person();
         p.name = "张三";
         changePerson(p);
         System.out.println(p.name);
+        */
     }
 
     private static void printlnStr(String str) {
