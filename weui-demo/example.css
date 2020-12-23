@@ -646,4 +646,5 @@ body[data-weui-theme=dark] .page.home .page__bd img {
 
 .weui-bar__item_on {
     filter: grayscale(0);
+    color: #50bcff;
 }

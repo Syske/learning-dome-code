@@ -124,7 +124,7 @@ body {
   --weui-YELLOW: #ffc300;
   --weui-GREEN: #91d300;
   --weui-LIGHTGREEN: #95ec69;
-  --weui-BRAND: #07c160;
+  --weui-BRAND: #50bcff;
   --weui-BLUE: #10aeff;
   --weui-INDIGO: #1485ee;
   --weui-PURPLE: #6467f0;
@@ -161,7 +161,7 @@ body {
     --weui-YELLOW: #cc9c00;
     --weui-GREEN: #74a800;
     --weui-LIGHTGREEN: #3eb575;
-    --weui-BRAND: #07c160;
+    --weui-BRAND: #50bcff;
     --weui-BLUE: #10aeff;
     --weui-INDIGO: #1196ff;
     --weui-PURPLE: #8183ff;
@@ -198,7 +198,7 @@ body[data-weui-theme='dark'] {
   --weui-YELLOW: #cc9c00;
   --weui-GREEN: #74a800;
   --weui-LIGHTGREEN: #3eb575;
-  --weui-BRAND: #07c160;
+  --weui-BRAND: #50bcff;
   --weui-BLUE: #10aeff;
   --weui-INDIGO: #1196ff;
   --weui-PURPLE: #8183ff;
