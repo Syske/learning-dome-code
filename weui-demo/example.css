@@ -639,3 +639,11 @@ body[data-weui-theme=dark] .page.home .page__bd img {
 .weui-footer {
     margin: 20px;
 }
+
+.weui-tabbar__item {
+    filter: grayscale(1);
+}
+
+.weui-bar__item_on {
+    filter: grayscale(0);
+}
