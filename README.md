@@ -41,3 +41,5 @@
 37. [data-proccess](./data-proccess)：处理中国气象数据，提取24小时各类气象参数
 38. [logger-demo](./logger-demo)：探讨日志使用问题及门面日志的优势
 39. [springboot-strategy-pattern-demo](./springboot-strategy-pattern-demo)：springboot策略模式解耦
+40. [weui-demo](./weui-demo)：weui魔改测试
+
