@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.syske.springbootjdbcmybatisdemo.dao.UserDAO">
+
+    <select id="listUsers" resultType="user">
+        SELECT * FROM users WHERE account_id ='010002'
+    </select>
+
+</mapper>

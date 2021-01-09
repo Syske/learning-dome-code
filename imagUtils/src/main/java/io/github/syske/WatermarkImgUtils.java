@@ -25,7 +25,7 @@ public class WatermarkImgUtils {
 
     public static void main(String[] args) {
         System.out.println("开始水印：");
-        new WatermarkImgUtils().addWatermark("E:\\backup\\持证正面照\\DSC_0900.JPG", "e:/25_after.jpg", "仅用于腾讯小程序账号找回认证", "jpg",1.4d);
+        new WatermarkImgUtils().addWatermark("D://20201124213253.jpg", "d:/20201124213253_after.jpg", "仅用于面试证明", "jpg",1.4d);
         System.out.println("水印完成。");
     }
 
@@ -38,7 +38,7 @@ public class WatermarkImgUtils {
      * @return void
      */
     public void addWatermark(String sourceImgPath, String tarImgPath, String waterMarkContent,String fileExt, double cos){
-        Font font = new Font("宋体", Font.BOLD, 80);//水印字体，大小
+        Font font = new Font("宋体", Font.BOLD, 25);//水印字体，大小
         Color markContentColor = Color.red;//水印颜色
         Integer degree = 45;//设置水印文字的旋转角度
         float alpha = 0.5f;//设置水印透明度
