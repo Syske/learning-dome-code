@@ -125,7 +125,7 @@
             </div>
             <div class="page__ft" style="margin-bottom:60px">
                 <div class="weui-footer">
-                    <p class="weui-footer__text">本服务由陕西省医疗保障局提供</p>
+                    <p class="weui-footer__text">本服务由省医疗保障局提供</p>
                 </div>
             </div>
         </div>
@@ -229,7 +229,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="page__ft">
         <a href="javascript:home()"><img src="images/icon_footer_link.png"></a>
     </div>
@@ -247,12 +247,24 @@
             $('.weui-tabbar__item').on('click', function () {
                 $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
                 var id = $(this).data('id');
-                console.log(id);
-                window.pageManager.go(id);
+                console.log(id);               
                 if(id == 'index_me') {
                     console.log($('#top_bar'))
-                    $('#top_bar .weui-tabbar__label').html('基本信息');
+                    $('#top_bar .weui-tabbar__label').html('基本信息');                   
                 }
+                if(id == 'home') {
+                    console.log($('#top_bar'))
+                    $('#top_bar .weui-tabbar__label').html('省级医保办事大厅');
+                }
+                if(id == 'index_guide') {
+                    console.log($('#top_bar'))
+                    $('#top_bar .weui-tabbar__label').html('办事指南');
+                }
+                if(id == 'index_eCode') {
+                    console.log($('#top_bar'))
+                    $('#top_bar .weui-tabbar__label').html('医保电子凭证');
+                }
+                window.pageManager.go(id);
             });
         });
 </script>  
