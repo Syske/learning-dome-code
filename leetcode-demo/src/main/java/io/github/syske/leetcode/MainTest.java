@@ -23,5 +23,12 @@ public class MainTest {
        int target = 6;
        Solution solution = new Solution();
         System.out.println(Arrays.toString(solution.twoSum(nums, target)));
+
+        char c = 'C';
+        System.out.println((char)(c+32));
+        int count = 9;
+        System.out.println(count/8);
+        String ste = "123456789";
+        System.out.println(ste.substring(8, ste.length()));
     }
 }
