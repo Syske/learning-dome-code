@@ -42,4 +42,5 @@
 38. [logger-demo](./logger-demo)：探讨日志使用问题及门面日志的优势
 39. [springboot-strategy-pattern-demo](./springboot-strategy-pattern-demo)：springboot策略模式解耦
 40. [weui-demo](./weui-demo)：weui魔改测试
+41. [web-sign-demo](./web-sign-demo)：在线生成承诺书，并在线签名
 

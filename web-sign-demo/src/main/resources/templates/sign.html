@@ -1,0 +1,234 @@
+<div class="page js_show" id="sign-page" style="background: #fff;">
+    <div class="sign-img">
+        <img id = "sign-source-img" style="width: 100%" src="" alt="">
+    </div>
+    <div id = "sign-btn-box">
+        <a href="javascript:" class="weui-btn weui-btn_primary" id="to-sign">开始签名</a>
+    </div>
+
+    <div id="dialogs">
+        <!--BEGIN dialog1-->
+        <div class="js_dialog" id="signDialog" style="opacity: 0; display: none;">
+            <div class="weui-mask"></div>
+            <div id="js_dialog_sign" class="weui-half-screen-dialog">
+                <div class="weui-half-screen-dialog__hd">
+                    <div class="weui-half-screen-dialog__hd__side">
+                        <button class="weui-icon-btn" id="close-btn">关闭<i class="weui-icon-close-thin"></i></button>
+                    </div>
+                    <div class="weui-half-screen-dialog__hd__main">
+                        <strong class="weui-half-screen-dialog__title">绘制签名</strong>
+                    </div>
+                </div>
+                <div class="weui-half-screen-dialog__bd">
+                    <div id = "sign-tips" style="margin-bottom: 5px; text-align:center">
+                        <p>请用手指在虚线框内绘制签名</p>
+                    </div>
+                    <div id = "content">
+                        <div id = "signatureparent">
+                            <div id = "signature"></div></div>
+                    </div>
+                    <div id = "sign-btns">
+                        <a href="javascript:" id = "sign-reset-btn" class="weui-btn weui-btn_warn" style="float: left; width: 50%; margin-top: 10px;">清除</a>
+                        <a href="javascript:" id = "sign-sure-btn" class="weui-btn weui-btn_primary" style="float: left; width: 50%; margin-top: 10px;">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END dialog1-->
+    </div>
+
+    <div class="js_dialog" id="signDialogTips" style="opacity: 0; display: none;">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__hd"><strong class="weui-dialog__title">温馨提示</strong></div>
+            <div class="weui-dialog__bd" style="height: 50px; margin-bottom: 0px;">
+                <p style="text-align: left; color: #333;">请确保备案人本人进行签名，以免无法通过备案</p></div>
+            <div class="weui-dialog__ft">
+                <div class="" style=" margin: 10px auto;height: 56px;">
+                    <div class="confirm-btn" style="margin-bottom: 30px">
+                        <a class="weui-btn weui-btn_primary" href="javascript:" id="make-sure">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/zepto.min.js"></script>
+<script type="text/javascript" src="../js/jweixin-1.0.0.js"></script>
+<script src="../js/weui.min.js"></script>
+<script src="../js/city-data.js"></script>
+<script src="../js/vconsole.min.js"></script>
+<script src="../js/js-sign/jquery.js"></script>
+<script src="../js/ajax.js"></script>
+<script type="text/javascript">
+    jQuery.noConflict()
+</script>
+<script>
+    /*  @preserve
+    jQuery pub/sub plugin by Peter Higgins (dante@dojotoolkit.org)
+    Loosely based on Dojo publish/subscribe API, limited in scope. Rewritten blindly.
+    Original is (c) Dojo Foundation 2004-2010. Released under either AFL or new BSD, see:
+    http://dojofoundation.org/license for more information.
+    */
+    (function($) {
+        var topics = {};
+        $.publish = function(topic, args) {
+            if (topics[topic]) {
+                var currentTopic = topics[topic],
+                    args = args || {};
+
+                for (var i = 0, j = currentTopic.length; i < j; i++) {
+                    currentTopic[i].call($, args);
+                }
+            }
+        };
+        $.subscribe = function(topic, callback) {
+            if (!topics[topic]) {
+                topics[topic] = [];
+            }
+            topics[topic].push(callback);
+            return {
+                "topic": topic,
+                "callback": callback
+            };
+        };
+        $.unsubscribe = function(handle) {
+            var topic = handle.topic;
+            if (topics[topic]) {
+                var currentTopic = topics[topic];
+
+                for (var i = 0, j = currentTopic.length; i < j; i++) {
+                    if (currentTopic[i] === handle.callback) {
+                        currentTopic.splice(i, 1);
+                    }
+                }
+            }
+        };
+    })(jQuery);
+
+
+    // loading
+    function showLoading(msg){
+        var $loadingToast = $('#loadingToast');
+            if ($loadingToast.css('display') != 'none') return;
+            if(msg != undefined && msg != null) {
+                $("#loadingToast .weui-toast__content").html(msg);
+            } else {
+                $("#loadingToast .weui-toast__content").html("请稍等……");
+            }
+            $loadingToast.fadeIn(100);
+    }
+
+    function hideLoading(){
+        var $loadingToast = $('#loadingToast');
+        if ($loadingToast.css('display') == 'none') return;
+        $loadingToast.fadeOut(100);
+    }
+
+</script>
+
+<script type="text/javascript">
+    /**
+     * 初始化签名区域
+     * @param canvasWidth
+     */
+    function signInit(canvasWidth) {
+        (function($){
+            $("#signature").jSignature({'height':'300px', 'width': canvasWidth,'sizeRatio': window.devicePixelRatio});
+
+        })(jQuery);
+    }
+
+    $(function(){
+        var sign_source_img = sessionStorage.getItem("sign-source-img");
+        $('#sign-source-img').attr("src", "data:image/png;base64," + sign_source_img);
+
+        var $dialog1 = $('#js_dialog_sign'),
+            $signDialog = $('#signDialog'),
+            $signDialogTips = $('#signDialogTips');
+
+        $('#to-sign').on('click', function () {
+            $signDialogTips.fadeIn(200);
+        });
+
+        $('#dialogs').on('click', '.weui-mask', function(){
+            $(this).parents('.js_dialog').fadeOut(200);
+            $dialog1.removeClass('weui-half-screen-dialog_show');
+
+        });
+
+        $('#signDialogTips #make-sure').on('click', function(){
+            $('#signature').html('');
+            $signDialogTips.fadeOut(200);
+            $signDialog.fadeIn(200);
+            $dialog1.addClass('weui-half-screen-dialog_show');
+            console.log($dialog1.width()-2);
+            signInit($dialog1.children('.weui-half-screen-dialog__bd').width()-5)
+        });
+
+        $('#js_dialog_sign #close-btn').on('click', function() {
+            $signDialog.fadeOut(200);
+        })
+
+        $('#js_dialog_sign #sign-reset-btn').on('click', function() {
+            $('#signature').html('');
+            signInit($dialog1.children('.weui-half-screen-dialog__bd').width()-5);
+        })
+
+        $('#js_dialog_sign #sign-sure-btn').on('click', function() {
+            showLoading("承诺书签名中，稍等……");
+            $(this).parents('.js_dialog').fadeOut(200);
+            var data = "";
+            (function($){
+                data = $("#signature").jSignature('getData', "image");
+            })(jQuery);
+            var datas = sessionStorage.getItem("apply-record-datas");
+            var signSourceImg = sessionStorage.getItem("sign-source-img");
+            var parseJSON = JSON.parse(datas);
+            parseJSON['file'] = signSourceImg;
+            parseJSON['sign'] = data[1];
+
+            var requestParameter = { "datas": JSON.stringify(parseJSON) };
+            var url = "/signTest/signPersonalCommitment";
+            aj(url, requestParameter, function (result) {
+                hideLoading();
+                console.log(result);
+                if(result.success) {
+                    $("#sign-btn-box .weui-btn").remove();
+                    $('#sign-source-img').attr("src", "data:image/png;base64," + result.obj.datas);
+                    var $sureAndCommit = $(" <a href=\"javascript:\" class=\"weui-btn weui-btn_primary\" id=\"sign-sure-commit\">确认提交</a>");
+                    var $reSign = $("<a href=\"javascript:\" class=\"weui-btn weui-btn_warn\" id=\"to-sign\">重新签名</a>");
+                    $("#sign-btn-box").append($sureAndCommit);
+                    $("#sign-btn-box").append($reSign);
+                    $('#sign-sure-commit').on('click', function () {
+                        apply();
+                    });
+                    $('#to-sign').on('click', function () {
+                        $signDialogTips.fadeIn(200);
+                    });
+                } else {
+                    $('#topTips').html(result.msg);
+                    $('#topTips').fadeIn(200);
+                    setTimeout(function () {
+                        $('#topTips').fadeOut(100);
+                    }, 2000);
+                }
+            }, function (err) {
+                console.log(err);
+            })
+        });
+    });
+
+    function apply() {
+        var datas = sessionStorage.getItem("apply-record-datas");
+        console.log(datas)
+        var parseJSON = JSON.parse(datas);
+        var signedImgSrc = $('#sign-source-img').attr("src");
+        // 签名后的承诺书
+        parseJSON['file'] = signedImgSrc.split(",")[1];
+        console.log(parseJSON);
+    }
+</script>
+
+<script src="../js/js-sign/jSignature.min.noconflict.js?version=21.1.15"></script>
