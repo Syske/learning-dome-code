@@ -1,0 +1,13 @@
+input.is-invalid::-webkit-input-placeholder{
+    color:#dc3545 ;
+}
+input.is-invalid::-moz-placeholder{
+    color:#dc3545 ;
+}
+input.is-invalid::-ms-input-placeholder{
+    color:#dc3545 ;
+}
+.userError,.pswError,.msgError{
+    color: #dc3545;
+    font-size: 12px;
+}

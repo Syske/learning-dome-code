@@ -25,7 +25,7 @@ public class WatermarkImgUtils {
 
     public static void main(String[] args) {
         System.out.println("开始水印：");
-        new WatermarkImgUtils().addWatermark("E:\\workSpeace\\pansky\\personal_files\\入职资料\\2.png", "E:\\workSpeace\\pansky\\personal_files\\入职资料\\2_after.png", "仅用于面试证明", "jpg",1.4d);
+        new WatermarkImgUtils().addWatermark("D://20201124213253.jpg", "d:/20201124213253_after.jpg", "仅用于面试证明", "jpg",1.4d);
         System.out.println("水印完成。");
     }
 

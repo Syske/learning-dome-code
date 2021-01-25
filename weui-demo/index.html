@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+    <title>WeUI</title>
+    <link rel="stylesheet" href="./style/weui.css"/>
+    <link rel="stylesheet" href="./example.css"/>
+    <link rel="stylesheet" href="./style/font-awesome.min.css"/>
+</head>
+<body ontouchstart>
+    <div class="weui-toptips weui-toptips_warn js_tooltips">错误提示</div>
+
+    <div class="container" id="container">
+        <!-- tom tabbar -->
+        <div class="weui-tabbar" style="position: absolute; top: 0px; width: 100%;border-bottom: 1px solid #ccc;" id="top_bar">
+            <div class="weui-tabbar_top">
+                <p class="weui-tabbar__label">省级医保办事大厅</p>
+            </div>
+        </div>
+
+        <!-- bottom tabbar -->
+        <div class="weui-tab">
+            <div class="weui-tabbar" style="position: absolute; bottom: 0px; width: 100%; border-top: 1px solid #ccc;">
+                <div class="weui-tabbar__item weui-bar__item_on" data-id="home">
+                    <div style="display: inline-block; position: relative;">
+                        <img src="./images/index.svg" alt="" class="weui-tabbar__icon">
+                    </div>
+                    <p class="weui-tabbar__label">首页</p>
+                </div>
+                <div class="weui-tabbar__item" data-id='index_eCode'>
+                    <img src="./images/eCode.svg" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">电子凭证</p>
+                </div>
+                <div class="weui-tabbar__item" data-id='index_guide'>
+                    <img src="./images/guide.svg" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">办事指南</p>
+                </div>
+                <div class="weui-tabbar__item" data-id="index_me">
+                    <img src="./images/me.svg" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">我</p>
+                </div>
+            </div>
+        </div>       
+    </div>
+
+
+    <!-- 首页 -->
+    <script type="text/html" id="tpl_home">
+        <div class="page">
+            <div class="page__bd" style="height: 100%;">               
+                <div class="weui-grids">
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="./images/hospital.svg" alt="">
+                        </div>
+                        <p class="weui-grid__label">定点医院</p>
+                    </a>
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="./images/drugstore.svg" alt="">
+                        </div>
+                        <p class="weui-grid__label">定点药店</p>
+                    </a>
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="./images/drugstore_mxb.svg" alt="">
+                        </div>
+                        <p class="weui-grid__label">慢性病药店</p>
+                    </a>
+                </div>
+                <h1 class="page__title">业务办理</h1>
+                <p class="page__desc">业务办理</p>
+                <div class="weui-grids">
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="./images/ydjyRecord.svg" alt="">
+                        </div>
+                        <p class="weui-grid__label">异地就医备案</p>
+                    </a>
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="images/insuredInfo.svg" alt="">
+                        </div>
+                        <p class="weui-grid__label">参保详情</p>
+                    </a>
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="./images/personAccount.svg" alt="">
+                        </div>
+                        <p class="weui-grid__label">个人账户查询</p>
+                    </a>
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="./images/paymentInfo.svg" alt="">
+                        </div>
+                        <p class="weui-grid__label">缴费明细</p>
+                    </a>
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="./images/chronicDisease.svg" alt="">
+                        </div>
+                        <p class="weui-grid__label">慢性病查询</p>
+                    </a>
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="./images/cashReimbursement.svg" alt="">
+                        </div>
+                        <p class="weui-grid__label">现金报销预审</p>
+                    </a>
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="./images/hospital_yd.svg" alt="">
+                        </div>
+                        <p class="weui-grid__label">异地就医医院</p>
+                    </a>
+                    <a href="javascript:" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="./images/drugstore_yd.svg" alt="">
+                        </div>
+                        <p class="weui-grid__label">异地就医药店</p>
+                    </a>
+                </div>
+                
+            </div>
+            <div class="page__ft" style="margin-bottom:60px">
+                <div class="weui-footer">
+                    <p class="weui-footer__text">本服务由省医疗保障局提供</p>
+                </div>
+            </div>
+        </div>
+</script>
+
+<!-- 电子凭证 -->
+<script type="text/html" id="tpl_index_eCode">
+    <div class="page">
+
+        <div class="page__bd" style="height: 100%;">
+            <div class="weui-tab">
+                <div class="weui-tab__panel">
+                    <div class="weui-grids">
+                      <a href="javascript:" class="weui-grid">
+                            <div class="weui-grid__icon">
+                                <img src="./images/hospital.svg" alt="">
+                            </div>
+                            <p class="weui-grid__label">电子凭证</p>
+                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!-- 办事指南 -->
+<script type="text/html" id="tpl_index_guide">
+    <div class="page">
+
+        <div class="page__bd" style="height: 100%;">
+            <div class="weui-tab">
+                <div class="weui-tab__panel">
+                    <div class="weui-grids">
+                        <a href="javascript:" class="weui-grid">
+                            <div class="weui-grid__icon">
+                                <img src="./images/hospital.svg" alt="">
+                            </div>
+                            <p class="weui-grid__label">办事指南</p>
+                        </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!-- 我 -->
+<script type="text/html" id="tpl_index_me">
+    <div class="page">
+        <div class="weui-panel weui-panel_access" style="margin-top: 10px;">
+            <div class="page__hd">
+                <a href="javascript:" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" style="border-radius: 30px;" src="./images/user.svg" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">曹*</h4>
+                        <p class="weui-media-box__desc">135****5548</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="weui-panel weui-panel_access">
+            <div class="page__bd" >
+                <div class="weui-cells">
+                
+                    <a class="weui-cell  weui-cell_access" href="javascript:">                    
+                        <div class="weui-cell__bd">
+                            <p><i class="fa fa-address-card-o text-aqua"></i>个人基本信息</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                        </div>
+                    </a>
+                    <a class="weui-cell  weui-cell_access" href="javascript:">
+                        <div class="weui-cell__bd">
+                            <p><i class="fa fa-pencil-square-o text-aqua"></i>帮助与反馈</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                        </div>
+                    </a>
+                    <a class="weui-cell  weui-cell_access" href="javascript:">
+                        <div class="weui-cell__bd">
+                            <p><i class="fa fa-info-circle text-aqua"></i>关于</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
+    </div>
+    <div class="weui-panel weui-panel_access">
+        <div class="page__bd" >    
+            <div class="weui-cells">
+                <a class="weui-cell  weui-cell_access" href="javascript:">
+                    <div class="weui-cell__bd">
+                        <p><i class="fa fa-cog text-aqua"></i>设置</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page__ft">
+        <a href="javascript:home()"><img src="images/icon_footer_link.png"></a>
+    </div>
+</script>
+
+
+
+    <script src="./zepto.min.js"></script>
+    <script type="text/javascript" src="./js/jweixin-1.0.0.js"></script>
+    <script src="./js/weui.min.js"></script>
+    <script src="./example.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            $('.weui-tabbar__item').on('click', function () {
+                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+                var id = $(this).data('id');
+                console.log(id);               
+                if(id == 'index_me') {
+                    console.log($('#top_bar'))
+                    $('#top_bar .weui-tabbar__label').html('基本信息');                   
+                }
+                if(id == 'home') {
+                    console.log($('#top_bar'))
+                    $('#top_bar .weui-tabbar__label').html('省级医保办事大厅');
+                }
+                if(id == 'index_guide') {
+                    console.log($('#top_bar'))
+                    $('#top_bar .weui-tabbar__label').html('办事指南');
+                }
+                if(id == 'index_eCode') {
+                    console.log($('#top_bar'))
+                    $('#top_bar .weui-tabbar__label').html('医保电子凭证');
+                }
+                window.pageManager.go(id);
+            });
+        });
+</script>  
+</body>
+</html>

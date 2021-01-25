@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>个人承诺书</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="author" content="个人承诺书"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta http-equiv="Cache" content="no-cache">
+    <link rel="stylesheet" href="/style/weui.css?version=21.1.15">
+    <link rel="stylesheet" href="/style/example.css?version=21.1.15">
+    <link rel="stylesheet" href="/style/font-awesome.min.css?version=21.1.15"/>
+
+</head>
+
+<body>
+<div class="weui-toptips weui-toptips_warn" id="topTips">错误提示</div>
+<div id="loadingToast" style="opacity: 0; display: none;">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast">
+            <span class="weui-primary-loading weui-primary-loading_transparent weui-icon_toast">
+              <span class="weui-primary-loading__dot"></span>
+            </span>
+        <p class="weui-toast__content">加载中</p>
+    </div>
+</div>
+
+<div id="toast" style="opacity: 0; display: none;">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast">
+        <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+        <p class="weui-toast__content">已完成</p>
+    </div>
+</div>
+
+<div id="textToast" style="opacity: 0; display: none;">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast weui-toast_text">
+        <p class="weui-toast__content">文字提示</p>
+    </div>
+</div>
+
+<div class="container" id="container">
+    <div class="page form_page js_show" id="ApplyPage">
+        <div class="weui-form">
+            <div class="weui-form__text-area">
+                <h2 class="weui-form__title">个人承诺书</h2>
+            </div>
+            <div id="apply-form" class="weui-form__control-area" style="margin: 20px 0;">
+                <div style="margin-left: 15px; argin-bottom: 10px; overflow: hidden;">
+                    <span style="display: block; width: 5px; height: 25px; background: #10aeff; float: left; margin-right: 10px; border-radius: 2px;"></span>
+                    <span style="float: left;">个人信息</span>
+                </div>
+                <div class="weui-cells__title">请随意填写相关信息，错了也没关系，反正和我没关系😂</div>
+                <div class="weui-cells weui-cells_form">
+                    <div class="weui-cell weui-cell_active" id="AAE004_cell">
+                        <div class="weui-cell__hd"><label class="weui-label">姓名<spsn style="color: red; float: left; margin-right: 5px;">*</spsn></label></div>
+                        <div class="weui-cell__bd weui-flex">
+                            <input id="name" class="weui-input" autofocus="" type="text" pattern="[0-9]*"
+                                   placeholder="请输入姓名" maxlength="20" tips="请输入姓名">
+                            <button id="name_clear" class="weui-btn_reset weui-btn_icon weui-btn_input-clear">
+                                <i class="weui-icon-clear"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="weui-cell weui-cell_active" id="AAE005_cell">
+                        <div class="weui-cell__hd"><label class="weui-label">性别<spsn style="color: red; float: left; margin-right: 5px;">*</spsn></label></div>
+                        <div class="weui-cell__bd weui-flex">
+                            <input id="gender" class="weui-input" autofocus="" type="text" pattern="[0-9]*"
+                                   placeholder="请输入性别" maxlength="20" tips="请输入性别">
+                            <button id="gender_clear" class="weui-btn_reset weui-btn_icon weui-btn_input-clear">
+                                <i class="weui-icon-clear"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="weui-cell weui-cell_active">
+                        <div class="weui-cell__hd"><label class="weui-label">年龄<spsn style="color: red; float: left; margin-right: 5px;">*</spsn></label></div>
+                        <div class="weui-cell__bd weui-flex">
+                            <input id="age" class="weui-input" autofocus="" type="text"
+                                   placeholder="请输入年龄" maxlength="100" tips="请输入年龄">
+                            <button id="age_clear" class="weui-btn_reset weui-btn_icon weui-btn_input-clear">
+                                <i class="weui-icon-clear"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="weui-cell weui-cell_active weui-cell_access"
+                         id="showStartDatePicker">
+                        <div class="weui-cell__hd"><label class="weui-label">出生日期<spsn style="color: red; float: left; margin-right: 5px;">*</spsn></label></div>
+                        <div class="weui-cell__bd weui-flex"><label id="birthday-label"
+                                                                    style="color: #ccc;">请选择出生日期</label>
+                            <input id="birthday" type="hidden" tips="请选择出生日期">
+                        </div>
+                        <div class="weui-cell__ft"></div>
+                    </div>
+
+                    <div class="weui-cell weui-cell_active" id="js_cell">
+                        <div class="weui-cell__hd"><label class="weui-label">描述信息<spsn style="color: red; float: left; margin-right: 5px;">*</spsn></label></div>
+                        <div class="weui-cell__bd weui-flex">
+                            <input id="description" class="weui-input" autofocus="" type="text"
+                                   placeholder="请输入描述信息" maxlength="100" tips="请输入描述信息">
+                            <button id="description_clear" class="weui-btn_reset weui-btn_icon weui-btn_input-clear">
+                                <i class="weui-icon-clear"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="weui-form__opr-area">
+                <a class="weui-btn weui-btn_primary" href="javascript:" id="summit-apply">立即生成</a>
+            </div>
+        </div>
+
+
+        <div class="page__ft j_bottom">
+            <!--<a href="javascript:home()"><img src="images/icon_footer_link.png"></a>-->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/zepto.min.js?version=21.1.15"></script>
+<script type="text/javascript" src="/js/jweixin-1.0.0.js?version=21.1.15"></script>
+<script src="/js/weui.min.js?version=21.1.15"></script>
+<script src="/js/js-sign/jquery.js?version=21.1.15"></script>
+<script src="/js/my-js.js?version=21.1.15"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            var $gzsDialog = $('#gzsDialog');
+            $('#summit-apply').on('click', function () {
+                if (validateForm('#apply-form') == 0) {
+
+                }
+
+                // 显示加载中控件
+                showLoading("生成个人承诺书，稍等……");
+                // 获取签名信息
+                var formData = getFormData("#apply-form");
+
+                generatePersonalCommitment(formData, function (result) {
+
+                    console.log(result);
+                    $gzsDialog.fadeOut(200);
+                    hideLoading();
+                    if(result.success) {
+                        sessionStorage.setItem("sign-source-img", result.obj.datas)
+                        $.ajax({
+                            url: "/sign",
+                            success: function (result) {
+                                $('#container').html(result);
+                            }
+                        });
+                    } else {
+                        $('#topTips').html(result.msg);
+                        $('#topTips').fadeIn(200);
+                        setTimeout(function () {
+                            $('#topTips').fadeOut(100);
+                        }, 1000);
+                    }
+                },
+                function (error) {
+                    $('#topTips').html(error);
+                    $('#topTips').fadeIn(200);
+                    console.log(error);
+                });
+
+
+            });
+
+            $('#age_clear').on('click', function () {
+                $('#age').val('');
+            });
+
+            $('#name_clear').on('click', function () {
+                $('#name').val('');
+            });
+
+            $('#gender_clear').on('click', function () {
+                $('#gender').val('');
+            });
+
+            $('#description_clear').on('click', function () {
+                $('#description').val('');
+            });
+
+            $('#showStartDatePicker').on('click', function () {
+                weui.datePicker({
+                    start: 1900,
+                    onChange: function (result) {
+                        console.log(result);
+                    },
+                    onConfirm: function (result) {
+                        $('#showStartDatePicker  #birthday-label').html(result[0].label
+                            + result[1].label + result[2].label);
+                        var date_bke003 = result[0].value + "-" + ((('' + result[1].value).length == 2) ? result[1].value: '0' + result[1].value)
+                            + '-' + ((('' + result[2].value).length == 2) ? result[2].value : '0' + result[2].value);
+                        $('#showStartDatePicker  #birthday').val(date_bke003);
+                        $('#showStartDatePicker  #birthday-label').css("color", "#000");
+                        console.log(result);
+                    },
+                    title: '出生日期'
+                });
+            });
+
+        });
+
+
+        function generatePersonalCommitment(param, successFn, errorFn) {
+            var datas = JSON.stringify(param);
+            var data = { "datas": datas };
+            sessionStorage.setItem("apply-record-datas", datas);
+            var url = "/signTest/generatePersonalCommitment";
+            aj(url, data, successFn, errorFn);
+        }
+
+        function validateForm(id) {
+            var validateNotPassCount = 0;
+            var $inputs = $(id + ' input');
+            $inputs.each(function () {
+                if (this.value == null || this.value == undefined || this.value == '') {
+                    textTips($(this).attr('tips'));
+                    validateNotPassCount++;
+                    return validateNotPassCount;
+                }
+            });
+            return validateNotPassCount;
+        }
+
+        function getFormData(id) {
+            var $inputs = $(id + ' input');
+            var parameters = {"service":"test"};
+            $inputs.each(function () {
+                parameters[this.id] = this.value;
+            });
+            return parameters;
+        }
+    </script>
+
+
+
+
+<script type="text/javascript">
+    jQuery.noConflict()
+</script>
+<script>
+    (function($) {
+        var topics = {};
+        $.publish = function(topic, args) {
+            if (topics[topic]) {
+                var currentTopic = topics[topic],
+                    args = args || {};
+
+                for (var i = 0, j = currentTopic.length; i < j; i++) {
+                    currentTopic[i].call($, args);
+                }
+            }
+        };
+        $.subscribe = function(topic, callback) {
+            if (!topics[topic]) {
+                topics[topic] = [];
+            }
+            topics[topic].push(callback);
+            return {
+                "topic": topic,
+                "callback": callback
+            };
+        };
+        $.unsubscribe = function(handle) {
+            var topic = handle.topic;
+            if (topics[topic]) {
+                var currentTopic = topics[topic];
+
+                for (var i = 0, j = currentTopic.length; i < j; i++) {
+                    if (currentTopic[i] === handle.callback) {
+                        currentTopic.splice(i, 1);
+                    }
+                }
+            }
+        };
+    })(jQuery);
+
+
+    // loading
+    function showLoading(msg){
+        var $loadingToast = $('#loadingToast');
+            if ($loadingToast.css('display') != 'none') return;
+            if(msg != undefined && msg != null) {
+                $("#loadingToast .weui-toast__content").html(msg);
+            } else {
+                $("#loadingToast .weui-toast__content").html("请稍等……");
+            }
+            $loadingToast.fadeIn(100);
+    }
+
+    function hideLoading(){
+        var $loadingToast = $('#loadingToast');
+        if ($loadingToast.css('display') == 'none') return;
+        $loadingToast.fadeOut(100);
+    }
+
+    function textTips(errorMSg) {
+        var $textToast = $("#textToast");
+        if ($textToast.css('display') != 'none') return;
+        var $textToastContent = $('#textToast .weui-toast__content');
+        $textToastContent.html(errorMSg)
+        $textToast.fadeIn(100);
+        setTimeout(function () {
+            $textToast.fadeOut(100);
+        }, 1000);
+    }
+
+</script>
+<script src="../js/js-sign/jSignature.min.noconflict.js?version=21.1.15"></script>
+</body>
+
+</html>
