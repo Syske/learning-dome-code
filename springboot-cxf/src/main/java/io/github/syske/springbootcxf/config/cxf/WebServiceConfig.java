@@ -21,7 +21,9 @@ package io.github.syske.springbootcxf.config.cxf;
 import io.github.syske.springbootcxf.service.impl.HelloPortImpl;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
+import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -32,6 +34,11 @@ public class WebServiceConfig {
 
     @Autowired
     private Bus bus;
+
+    @Bean("cxfServlet")
+    public ServletRegistrationBean dispatcherServlet() {
+        return new ServletRegistrationBean(new CXFServlet(), "/webservice/*");
+    }
 
     @Bean
     public Endpoint endpoint() {
