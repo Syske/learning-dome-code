@@ -17,7 +17,7 @@ public class ImageTest {
             //String mainContImgPath = "D:\\Users\\Administrator\\Pictures\\Saved Pictures\\wallhaven-vgl8o8.jpg";
             String imgSaveFullPath = "D:\\"+ UUIDUtil.getUUIDStr() +".jpg";
 //            String mainContImgPath = cg.getImageUrl();
-            String mainContImgPath = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F5%2F573aa9c157c5b.jpg%3Fdown&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614184376&t=76aa430a3cc610967f2b580bcee75903";
+            String mainContImgPath = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F145%2F100834%2Fc1b734df1003a15f_1366x768.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614253224&t=8b8c8a60f0da856b6b0e96c8a8531343";
             cg.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, mainContImgPath, mainContent, authorInfo, footerCcontent);
         } catch (Exception e) {
             e.printStackTrace();
