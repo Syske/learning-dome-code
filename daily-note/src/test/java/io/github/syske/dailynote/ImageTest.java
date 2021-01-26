@@ -10,14 +10,15 @@ public class ImageTest {
     public void imgTest() {
         ImageUtil cg = new ImageUtil();
         try {
-            String mainContent = "我们就像是一株蒲公英， 虽然总有一天会被风吹散， 但是我也祈祷着，能和你飞去同一片土地。";
-            String authorInfo = "—— 北川理惠《三行情书 》";
+            String mainContent = "当罪行导致善行，那就是真正的获救。";
+            String authorInfo = "—— 胡赛尼《追风筝的人》";
             String footerCcontent = "-【每日读书札记】-";
-            String qrCodeImgPath = "D:\\Users\\Administrator\\Downloads\\qrcode_for_gh_6985fde6e5e8_258 (1).jpg";
+            String qrCodeImgPath = "https://images.cnblogs.com/cnblogs_com/caoleiCoding/921220/o_200830020106qrcode_for_gh_6985fde6e5e8_344.jpg";
+//            String qrCodeImgPath = "D:\\Users\\Administrator\\Downloads\\qrcode_for_gh_6985fde6e5e8_258 (1).jpg";
             //String mainContImgPath = "D:\\Users\\Administrator\\Pictures\\Saved Pictures\\wallhaven-vgl8o8.jpg";
             String imgSaveFullPath = "D:\\"+ UUIDUtil.getUUIDStr() +".jpg";
 //            String mainContImgPath = cg.getImageUrl();
-            String mainContImgPath = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F145%2F100834%2Fc1b734df1003a15f_1366x768.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614253224&t=8b8c8a60f0da856b6b0e96c8a8531343";
+            String mainContImgPath = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwx3.sinaimg.cn%2Flarge%2Fbd478545ly1g5wr567rjjj20rs0fmncg.jpg&refer=http%3A%2F%2Fwx3.sinaimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614269386&t=188264014ca1389719f026451046f818";
             cg.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, mainContImgPath, mainContent, authorInfo, footerCcontent);
         } catch (Exception e) {
             e.printStackTrace();

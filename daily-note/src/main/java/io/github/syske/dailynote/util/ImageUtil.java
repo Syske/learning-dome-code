@@ -69,32 +69,44 @@ public class ImageUtil {
         Graphics2D header = image.createGraphics();
         // 抗锯齿
         header.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
-        int headerWidth = image.getWidth();
         //设置字体颜色，先设置颜色，再填充内容
         header.setColor(Color.BLACK);
         //设置字体
+        Font titleFontBig = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 240f);
         Font titleFont = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 80f);
+        Font titleFontLitter = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 60f);
+        Font titleFontSmall = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 40f);
         int fontSize = titleFont.getSize();
         int margin = 120;
-        header.setFont(titleFont);
+        header.setFont(titleFontBig);
         Date nowDate = new Date();
+//        SimpleDateFormat dateFormatYmd = new SimpleDateFormat("yyyy-MM-dd");
+//        Date nowDate = dateFormatYmd.parse("2021-01-20");
         ChineseCalendar.Element element = ChineseCalendar.getCalendarDetail(nowDate);
         System.out.println(element);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
-        String contentFirstLineLeft = weekDirs.get(element.getWeek());
-        header.drawString(contentFirstLineLeft, margin, (headerHeight-fontSize*2)/4 + margin);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
         String contentFirstLineRight = dateFormat.format(nowDate);
-        int contentWidth = getWordWidth(titleFont, contentFirstLineRight);
-        header.drawString(contentFirstLineRight, headerWidth - contentWidth - margin, (headerHeight-fontSize*2)/4 + margin);
+        header.drawString(contentFirstLineRight, margin, headerHeight-(headerHeight-titleFontBig.getSize())/2);
 
-        String contentSecondLineLeft = "周" + element.getWeek();
-        header.drawString(contentSecondLineLeft, margin, (headerHeight) / 2 + 5 + margin);
-        String contentSecondLineRight = "农历" + element.getcYear() + element.getcMonth() +
-                element.getcDay();
-        int contentSecondLineRightWidth =  getWordWidth(titleFont, contentSecondLineRight);
-        header.drawString(contentSecondLineRight, headerWidth - contentSecondLineRightWidth - margin, (headerHeight) / 2 + 5 + margin);
+        header.setFont(titleFontSmall);
+        header.setColor(Color.LIGHT_GRAY);
+        String yearMonth = element.getSgz5();
+        header.drawString(yearMonth, getWordWidth(titleFontBig, contentFirstLineRight) + margin, headerHeight-(headerHeight-titleFontBig.getSize())/2 + titleFontSmall.getSize() + 20);
 
-        //drawBox(header, 50, 50, image.getWidth() - 50, headerHeight);
+        header.setColor(Color.black);
+        header.setFont(titleFont);
+        String contentSecondLineRight = element.getlMonthChinese() +  element.getlDayChinese();
+        int contentSecondX = getWordWidth(titleFontBig, contentFirstLineRight) + margin + 20;
+        int contentSecondY = (headerHeight - fontSize * 2) / 4 + margin;
+        header.drawString(contentSecondLineRight, contentSecondX, contentSecondY);
+
+        header.setColor(Color.GRAY);
+        header.setFont(titleFontLitter);
+        String contentSecondLine = element.getcYear() + "[" + element.getcAnimal() + "]年 " +  element.getcMonth() + "月 "
+                + element.getcDay() + "日";
+        header.drawString(contentSecondLine, contentSecondX, contentSecondY + titleFont.getSize() + 20);
+
+
     }
 
     /**
@@ -136,7 +148,7 @@ public class ImageUtil {
         footer.setFont(titleFont);
         footer.drawString(footerContent, (image.getWidth()-footerContent.length()*fontSize)/2, image.getHeight()-140);
         try {
-            bimg = javax.imageio.ImageIO.read(new java.io.File(footerImgUrl));
+            bimg = javax.imageio.ImageIO.read(new URL(footerImgUrl));
         } catch (Exception e) {
         }
 
