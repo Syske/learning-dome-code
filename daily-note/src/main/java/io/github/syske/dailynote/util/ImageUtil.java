@@ -16,14 +16,18 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sun.font.FontDesignMetrics;
 
 public class ImageUtil {
+    private final Logger logger = LoggerFactory.getLogger(ImageUtil.class);
 
     private BufferedImage image;
 
-    private int imageWidth = 1620;  //图片的宽度
-    private int imageHeight = 3240; //图片的高度
+    private int imageWidth = 1215;  //图片的宽度
+    private int imageHeight = 2160; //图片的高度
+    private int footerHeight = 280; //图片的高度
 
     //生成图片文件
     @SuppressWarnings("restriction")
@@ -81,11 +85,12 @@ public class ImageUtil {
 //        SimpleDateFormat dateFormatYmd = new SimpleDateFormat("yyyy-MM-dd");
 //        Date nowDate = dateFormatYmd.parse("2021-01-20");
         ChineseCalendar.Element element = ChineseCalendar.getCalendarDetail(nowDate);
-        System.out.println(element);
+        logger.debug("农历：" + element.toString());
         // 日期
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
         String contentFirstLineRight = dateFormat.format(nowDate);
-        int bigDateY = (headerHeight - titleFontBig.getSize())/2 + getFontAscent(titleFontBig);
+        int bigDateY = headerHeight/2 + getFontAscent(titleFontBig) - titleFontBig.getSize()/2;
+        logger.debug("日期y坐标：" + bigDateY);
         header.drawString(contentFirstLineRight, margin, bigDateY);
 
         // 日期提示
@@ -179,6 +184,7 @@ public class ImageUtil {
         Font titleFont = FontUtil.getFont(FontUtil.PINGFANG_FONT, 60.0f);
 
         footer.setFont(titleFont);
+        drawDashedLine(footer, imageHeight-footerHeight, 0, imageWidth, 20);
         footer.drawString(footerContent, (image.getWidth()-footerContent.length()*fontSize)/2, image.getHeight()-140);
         try {
             bimg = javax.imageio.ImageIO.read(new URL(footerImgUrl));
@@ -186,7 +192,7 @@ public class ImageUtil {
         }
 
         if (bimg != null) {
-            footer.drawImage(bimg, image.getWidth()-240, image.getHeight()-240, 200, 200, null);
+            footer.drawImage(bimg, image.getWidth()-footerHeight + 40, image.getHeight()-footerHeight + 40, 200, 200, null);
             footer.dispose();
         }
     }
@@ -211,9 +217,11 @@ public class ImageUtil {
         main.fillRect(0, 0, imageWidth, imageHeight);
 
         //***********************页面头部
-        createHeader(600);
+        int headerHeight = imageHeight/5;
+        logger.debug("头部高度：" + headerHeight);
+        createHeader(headerHeight);
 
-        createrMainContent(720, mainContImgPath, content, authorInfo);
+        createrMainContent(headerHeight, mainContImgPath, content, authorInfo);
 
 
         createFooter(qrCodeImgPath, footerContent);
@@ -237,7 +245,7 @@ public class ImageUtil {
 
         Graphics2D mainPic = image.createGraphics();
         // 主内容图片高度
-        int contentImHeight = (contentImg.getHeight()* imageWidth / contentImg.getWidth());
+        int contentImgHeight = (contentImg.getHeight()* imageWidth / contentImg.getWidth());
 
         mainPic.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         mainPic.setColor(Color.BLACK);
@@ -246,17 +254,28 @@ public class ImageUtil {
         mainPic.setFont(titleFont);
 
         int margin = 50;
-        mainPic.drawImage(contentImg, 0, startY, imageWidth, contentImHeight, null);
+        logger.debug("图片高度：" + contentImgHeight);
+        mainPic.drawImage(contentImg, 0, startY, imageWidth, contentImgHeight, null);
 
-        int mainContentHeight = imageHeight - startY - 200 - contentImHeight;
-
+        int mainContentHeight = imageHeight - startY - footerHeight - contentImgHeight;
+        logger.debug("笔记核心内容高度：" + mainContentHeight);
         int lineWordsNum = (imageWidth - margin * 2) / fontSize;
         int lineHeight = fontSize + 10;
         int contentHeight = getContentHeight(lineHeight, content, lineWordsNum);
-        int contentStartY = startY + contentImHeight + (mainContentHeight - contentHeight)/2 + getFontAscent(titleFont);
+        int authorInfoHeight = getContentHeight(lineHeight, authorInfo, lineWordsNum);
+        int contentStartY = startY + contentImgHeight + (mainContentHeight - contentHeight - authorInfoHeight)/2 + getFontAscent(titleFont) - contentHeight/4;
+        logger.debug("行数：" + lineWordsNum);
+        logger.debug("每行字数：" + lineWordsNum);
+        logger.debug("笔记行高：" + lineHeight);
+        logger.debug("笔记内容高度：" + contentHeight);
+        logger.debug("笔记内容y坐标：" + contentStartY);
+        logger.debug("作品信息高度：" + authorInfoHeight);
         drawString(mainPic, margin, contentStartY, content, lineWordsNum, lineHeight);
         int wordWidth = getWordWidth(titleFont, authorInfo);
-        drawString(mainPic, imageWidth - margin - wordWidth, contentStartY + margin + contentHeight, authorInfo, lineWordsNum, lineHeight);
+
+        int authorInfoY = contentStartY + margin + contentHeight + authorInfoHeight / 2;
+        logger.debug("作品信息y坐标：" + authorInfoY);
+        drawString(mainPic, imageWidth - margin - wordWidth, authorInfoY, authorInfo, lineWordsNum, lineHeight);
         mainPic.dispose();
     }
 
@@ -275,7 +294,7 @@ public class ImageUtil {
         int y = length % lineWordsNum;
         if(y == 0)
             return length / lineWordsNum;
-        return (((length-y)/lineHeight) + 1)*lineHeight;
+        return (((length-y)/lineWordsNum) + 1)*lineHeight;
     }
 
     /**
@@ -295,13 +314,23 @@ public class ImageUtil {
         int startIndex = 0;
         while(contentBuilder.length() > lineWordsNum) {
             int endIndex = startIndex + lineWordsNum;
-            mainPic.drawString(mainContent.substring(startIndex, endIndex), x, y + lineNum * lineHeight);
-            contentBuilder.delete(startIndex, endIndex);
+            mainPic.drawString(contentBuilder.substring(0, lineWordsNum), x, y + lineNum * lineHeight);
+            contentBuilder.delete(0, lineWordsNum);
             startIndex = endIndex;
             lineNum ++;
         }
         mainPic.drawString(mainContent.substring(startIndex, length), x, y + lineNum * lineHeight);
         return lineNum;
+    }
+
+    private void drawDashedLine(Graphics2D graphics2D, int y, int x, int endX, int size) {
+        int times = Math.abs(x-endX)/(size*2);
+        int count = 0;
+        while(count < times) {
+            count ++ ;
+            int x1 = x + count * size * 2;
+            graphics2D.drawLine(x1, y, x1 + size, y);
+        }
     }
 
     public String getImageUrl() throws Exception {
