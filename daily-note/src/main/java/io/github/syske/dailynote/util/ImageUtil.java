@@ -8,10 +8,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 
 
 import com.alibaba.fastjson.JSON;
@@ -23,8 +21,9 @@ import sun.font.FontDesignMetrics;
 public class ImageUtil {
 
     private BufferedImage image;
-    private int imageWidth = 1280;  //图片的宽度
-    private int imageHeight = 1980; //图片的高度
+
+    private int imageWidth = 1620;  //图片的宽度
+    private int imageHeight = 3240; //图片的高度
 
     //生成图片文件
     @SuppressWarnings("restriction")
@@ -76,7 +75,6 @@ public class ImageUtil {
         Font titleFont = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 80f);
         Font titleFontLitter = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 60f);
         Font titleFontSmall = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 40f);
-        int fontSize = titleFont.getSize();
         int margin = 120;
         header.setFont(titleFontBig);
         Date nowDate = new Date();
@@ -84,27 +82,31 @@ public class ImageUtil {
 //        Date nowDate = dateFormatYmd.parse("2021-01-20");
         ChineseCalendar.Element element = ChineseCalendar.getCalendarDetail(nowDate);
         System.out.println(element);
+        // 日期
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
         String contentFirstLineRight = dateFormat.format(nowDate);
-        header.drawString(contentFirstLineRight, margin, headerHeight-(headerHeight-titleFontBig.getSize())/2);
+        int bigDateY = (headerHeight - titleFontBig.getSize())/2 + getFontAscent(titleFontBig);
+        header.drawString(contentFirstLineRight, margin, bigDateY);
 
+        // 日期提示
         header.setFont(titleFontSmall);
         header.setColor(Color.LIGHT_GRAY);
         String yearMonth = element.getSgz5();
-        header.drawString(yearMonth, getWordWidth(titleFontBig, contentFirstLineRight) + margin, headerHeight-(headerHeight-titleFontBig.getSize())/2 + titleFontSmall.getSize() + 20);
+        header.drawString(yearMonth, getWordWidth(titleFontBig, contentFirstLineRight) + margin, bigDateY - getWordHeight(titleFont));
 
+        // 中文年月日
         header.setColor(Color.black);
         header.setFont(titleFont);
         String contentSecondLineRight = element.getlMonthChinese() +  element.getlDayChinese();
         int contentSecondX = getWordWidth(titleFontBig, contentFirstLineRight) + margin + 20;
-        int contentSecondY = (headerHeight - fontSize * 2) / 4 + margin;
-        header.drawString(contentSecondLineRight, contentSecondX, contentSecondY);
+        int contentSecondY = bigDateY - getFontAscent(titleFont);
+        header.drawString(contentSecondLineRight, contentSecondX , contentSecondY);
 
         header.setColor(Color.GRAY);
         header.setFont(titleFontLitter);
         String contentSecondLine = element.getcYear() + "[" + element.getcAnimal() + "]年 " +  element.getcMonth() + "月 "
                 + element.getcDay() + "日";
-        header.drawString(contentSecondLine, contentSecondX, contentSecondY + titleFont.getSize() + 20);
+        header.drawString(contentSecondLine, contentSecondX, bigDateY);
 
 
     }
@@ -122,6 +124,37 @@ public class ImageUtil {
             width += metrics.charWidth(content.charAt(i));
         }
         return width;
+    }
+
+    /**
+     * 获取字体高度
+     * @param font
+     * @return
+     */
+    private static int getWordHeight(Font font) {
+        FontDesignMetrics metrics = FontDesignMetrics.getMetrics(font);
+        return metrics.getHeight();
+    }
+
+    /**
+     * 获取字体基准线baseline以上高度
+     * @param font
+     * @return
+     */
+    private static int getFontAscent(Font font) {
+        FontDesignMetrics metrics = FontDesignMetrics.getMetrics(font);
+        return metrics.getAscent();
+    }
+
+
+    /**
+     * 获取字体基准线baseline以下高度
+     * @param font
+     * @return
+     */
+    private static int getFontDescent(Font font) {
+        FontDesignMetrics metrics = FontDesignMetrics.getMetrics(font);
+        return metrics.getDescent();
     }
 
     private void drawBox(Graphics header, int x, int y, int width, int height) {
@@ -178,9 +211,9 @@ public class ImageUtil {
         main.fillRect(0, 0, imageWidth, imageHeight);
 
         //***********************页面头部
-        createHeader(300);
+        createHeader(600);
 
-        createrMainContent(380, mainContImgPath, content, authorInfo);
+        createrMainContent(720, mainContImgPath, content, authorInfo);
 
 
         createFooter(qrCodeImgPath, footerContent);
@@ -213,11 +246,36 @@ public class ImageUtil {
         mainPic.setFont(titleFont);
 
         int margin = 50;
-        int lineNum = drawString(mainPic, margin, startY + contentImHeight + 100, content, (imageWidth- margin *2)/ fontSize, fontSize + 10);
+        mainPic.drawImage(contentImg, 0, startY, imageWidth, contentImHeight, null);
+
+        int mainContentHeight = imageHeight - startY - 200 - contentImHeight;
+
+        int lineWordsNum = (imageWidth - margin * 2) / fontSize;
+        int lineHeight = fontSize + 10;
+        int contentHeight = getContentHeight(lineHeight, content, lineWordsNum);
+        int contentStartY = startY + contentImHeight + (mainContentHeight - contentHeight)/2 + getFontAscent(titleFont);
+        drawString(mainPic, margin, contentStartY, content, lineWordsNum, lineHeight);
         int wordWidth = getWordWidth(titleFont, authorInfo);
-        drawString(mainPic, imageWidth - margin - wordWidth, margin + startY + contentImHeight + 100 + (lineNum + 1) * (56+10), authorInfo, (imageWidth- margin *2)/ fontSize, fontSize + 10);
-        mainPic.drawImage(contentImg, 0, 380, imageWidth, contentImHeight, null);
+        drawString(mainPic, imageWidth - margin - wordWidth, contentStartY + margin + contentHeight, authorInfo, lineWordsNum, lineHeight);
         mainPic.dispose();
+    }
+
+    /**
+     * 返回文字段落高度
+     *
+     * @param lineHeight
+     * @param content
+     * @param lineWordsNum
+     * @return
+     */
+    private int getContentHeight(int lineHeight, String content, int lineWordsNum) {
+        int length = content.length();
+        if( length <= lineWordsNum)
+            return lineHeight;
+        int y = length % lineWordsNum;
+        if(y == 0)
+            return length / lineWordsNum;
+        return (((length-y)/lineHeight) + 1)*lineHeight;
     }
 
     /**
@@ -255,4 +313,6 @@ public class ImageUtil {
         System.out.println(imgurl);
         return imgurl;
     }
+
+
 }

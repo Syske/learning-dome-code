@@ -4,6 +4,11 @@ import io.github.syske.dailynote.util.ImageUtil;
 import io.github.syske.dailynote.util.UUIDUtil;
 import org.junit.jupiter.api.Test;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 public class ImageTest {
 
     @Test
@@ -26,4 +31,11 @@ public class ImageTest {
     }
 
 
+    @Test
+    public void testInt() {
+        int a = 11;
+        int b = 6;
+        int c = a/b;
+        System.out.println(c);
+    }
 }
