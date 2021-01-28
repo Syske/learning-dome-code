@@ -438,7 +438,10 @@ public class ChineseCalendar {
      * @return
      */
     public String cAnimal(int year) {
-        return (Animals[(year - 1900)%12-1]);
+        int i = (year - 1900) % 12;
+        if(i == 0)
+            return Animals[12-1];
+        return Animals[i -1];
     }
     //======================  中文日期
     public String cDay(int d) {

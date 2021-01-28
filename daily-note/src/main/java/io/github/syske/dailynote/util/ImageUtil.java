@@ -117,59 +117,6 @@ public class ImageUtil {
     }
 
     /**
-     * 获取文字宽度
-     * @param font
-     * @param content
-     * @return
-     */
-    private static int getWordWidth(Font font, String content) {
-        FontDesignMetrics metrics = FontDesignMetrics.getMetrics(font);
-        int width = 0;
-        for (int i = 0; i < content.length(); i++) {
-            width += metrics.charWidth(content.charAt(i));
-        }
-        return width;
-    }
-
-    /**
-     * 获取字体高度
-     * @param font
-     * @return
-     */
-    private static int getWordHeight(Font font) {
-        FontDesignMetrics metrics = FontDesignMetrics.getMetrics(font);
-        return metrics.getHeight();
-    }
-
-    /**
-     * 获取字体基准线baseline以上高度
-     * @param font
-     * @return
-     */
-    private static int getFontAscent(Font font) {
-        FontDesignMetrics metrics = FontDesignMetrics.getMetrics(font);
-        return metrics.getAscent();
-    }
-
-
-    /**
-     * 获取字体基准线baseline以下高度
-     * @param font
-     * @return
-     */
-    private static int getFontDescent(Font font) {
-        FontDesignMetrics metrics = FontDesignMetrics.getMetrics(font);
-        return metrics.getDescent();
-    }
-
-    private void drawBox(Graphics header, int x, int y, int width, int height) {
-        header.drawLine(x, y, width , y);
-        header.drawLine(width, y, width , height);
-        header.drawLine(x, height, width , height);
-        header.drawLine(x, y, x, height);
-    }
-
-    /**
      * 绘制图片页脚
      * @param footerImgUrl
      * @param footerContent
@@ -220,8 +167,9 @@ public class ImageUtil {
         int headerHeight = imageHeight/5;
         logger.debug("头部高度：" + headerHeight);
         createHeader(headerHeight);
-
-        createrMainContent(headerHeight, mainContImgPath, content, authorInfo);
+        int margin = 50;
+        Font contentFont = FontUtil.getFont(FontUtil.PINGFANG_FONT, 56f);
+        createrMainContent(headerHeight, mainContImgPath, content, authorInfo, margin, contentFont);
 
 
         createFooter(qrCodeImgPath, footerContent);
@@ -239,7 +187,8 @@ public class ImageUtil {
      * @param authorInfo
      * @throws IOException
      */
-    private void createrMainContent(int startY, String mainContentImgPath, String content, String authorInfo) throws IOException {
+    private void createrMainContent(int startY, String mainContentImgPath,
+                                    String content, String authorInfo, int margin, Font font) throws IOException {
         //***********************插入中间广告图
         BufferedImage contentImg = javax.imageio.ImageIO.read(new URL(mainContentImgPath));
 
@@ -249,11 +198,9 @@ public class ImageUtil {
 
         mainPic.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         mainPic.setColor(Color.BLACK);
-        Font titleFont = FontUtil.getFont(FontUtil.PINGFANG_FONT, 56f);
-        int fontSize = titleFont.getSize();
-        mainPic.setFont(titleFont);
+        int fontSize = font.getSize();
+        mainPic.setFont(font);
 
-        int margin = 50;
         logger.debug("图片高度：" + contentImgHeight);
         mainPic.drawImage(contentImg, 0, startY, imageWidth, contentImgHeight, null);
 
@@ -263,7 +210,7 @@ public class ImageUtil {
         int lineHeight = fontSize + 10;
         int contentHeight = getContentHeight(lineHeight, content, lineWordsNum);
         int authorInfoHeight = getContentHeight(lineHeight, authorInfo, lineWordsNum);
-        int contentStartY = startY + contentImgHeight + (mainContentHeight - contentHeight - authorInfoHeight)/2 + getFontAscent(titleFont) - contentHeight/4;
+        int contentStartY = startY + contentImgHeight + (mainContentHeight - contentHeight - authorInfoHeight)/2 + getFontAscent(font) - contentHeight/4;
         logger.debug("行数：" + lineWordsNum);
         logger.debug("每行字数：" + lineWordsNum);
         logger.debug("笔记行高：" + lineHeight);
@@ -271,12 +218,27 @@ public class ImageUtil {
         logger.debug("笔记内容y坐标：" + contentStartY);
         logger.debug("作品信息高度：" + authorInfoHeight);
         drawString(mainPic, margin, contentStartY, content, lineWordsNum, lineHeight);
-        int wordWidth = getWordWidth(titleFont, authorInfo);
+        int wordWidth = getWordWidth(font, authorInfo);
 
         int authorInfoY = contentStartY + margin + contentHeight + authorInfoHeight / 2;
         logger.debug("作品信息y坐标：" + authorInfoY);
         drawString(mainPic, imageWidth - margin - wordWidth, authorInfoY, authorInfo, lineWordsNum, lineHeight);
         mainPic.dispose();
+    }
+
+    /**
+     * 获取随机图片，返回图片地址
+     * @return
+     * @throws Exception
+     */
+    public String getImageUrl() throws Exception {
+        HttpClientUtil httpClientUtil = HttpClientUtil.init();
+        String resurt = httpClientUtil.doPost("https://api.ixiaowai.cn/gqapi/gqapi.php?return=json", "");
+        JSONObject jsonObject = JSON.parseObject(resurt);
+        System.out.println(resurt);
+        String imgurl = (String)jsonObject.get("imgurl");
+        System.out.println(imgurl);
+        return imgurl;
     }
 
     /**
@@ -299,30 +261,38 @@ public class ImageUtil {
 
     /**
      * 自动换行添加文字
-     * @param mainPic
-     * @param x
-     * @param y
-     * @param mainContent
-     * @param lineWordsNum
-     * @param lineHeight
+     * @param graphics2D 画板
+     * @param x x坐标
+     * @param y y坐标
+     * @param content 内容
+     * @param lineWordsNum 每行字数
+     * @param lineHeight 行高
      * @return
      */
-    private int drawString(Graphics2D mainPic, int x, int y, String mainContent, int lineWordsNum, int lineHeight) {
-        int length = mainContent.length();
-        StringBuilder contentBuilder = new StringBuilder(mainContent);
+    private int drawString(Graphics2D graphics2D, int x, int y, String content, int lineWordsNum, int lineHeight) {
+        int length = content.length();
+        StringBuilder contentBuilder = new StringBuilder(content);
         int lineNum = 0;
         int startIndex = 0;
         while(contentBuilder.length() > lineWordsNum) {
             int endIndex = startIndex + lineWordsNum;
-            mainPic.drawString(contentBuilder.substring(0, lineWordsNum), x, y + lineNum * lineHeight);
+            graphics2D.drawString(contentBuilder.substring(0, lineWordsNum), x, y + lineNum * lineHeight);
             contentBuilder.delete(0, lineWordsNum);
             startIndex = endIndex;
             lineNum ++;
         }
-        mainPic.drawString(mainContent.substring(startIndex, length), x, y + lineNum * lineHeight);
+        graphics2D.drawString(content.substring(startIndex, length), x, y + lineNum * lineHeight);
         return lineNum;
     }
 
+    /**
+     * 绘制水平虚线
+     * @param graphics2D 画布
+     * @param y y轴坐标
+     * @param x 起始x坐标
+     * @param endX 终止x坐标
+     * @param size 虚线大小（小短线的长度）
+     */
     private void drawDashedLine(Graphics2D graphics2D, int y, int x, int endX, int size) {
         int times = Math.abs(x-endX)/(size*2);
         int count = 0;
@@ -333,14 +303,65 @@ public class ImageUtil {
         }
     }
 
-    public String getImageUrl() throws Exception {
-        HttpClientUtil httpClientUtil = HttpClientUtil.init();
-        String resurt = httpClientUtil.doPost("https://api.ixiaowai.cn/gqapi/gqapi.php?return=json", "");
-        JSONObject jsonObject = JSON.parseObject(resurt);
-        System.out.println(resurt);
-        String imgurl = (String)jsonObject.get("imgurl");
-        System.out.println(imgurl);
-        return imgurl;
+    /**
+     * 获取文字宽度
+     * @param font
+     * @param content
+     * @return
+     */
+    private static int getWordWidth(Font font, String content) {
+        FontDesignMetrics metrics = FontDesignMetrics.getMetrics(font);
+        int width = 0;
+        for (int i = 0; i < content.length(); i++) {
+            width += metrics.charWidth(content.charAt(i));
+        }
+        return width;
+    }
+
+    /**
+     * 获取字体高度
+     * @param font
+     * @return
+     */
+    private static int getWordHeight(Font font) {
+        FontDesignMetrics metrics = FontDesignMetrics.getMetrics(font);
+        return metrics.getHeight();
+    }
+
+    /**
+     * 获取字体基准线baseline以上高度
+     * @param font
+     * @return
+     */
+    private static int getFontAscent(Font font) {
+        FontDesignMetrics metrics = FontDesignMetrics.getMetrics(font);
+        return metrics.getAscent();
+    }
+
+
+    /**
+     * 获取字体基准线baseline以下高度
+     * @param font
+     * @return
+     */
+    private static int getFontDescent(Font font) {
+        FontDesignMetrics metrics = FontDesignMetrics.getMetrics(font);
+        return metrics.getDescent();
+    }
+
+    /**
+     * 绘制矩形边框
+     * @param graphics 画布
+     * @param x x坐标
+     * @param y y坐标
+     * @param width 宽度
+     * @param height 高度
+     */
+    private void drawBox(Graphics graphics, int x, int y, int width, int height) {
+        graphics.drawLine(x, y, width , y);
+        graphics.drawLine(width, y, width , height);
+        graphics.drawLine(x, height, width , height);
+        graphics.drawLine(x, y, x, height);
     }
 
 
