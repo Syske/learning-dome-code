@@ -326,10 +326,10 @@ public class ImageUtil {
     private void drawDashedLine(Graphics2D graphics2D, int y, int x, int endX, int size) {
         int times = Math.abs(x-endX)/(size*2);
         int count = 0;
-        while(count < times) {
-            count ++ ;
+        while(count <= times) {
             int x1 = x + count * size * 2;
             graphics2D.drawLine(x1, y, x1 + size, y);
+            count ++ ;
         }
     }
 
