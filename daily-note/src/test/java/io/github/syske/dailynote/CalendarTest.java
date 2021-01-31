@@ -15,4 +15,9 @@ public class CalendarTest {
         ChineseCalendar.Element element = ChineseCalendar.getCalendarDetail(dateFormat.parse("2020-12-22"));
         System.out.println(element);
     }
+
+    @Test
+    public void calTest() {
+
+    }
 }

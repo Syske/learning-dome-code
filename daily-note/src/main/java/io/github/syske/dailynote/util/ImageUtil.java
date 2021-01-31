@@ -93,25 +93,27 @@ public class ImageUtil {
         logger.debug("日期y坐标：" + bigDateY);
         header.drawString(contentFirstLineRight, margin, bigDateY);
 
-        // 日期提示
-        header.setFont(titleFontSmall);
-        header.setColor(Color.LIGHT_GRAY);
-        String yearMonth = element.getSgz5();
-        header.drawString(yearMonth, getWordWidth(titleFontBig, contentFirstLineRight) + margin, bigDateY - getWordHeight(titleFont));
-
         // 中文年月日
         header.setColor(Color.black);
         header.setFont(titleFont);
         String contentSecondLineRight = element.getlMonthChinese() +  element.getlDayChinese();
         int contentSecondX = getWordWidth(titleFontBig, contentFirstLineRight) + margin + 20;
-        int contentSecondY = bigDateY - getFontAscent(titleFont);
+        int contentSecondY = bigDateY - getFontAscent(titleFont) - getFontAscent(titleFontSmall);
         header.drawString(contentSecondLineRight, contentSecondX , contentSecondY);
 
         header.setColor(Color.GRAY);
         header.setFont(titleFontLitter);
         String contentSecondLine = element.getcYear() + "[" + element.getcAnimal() + "]年 " +  element.getcMonth() + "月 "
                 + element.getcDay() + "日";
-        header.drawString(contentSecondLine, contentSecondX, bigDateY);
+        header.drawString(contentSecondLine, contentSecondX, bigDateY - getFontAscent(titleFontSmall));
+
+        // 日期提示
+        header.setFont(titleFontSmall);
+        header.setColor(Color.LIGHT_GRAY);
+        String yearMonth = element.getSgz5();
+//        header.drawString(yearMonth, contentSecondX, bigDateY - (getFontDescent(titleFontBig) + getFontAscent(titleFontBig)) + getFontAscent(titleFontSmall));
+        header.drawString(yearMonth, contentSecondX, bigDateY + 10);
+
 
 
     }
