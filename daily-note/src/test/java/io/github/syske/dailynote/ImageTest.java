@@ -10,15 +10,15 @@ public class ImageTest {
     public void imgTest() {
         ImageUtil cg = new ImageUtil();
         try {
-            String mainContent = "所谓“成长”这件事，说穿了，就是一个接受不那么讨人喜欢的真相的过程。其中一个真相就是：你必然生活在一个智力和体能都参差不平衡的环境中。一些人比你弱，其他的人比你强。" ;
-            String authorInfo = "—— 蒋方舟《我承认我不曾历经沧桑》";
+            String mainContent = "生长通常被看成是积极的，但是没有东西会永远生长。如果任何形式的生长不断向前发展，最终都会变成怪物或变得具有毁灭性。有衰退才会有新的成长。生长与衰老两者相互依赖。" ;
+            String authorInfo = "—— 埃克哈特·托利《当下的力量》";
             String footerCcontent = "-【每日读书札记】-";
             String qrCodeImgPath = "https://images.cnblogs.com/cnblogs_com/caoleiCoding/921220/o_200830020106qrcode_for_gh_6985fde6e5e8_344.jpg";
 //            String qrCodeImgPath = "D:\\Users\\Administrator\\Downloads\\qrcode_for_gh_6985fde6e5e8_258 (1).jpg";
             //String mainContImgPath = "D:\\Users\\Administrator\\Pictures\\Saved Pictures\\wallhaven-vgl8o8.jpg";
             String imgSaveFullPath = "D:\\"+ UUIDUtil.getUUIDStr() +".jpg";
 //            String mainContImgPath = cg.getImageUrl();
-            String mainContImgPath = "https://gitee.com/sysker/picBed/raw/master/20210131155932.jpg";
+            String mainContImgPath = "https://gitee.com/sysker/picBed/raw/master/images/20210201095715.png";
             cg.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, mainContImgPath, mainContent, authorInfo, footerCcontent);
         } catch (Exception e) {
             e.printStackTrace();
