@@ -1,5 +1,8 @@
 package io.github.syske;
 
+import java.util.Optional;
+import java.util.stream.Stream;
+
 /**
  * @program: lamubda
  * @description: lamubda表达式
@@ -36,6 +39,15 @@ public class LamubdaTest {
 
         greetService1.sayMessage("Runoob");
         greetService2.sayMessage("Google");
+
+        Optional<Integer> result = Stream.of("a", "be", "hello")
+                .map(s -> s.length())
+                .filter(l -> l <= 3)
+                .max((o1, o2) -> o1 - o2);
+        System.out.println(result.get());
+
+        Stream<Integer> integerStream = Stream.of("of", "bar", "hello").map(s -> s.length());
+        System.out.println(integerStream.filter(l -> l > 3).max((o1, o2) -> o1 - o2));
     }
 
     interface MathOperation {

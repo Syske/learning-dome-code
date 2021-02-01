@@ -21,7 +21,15 @@ public class CalendarTest {
 
     @Test
     public void calTest() throws ParseException {
-        int days = DateUtil.getCountDownDays(2021, 3, 12);
+//        int days = DateUtil.getCountDownDays(2021, 3, 12);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String nowDate = format.format(new Date());  //第二个日期
+
+        String dbtime2 = "2021-02-12";  //第一个日期
+//算两个日期间隔多少天
+        Date date1 = format.parse(nowDate);
+        Date date2 = format.parse(dbtime2);
+        int days = (int) ((date2.getTime() - date1.getTime()) / (1000*3600*24));
         System.out.println(days);
     }
 }

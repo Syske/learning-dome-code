@@ -1,5 +1,7 @@
 package io.github.syske.dailynote.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -12,21 +14,16 @@ public class DateUtil {
     /**
      * 获取传入日期的倒计时
      *
-     * @param year
-     * @param month
-     * @param dayOfMonth
-     * @return
+     * @param targetDateStr 目标日期，格式 yyyy-MM-dd
+     * @return 返回天数
      */
-    public static int getCountDownDays (int year, int month, int dayOfMonth) {
-        Date today = new Date();
-        Calendar targetDay = Calendar.getInstance();
-        targetDay.set(Calendar.YEAR, year);
-        targetDay.set(Calendar.MONTH, month);
-        targetDay.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        long targetDayTimeInMillis = targetDay.getTime().getTime();
-        long todayTimeInMillis = today.getTime();
-        long dd = targetDayTimeInMillis - todayTimeInMillis;
-        int days = (int)dd /( 1000 * 3600 * 24);
+    public static int getCountDownDays(String targetDateStr, Date today) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String nowDateStr = format.format(today);  //第二个日期
+        //算两个日期间隔多少天
+        Date nowDate = format.parse(nowDateStr);
+        Date targetDate = format.parse(targetDateStr); // 目标日期
+        int days = (int) ((targetDate.getTime() - nowDate.getTime()) / (1000*3600*24));
         return days;
     }
 }

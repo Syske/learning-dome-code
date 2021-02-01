@@ -44,7 +44,7 @@ public class ChineseCalendar {
     String[] Gan = new String[]{"甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"};
     String[] Zhi = new String[]{"子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"};
     String[] Animals = new String[]{"鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"};
-    String[] solarTerm = new String[]{"小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至"};
+    String[] lunarTerm = new String[]{"小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪", "冬至"};
     int[] sTermInfo = new int[]{0, 21208, 42467, 63836, 85337, 107014, 128867, 150921, 173149, 195551, 218072, 240693, 263343, 285989, 308563, 331033, 353350, 375494, 397447, 419210, 440795, 462224, 483532, 504758};
     char[] nStr1 = new char[]{'日', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'};
     String[] nStr2 = new String[]{"初", "十", "廿", "卅", " "};
@@ -329,8 +329,8 @@ public class ChineseCalendar {
         //节气
         tmp1 = sTerm(y, m * 2) - 1;
         tmp2 = sTerm(y, m * 2 + 1) - 1;
-        elements.get(tmp1).solarTerms = solarTerm[m * 2];
-        elements.get(tmp2).solarTerms = solarTerm[m * 2 + 1];
+        elements.get(tmp1).lunarTerms = lunarTerm[m * 2];
+        elements.get(tmp2).lunarTerms = lunarTerm[m * 2 + 1];
         if (m == 3) elements.get(tmp1).color = "red"; //清明颜色
 
         Pattern p = Pattern.compile("^(\\d{2})(\\d{2})([\\s\\*])(.+)$");
@@ -611,7 +611,7 @@ public class ChineseCalendar {
         public boolean isToday=false;
         public String lunarFestival;
         public String solarFestival;
-        public String solarTerms;
+        public String lunarTerms;
         public String sgz5;
         public char sgz3;
         public String cAnimal;
@@ -641,7 +641,7 @@ public class ChineseCalendar {
 
             this.lunarFestival = ""; //农历节日
             this.solarFestival = ""; //公历节日
-            this.solarTerms = ""; //节气
+            this.lunarTerms = ""; //节气
             this.cAnimal = cAnimal;
         }
 
@@ -781,12 +781,12 @@ public class ChineseCalendar {
             this.solarFestival = solarFestival;
         }
 
-        public String getSolarTerms() {
-            return solarTerms;
+        public String getLunarTerms() {
+            return lunarTerms;
         }
 
-        public void setSolarTerms(String solarTerms) {
-            this.solarTerms = solarTerms;
+        public void setLunarTerms(String lunarTerms) {
+            this.lunarTerms = lunarTerms;
         }
 
         public String getlMonthChinese() {
@@ -833,7 +833,7 @@ public class ChineseCalendar {
                     ", isToday=" + isToday +
                     ", lunarFestival='" + lunarFestival + '\'' +
                     ", solarFestival='" + solarFestival + '\'' +
-                    ", solarTerms='" + solarTerms + '\'' +
+                    ", lunarTerms='" + lunarTerms + '\'' +
                     ", sgz5='" + sgz5 + '\'' +
                     ", sgz3=" + sgz3 +
                     ", cAnimal=" + cAnimal +
