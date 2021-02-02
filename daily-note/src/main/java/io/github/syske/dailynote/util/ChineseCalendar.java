@@ -311,7 +311,7 @@ public class ChineseCalendar {
             lD2 = (dayCyclical + i);
             Element element = new Element(y, m + 1, i + 1, (nStr1[(i + this.firstWeek) % 7]),
                     lY, lM, lD++, lL,
-                    cY, cM, cD, cAnimal(y));
+                    cY, cM, cD, cAnimal(lY));
 //            element.setcDay(cDay(element.getlDay()));
             int paramterLy2=lY2==null?-1:(lY2 % 12);
             int paramterLm2=lM2==null?-1:lM2 % 12;
@@ -440,8 +440,8 @@ public class ChineseCalendar {
     public String cAnimal(int year) {
         int i = (year - 1900) % 12;
         if(i == 0)
-            return Animals[12-1];
-        return Animals[i -1];
+            return Animals[0];
+        return Animals[i];
     }
     //======================  中文日期
     public String cDay(int d) {

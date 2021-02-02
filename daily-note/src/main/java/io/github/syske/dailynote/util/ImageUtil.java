@@ -83,9 +83,9 @@ public class ImageUtil {
         Font titleFontSmall = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 50f);
         int margin = 120;
         header.setFont(titleFontBig);
-//        Date today = new Date();
-        SimpleDateFormat dateFormatYmd = new SimpleDateFormat("yyyy-MM-dd");
-        Date today = dateFormatYmd.parse("2021-02-03");
+        Date today = new Date();
+//        SimpleDateFormat dateFormatYmd = new SimpleDateFormat("yyyy-MM-dd");
+//        Date today = dateFormatYmd.parse("2021-02-03");
         ChineseCalendar.Element element = ChineseCalendar.getCalendarDetail(today);
         logger.debug("农历：" + element.toString());
         // 日期

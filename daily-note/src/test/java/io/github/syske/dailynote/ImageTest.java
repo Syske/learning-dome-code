@@ -10,8 +10,8 @@ public class ImageTest {
     public void imgTest() {
         ImageUtil cg = new ImageUtil();
         try {
-            String mainContent = "生长通常被看成是积极的，但是没有东西会永远生长。如果任何形式的生长不断向前发展，最终都会变成怪物或变得具有毁灭性。有衰退才会有新的成长。生长与衰老两者相互依赖。" ;
-            String authorInfo = "—— 埃克哈特·托利《当下的力量》";
+            String mainContent = "凡是有价值的东西都不受时间的限制。或者换句话说，一种事物包含的价值越多，它就越不容易随着时间而改变。世上的价值会随时间而变化，而惟有那些超越了时间限制的事物才具有绝对的价值。" ;
+            String authorInfo = "—— [奥]奥托·魏宁格《性与性格》";
             String footerCcontent = "-【每日读书札记】-";
             String qrCodeImgPath = "https://images.cnblogs.com/cnblogs_com/caoleiCoding/921220/o_200830020106qrcode_for_gh_6985fde6e5e8_344.jpg";
 //            String qrCodeImgPath = "D:\\Users\\Administrator\\Downloads\\qrcode_for_gh_6985fde6e5e8_258 (1).jpg";
