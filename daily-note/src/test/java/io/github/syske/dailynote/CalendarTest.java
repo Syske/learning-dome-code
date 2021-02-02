@@ -15,7 +15,7 @@ public class CalendarTest {
     @Test
     public void calendarTest() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        ChineseCalendar.Element element = ChineseCalendar.getCalendarDetail(dateFormat.parse("2021-02-11"));
+        ChineseCalendar.Element element = ChineseCalendar.getCalendarDetail(dateFormat.parse("2021-02-03"));
         System.out.println(element);
     }
 

@@ -294,9 +294,16 @@ public class ImageUtil {
         int lineNum = 0;
         int startIndex = 0;
         while (contentBuilder.length() > lineWordsNum) {
-            int endIndex = startIndex + lineWordsNum;
-            graphics2D.drawString(contentBuilder.substring(0, lineWordsNum), x, y + lineNum * lineHeight);
-            contentBuilder.delete(0, lineWordsNum);
+            int endIndex = 0;
+            if (contentBuilder.charAt(lineWordsNum)=='。'
+                    ||contentBuilder.charAt(lineWordsNum)=='，') {
+                endIndex = startIndex + lineWordsNum - 1;
+                graphics2D.drawString(contentBuilder.substring(0, lineWordsNum - 1), x, y + lineNum * lineHeight);
+            } else {
+                endIndex = startIndex + lineWordsNum;
+                graphics2D.drawString(contentBuilder.substring(0, lineWordsNum), x, y + lineNum * lineHeight);
+            }
+            contentBuilder.delete(0, endIndex);
             startIndex = endIndex;
             lineNum++;
         }

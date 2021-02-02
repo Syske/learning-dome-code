@@ -262,10 +262,10 @@ public class ChineseCalendar {
         ////////年柱 1900年立春后为庚子年(60进制36)
         if (m < 2) cY = cyclical(y - 1900 + 36 - 1);
         else cY = cyclical(y - 1900 + 36);
-        int term2 = sTerm(y, 2); //立春日期
+        int term2 = sTerm(y, 2).get(Calendar.DAY_OF_MONTH); //立春日期
 
         ////////月柱 1900年1月小寒以前为 丙子月(60进制12)
-        int firstNode = sTerm(y, m * 2);//返回当月「节」为几日开始
+        int firstNode = sTerm(y, m * 2).get(Calendar.DAY_OF_MONTH);//返回当月「节」为几日开始
         cM = cyclical((y - 1900) * 12 + m + 12);
 
         lM2 = (y - 1900) * 12 + m + 12;
@@ -275,9 +275,18 @@ public class ChineseCalendar {
         df2.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date date = df2.parse("" + y + "-" + (m+1) + "-" + 1 + " 00:00:00");
 
-        long dayCyclical = date.getTime() / 86400000 + 25567 + 10;
+        int oneDayMillis = 86400000;
+        long dayCyclical = date.getTime() / oneDayMillis + 25567 + 10;
         //// long dayCyclical =date.getTime() / 86400000 + 25567 + 10;
         SimpleDateFormat df3 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        int tempYear = 0;
+        // 计算立春的时间，用于计算农历生肖年，农历生肖年从立春开始
+        Calendar liCHun = sTerm(y, 2);
+        liCHun.set(Calendar.HOUR, 0);
+        liCHun.set(Calendar.MINUTE, 0);
+        liCHun.set(Calendar.SECOND, 0);
+        liCHun.set(Calendar.MILLISECOND, 0);
+        long time = liCHun.getTime().getTime();
         for (int i = 0; i < this.length; i++) {
             if(i==18){
                 int b=5;
@@ -286,6 +295,7 @@ public class ChineseCalendar {
                 sDObj= df3.parse("" + y + "-" + (m+1) + "-" + (i+1) + " 00:00:00");   //当月一日日期
                 lDObj = new Lunar(sDObj);     //农历
                 lY = lDObj.year;           //农历年
+                tempYear = lY;             // 农历年临时值
                 lM = lDObj.month;          //农历月
                 lD = lDObj.day;            //农历日
                 lL = lDObj.isLeap;         //农历是否闰月
@@ -305,6 +315,15 @@ public class ChineseCalendar {
             if ((i + 1) == firstNode) {
                 cM = cyclical((y - 1900) * 12 + m + 13);
                 lM2 = (y - 1900) * 12 + m + 13;
+            }
+            // 判断农历年
+            // 农历生肖年从立春开始
+            Date currentDate = df3.parse("" + y + "-" + (m+1) + "-" + (i+1) + " 00:00:00");
+            calendar.setTime(currentDate);
+            long currentTims = currentDate.getTime();
+            int days = (int)(currentTims - time) / oneDayMillis;
+            if (days >= 0) {
+                lY = tempYear + 1;
             }
             //日柱
             cD = cyclical(dayCyclical + i);
@@ -327,8 +346,8 @@ public class ChineseCalendar {
         }
 
         //节气
-        tmp1 = sTerm(y, m * 2) - 1;
-        tmp2 = sTerm(y, m * 2 + 1) - 1;
+        tmp1 = sTerm(y, m * 2).get(Calendar.DAY_OF_MONTH) - 1;
+        tmp2 = sTerm(y, m * 2 + 1).get(Calendar.DAY_OF_MONTH) - 1;
         elements.get(tmp1).lunarTerms = lunarTerm[m * 2];
         elements.get(tmp2).lunarTerms = lunarTerm[m * 2 + 1];
         if (m == 3) elements.get(tmp1).color = "red"; //清明颜色
@@ -461,7 +480,7 @@ public class ChineseCalendar {
         return(s);
     }
     //===== 某年的第n个节气为几日(从0小寒起算)
-    public int sTerm(int  y,int  n) throws ParseException {
+    /*public int sTerm(int  y,int  n) throws ParseException {
         SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         df2.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date date = df2.parse("1900-01-06 02:05:00");
@@ -475,6 +494,21 @@ public class ChineseCalendar {
         int utcDate=cal.get(Calendar.DATE);
         //日期从0算起
         return utcDate;
+    }*/
+
+    //===== 某年的第n个节气对应的公历日期(从0小寒起算)
+    public Calendar sTerm(int  y, int  n) throws ParseException {
+        SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        df2.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date date = df2.parse("1900-01-06 02:05:00");
+        Long utcTime2=date.getTime();
+        BigDecimal time2=new BigDecimal(31556925974.7).multiply(new BigDecimal(y - 1900)).add(new BigDecimal( sTermInfo[n]).multiply(BigDecimal.valueOf(60000L)));
+        BigDecimal time=time2.add(BigDecimal.valueOf(utcTime2));
+        Date offDate = new Date(time.longValue());
+        Calendar cal = Calendar.getInstance() ;
+        cal.setTimeZone(TimeZone.getTimeZone("UTC"));
+        cal.setTime(offDate);
+        return cal;
     }
     //====================================== 返回农历 y年闰哪个月 1-12 , 没闰返回 0
     public Long  leapMonth(int y) {
@@ -508,24 +542,24 @@ public class ChineseCalendar {
             SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             df2.setTimeZone(TimeZone.getTimeZone("UTC"));
             DateFormat dtFmt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            Date date = df2.parse(  dtFmt.format(objDate));
+            Date date = df2.parse(dtFmt.format(objDate));
             SimpleDateFormat df3 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             df3.setTimeZone(TimeZone.getTimeZone("UTC"));
             Date date3 = df3.parse("" + 1900 + "-" + 1 + "-" + 31 + " 00:00:00");
             long time1=date.getTime();
             long time2=date3.getTime();
-            int offset = (int)(( time1-time2) / 86400000);
+
+            int oneDayMillis = 86400000;
+            int offset = (int)(( time1 - time2 ) / oneDayMillis);
             for (i = 1900; i < 2100 && offset > 0; i++) {
                 temp = lYearDays(i).intValue();
                 offset -= temp;
             }
-
             if (offset < 0) {
                 offset += temp;
-                i--;
+                    i--;
             }
-
-            this.year = i;
+           this.year = i;
             leap = leapMonth(i).intValue(); //闰哪个月
             this.isLeap = false;
 
@@ -574,10 +608,10 @@ public class ChineseCalendar {
         public int m;
         public int d;
         public Easter(int y) throws ParseException {
-            int term2 = sTerm(y, 5); //取得春分日期
+            int term2 = sTerm(y, 5).get(Calendar.DAY_OF_MONTH); //取得春分日期
             SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             df2.setTimeZone(TimeZone.getTimeZone("UTC"));
-            Date dayTerm2 = df2.parse("" +y + "-" +3 + "-" + term2 + " 00:00:00");//取得春分的公历日期控件(春分一定出现在3月)
+            Date dayTerm2 = df2.parse("" +y + "-" + 3 + "-" + term2 + " 00:00:00");//取得春分的公历日期控件(春分一定出现在3月)
             Lunar lDayTerm2 = new Lunar(dayTerm2); //取得取得春分农历
             int lMlen=0;
             if (lDayTerm2.day < 15) //取得下个月圆的相差天数
@@ -587,10 +621,12 @@ public class ChineseCalendar {
 
             //一天等于 1000*60*60*24 = 86400000 毫秒
             Date l15 = new Date(dayTerm2.getTime() + 86400000 * lMlen); //求出第一次月圆为公历几日
-            Date dayEaster = new Date(l15.getTime() + 86400000 * ( 7 - l15.getDay() )); //求出下个周日
-
-            this.m = dayEaster.getMonth();
-            this.d = dayEaster.getDate();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(l15);
+            Date dayEaster = new Date(l15.getTime() + 86400000 * ( 7 - calendar.get(Calendar.DAY_OF_WEEK) )); //求出下个周日
+            calendar.setTime(dayEaster);
+            this.m = calendar.get(Calendar.MONTH);
+            this.d = calendar.get(Calendar.DAY_OF_MONTH);
         }
     }
     public static  class Element{
@@ -616,7 +652,8 @@ public class ChineseCalendar {
         public char sgz3;
         public String cAnimal;
 
-        public Element(int sYear,int  sMonth, int sDay,char  week,int lYear,int  lMonth,int  lDay,boolean  isLeap,String  cYear, String cMonth, String cDay, String cAnimal) {
+        public Element(int sYear,int  sMonth, int sDay,char  week,int lYear,int  lMonth,int  lDay,
+                       boolean  isLeap,String  cYear, String cMonth, String cDay, String cAnimal) {
 
             this.isToday = false;
             //瓣句
