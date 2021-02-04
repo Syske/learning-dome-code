@@ -94,6 +94,23 @@ public class ImageUtil {
         int bigDateY = headerHeight / 2 + getFontAscent(titleFontBig) - titleFontBig.getSize() / 2;
         logger.debug("日期y坐标：" + bigDateY);
         header.drawString(contentFirstLineRight, margin, bigDateY);
+        // 定位线
+        header.drawLine(0, bigDateY, imageWidth, bigDateY);
+        // 定位线
+        int wordHeight = getWordHeight(titleFontBig);
+        logger.debug("titleFontBig字体高度："  + wordHeight);
+        int fontDescent = getFontDescent(titleFontBig);
+        int fontAscent = getFontAscent(titleFontBig);
+        int titleFontBigSize = titleFontBig.getSize();
+        logger.debug("titleFontBig字体Descent："  + fontDescent);
+        logger.debug("titleFontBig字体Descent*2："  + fontDescent*2);
+        logger.debug("titleFontBig字体fontAscent："  + fontAscent);
+        logger.debug("titleFontBig字体size："  + titleFontBigSize);
+        header.drawLine(0, bigDateY - fontDescent, imageWidth, bigDateY - fontDescent);
+        header.drawLine(0, bigDateY - fontDescent*2, imageWidth, bigDateY - fontDescent*2);
+        header.drawLine(0, bigDateY - fontAscent, imageWidth, bigDateY - fontAscent);
+        header.drawLine(0, bigDateY - wordHeight, imageWidth, bigDateY - wordHeight);
+        header.drawLine(0, bigDateY - titleFontBigSize, imageWidth, bigDateY - titleFontBigSize);
 
         // 中文年月日
         header.setColor(Color.black);
@@ -103,30 +120,41 @@ public class ImageUtil {
         if(!StringUtils.isEmpty(solarTerms)) {
             contentSecondLineRight.append(" | 今日" + solarTerms);
         }
+        // 农节日
+        String lunarFestival = element.getLunarFestival();
+        if(!StringUtils.isEmpty(lunarFestival)) {
+            contentSecondLineRight.append(" | 今日" + lunarFestival);
+        }
+        // 宜忌提醒
+        String dateTips = element.getSgz5();
+        if(!StringUtils.isEmpty(dateTips)) {
+            logger.info(" 今日宜忌 | " + dateTips);
+        }
         int contentSecondX = getWordWidth(titleFontBig, contentFirstLineRight) + margin + 20;
 //        header.drawLine(0, bigDateY - getFontAscent(titleFontBig), imageWidth, bigDateY - getFontAscent(titleFontBig));
 //        header.drawLine(0, bigDateY - getFontAscent(titleFontBig) + titleFontBig.getSize(), imageWidth, bigDateY - getFontAscent(titleFontBig) + titleFontBig.getSize());
-        int contentSecondY = bigDateY - getFontAscent(titleFontBig) + getFontAscent(titleFont) - getFontDescent(titleFont);
+        int contentSecondY = bigDateY - getFontAscent(titleFontBig) + getFontAscent(titleFont) + getFontAscent(titleFontSmall);
         header.drawString(contentSecondLineRight.toString(), contentSecondX, contentSecondY);
 
         header.setColor(Color.GRAY);
         header.setFont(titleFontLitter);
         String contentSecondLine = element.getcYear() + "[" + element.getcAnimal() + "]年 " + element.getcMonth() + "月 "
                 + element.getcDay() + "日";
-        header.drawString(contentSecondLine, contentSecondX, bigDateY - getFontAscent(titleFont));
+        header.drawString(contentSecondLine, contentSecondX, bigDateY - titleFontLitter.getSize());
 
         // 日期提示：日期宜忌
         header.setFont(titleFontSmall);
         header.setColor(Color.LIGHT_GRAY);
-        String dateTips = element.getSgz5();
+
         // 倒计时
+        String countDownTips = "";
         int countDownDays = DateUtil.getCountDownDays("2021-02-12", today);
-        if (StringUtils.isEmpty(dateTips) && countDownDays > 0) {
-            dateTips = "距离春节还有" + countDownDays + "天";
+        if (countDownDays > 0) {
+            countDownTips = "距离春节还有" + countDownDays + "天";
         } else {
-            dateTips = "今天是春节";
+            countDownTips = "今天是春节";
         }
-        header.drawString(dateTips, contentSecondX, bigDateY);
+        header.drawString(countDownTips, contentSecondX, bigDateY);
 
 
     }
@@ -234,7 +262,9 @@ public class ImageUtil {
         logger.debug("笔记内容高度：" + contentHeight);
         logger.debug("笔记内容y坐标：" + contentStartY);
         logger.debug("作品信息高度：" + authorInfoHeight);
-        drawString(mainPic, margin, contentStartY, content, lineWordsNum, lineHeight);
+        int contentWidth = getWordWidth(font, content.substring(0, lineWordsNum));
+        logger.debug("内容宽度：" + contentWidth);
+        drawString(mainPic, (imageWidth - contentWidth)/2, contentStartY, content, lineWordsNum, lineHeight);
         int wordWidth = getWordWidth(font, authorInfo);
 
         int authorInfoY = contentStartY + margin + contentHeight + authorInfoHeight / 2;
@@ -293,17 +323,24 @@ public class ImageUtil {
         StringBuilder contentBuilder = new StringBuilder(content);
         int lineNum = 0;
         int startIndex = 0;
+//        while (contentBuilder.length() > lineWordsNum) {
+//            int endIndex = 0;
+//            if (contentBuilder.charAt(lineWordsNum)=='。'
+//                    ||contentBuilder.charAt(lineWordsNum)=='，') {
+//                endIndex = startIndex + lineWordsNum - 1;
+//                graphics2D.drawString(contentBuilder.substring(0, lineWordsNum - 1), x, y + lineNum * lineHeight);
+//            } else {
+//                endIndex = startIndex + lineWordsNum;
+//                graphics2D.drawString(contentBuilder.substring(0, lineWordsNum), x, y + lineNum * lineHeight);
+//            }
+//            contentBuilder.delete(0, endIndex);
+//            startIndex = endIndex;
+//            lineNum++;
+//        }
         while (contentBuilder.length() > lineWordsNum) {
-            int endIndex = 0;
-            if (contentBuilder.charAt(lineWordsNum)=='。'
-                    ||contentBuilder.charAt(lineWordsNum)=='，') {
-                endIndex = startIndex + lineWordsNum - 1;
-                graphics2D.drawString(contentBuilder.substring(0, lineWordsNum - 1), x, y + lineNum * lineHeight);
-            } else {
-                endIndex = startIndex + lineWordsNum;
-                graphics2D.drawString(contentBuilder.substring(0, lineWordsNum), x, y + lineNum * lineHeight);
-            }
-            contentBuilder.delete(0, endIndex);
+            int endIndex = startIndex + lineWordsNum;
+            graphics2D.drawString(contentBuilder.substring(0, lineWordsNum), x, y + lineNum * lineHeight);
+            contentBuilder.delete(0, lineWordsNum);
             startIndex = endIndex;
             lineNum++;
         }

@@ -10,15 +10,15 @@ public class ImageTest {
     public void imgTest() {
         ImageUtil cg = new ImageUtil();
         try {
-            String mainContent = "意义不是先天的赋予，而显然是后天的建立。也就是说，生命本无意义，是我们使它有意义，是“我”，使生命获得意义。" ;
-            String authorInfo = "—— 史铁生《病隙碎笔》";
+            String mainContent = "有些人的生活胜过我们千倍万倍，但我们能心安无事；而另一些人一丁点的成功却能让我们耿耿于怀，寝食不安。我们妒嫉的只是和我们处在同一层次的人，即我们的比照群体。世上最难忍受的大概就是我们最亲近的朋友比我们成功。" ;
+            String authorInfo = "—— 阿兰·德波顿《身份的焦虑》";
             String footerCcontent = "-【每日读书札记】-";
             String qrCodeImgPath = "https://images.cnblogs.com/cnblogs_com/caoleiCoding/921220/o_200830020106qrcode_for_gh_6985fde6e5e8_344.jpg";
 //            String qrCodeImgPath = "D:\\Users\\Administrator\\Downloads\\qrcode_for_gh_6985fde6e5e8_258 (1).jpg";
             //String mainContImgPath = "D:\\Users\\Administrator\\Pictures\\Saved Pictures\\wallhaven-vgl8o8.jpg";
             String imgSaveFullPath = "D:\\"+ UUIDUtil.getUUIDStr() +".jpg";
 //            String mainContImgPath = cg.getImageUrl();
-            String mainContImgPath = "https://tva1.sinaimg.cn/large/0060lm7Tly1ftg6xjnwe8j31hc0u0kjl.jpg";
+            String mainContImgPath = "https://gitee.com/sysker/picBed/raw/master/images/20210204091907.png";
             cg.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, mainContImgPath, mainContent, authorInfo, footerCcontent);
         } catch (Exception e) {
             e.printStackTrace();
