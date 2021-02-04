@@ -4,22 +4,34 @@ import io.github.syske.dailynote.util.ImageUtil;
 import io.github.syske.dailynote.util.UUIDUtil;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 public class ImageTest {
 
+    private ImageUtil cg = new ImageUtil();
     @Test
     public void imgTest() {
-        ImageUtil cg = new ImageUtil();
+
         try {
-            String mainContent = "有些人的生活胜过我们千倍万倍，但我们能心安无事；而另一些人一丁点的成功却能让我们耿耿于怀，寝食不安。我们妒嫉的只是和我们处在同一层次的人，即我们的比照群体。世上最难忍受的大概就是我们最亲近的朋友比我们成功。" ;
-            String authorInfo = "—— 阿兰·德波顿《身份的焦虑》";
-            String footerCcontent = "-【每日读书札记】-";
+            String mainContent = "人不是从娘胎里出来就一成不变的，相反，生活会逼迫他一次又一次地脱胎换骨。" ;
+            String bookTitle = "霍乱时期的爱情";
+            String authorName = "加西亚·马尔克斯";
+            StringBuilder authorInfo = new StringBuilder("—— ")
+                    .append(authorName)
+                    .append("《")
+                    .append(bookTitle)
+                    .append("》");
+            String footerContent = "-【每日读书札记】-";
             String qrCodeImgPath = "https://images.cnblogs.com/cnblogs_com/caoleiCoding/921220/o_200830020106qrcode_for_gh_6985fde6e5e8_344.jpg";
 //            String qrCodeImgPath = "D:\\Users\\Administrator\\Downloads\\qrcode_for_gh_6985fde6e5e8_258 (1).jpg";
             //String mainContImgPath = "D:\\Users\\Administrator\\Pictures\\Saved Pictures\\wallhaven-vgl8o8.jpg";
-            String imgSaveFullPath = "D:\\"+ UUIDUtil.getUUIDStr() +".jpg";
-//            String mainContImgPath = cg.getImageUrl();
-            String mainContImgPath = "https://gitee.com/sysker/picBed/raw/master/images/20210204091907.png";
-            cg.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, mainContImgPath, mainContent, authorInfo, footerCcontent);
+            String uuidStr = UUIDUtil.getUUIDStr();
+            String imgSaveFullPath = "D:\\"+ uuidStr +".jpg";
+            String faceImgSaveFullPath = "D:\\face-img-"+ uuidStr +".jpg";
+            String mainContImgPath = cg.getImageUrl();
+//            String mainContImgPath = "https://gitee.com/sysker/picBed/raw/master/images/20210204091907.png";
+            cg.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, mainContImgPath, mainContent, authorInfo.toString(), footerContent);
+            cg.createFaceImg(bookTitle, mainContImgPath, faceImgSaveFullPath);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -27,10 +39,11 @@ public class ImageTest {
 
 
     @Test
-    public void testInt() {
-        int a = 11;
-        int b = 6;
-        int c = a/b;
-        System.out.println(c);
+    public void testFaceImg() throws IOException {
+        String imgSaveFullPath = "D:\\face-img-"+ UUIDUtil.getUUIDStr() +".jpg";
+//            String mainContImgPath = cg.getImageUrl();
+        String mainContImgPath = "https://gitee.com/sysker/picBed/raw/master/images/20210204091907.png";
+        String bookTitle = "身份的焦虑";
+        cg.createFaceImg(bookTitle, mainContImgPath, imgSaveFullPath);
     }
 }
