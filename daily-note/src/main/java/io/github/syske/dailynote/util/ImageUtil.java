@@ -310,7 +310,10 @@ public class ImageUtil {
         logger.debug("笔记内容高度：" + contentHeight);
         logger.debug("笔记内容y坐标：" + contentStartY);
         logger.debug("作品信息高度：" + authorInfoHeight);
-        int contentWidth = getWordWidth(font, content.substring(0, lineWordsNum));
+
+        int contentLength = content.length();
+        String substring = lineWordsNum > contentLength ? content.substring(0, contentLength) : content.substring(0, lineWordsNum);
+        int contentWidth = getWordWidth(font, substring);
         logger.debug("内容宽度：" + contentWidth);
         drawString(mainPic, (imageWidth - contentWidth) / 2, contentStartY, content, lineWordsNum, lineHeight);
         int wordWidth = getWordWidth(font, authorInfo);
