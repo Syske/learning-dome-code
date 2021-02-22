@@ -131,11 +131,11 @@ public class ImageUtil {
         String solarTerms = element.getLunarTerms();
         // 农节日
         String lunarFestival = element.getLunarFestival();
-        if (!StringUtils.isEmpty(lunarFestival)) {
+       if (!StringUtils.isEmpty(lunarFestival)) {
             contentSecondLineRight.append(" | 今日" + lunarFestival);
         }
         // 节气
-        if (!StringUtils.isEmpty(solarTerms) && StringUtils.isEmpty(lunarFestival)) {
+        if (!StringUtils.isEmpty(solarTerms)) {
             contentSecondLineRight.append(" | 今日" + solarTerms);
         }
 
@@ -157,11 +157,11 @@ public class ImageUtil {
 
         // 倒计时
         String countDownTips = "";
-        int countDownDays = DateUtil.getCountDownDays("2021-02-12", today);
+        int countDownDays = DateUtil.getCountDownDays("2021-02-26", today);
         if (countDownDays > 0) {
-            countDownTips = "距离春节还有" + countDownDays + "天";
+            countDownTips = "距离元宵节还有" + countDownDays + "天";
         } else {
-            countDownTips = "今天是春节";
+            countDownTips = "今天是元宵节";
         }
         header.drawString(countDownTips, contentSecondX, bigDateY + getFontDescent(titleFontSmall));
 
@@ -262,7 +262,7 @@ public class ImageUtil {
         // 消除锯齿
         main.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         main.setColor(Color.white);
-        main.setFont(titleFontLitter);
+        main.setFont(titleFontSmall);
         int contentImgHeight = (contentImg.getHeight() * faceImgWidth / contentImg.getWidth());
         main.drawImage(contentImg, 0, 0, faceImgWidth, contentImgHeight, null);
         String content = "每日读书札记 | " + bookTitle;
@@ -303,7 +303,7 @@ public class ImageUtil {
         int lineHeight = fontSize + 10;
         int contentHeight = getContentHeight(lineHeight, content, lineWordsNum);
         int authorInfoHeight = getContentHeight(lineHeight, authorInfo, lineWordsNum);
-        int contentStartY = startY + contentImgHeight + (mainContentHeight - contentHeight - authorInfoHeight) / 2 + getFontAscent(font) - contentHeight / 4;
+        int contentStartY = startY + contentImgHeight + mainContentHeight / 2  - authorInfoHeight;
         logger.debug("行数：" + lineWordsNum);
         logger.debug("每行字数：" + lineWordsNum);
         logger.debug("笔记行高：" + lineHeight);
@@ -317,8 +317,8 @@ public class ImageUtil {
         logger.debug("内容宽度：" + contentWidth);
         drawString(mainPic, (imageWidth - contentWidth) / 2, contentStartY, content, lineWordsNum, lineHeight);
         int wordWidth = getWordWidth(font, authorInfo);
-
-        int authorInfoY = contentStartY + margin + contentHeight + authorInfoHeight / 2;
+        mainPic.drawLine(0, contentStartY,imageWidth, contentStartY);
+        int authorInfoY = contentStartY + margin + contentHeight;
         logger.debug("作品信息y坐标：" + authorInfoY);
         drawString(mainPic, imageWidth - margin - wordWidth, authorInfoY, authorInfo, lineWordsNum, lineHeight);
         mainPic.dispose();
@@ -350,11 +350,13 @@ public class ImageUtil {
      */
     private int getContentHeight(int lineHeight, String content, int lineWordsNum) {
         int length = content.length();
-        if (length <= lineWordsNum)
+        if (length <= lineWordsNum) {
             return lineHeight;
+        }
         int y = length % lineWordsNum;
-        if (y == 0)
-            return length / lineWordsNum;
+        if (y == 0) {
+            return (length / lineWordsNum)*lineHeight;
+        }
         return (((length - y) / lineWordsNum) + 1) * lineHeight;
     }
 
