@@ -44,3 +44,7 @@
 40. [weui-demo](./weui-demo)：weui魔改测试
 41. [web-sign-demo](./web-sign-demo)：在线生成承诺书，并在线签名
 42. [daily-note](./daily-note)：读书笔记随机生成图片
+43. [weblogic-monitor-exporter](./weblogic-monitor-exporter)：webligic监控
+44. [mp-yunzhongzhi-java](./mp-yunzhongzhi-java)：微信公众号开发
+45. [cache-server](./cache-server)：缓存服务
+
