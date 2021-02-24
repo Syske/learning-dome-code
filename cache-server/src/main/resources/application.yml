@@ -6,14 +6,14 @@ spring:
     port: 6379
     password: 123456
     # 连接超时时间（ms)
-    timeout: 5000ms
+    timeout: 5000
     # 高版本springboot中使用jedis或者lettuce
     jedis:
       pool:
         # 连接池最大连接数（负值表示无限制）
         max-active: 8
         # 连接池最大阻塞等待时间（负值无限制)
-        max-wait: 5000ms
+        max-wait: 5000
         # 最大空闲链接数
         max-idle: 8
         # 最小空闲链接数

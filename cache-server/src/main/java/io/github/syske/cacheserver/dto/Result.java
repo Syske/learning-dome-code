@@ -25,6 +25,16 @@ public class Result<T> {
     private String message;
 
     public Result() {
+        this.success = true;
+        this.message = "请求成功";
+        this.status = 200;
+    }
+
+    public Result(T result) {
+        this.success = true;
+        this.message = "请求成功";
+        this.status = 200;
+        this.result = result;
     }
 
     public Result(boolean success, int status, String message, T result) {
@@ -34,8 +44,8 @@ public class Result<T> {
         this.result = result;
     }
 
-    public static Result getFailed(String errorMessage, Object result) {
-        return new Result(false, 0, errorMessage, result);
+    public static Result getFailed(String errorMessage) {
+        return new Result(false, 0, errorMessage, null);
     }
 
     public void success(T result) {
