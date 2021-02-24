@@ -302,8 +302,9 @@ public class ImageUtil {
         int lineWordsNum = (imageWidth - margin * 2) / fontSize;
         int lineHeight = fontSize + 10;
         int contentHeight = getContentHeight(lineHeight, content, lineWordsNum);
+        logger.debug("笔记内容高度：" + contentHeight);
         int authorInfoHeight = getContentHeight(lineHeight, authorInfo, lineWordsNum);
-        int contentStartY = startY + contentImgHeight + mainContentHeight / 2  - authorInfoHeight;
+        int contentStartY = startY + contentImgHeight + (mainContentHeight - contentHeight - authorInfoHeight - margin) / 2 + margin ;
         logger.debug("行数：" + lineWordsNum);
         logger.debug("每行字数：" + lineWordsNum);
         logger.debug("笔记行高：" + lineHeight);
@@ -317,7 +318,6 @@ public class ImageUtil {
         logger.debug("内容宽度：" + contentWidth);
         drawString(mainPic, (imageWidth - contentWidth) / 2, contentStartY, content, lineWordsNum, lineHeight);
         int wordWidth = getWordWidth(font, authorInfo);
-        mainPic.drawLine(0, contentStartY,imageWidth, contentStartY);
         int authorInfoY = contentStartY + margin + contentHeight;
         logger.debug("作品信息y坐标：" + authorInfoY);
         drawString(mainPic, imageWidth - margin - wordWidth, authorInfoY, authorInfo, lineWordsNum, lineHeight);
