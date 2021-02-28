@@ -34,7 +34,7 @@ public class ImageUtil {
     //设置字体
     private Font titleFontBig = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 260f);
     private Font titleFontLitter = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 60f);
-    private Font titleFontSmall = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 50f);
+    private Font titleFontSmall = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 40f);
     private Font contentFont = FontUtil.getFont(FontUtil.PINGFANG_FONT, 56f);
 
     //生成图片文件
@@ -157,11 +157,11 @@ public class ImageUtil {
 
         // 倒计时
         String countDownTips = "";
-        int countDownDays = DateUtil.getCountDownDays("2021-02-26", today);
+        int countDownDays = DateUtil.getCountDownDays("2021-04-04", today);
         if (countDownDays > 0) {
-            countDownTips = "距离元宵节还有" + countDownDays + "天";
+            countDownTips = "距离清明节还有" + countDownDays + "天";
         } else {
-            countDownTips = "今天是元宵节";
+            countDownTips = "今天是清明节节";
         }
         header.drawString(countDownTips, contentSecondX, bigDateY + getFontDescent(titleFontSmall));
 
@@ -266,7 +266,7 @@ public class ImageUtil {
         int contentImgHeight = (contentImg.getHeight() * faceImgWidth / contentImg.getWidth());
         main.drawImage(contentImg, 0, 0, faceImgWidth, contentImgHeight, null);
         String content = "每日读书札记 | " + bookTitle;
-        int contentX = (faceImgWidth - getWordWidth(titleFontLitter, content))/2;
+        int contentX = (faceImgWidth - getWordWidth(titleFontSmall, content))/2;
         main.drawString(content, contentX, faceImgHeight*3/4);
         createImage(faceImage, imgSaveFullPath);
     }
