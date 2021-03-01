@@ -320,11 +320,11 @@ public class ChineseCalendar {
             // 农历生肖年从立春开始
             Date currentDate = df3.parse("" + y + "-" + (m+1) + "-" + (i+1) + " 00:00:00");
             calendar.setTime(currentDate);
-            long currentTims = currentDate.getTime();
+          /*  long currentTims = currentDate.getTime();
             int days = (int)(currentTims - time) / oneDayMillis;
             if (days >= 0) {
                 lY = tempYear + 1;
-            }
+            }*/
             //日柱
             cD = cyclical(dayCyclical + i);
             lD2 = (dayCyclical + i);

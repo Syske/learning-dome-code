@@ -1,5 +1,6 @@
 package io.github.syske.dailynote;
 
+import com.nlf.calendar.Lunar;
 import io.github.syske.dailynote.util.ChineseCalendar;
 import io.github.syske.dailynote.util.DateUtil;
 import org.junit.jupiter.api.Test;
@@ -31,5 +32,16 @@ public class CalendarTest {
         Date date2 = format.parse(dbtime2);
         int days = (int) ((date2.getTime() - date1.getTime()) / (1000*3600*24));
         System.out.println(days);
+    }
+
+    @Test
+    public void testCander() {
+        //今天
+        Lunar date = new Lunar();
+
+        //指定阴历的某一天
+//        Lunar date = new Lunar(1986,4,21);
+        System.out.println(date.toFullString());
+        System.out.println(date.getSolar().toFullString());
     }
 }

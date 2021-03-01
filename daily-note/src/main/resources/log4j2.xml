@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appenders>
+        <!-- 控制台输出 -->
+        <console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class %L %M - %msg%n"/>
+        </console>
+
+        <!-- fileName：输出路径  filePattern：命名规则 -->
+        <RollingFile name="all" fileName="logs/daily-note-allOut.log"
+                     filePattern="logs/$${date:yyyy-MM-dd}/allOut-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="all" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <!-- 输出格式 -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%n"/>
+            <Policies>
+                <!-- SizeBasedTriggeringPolicy单个文件的大小限制 -->
+                <SizeBasedTriggeringPolicy size="2 MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy同一个文件下的最大文件数 -->
+            <DefaultRolloverStrategy max="50"/>
+        </RollingFile>
+
+        <RollingFile name="err" fileName="logs/daily-note-err.log"
+                     filePattern="logs/$${date:yyyy-MM-dd}/err-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <!-- 输出格式 -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <!-- SizeBasedTriggeringPolicy单个文件的大小限制 -->
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy同一个文件下的最大文件数 -->
+            <DefaultRolloverStrategy max="50"/>
+        </RollingFile>
+
+        <RollingFile name="sql" fileName="logs/daily-note-sql.log"
+                     filePattern="logs/$${date:yyyy-MM-dd}/err-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <!-- 输出格式 -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <!-- SizeBasedTriggeringPolicy单个文件的大小限制 -->
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy同一个文件下的最大文件数 -->
+            <DefaultRolloverStrategy max="50"/>
+        </RollingFile>
+
+        <RollingFile name="ecCode" fileName="logs/daily-note-ecCode.log"
+                     filePattern="logs/$${date:yyyy-MM-dd}/err-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <!-- 输出格式 -->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <!-- SizeBasedTriggeringPolicy单个文件的大小限制 -->
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy同一个文件下的最大文件数 -->
+            <DefaultRolloverStrategy max="50"/>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <!--过滤掉spring无用的debug信息-->
+        <logger name="org.springframework" level="error"></logger>
+        <!-- 将业务dao接口填写进去,并用控制台输出即可 -->
+         <logger name="org.mybatis" level="DEBUG" additivity="false">
+            <appender-ref ref="sql"/>
+        </logger>
+        <logger name="org.apache.ibatis" level="DEBUG" additivity="false">
+            <appender-ref ref="sql"/>
+        </logger>
+
+        <logger name="io.github.syske" level="DEBUG" additivity="false">
+            <appender-ref ref="ecCode"/>
+        </logger>
+
+        <root level="debug">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="all"/>
+            <appender-ref ref="err"/>
+            <appender-ref ref="sql"/>
+            <appender-ref ref="ecCode"/>
+        </root>
+    </loggers>
+
+</configuration>
