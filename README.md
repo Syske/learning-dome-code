@@ -47,5 +47,6 @@
 43. [weblogic-monitor-exporter](./weblogic-monitor-exporter)：webligic监控
 44. [mp-yunzhongzhi-java](./mp-yunzhongzhi-java)：微信公众号开发
 45. [cache-server](./cache-server)：缓存服务
-46. [springboot-nacos-demo](./springboot-nacos-demo)：springboot整合naco、druid，动态获取数据源配置信息
+46. [springboot-nacos-demo](./springboot-nacos-demo)：springboot整合nacos、druid，动态获取数据源配置信息
+47. [springboot-nacos-discovery-demo](./springboot-nacos-discovery-demo)：基于nacos实现服务注册和服务发现
 
