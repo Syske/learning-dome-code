@@ -88,7 +88,7 @@ public class ImageUtil {
         header.setFont(titleFontBig);
         Date today = new Date();
 //        SimpleDateFormat dateFormatYmd = new SimpleDateFormat("yyyy-MM-dd");
-//        Date today = dateFormatYmd.parse("2021-02-03");
+//        Date today = dateFormatYmd.parse("2021-03-04");
         ChineseCalendar.Element element = ChineseCalendar.getCalendarDetail(today);
         logger.debug("农历：" + element.toString());
         // 日期
@@ -382,6 +382,8 @@ public class ImageUtil {
                     ||contentBuilder.charAt(lineWordsNum)=='，'
                     ||contentBuilder.charAt(lineWordsNum)=='：'
                     ||contentBuilder.charAt(lineWordsNum)=='？'
+                    ||contentBuilder.charAt(lineWordsNum)=='、'
+                    ||contentBuilder.charAt(lineWordsNum)=='—'
                     ||contentBuilder.charAt(lineWordsNum)=='！') {
                 graphics2D.drawString(contentBuilder.substring(0, lineWordsNum - 1), x, y + lineNum * lineHeight);
                 endIndex -= 1;

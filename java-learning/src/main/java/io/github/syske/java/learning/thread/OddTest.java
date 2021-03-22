@@ -14,6 +14,10 @@ public class OddTest {
         System.out.println("isOdd2:" + isOdd2(6));
         System.out.println("isOdd3:" + isOdd3(5));
         System.out.println("isOdd3:" + isOdd3(6));
+        System.out.println("isOdd4:" + isOdd4(5));
+        System.out.println("isOdd4:" + isOdd4(6));
+        System.out.println(1 >> 2 << 2);
+        System.out.println(2 << 1);
     }
 
     /**
@@ -48,6 +52,10 @@ public class OddTest {
         return i%2 == 1 || i%2 == -1;
     }
 
+    public static boolean isOdd(int i) {
+        return i % 2 != 0;
+    }
+
     /**
      * 普通写法：考虑负数的情况，优化后
      * @param i
@@ -64,5 +72,9 @@ public class OddTest {
      */
     public static boolean isOdd3(int i) {
         return (i & 1) == 1;
+    }
+
+    public static boolean isOdd4(int i) {
+        return i >> 1 << 1 != i;
     }
 }

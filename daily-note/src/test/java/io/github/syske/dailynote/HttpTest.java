@@ -24,4 +24,12 @@ public class HttpTest {
         JSONObject jsonObject = JSON.parseObject(resurt);
         System.out.println(jsonObject);
     }
+
+    @Test
+    public void getWeatherInfo2() throws Exception {
+        HttpClientUtil httpClientUtil = HttpClientUtil.init();
+        String resurt = httpClientUtil.doPost("https://l-by.cn/api/gqapi/gqapi.php?return=json", "");
+        JSONObject jsonObject = JSON.parseObject(resurt);
+        System.out.println(jsonObject);
+    }
 }

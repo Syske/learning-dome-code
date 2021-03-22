@@ -1,10 +1,8 @@
 package io.github.syske.rocketmq.test.order;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
-import org.apache.rocketmq.client.producer.MessageQueueSelector;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
-import org.apache.rocketmq.common.message.MessageQueue;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

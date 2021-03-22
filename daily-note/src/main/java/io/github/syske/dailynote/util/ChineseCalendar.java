@@ -170,7 +170,7 @@ public class ChineseCalendar {
             "0102*大年初二",
             "0103*大年初三",
             "0104*大年初四",
-            "0105*大年初五",
+//            "0105*大年初五",
             "0106*大年初六",
             "0107*大年初七",
             "0105  路神生日",
@@ -318,13 +318,13 @@ public class ChineseCalendar {
             }
             // 判断农历年
             // 农历生肖年从立春开始
-            Date currentDate = df3.parse("" + y + "-" + (m+1) + "-" + (i+1) + " 00:00:00");
+           /* Date currentDate = df3.parse("" + y + "-" + (m+1) + "-" + (i+1) + " 00:00:00");
             calendar.setTime(currentDate);
             long currentTims = currentDate.getTime();
             int days = (int)(currentTims - time) / oneDayMillis;
             if (days >= 0) {
                 lY = tempYear + 1;
-            }
+            }*/
             //日柱
             cD = cyclical(dayCyclical + i);
             lD2 = (dayCyclical + i);
