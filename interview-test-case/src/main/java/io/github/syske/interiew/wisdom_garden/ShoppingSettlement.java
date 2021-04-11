@@ -4,7 +4,6 @@ import io.github.syske.interiew.wisdom_garden.entity.CouponInfo;
 import io.github.syske.interiew.wisdom_garden.entity.GoodsInfo;
 import io.github.syske.interiew.wisdom_garden.entity.PromotionInfo;
 
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -13,20 +12,20 @@ import java.util.regex.Pattern;
 
 /**
  * @program: interview-test-case
- * @description: 购物车
+ * @description: 购物结算
  * @author: syske
- * @create: 2021-02-27 21:02
+ * @create: 2021-02-27 11:02
  */
-public class ShoppingSettement {
+public class ShoppingSettlement {
+    private static ShoppingSettlement shoppingSettlement = new ShoppingSettlement();
 
     /**
-     *  产品目录
-     *  电子：ipad，iphone，显示器，笔记本电脑，键盘
-     *  食品：面包，饼干，蛋糕，牛肉，鱼，蔬菜
-     *  日用品：餐巾纸，收纳箱，咖啡杯，雨伞
-     *  酒类：啤酒，白酒，伏特加
-     *
-      */
+     * 产品目录
+     * 电子：ipad，iphone，显示器，笔记本电脑，键盘
+     * 食品：面包，饼干，蛋糕，牛肉，鱼，蔬菜
+     * 日用品：餐巾纸，收纳箱，咖啡杯，雨伞
+     * 酒类：啤酒，白酒，伏特加
+     */
     private static final Map<String, List<String>> goodsMap = new HashMap<String, List<String>>();
 
     // 初始化产品目录
@@ -65,47 +64,95 @@ public class ShoppingSettement {
     }
 
     /**
+     * 项目主入口
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入促销信息：");
+        // 读取促销信息
+        String promotionInfoStr = null;
+        List<PromotionInfo> promotionInfoList = new ArrayList<PromotionInfo>();
+        while (scanner.hasNextLine()) {
+            promotionInfoStr = scanner.nextLine();
+            if (isEmpty(promotionInfoStr)) {
+                break;
+            }
+            PromotionInfo promotionInfo = shoppingSettlement.getPromotionInfo(promotionInfoStr);
+            promotionInfoList.add(promotionInfo);
+        }
+        // 读取商品信息
+        System.out.println("请输入购物商品信息：");
+        String goodsInfoStr = null;
+        List<GoodsInfo> goodsInfoList = new ArrayList<GoodsInfo>();
+        while (scanner.hasNextLine()) {
+            goodsInfoStr = scanner.nextLine();
+            if (isEmpty(goodsInfoStr)) {
+                break;
+            }
+            GoodsInfo goodsInfo = shoppingSettlement.getGoodsInfo(goodsInfoStr, promotionInfoList);
+            goodsInfoList.add(goodsInfo);
+        }
+        // 获取结算日期
+        System.out.println("请输入结算日期：");
+        String settlementDateStr = scanner.nextLine();
+        // 获取优惠券信息
+        System.out.println("请输入优惠券信息：");
+        String couponInfoStr = scanner.nextLine();
+        CouponInfo couponInfo = shoppingSettlement.getCouponInfo(couponInfoStr);
+        // 结算购物费用
+        double totalAmount = shoppingSettlement.calculateTotalAmount(goodsInfoList, couponInfo, settlementDateStr);
+        System.out.println("本次消费应付金额：" + String.format("%.2f %n", totalAmount));
+    }
+
+    /**
      * 计算总金额
      *
      * @param goodsInfoList
      * @param couponInfo
      * @param settlementDate
+     *
      * @return
+     *
      * @throws ParseException
      */
     public double calculateTotalAmount(List<GoodsInfo> goodsInfoList,
-                                        CouponInfo couponInfo, String settlementDate) throws ParseException {        // 总金额
+                                       CouponInfo couponInfo, String settlementDate) throws ParseException {        // 总金额
         double totalAmount = 0.0;
         Iterator<GoodsInfo> iterator = goodsInfoList.iterator();
         while (iterator.hasNext()) {
             GoodsInfo next = iterator.next();
             PromotionInfo promotionInfo = next.getPromotionInfo();
             // 商品促销信息不为空，且促销当天结算
-            if(promotionInfo != null && getCountDownDays(promotionInfo.getDate(), settlementDate) == 0) {
+            if (promotionInfo != null && getCountDownDays(promotionInfo.getDate(), settlementDate) == 0) {
                 totalAmount += next.getCount() * next.getPrice() * promotionInfo.getDiscount();
             } else {
                 totalAmount += next.getCount() * next.getPrice();
             }
         }
-        int countDownDays = getCountDownDays(couponInfo.getDate(), settlementDate);
+
         // 优惠券有效，且大于优惠券满减金额，方能使用优惠券
-        if (countDownDays >= 0 && couponInfo != null
+        if (couponInfo != null && getCountDownDays(couponInfo.getDate(), settlementDate) >= 0
                 && totalAmount >= couponInfo.getBottomLineAmount()) {
             totalAmount -= couponInfo.getDiscountAmount();
         }
+
         return totalAmount;
     }
 
     /**
      * 获取商品折扣信息
-     * @param goodsTypeName 商品种类
+     *
+     * @param goodsTypeName     商品种类
      * @param promotionInfoList 促销信息
+     *
      * @return
      */
     private PromotionInfo getGoodsPromotionInfo(String goodsTypeName,
-                                    List<PromotionInfo> promotionInfoList) {
+                                                List<PromotionInfo> promotionInfoList) {
         for (PromotionInfo promotionInfo : promotionInfoList) {
-            if(goodsTypeName.equals(promotionInfo.getGoodsTypeName())) {
+            if (goodsTypeName.equals(promotionInfo.getGoodsTypeName())) {
                 return promotionInfo;
             }
         }
@@ -116,11 +163,12 @@ public class ShoppingSettement {
      * 获取商品分类名称
      *
      * @param goodsName
+     *
      * @return
      */
     private String getGoodsTypeName(String goodsName) {
         Iterator<String> iterator = goodsMap.keySet().iterator();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             String next = iterator.next();
             List<String> goodsList = goodsMap.get(next);
             if (goodsList.contains(goodsName)) {
@@ -132,7 +180,9 @@ public class ShoppingSettement {
 
     /**
      * 获取商品信息
+     *
      * @param goodsInfoStr
+     *
      * @return
      */
     public GoodsInfo getGoodsInfo(String goodsInfoStr, List<PromotionInfo> promotionInfoList) {
@@ -142,16 +192,15 @@ public class ShoppingSettement {
         // 现在创建 matcher 对象
         Matcher m = r.matcher(goodsInfoStr);
         if (m.find()) {
-            System.out.println("Found value: " + m.group(0));
-            System.out.println("Found value: " + m.group(1));
-            System.out.println("Found value: " + m.group(2));
-            System.out.println("Found value: " + m.group(3));
-            System.out.println("Found value: " + m.group(3));
-            System.out.println("Found value: " + m.group(5));
+            // 商品名称
             String goodsName = m.group(3).trim();
+            // 商品数量
             String goodsCount = m.group(1).trim();
+            // 商品单价
             String goodsPrice = m.group(5).trim();
+            // 商品类型名称
             String goodsTypeName = getGoodsTypeName(goodsName);
+            // 商品折扣信息
             PromotionInfo goodsPromotionInfo = getGoodsPromotionInfo(goodsTypeName, promotionInfoList);
             return new GoodsInfo(Integer.parseInt(goodsCount), goodsName,
                     Double.parseDouble(goodsPrice), goodsPromotionInfo, goodsTypeName);
@@ -163,6 +212,7 @@ public class ShoppingSettement {
      * 获取优惠券信息
      *
      * @param couponInfoStr
+     *
      * @return
      */
     public CouponInfo getCouponInfo(String couponInfoStr) {
@@ -172,28 +222,23 @@ public class ShoppingSettement {
         // 现在创建 matcher 对象
         Matcher m = r.matcher(couponInfoStr);
         if (m.find()) {
-            System.out.println(m.group(0));
-            System.out.println(m.group(1));
-            System.out.println(m.group(2));
-            System.out.println(m.group(3));
             return new CouponInfo(m.group(1).trim(),
                     Double.parseDouble(m.group(2).trim()),
                     Double.parseDouble(m.group(3).trim()));
         }
-      return null;
+        return null;
     }
 
     /**
      * 获取促销信息
      *
      * @param promotionInfoStr
+     *
      * @return
+     *
      * @throws Exception
      */
     public PromotionInfo getPromotionInfo(String promotionInfoStr) throws Exception {
-        if (isEmpty(promotionInfoStr)) {
-            return new PromotionInfo();
-        }
         String pattern = "^[0-9]{4}.[0-9]{2}.[0-9]{2}\\s\\|\\s\\d+.\\d+\\s\\|\\s\\D+";
         boolean matches = Pattern.matches(pattern, promotionInfoStr);
         if (matches) {
@@ -205,16 +250,16 @@ public class ShoppingSettement {
             // 商品类别
             String goodsClassName = splits[2].trim();
             return new PromotionInfo(date, Double.parseDouble(discount), goodsClassName);
-        } else {
-            throw new Exception("促销信息输入格式错误");
         }
+        return new PromotionInfo();
     }
 
     /**
      * 获取传入日期日期间隔天数
      *
-     * @param targetDateStr 目标日期，格式 yyyy-MM-dd
+     * @param targetDateStr  目标日期，格式 yyyy-MM-dd
      * @param settlementDate 结算日期，格式 yyyy-MM-dd
+     *
      * @return 返回天数
      */
     public static int getCountDownDays(String targetDateStr, String settlementDate) throws ParseException {
@@ -222,7 +267,7 @@ public class ShoppingSettement {
         //算两个日期间隔多少天
         Date nowDate = format.parse(settlementDate);
         Date targetDate = format.parse(targetDateStr); // 目标日期
-        int days = (int) ((targetDate.getTime() - nowDate.getTime()) / (1000*3600*24));
+        int days = (int) ((targetDate.getTime() - nowDate.getTime()) / (1000 * 3600 * 24));
         return days;
     }
 
@@ -234,7 +279,7 @@ public class ShoppingSettement {
      *
      * @return
      */
-    private boolean isEmpty(String str) {
+    private static boolean isEmpty(String str) {
         return str == null || str.trim().length() == 0;
     }
 }

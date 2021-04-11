@@ -24,7 +24,7 @@ public class ImageTest {
             String footerContent = "-【每日读书札记】-";
             String qrCodeImgPath = "https://images.cnblogs.com/cnblogs_com/caoleiCoding/921220/o_200830020106qrcode_for_gh_6985fde6e5e8_344.jpg";
 //            String qrCodeImgPath = "D:\\Users\\Administrator\\Downloads\\qrcode_for_gh_6985fde6e5e8_258 (1).jpg";
-            //String mainContImgPath = "D:\\Users\\Administrator\\Pictures\\Saved Pictures\\wallhaven-vgl8o8.jpg";
+//            String mainContImgPath = "D:\\Users\\Administrator\\Pictures\\Saved Pictures\\wallhaven-vgl8o8.jpg";
             String uuidStr = UUIDUtil.getUUIDStr();
             String imgSaveFullPath = "D:\\tmp\\img\\created\\"+ uuidStr +".jpg";
             String faceImgSaveFullPath = "D:\\tmp\\img\\created\\face-img-"+ uuidStr +".jpg";
