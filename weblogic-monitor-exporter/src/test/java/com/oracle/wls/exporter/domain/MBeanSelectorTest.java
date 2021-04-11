@@ -3,26 +3,18 @@
 
 package com.oracle.wls.exporter.domain;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.gson.Gson;
+import org.junit.Test;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.gson.Gson;
-import org.junit.Test;
-
 import static com.oracle.wls.exporter.domain.JsonPathMatcher.hasJsonPath;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.aMapWithSize;
-import static org.hamcrest.Matchers.anEmptyMap;
-import static org.hamcrest.Matchers.arrayContaining;
-import static org.hamcrest.Matchers.both;
-import static org.hamcrest.Matchers.emptyArray;
-import static org.hamcrest.Matchers.emptyOrNullString;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 /**
  * @author Russell Gold
@@ -41,7 +33,7 @@ public class MBeanSelectorTest {
         MBeanSelector selector = MBeanSelector.create(ImmutableMap.of());
 
         assertThat(selector.getUrl(Protocol.HTTP, "myhost", 1234),
-                   equalTo(String.format(QueryType.RUNTIME_URL_PATTERN, "http", "myhost", 1234)));
+                equalTo(String.format(QueryType.RUNTIME_URL_PATTERN, "http", "myhost", 1234)));
     }
 
     @Test
@@ -50,7 +42,7 @@ public class MBeanSelectorTest {
         selector.setQueryType(QueryType.CONFIGURATION);
 
         assertThat(selector.getUrl(Protocol.HTTP, "myhost", 1234),
-                   equalTo(String.format(QueryType.CONFIGURATION_URL_PATTERN, "http", "myhost", 1234)));
+                equalTo(String.format(QueryType.CONFIGURATION_URL_PATTERN, "http", "myhost", 1234)));
     }
 
     @Test
@@ -119,7 +111,7 @@ public class MBeanSelectorTest {
     @Test
     public void whenMapHasBothKeyAndKeyName_selectorUsesKeyName() {
         MBeanSelector selector = MBeanSelector.create(ImmutableMap.of(MBeanSelector.KEY, EXPECTED_KEY,
-                                                                      MBeanSelector.KEY_NAME, EXPECTED_KEY_NAME));
+                MBeanSelector.KEY_NAME, EXPECTED_KEY_NAME));
 
         assertThat(selector.getKeyName(), equalTo(EXPECTED_KEY_NAME));
     }
@@ -193,7 +185,7 @@ public class MBeanSelectorTest {
     @Test
     public void whenMapHasNestedElements_pathIncludesChildren() {
         MBeanSelector selector = MBeanSelector.create(ImmutableMap.of("servlets",
-                ImmutableMap.of(MBeanSelector.VALUES, new String[] {"first", "second"})));
+                ImmutableMap.of(MBeanSelector.VALUES, new String[]{"first", "second"})));
 
         assertThat(querySpec(selector), hasJsonPath("$.children.servlets.fields").withValues("first", "second"));
     }
@@ -250,9 +242,9 @@ public class MBeanSelectorTest {
     @Test
     public void whenSelectorsNoCommonNestedElementsWithSameName_mayMerge() {
         MBeanSelector selector1 = MBeanSelector.create(ImmutableMap.of("servlets",
-                ImmutableMap.of(MBeanSelector.KEY, "oneKey", MBeanSelector.VALUES, new String[] {"first", "second"})));
+                ImmutableMap.of(MBeanSelector.KEY, "oneKey", MBeanSelector.VALUES, new String[]{"first", "second"})));
         MBeanSelector selector2 = MBeanSelector.create(ImmutableMap.of("kidlets",
-                ImmutableMap.of(MBeanSelector.KEY, "differentKey", MBeanSelector.VALUES, new String[] {"first", "second"})));
+                ImmutableMap.of(MBeanSelector.KEY, "differentKey", MBeanSelector.VALUES, new String[]{"first", "second"})));
 
         assertThat(selector1.mayMergeWith(selector2), is(true));
     }
@@ -260,9 +252,9 @@ public class MBeanSelectorTest {
     @Test
     public void whenSelectorsHaveMismatchedNestedElementsWithSameName_mayNotMerge() {
         MBeanSelector selector1 = MBeanSelector.create(ImmutableMap.of("servlets",
-                ImmutableMap.of(MBeanSelector.KEY, "oneKey", MBeanSelector.VALUES, new String[] {"first", "second"})));
+                ImmutableMap.of(MBeanSelector.KEY, "oneKey", MBeanSelector.VALUES, new String[]{"first", "second"})));
         MBeanSelector selector2 = MBeanSelector.create(ImmutableMap.of("servlets",
-                ImmutableMap.of(MBeanSelector.KEY, "differentKey", MBeanSelector.VALUES, new String[] {"first", "second"})));
+                ImmutableMap.of(MBeanSelector.KEY, "differentKey", MBeanSelector.VALUES, new String[]{"first", "second"})));
 
         assertThat(selector1.mayMergeWith(selector2), is(false));
     }
@@ -270,9 +262,9 @@ public class MBeanSelectorTest {
     @Test
     public void whenSelectorsHaveMismatchedNestedElementsWithDifferentName_merge() {
         MBeanSelector selector1 = MBeanSelector.create(ImmutableMap.of("servlets",
-                ImmutableMap.of(MBeanSelector.KEY, "oneKey", MBeanSelector.VALUES, new String[] {"first", "second"})));
+                ImmutableMap.of(MBeanSelector.KEY, "oneKey", MBeanSelector.VALUES, new String[]{"first", "second"})));
         MBeanSelector selector2 = MBeanSelector.create(ImmutableMap.of("ejbs",
-                ImmutableMap.of(MBeanSelector.KEY, "differentKey", MBeanSelector.VALUES, new String[] {"first", "second"})));
+                ImmutableMap.of(MBeanSelector.KEY, "differentKey", MBeanSelector.VALUES, new String[]{"first", "second"})));
         MBeanSelector result = selector1.merge(selector2);
 
         assertThat(result.getNestedSelectors(), both(hasKey("servlets")).and(hasKey("ejbs")));
@@ -282,12 +274,12 @@ public class MBeanSelectorTest {
     public void whenSelectorsHaveDeeplyNestedElementsWithDifferentName_mayMerge() {
         MBeanSelector selector1 = MBeanSelector.create(
                 ImmutableMap.of("components",
-                    ImmutableMap.of("servlets",
-                        ImmutableMap.of(MBeanSelector.KEY, "oneKey", MBeanSelector.VALUES, new String[] {"first", "second"}))));
+                        ImmutableMap.of("servlets",
+                                ImmutableMap.of(MBeanSelector.KEY, "oneKey", MBeanSelector.VALUES, new String[]{"first", "second"}))));
         MBeanSelector selector2 = MBeanSelector.create(
                 ImmutableMap.of("components",
-                    ImmutableMap.of("ejbs",
-                        ImmutableMap.of(MBeanSelector.KEY, "differentKey", MBeanSelector.VALUES, new String[] {"first", "second"}))));
+                        ImmutableMap.of("ejbs",
+                                ImmutableMap.of(MBeanSelector.KEY, "differentKey", MBeanSelector.VALUES, new String[]{"first", "second"}))));
 
         assertThat(selector1.mayMergeWith(selector2), is(true));
     }
@@ -296,12 +288,12 @@ public class MBeanSelectorTest {
     public void whenSelectorsHaveDeeplyNestedElementsWithDifferentName_merge() {
         MBeanSelector selector1 = MBeanSelector.create(
                 ImmutableMap.of("components",
-                    ImmutableMap.of("servlets",
-                        ImmutableMap.of(MBeanSelector.KEY, "oneKey", MBeanSelector.VALUES, new String[] {"first", "second"}))));
+                        ImmutableMap.of("servlets",
+                                ImmutableMap.of(MBeanSelector.KEY, "oneKey", MBeanSelector.VALUES, new String[]{"first", "second"}))));
         MBeanSelector selector2 = MBeanSelector.create(
                 ImmutableMap.of("components",
-                    ImmutableMap.of("ejbs",
-                        ImmutableMap.of(MBeanSelector.KEY, "differentKey", MBeanSelector.VALUES, new String[] {"first", "second"}))));
+                        ImmutableMap.of("ejbs",
+                                ImmutableMap.of(MBeanSelector.KEY, "differentKey", MBeanSelector.VALUES, new String[]{"first", "second"}))));
         MBeanSelector result = selector1.merge(selector2);
 
         assertThat(result.getNestedSelectors(), aMapWithSize(1));
@@ -317,18 +309,18 @@ public class MBeanSelectorTest {
 
     private Map<String, Object> getApplicationMap() {
         return ImmutableMap.of(MBeanSelector.KEY, "name",
-                               "componentRuntimes", getComponentMap());
+                "componentRuntimes", getComponentMap());
     }
 
     private Map<String, Object> getComponentMap() {
         return ImmutableMap.of(MBeanSelector.KEY, "name", MBeanSelector.VALUES, EXPECTED_COMPONENT_VALUES,
-                               "servlets", getServletMap());
+                "servlets", getServletMap());
     }
 
     @Test
     public void domainNameSelector_selectsConfigurationUrl() {
         assertThat(MBeanSelector.DOMAIN_NAME_SELECTOR.getUrl(Protocol.HTTP, "myhost", 1234),
-                   equalTo(String.format(QueryType.CONFIGURATION_URL_PATTERN, "http", "myhost", 1234)));
+                equalTo(String.format(QueryType.CONFIGURATION_URL_PATTERN, "http", "myhost", 1234)));
     }
 
     @Test
@@ -351,25 +343,25 @@ public class MBeanSelectorTest {
 
     private static final String EXPECTED_JSON_REQUEST =
             "{\n" +
-            "  'links' : [], 'fields' : [],\n" +
-            "  'children': {\n" +
-            "     'applicationRuntimes': {\n" +
-            "        'links': [], 'fields': [ 'name' ],\n" +
-            "        'children': {\n" +
-            "           'componentRuntimes': {\n" +
-            "              'links': [],\n" +
-            "              'fields': ['name', 'age', 'beauty'],\n" +
-            "              'children': {\n" +
-            "                 'servlets': {\n" +
-            "                  'links': [],\n" +
-            "                  'fields': ['servletName', 'first', 'second', 'third']\n" +
-            "                 }\n" +  // servlets
-            "              }\n" + // componentRuntimes.children
-            "           }\n" +  // componentRuntimes
-            "        }\n" + // applicationRuntimes.children
-            "     }\n" + // applicationRuntimes
-            "  }\n" + // .children
-            "}";
+                    "  'links' : [], 'fields' : [],\n" +
+                    "  'children': {\n" +
+                    "     'applicationRuntimes': {\n" +
+                    "        'links': [], 'fields': [ 'name' ],\n" +
+                    "        'children': {\n" +
+                    "           'componentRuntimes': {\n" +
+                    "              'links': [],\n" +
+                    "              'fields': ['name', 'age', 'beauty'],\n" +
+                    "              'children': {\n" +
+                    "                 'servlets': {\n" +
+                    "                  'links': [],\n" +
+                    "                  'fields': ['servletName', 'first', 'second', 'third']\n" +
+                    "                 }\n" +  // servlets
+                    "              }\n" + // componentRuntimes.children
+                    "           }\n" +  // componentRuntimes
+                    "        }\n" + // applicationRuntimes.children
+                    "     }\n" + // applicationRuntimes
+                    "  }\n" + // .children
+                    "}";
 
     @Test
     public void whenNoValuesListedForSerlvets_generateJsonRequest() {
@@ -380,12 +372,12 @@ public class MBeanSelectorTest {
 
     private Map<String, Object> getNoServletValuesApplicationMap() {
         return ImmutableMap.of(MBeanSelector.KEY, "name",
-                               "componentRuntimes", getNoServletValuesComponentMap());
+                "componentRuntimes", getNoServletValuesComponentMap());
     }
 
     private Map<String, Object> getNoServletValuesComponentMap() {
         return ImmutableMap.of(MBeanSelector.KEY, "name", MBeanSelector.VALUES, EXPECTED_COMPONENT_VALUES,
-                               "servlets", getNoValuesServletMap());
+                "servlets", getNoValuesServletMap());
     }
 
     private Map<String, Serializable> getNoValuesServletMap() {
@@ -394,24 +386,24 @@ public class MBeanSelectorTest {
 
     private static final String EXPECTED_ALL_SERVLET_VALUES_JSON_REQUEST =
             "{\n" +
-            "  'links' : [], 'fields' : [],\n" +
-            "  'children': {\n" +
-            "     'applicationRuntimes': {\n" +
-            "        'links': [], 'fields': [ 'name' ],\n" +
-            "        'children': {\n" +
-            "           'componentRuntimes': {\n" +
-            "              'links': [],\n" +
-            "              'fields': ['name', 'age', 'beauty'],\n" +
-            "              'children': {\n" +
-            "                 'servlets': {\n" +
-            "                  'links': []\n" +
-            "                 }\n" +  // servlets
-            "              }\n" + // componentRuntimes.children
-            "           }\n" +  // componentRuntimes
-            "        }\n" + // applicationRuntimes.children
-            "     }\n" + // applicationRuntimes
-            "  }\n" + // .children
-            "}";
+                    "  'links' : [], 'fields' : [],\n" +
+                    "  'children': {\n" +
+                    "     'applicationRuntimes': {\n" +
+                    "        'links': [], 'fields': [ 'name' ],\n" +
+                    "        'children': {\n" +
+                    "           'componentRuntimes': {\n" +
+                    "              'links': [],\n" +
+                    "              'fields': ['name', 'age', 'beauty'],\n" +
+                    "              'children': {\n" +
+                    "                 'servlets': {\n" +
+                    "                  'links': []\n" +
+                    "                 }\n" +  // servlets
+                    "              }\n" + // componentRuntimes.children
+                    "           }\n" +  // componentRuntimes
+                    "        }\n" + // applicationRuntimes.children
+                    "     }\n" + // applicationRuntimes
+                    "  }\n" + // .children
+                    "}";
 
     // todo - should we allow multiple types in a single filter?
 

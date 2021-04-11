@@ -32,8 +32,8 @@ import static org.hamcrest.Matchers.sameInstance;
  * @author Russell Gold
  */
 public class ExporterConfigTest {
-    private static final String EXPECTED_HOST = "somehost";
-    private static final int EXPECTED_PORT = 3456;
+    private static final String EXPECTED_HOST = "10.189.130.88";
+    private static final int EXPECTED_PORT = 6201;
     private static final String SERVLET_CONFIG = "---\n" +
             "host: " + EXPECTED_HOST + "\n" +
             "port: " + EXPECTED_PORT + "\n" +

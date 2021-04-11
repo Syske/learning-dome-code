@@ -10,7 +10,7 @@ import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.arrayContaining;
-import static org.hamcrest.junit.MatcherAssert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author Russell Gold
