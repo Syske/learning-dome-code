@@ -138,6 +138,10 @@ public class ImageUtil {
         if (!StringUtils.isEmpty(solarTerms)) {
             contentSecondLineRight.append(" | 今日" + solarTerms);
         }
+        String solarFestival = element.getSolarFestival();
+       if (!StringUtils.isEmpty(solarFestival)) {
+           contentSecondLineRight.append(" | 今日" + solarFestival);
+       }
 
         int contentSecondX = getWordWidth(titleFontBig, contentFirstLineRight) + margin + 20;
 //        header.drawLine(0, bigDateY - getFontAscent(titleFontBig), imageWidth, bigDateY - getFontAscent(titleFontBig));
@@ -157,11 +161,11 @@ public class ImageUtil {
 
         // 倒计时
         String countDownTips = "";
-        int countDownDays = DateUtil.getCountDownDays("2021-04-04", today);
+        int countDownDays = DateUtil.getCountDownDays("2021-05-01", today);
         if (countDownDays > 0) {
-            countDownTips = "距离清明节还有" + countDownDays + "天";
+            countDownTips = "距离五一劳动节还有" + countDownDays + "天";
         } else {
-            countDownTips = "今天是清明节节";
+            countDownTips = "今天是五一劳动节";
         }
         header.drawString(countDownTips, contentSecondX, bigDateY + getFontDescent(titleFontSmall));
 
