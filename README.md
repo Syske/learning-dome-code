@@ -50,4 +50,5 @@
 46. [springboot-nacos-demo](./springboot-nacos-demo)：springboot整合nacos、druid，动态获取数据源配置信息
 47. [springboot-nacos-discovery-demo](./springboot-nacos-discovery-demo)：基于nacos实现服务注册和服务发现
 48. [activemq-demo](./activemq-demo/)：activeMQ示例
+49. [springboot-mock-demo](./springboot-mock-demo)：springboot整合mock
 
