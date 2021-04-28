@@ -1,0 +1,13 @@
+2021-04-08 22:39:30,929 WARN  [RemotingServer#56] [main] Initialize the server.
+2021-04-08 22:39:30,996 WARN  [RemotingServer#92] [main] Server started on 0.0.0.0:12200
+2021-04-08 22:42:07,892 WARN  [RemotingServer#56] [main] Initialize the server.
+2021-04-08 22:42:07,951 WARN  [RemotingServer#92] [main] Server started on 0.0.0.0:12200
+2021-04-08 22:45:35,303 WARN  [RemotingServer#56] [main] Initialize the server.
+2021-04-08 22:45:35,419 WARN  [RemotingServer#92] [main] Server started on 0.0.0.0:12200
+2021-04-08 22:45:38,795 WARN  [DefaultConnectionManager#334] [Rpc-netty-client-worker-6-thread-1] Remove and close a standalone connection.
+2021-04-08 22:45:38,801 WARN  [DefaultConnectionManager#365] [SOFA-CLI-DISCONN-io.github.syske.sofabootdemo.service.HelloService-6-T1] Remove and close all connections in ConnectionPool of poolKey=192.168.43.143:12200
+2021-04-08 22:45:38,801 INFO  [Connection$1#308] [Rpc-netty-client-worker-6-thread-1] Close the connection to remote address=192.168.43.143:12200, result=true, cause=null
+2021-04-08 22:49:59,369 WARN  [RemotingServer#56] [main] Initialize the server.
+2021-04-08 22:49:59,473 WARN  [RemotingServer#92] [main] Server started on 0.0.0.0:12200
+2021-04-08 23:02:36,683 INFO  [Connection$1#308] [Rpc-netty-client-worker-6-thread-1] Close the connection to remote address=192.168.43.143:12200, result=true, cause=null
+2021-04-08 23:02:36,697 WARN  [DefaultConnectionManager#339] [Rpc-netty-client-worker-6-thread-1] Remove and close the last connection in ConnectionPool with poolKey 192.168.43.143:12200
