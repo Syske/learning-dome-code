@@ -29,6 +29,7 @@ public class ShoppingSettementTest {
 
     /**
      * Case B
+     *
      * @throws Exception
      */
     @Test
@@ -40,6 +41,7 @@ public class ShoppingSettementTest {
 
     /**
      * 自定义测试用例：测试折扣过期情况
+     *
      * @throws Exception
      */
     @Test

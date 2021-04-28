@@ -39,12 +39,15 @@ abstract class WebClientCommon implements WebClient {
 
     interface WebRequest {
         String getMethod();
+
         URI getURI();
     }
 
     interface WebResponse extends Closeable {
         InputStream getContents();
+
         int getResponseCode();
+
         Stream<String> getHeadersAsStream(String headerName);
     }
 
@@ -54,6 +57,7 @@ abstract class WebClientCommon implements WebClient {
 
     /**
      * Creates an instance for communications with a specific URL.
+     *
      * @param url a URL for requests
      */
     @Override
@@ -70,7 +74,8 @@ abstract class WebClientCommon implements WebClient {
 
     /**
      * This method defines a header computed by the web client.
-     * @param key header name
+     *
+     * @param key   header name
      * @param value header value
      */
     abstract void putSessionHeader(String key, String value);
@@ -78,26 +83,30 @@ abstract class WebClientCommon implements WebClient {
     /**
      * Creates an object which can send a WebRequest and return a WebResponse. It will send
      * both headers defined by #addHeader and session header.
+     *
      * @throws GeneralSecurityException if unable to create the object
      */
     abstract HttpClientExec createClientExec() throws GeneralSecurityException;
 
     /**
      * Creates a GET request for the specified URL
+     *
      * @param url the URL to which the request should be sent
      */
     abstract WebRequest createGetRequest(String url);
 
     /**
      * Creates a POST requested for the specified URL and body
-     * @param url the URL to which the request should be sent
+     *
+     * @param url      the URL to which the request should be sent
      * @param postBody the body to send in the request
      */
     abstract WebRequest createPostRequest(String url, String postBody);
 
     /**
      * Creates a PUT requested for the specified URL and body
-     * @param url the URL to which the request should be sent
+     *
+     * @param url     the URL to which the request should be sent
      * @param putBody the body to send in the request
      */
     abstract WebRequest createPutRequest(String url, String putBody);
@@ -215,6 +224,7 @@ abstract class WebClientCommon implements WebClient {
 
     /**
      * Defines the authentication header to be sent on every request.
+     *
      * @param authentication the requester authentication information
      */
     @Override
@@ -224,6 +234,7 @@ abstract class WebClientCommon implements WebClient {
 
     /**
      * Returns the authentication header to be sent on every request.
+     *
      * @return an authentication string
      */
     @Override
@@ -233,6 +244,7 @@ abstract class WebClientCommon implements WebClient {
 
     /**
      * Defines the fixed session cookie to be used by the client.
+     *
      * @param sessionCookie a cookie representing the session on the REST API
      */
     @Override
@@ -242,6 +254,7 @@ abstract class WebClientCommon implements WebClient {
 
     /**
      * Returns the cookie representing the session on the REST API
+     *
      * @return a string consisting of the name and value of a session cookie
      */
     @Override
@@ -256,6 +269,7 @@ abstract class WebClientCommon implements WebClient {
 
     /**
      * Adds relevant headers to the response for the client
+     *
      * @param resp the response returned to the client
      */
     @Override
@@ -285,6 +299,7 @@ abstract class WebClientCommon implements WebClient {
 
     /**
      * Returns true if the 'retry needed' flag was set. Resets the flag on exit.
+     *
      * @return true if a retry was requested
      */
     @Override

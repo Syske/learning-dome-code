@@ -15,6 +15,7 @@ public class TestMqConsumer {
 
     /**
      * 消费消息
+     *
      * @throws Exception
      */
     @Test

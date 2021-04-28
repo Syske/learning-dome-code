@@ -8,7 +8,7 @@ public class Main2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         StringBuilder stringBuilder = new StringBuilder();
-        while(scanner.hasNext()) {
+        while (scanner.hasNext()) {
             int numCount = scanner.nextInt();
             //int[] nums = new int[numCount];
             ArrayList<Integer> numList = new ArrayList<>();
@@ -25,7 +25,7 @@ public class Main2 {
                 stringBuilder.append(nums[i]).append("\n");
             }
         }
-        stringBuilder.deleteCharAt(stringBuilder.length()-1);
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         System.out.println(stringBuilder.toString());
     }
 }

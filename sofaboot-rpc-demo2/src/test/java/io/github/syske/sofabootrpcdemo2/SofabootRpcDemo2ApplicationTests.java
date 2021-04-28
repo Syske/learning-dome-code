@@ -13,7 +13,7 @@ class SofabootRpcDemo2ApplicationTests {
     void contextLoads() {
         int i = 0;
         long start = System.currentTimeMillis();
-        while(i < 10000) {
+        while (i < 10000) {
             System.out.println(sayClientAnnotation("test"));
             i++;
         }

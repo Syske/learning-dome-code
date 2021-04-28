@@ -75,7 +75,7 @@ public class ConfigurationServlet extends PassThroughAuthenticationServlet {
         out.println(ServletConstants.PAGE_HEADER);
         out.println("<H1>Unable to Update Configuration</H1><p>");
         out.println(e.getMessage());
-        out.println("</p>" +"</body></html>");
+        out.println("</p>" + "</body></html>");
         out.println("<form action=\"" + request.getContextPath() + "/\">");
         out.println("    <br><input type=\"submit\" value=\"OK\">");
         out.println("</form>");
@@ -105,7 +105,7 @@ public class ConfigurationServlet extends PassThroughAuthenticationServlet {
         private void defineUploadedFile(InputStream inputStream) throws ServletException {
             try {
                 uploadedConfig = ExporterConfig.loadConfig(inputStream);
-            } catch(ConfigurationException e) {
+            } catch (ConfigurationException e) {
                 throw e;
             } catch (Throwable e) {
                 throw new ServletException("Unable to understand specified configuration");

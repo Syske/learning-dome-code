@@ -2,10 +2,10 @@ server:
   # 应用服务 WEB 访问端口
   port: 8080
 nacos:
-   config:
+  config:
     # nacos服务地址
     server-addr: 127.0.0.1:8848
 spring:
   application:
     # 应用名称
-      name: spring-boot-nacos-demo
+    name: spring-boot-nacos-demo

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionHandle {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     /**
      * 方法参数校验
      */

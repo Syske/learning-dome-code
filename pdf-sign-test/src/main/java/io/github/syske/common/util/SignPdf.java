@@ -43,20 +43,13 @@ public class SignPdf {
     /**
      * 图片签章，指定签名坐标位置
      *
-     * @param signPdfSrc
-     *            签名的PDF文件
-     * @param signedPdfOutFile
-     *            签名后的的PDF文件
-     * @param signImage
-     *            签名图片完整路径
-     * @param x
-     *            以左下角为原点x坐标值
-     * @param y
-     *            以左下角为原点Y坐标值
-     * @param numberOfPages
-     *            签名页码，如果是最后一页则传null
-     * @param pageStyle
-     *            页面布局，横向或者纵向
+     * @param signPdfSrc       签名的PDF文件
+     * @param signedPdfOutFile 签名后的的PDF文件
+     * @param signImage        签名图片完整路径
+     * @param x                以左下角为原点x坐标值
+     * @param y                以左下角为原点Y坐标值
+     * @param numberOfPages    签名页码，如果是最后一页则传null
+     * @param pageStyle        页面布局，横向或者纵向
      * @throws Exception
      */
     public static void sign(String signPdfSrc, String signedPdfOutFile,
@@ -69,18 +62,12 @@ public class SignPdf {
     /**
      * 图片签章，指定关键字
      *
-     * @param signPdfSrc
-     *            签名的PDF文件
-     * @param signedPdfFile
-     *            签名后的的PDF文件
-     * @param signImage
-     *            签名图片完整路径
-     * @param keyWords
-     *            关键字
-     * @param numberOfPages
-     *            签名页码，如果是最后一页则传null
-     * @param pageStyle
-     *            页面布局，横向或者纵向
+     * @param signPdfSrc    签名的PDF文件
+     * @param signedPdfFile 签名后的的PDF文件
+     * @param signImage     签名图片完整路径
+     * @param keyWords      关键字
+     * @param numberOfPages 签名页码，如果是最后一页则传null
+     * @param pageStyle     页面布局，横向或者纵向
      */
     public static void sign(String signPdfSrc, String signedPdfFile,
                             String signImage, String keyWords, Integer numberOfPages,
@@ -92,22 +79,14 @@ public class SignPdf {
     /**
      * 私人签章
      *
-     * @param signPdfSrc
-     *            签名的PDF文件
-     * @param signedPdfOutFile
-     *            签名后的的PDF文件
-     * @param signImage
-     *            签名图片完整路径
-     * @param x
-     *            以左下角为原点x坐标
-     * @param y
-     *            以左下角为原点y坐标
-     * @param keyWords
-     *            关键字
-     * @param numberOfPages
-     *            签名页码，如果是最后一页则传null
-     * @param pageStyle
-     *            页面布局，横向或者纵向
+     * @param signPdfSrc       签名的PDF文件
+     * @param signedPdfOutFile 签名后的的PDF文件
+     * @param signImage        签名图片完整路径
+     * @param x                以左下角为原点x坐标
+     * @param y                以左下角为原点y坐标
+     * @param keyWords         关键字
+     * @param numberOfPages    签名页码，如果是最后一页则传null
+     * @param pageStyle        页面布局，横向或者纵向
      * @return
      */
     public static void sign(String signPdfSrc, String signedPdfOutFile,
@@ -168,7 +147,7 @@ public class SignPdf {
                     lly = width - keyWordInfo.getX() - signImageHeightSocale
                             / 2;
                 } else if (PageStyle.PAGE_STYLE_PORTRAIT.equals(pageStyle)) {
-                    llx = keyWordInfo.getX() + (float) keyWordInfo.getWidth()*keyWords.length() ;
+                    llx = keyWordInfo.getX() + (float) keyWordInfo.getWidth() * keyWords.length();
                     lly = keyWordInfo.getY() - signImageHeightSocale / 2;
                 }
 
@@ -242,8 +221,7 @@ public class SignPdf {
      * 查找关键字定位
      *
      * @param numberOfPages
-     * @param keyWords
-     *            关键字
+     * @param keyWords      关键字
      * @param reader
      * @return
      * @throws IOException
@@ -280,13 +258,16 @@ public class SignPdf {
                     }
 
                     @Override
-                    public void renderImage(ImageRenderInfo arg0) {}
+                    public void renderImage(ImageRenderInfo arg0) {
+                    }
 
                     @Override
-                    public void endTextBlock() {}
+                    public void endTextBlock() {
+                    }
 
                     @Override
-                    public void beginTextBlock() {}
+                    public void beginTextBlock() {
+                    }
                 });
         return keyWordInfo;
     }
@@ -352,7 +333,6 @@ public class SignPdf {
 
         // test();
     }
-
 
 
 }

@@ -1,8 +1,8 @@
 function createKC0fByBAB721(dataString) {
-    $('#sampleTable_kc0f').DataTable( {
+    $('#sampleTable_kc0f').DataTable({
         destroy: true,
         bAutoWidth: true,
-        data : dataString,
+        data: dataString,
         language: {
             paginate: {
                 first: '首页',
@@ -20,28 +20,30 @@ function createKC0fByBAB721(dataString) {
             infoFiltered: "(由 _MAX_ 项结果过滤)",
         },
         "columnDefs": [
-            { "title": "参保地" , "targets": 0},
-            { "title": "省本级" , "targets": 1},
-            { "title": "宝鸡市" , "targets": 2}
+            {"title": "参保地", "targets": 0},
+            {"title": "省本级", "targets": 1},
+            {"title": "宝鸡市", "targets": 2}
         ],
         "columns": [
-            { "data": "bAB721_Name" ,"class": "center" ,"sDefaultContent" : "-",
-                "render": function ( data, type, full, meta ) {
-                    if (full.bAB721=='61126001' || full.bAB721=='61120001')
+            {
+                "data": "bAB721_Name", "class": "center", "sDefaultContent": "-",
+                "render": function (data, type, full, meta) {
+                    if (full.bAB721 == '61126001' || full.bAB721 == '61120001')
                         return '韩城市';
                     else
                         return data;
-                }},
-            { "data": "bAZ201" ,"class": "center" ,"sDefaultContent" : "-"}
+                }
+            },
+            {"data": "bAZ201", "class": "center", "sDefaultContent": "-"}
         ]
-    } );
+    });
 }
 
 function createKC0CByBAB721(dataString) {
-    $('#sampleTable_kc0c').DataTable( {
+    $('#sampleTable_kc0c').DataTable({
         destroy: true,
         bAutoWidth: true,
-        data : dataString,
+        data: dataString,
         language: {
             paginate: {
                 first: '首页',
@@ -59,22 +61,24 @@ function createKC0CByBAB721(dataString) {
             infoFiltered: "(由 _MAX_ 项结果过滤)",
         },
         "columnDefs": [
-            { "title": "参保地" , "targets": 0},
-            { "title": "结算人次" , "targets": 1},
-            { "title": "医疗总费用" , "targets": 2},
-            { "title": "医保支付总额" , "targets": 3}
+            {"title": "参保地", "targets": 0},
+            {"title": "结算人次", "targets": 1},
+            {"title": "医疗总费用", "targets": 2},
+            {"title": "医保支付总额", "targets": 3}
         ],
         "columns": [
-            { "data": "bAB721_Name" ,"class": "center" ,"sDefaultContent" : "-",
-                "render": function ( data, type, full, meta ) {
-                    if (full.bAB721=='61126001' || full.bAB721=='61120001')
+            {
+                "data": "bAB721_Name", "class": "center", "sDefaultContent": "-",
+                "render": function (data, type, full, meta) {
+                    if (full.bAB721 == '61126001' || full.bAB721 == '61120001')
                         return '韩城市';
                     else
                         return data;
-                }},
-            { "data": "person_time" ,"class": "center" ,"sDefaultContent" : "-"},
-            { "data": "bKCA08" ,"class": "center" ,"sDefaultContent" : "-"},
-            { "data": "bKCA09" ,"class": "center" ,"sDefaultContent" : "-"}
+                }
+            },
+            {"data": "person_time", "class": "center", "sDefaultContent": "-"},
+            {"data": "bKCA08", "class": "center", "sDefaultContent": "-"},
+            {"data": "bKCA09", "class": "center", "sDefaultContent": "-"}
         ]
-    } );
+    });
 }

@@ -10,13 +10,15 @@ import java.util.UUID;
  * @create: 2020-03-14 21:52
  */
 public class UUIDUtil {
-    private UUIDUtil() {}
+    private UUIDUtil() {
+    }
 
     /**
      * 返回32位uuid
+     *
      * @return
      */
     public static String getUUIDStr() {
-        return UUID.randomUUID().toString().replaceAll("-","");
+        return UUID.randomUUID().toString().replaceAll("-", "");
     }
 }

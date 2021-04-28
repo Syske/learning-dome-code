@@ -19,10 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * springboot druiddatasource案例
+ *
  * @author ouyangjun
  */
 @RestController
-@RequestMapping(value="/druiddatasource")
+@RequestMapping(value = "/druiddatasource")
 public class DruidController {
 
     @Autowired
@@ -40,9 +41,10 @@ public class DruidController {
     /**
      * 启动之后,访问该接口,然后在druid界面查看数据源使用相关信息
      * 访问地址: http://localhost:8080/druiddatasource/index
+     *
      * @return
      */
-    @RequestMapping(value="/index")
+    @RequestMapping(value = "/index")
     public String index() {
         try {
             Connection primaryConnection = primaryDataSource.getConnection();

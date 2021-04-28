@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>hello complex type�� Java �ࡣ
- * 
+ *
  * <p>����ģʽƬ��ָ�������ڴ����е�Ԥ�����ݡ�
- * 
+ *
  * <pre>
  * &lt;complexType name="hello"&gt;
  *   &lt;complexContent&gt;
@@ -22,12 +22,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "hello", propOrder = {
-    "hello"
+        "hello"
 })
 public class Hello {
 
@@ -35,11 +33,9 @@ public class Hello {
 
     /**
      * ��ȡhello���Ե�ֵ��
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getHello() {
         return hello;
@@ -47,11 +43,9 @@ public class Hello {
 
     /**
      * ����hello���Ե�ֵ��
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setHello(String value) {
         this.hello = value;

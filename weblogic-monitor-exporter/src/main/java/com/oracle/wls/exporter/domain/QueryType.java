@@ -32,8 +32,8 @@ public enum QueryType {
 
         @Override
         public void processMetrics(Map<String, Object> metrics, Consumer<Map<String, String>> process) {
-            Map<String,String> selected = new HashMap<>();
-            Optional.ofNullable((String) metrics.remove("name")).ifPresent(n->selected.put(DOMAIN_KEY, n));
+            Map<String, String> selected = new HashMap<>();
+            Optional.ofNullable((String) metrics.remove("name")).ifPresent(n -> selected.put(DOMAIN_KEY, n));
 
             if (!selected.isEmpty()) process.accept(selected);
         }
@@ -60,5 +60,6 @@ public enum QueryType {
 
     public abstract boolean acceptsStrings();
 
-    public void processMetrics(Map<String, Object> metrics, Consumer<Map<String, String>> process) {}
+    public void processMetrics(Map<String, Object> metrics, Consumer<Map<String, String>> process) {
+    }
 }

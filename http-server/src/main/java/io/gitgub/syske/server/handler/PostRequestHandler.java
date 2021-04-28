@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
  */
 public class PostRequestHandler implements RequestHandler {
     private Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Override
     public Object handle(FullHttpRequest fullHttpRequest) {
         String requestUri = fullHttpRequest.uri();

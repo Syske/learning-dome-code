@@ -28,7 +28,7 @@ public class MessagesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        try(ServletOutputStream out = resp.getOutputStream()) {
+        try (ServletOutputStream out = resp.getOutputStream()) {
             for (String message : messages)
                 out.println(message);
         }

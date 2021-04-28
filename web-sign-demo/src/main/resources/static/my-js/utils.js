@@ -37,7 +37,7 @@ function getFormData($form) {
  */
 function phpotoModal(title, id) {
     return "<div class=\"form-group col-md-4 photo\" id=\"box" + id + "\">\n" +
-        "                                                      <label for=\"drop_area1\" class=\"drop_tooltip\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\""+title+"\">" + title + "</label>\n" +
+        "                                                      <label for=\"drop_area1\" class=\"drop_tooltip\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"" + title + "\">" + title + "</label>\n" +
         "                                                      <div class =\"drop_area\"  id=\"drop_area" + id + "\" style=\"width: 200px; height: auto; border: 1px solid rgb(204, 204, 204); padding: 10px; cursor: pointer;\">\n" +
         "                                                          <div class=\"preview\" id=\"photo" + id + "\"><img src=\"images/upload.png\" class=\"img-responsive\"  style=\"width: 100%;height: auto;\" alt=\"\" title=\"" + title + "\"> " +
         "<input id=\"" + id + "\" name=\"" + id + "\" type=\"hidden\">\n" +
@@ -102,14 +102,13 @@ function getFormData($form) {
 }
 
 
-
 function dataURLtoFile(dataurl, filename) {//将base64转换为文件
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
     while (n--) {
         u8arr[n] = bstr.charCodeAt(n);
     }
-    return new File([u8arr], filename, { type: mime });
+    return new File([u8arr], filename, {type: mime});
 }
 
 
@@ -117,6 +116,7 @@ function getBlob(base64) {
     console.log(getContentType(base64))
     return b64toBlob(getData(base64), getContentType(base64));
 }
+
 function getContentType(base64) {
     return /data:([^;]*);/i.exec(base64)[1];
 }
@@ -142,33 +142,29 @@ function b64toBlob(b64Data, contentType, sliceSize) {
         var byteArray = new Uint8Array(byteNumbers);
         byteArrays.push(byteArray);
     }
-    return new Blob(byteArrays, { type: contentType });
+    return new Blob(byteArrays, {type: contentType});
 }
 
- //公共ajax错误处理方法
+//公共ajax错误处理方法
 var errFunc = function () {
-    swal("错误信息", " 软件出错了，请稍后访问或联系管理员！", "error");   
+    swal("错误信息", " 软件出错了，请稍后访问或联系管理员！", "error");
 };
-
-
 
 
 function isIE() {
     return (!!window.ActiveXObject || "ActiveXObject" in window);
 }
 
-function parseQueryString(url)
-{
-    var obj={};
-    var keyvalue=[];
-    var key="",value="";
-    var paraString=url.substring(url.indexOf("?")+1,url.length).split("&");
-    for(var i in paraString)
-    {
-        keyvalue=paraString[i].split("=");
-        key=keyvalue[0];
-        value=keyvalue[1];
-        obj[key]=value;
+function parseQueryString(url) {
+    var obj = {};
+    var keyvalue = [];
+    var key = "", value = "";
+    var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+    for (var i in paraString) {
+        keyvalue = paraString[i].split("=");
+        key = keyvalue[0];
+        value = keyvalue[1];
+        obj[key] = value;
     }
     return obj;
 }

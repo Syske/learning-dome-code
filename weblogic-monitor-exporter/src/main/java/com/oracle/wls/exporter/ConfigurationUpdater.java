@@ -12,18 +12,21 @@ interface ConfigurationUpdater {
 
     /**
      * Returns the timestamp associated with the latest known configuration update.
+     *
      * @return a timestamp, guaranteed to be non-decreasing across subsequent calls
      */
     long getLatestConfigurationTimestamp();
 
     /**
      * Distribute the specified configuration, with a timestamp indicating when it was created.
+     *
      * @param configuration a yaml representation of the configuration
      */
     void shareConfiguration(String configuration);
 
     /**
      * Returns the latest available update.
+     *
      * @return an update containing a configuration string and associated timestamp
      */
     ConfigurationUpdate getUpdate();

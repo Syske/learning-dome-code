@@ -31,7 +31,8 @@ class MetricsStream extends PrintStream {
 
     /**
      * Constructs a metrics stream object, installer a performance probe that access system data.
-     * @param request the request for the metrics
+     *
+     * @param request      the request for the metrics
      * @param outputStream the parent output stream
      * @throws IOException if some error occurs while creating the performance probe
      */
@@ -41,8 +42,9 @@ class MetricsStream extends PrintStream {
 
     /**
      * A constructor for unit testing, allowing the specification of a test version of the performance probe.
-     * @param request the request for the metrics
-     * @param outputStream the parent output stream
+     *
+     * @param request          the request for the metrics
+     * @param outputStream     the parent output stream
      * @param performanceProbe an object which can return performance data
      */
     MetricsStream(HttpServletRequest request, OutputStream outputStream, PerformanceProbe performanceProbe) {
@@ -55,7 +57,8 @@ class MetricsStream extends PrintStream {
 
     /**
      * Prints a single metric, while adding to the count of metrics produced
-     * @param name the metric name
+     *
+     * @param name  the metric name
      * @param value the metric value
      */
     void printMetric(String name, Object value) {
@@ -67,7 +70,7 @@ class MetricsStream extends PrintStream {
      * Prints the summary performance metrics
      */
     void printPerformanceMetrics() {
-        printf( "%s %d\n", getCountName(), scrapeCount);
+        printf("%s %d\n", getCountName(), scrapeCount);
         printf(Locale.US, "%s %.2f\n", getDurationName(), toSeconds(getElapsedTime()));
         printf(Locale.US, "%s %.2f\n", getCpuUsageName(), toSeconds(getCpuUsed()));
     }
@@ -78,6 +81,7 @@ class MetricsStream extends PrintStream {
 
     /**
      * Returns the qualifiers to add to the performance metrics, specifying the configured server
+     *
      * @return a metrics qualifier string
      */
     private String getPerformanceQualifier() {
@@ -106,6 +110,7 @@ class MetricsStream extends PrintStream {
 
     interface PerformanceProbe {
         long getCurrentTime();
+
         long getCurrentCpu();
     }
 
@@ -115,8 +120,8 @@ class MetricsStream extends PrintStream {
         PlatformPeformanceProbe() throws IOException {
             MBeanServerConnection mbsc = ManagementFactory.getPlatformMBeanServer();
             osMBean = ManagementFactory.newPlatformMXBeanProxy(mbsc,
-                                                       ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME,
-                                                       OperatingSystemMXBean.class);
+                    ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME,
+                    OperatingSystemMXBean.class);
         }
 
         @Override

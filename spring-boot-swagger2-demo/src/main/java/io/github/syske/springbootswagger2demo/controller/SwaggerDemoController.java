@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SwaggerDemoController {
 
     @ResponseBody
-    @ApiOperation(value = "swagger2示例接口描述",httpMethod = "POST",
+    @ApiOperation(value = "swagger2示例接口描述", httpMethod = "POST",
             notes = "这里是notes信息", response = TestEntity.class)
     @RequestMapping("/list")
     public TestEntity listTest(TestEntity testEntity) {
@@ -29,11 +29,11 @@ public class SwaggerDemoController {
 
 
     @ResponseBody
-    @ApiOperation(value = "swagger2示例接口描述2",httpMethod = "GET",
+    @ApiOperation(value = "swagger2示例接口描述2", httpMethod = "GET",
             notes = "这里是notes信息2")
     @RequestMapping("/list2")
     public String listTest2(@ApiParam(name = "name", value = "value",
-            allowableValues = "test,test2",example = "小王", required = true) String name) {
+            allowableValues = "test,test2", example = "小王", required = true) String name) {
         return name + ", hello";
     }
 }

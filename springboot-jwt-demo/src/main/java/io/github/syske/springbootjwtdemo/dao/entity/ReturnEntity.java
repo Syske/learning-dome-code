@@ -63,7 +63,7 @@ public class ReturnEntity {
     }
 
     public static ReturnEntity successResult(int codeType, Object data) {
-        return new ReturnEntity(1,codeType,"请求成功", data);
+        return new ReturnEntity(1, codeType, "请求成功", data);
     }
 
     public static ReturnEntity failedResult(int codeType, String message) {

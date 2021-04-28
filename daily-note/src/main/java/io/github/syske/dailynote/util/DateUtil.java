@@ -23,7 +23,7 @@ public class DateUtil {
         //算两个日期间隔多少天
         Date nowDate = format.parse(nowDateStr);
         Date targetDate = format.parse(targetDateStr); // 目标日期
-        int days = (int) ((targetDate.getTime() - nowDate.getTime()) / (1000*3600*24));
+        int days = (int) ((targetDate.getTime() - nowDate.getTime()) / (1000 * 3600 * 24));
         return days;
     }
 }

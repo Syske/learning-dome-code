@@ -5,7 +5,6 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import javax.jms.*;
 
 /**
- *
  * 消息消费者
  *
  * @author syske
@@ -13,7 +12,7 @@ import javax.jms.*;
  * @date 2021-04-24 10:22:21
  */
 public class ActiveMqConsumer {
-    public void mQConsumerQueue() throws Exception{
+    public void mQConsumerQueue() throws Exception {
         //1、创建工厂连接对象，需要制定ip和端口号
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://127.0.0.1:61616");
         //2、使用连接工厂创建一个连接对象
@@ -27,10 +26,10 @@ public class ActiveMqConsumer {
         //6、使用会话对象创建生产者对象
         MessageConsumer consumer = session.createConsumer(queue);
         //7、向consumer对象中设置一个messageListener对象，用来接收消息
-        consumer.setMessageListener(message-> {
+        consumer.setMessageListener(message -> {
             // TODO Auto-generated method stub
-            if(message instanceof TextMessage){
-                TextMessage textMessage = (TextMessage)message;
+            if (message instanceof TextMessage) {
+                TextMessage textMessage = (TextMessage) message;
                 try {
                     System.out.println("消息内容：" + textMessage.getText());
                 } catch (JMSException e) {

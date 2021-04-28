@@ -6,6 +6,7 @@ package io.github.syske.could.service;
  * @author: syske
  * @create: 2019-12-11 17:53
  */
+
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,11 @@ public class EchoService {
 
     @HystrixCommand(fallbackMethod = "error")
     public String echo(String name) {
-        return restTemplate.getForObject("http://EUREKA-ECHO/echo?name="+name,String.class);
+        return restTemplate.getForObject("http://EUREKA-ECHO/echo?name=" + name, String.class);
     }
 
     public String error(String name) {
-        return "hi,"+name+",Service is error!";
+        return "hi," + name + ",Service is error!";
     }
 
 

@@ -101,8 +101,8 @@ public class WebClientImpl extends WebClientCommon {
         @Override
         public InputStream getContents() {
             return Optional.ofNullable(response.getEntity())
-                  .map(this::getContentsAsStream)
-                  .orElse(new EmptyInputStream());
+                    .map(this::getContentsAsStream)
+                    .orElse(new EmptyInputStream());
         }
 
         private InputStream getContentsAsStream(HttpEntity entity) {
@@ -136,13 +136,14 @@ public class WebClientImpl extends WebClientCommon {
 
     class ApacheHttpClient implements HttpClientExec {
         private final CloseableHttpClient client;
+
         public ApacheHttpClient() throws GeneralSecurityException {
             SelfSignedCertificateAcceptor acceptor = new SelfSignedCertificateAcceptor();
             client = HttpClientBuilder.create()
-                  .setDefaultHeaders(getDefaultHeaders())
-                  .setSSLSocketFactory(acceptor.getSslConnectionSocketFactory())
-                  .setConnectionManager(acceptor.getConnectionManager())
-                  .build();
+                    .setDefaultHeaders(getDefaultHeaders())
+                    .setSSLSocketFactory(acceptor.getSslConnectionSocketFactory())
+                    .setConnectionManager(acceptor.getConnectionManager())
+                    .build();
         }
 
         @Override
@@ -200,8 +201,8 @@ public class WebClientImpl extends WebClientCommon {
 
         private SSLContext createSSLContext() throws GeneralSecurityException {
             return SSLContexts.custom()
-                .loadTrustMaterial(null, createAcceptingTrustStrategy())
-                .build();
+                    .loadTrustMaterial(null, createAcceptingTrustStrategy())
+                    .build();
         }
 
         private TrustStrategy createAcceptingTrustStrategy() {
@@ -209,10 +210,10 @@ public class WebClientImpl extends WebClientCommon {
         }
 
         private Registry<ConnectionSocketFactory> createSocketFactoryRegistry() {
-            return RegistryBuilder.<ConnectionSocketFactory> create()
-                  .register("http", new PlainConnectionSocketFactory())
-                  .register("https", sslConnectionSocketFactory)
-                  .build();
+            return RegistryBuilder.<ConnectionSocketFactory>create()
+                    .register("http", new PlainConnectionSocketFactory())
+                    .register("https", sslConnectionSocketFactory)
+                    .build();
         }
 
     }

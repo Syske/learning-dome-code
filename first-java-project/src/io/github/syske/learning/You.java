@@ -15,14 +15,17 @@ public class You {
         test("构造方法");
         testSatatic("构造方法");
     }
+
     public You(String name) {
         // 方法操作
         System.out.println("you被创建，you的名字" + name);
     }
+
     private You(int age) {
         // 方法操作
         System.out.println("you被创建，you的年龄" + age);
     }
+
     protected You(String name, int age) {
         // 方法操作
         System.out.println("you被创建，you的名字" + name + "you的年龄" + age);
@@ -46,9 +49,10 @@ public class You {
         test("实例方法");
         You you = new You();
     }
+
     public static void main(String[] args) {
-       You you = new You();
-       you.test("testName");
+        You you = new You();
+        you.test("testName");
     }
 
     String test() {

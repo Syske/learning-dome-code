@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @author: syske
  * @create: 2021-04-11 10:59
  */
-@SofaService(interfaceType = HelloService.class, bindings = { @SofaServiceBinding(bindingType = "bolt") })
+@SofaService(interfaceType = HelloService.class, bindings = {@SofaServiceBinding(bindingType = "bolt")})
 @Service
 public class HelloServiceImpl implements HelloService {
     @Override

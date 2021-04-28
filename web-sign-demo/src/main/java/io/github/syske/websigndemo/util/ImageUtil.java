@@ -21,16 +21,18 @@ import java.net.URL;
 public class ImageUtil {
     private final static Logger logger = LoggerFactory.getLogger(ImageUtil.class);
 
-    /** 图片添加文字水印
-     * @description
-     * @param sourceImgPath 源图片路径
-     * @param tarImgPath 保存的图片路径
+    /**
+     * 图片添加文字水印
+     *
+     * @param sourceImgPath    源图片路径
+     * @param tarImgPath       保存的图片路径
      * @param waterMarkContent 水印内容
-     * @param fileExt 图片格式
+     * @param fileExt          图片格式
      * @return void
+     * @description
      */
     public void addWatermark(String sourceImgPath, String tarImgPath,
-                             String waterMarkContent,String fileExt, double cos) throws Exception {
+                             String waterMarkContent, String fileExt, double cos) throws Exception {
         Font font = new Font("宋体", Font.BOLD, 25);//水印字体，大小
         Color markContentColor = Color.red;//水印颜色
         Integer degree = 45;//设置水印文字的旋转角度
@@ -53,19 +55,19 @@ public class ImageUtil {
             }
             JLabel label = new JLabel(waterMarkContent);
             FontMetrics metrics = label.getFontMetrics(font);
-            int width = (int) Math.ceil(metrics.stringWidth(label.getText())/cos);//文字水印的宽
-            int rowsNumber = srcImgHeight/width;// 图片的高  除以  文字水印的宽    ——> 打印的行数(以文字水印的宽为间隔)
-            int columnsNumber = srcImgWidth/width;//图片的宽 除以 文字水印的宽   ——> 每行打印的列数(以文字水印的宽为间隔)
+            int width = (int) Math.ceil(metrics.stringWidth(label.getText()) / cos);//文字水印的宽
+            int rowsNumber = srcImgHeight / width;// 图片的高  除以  文字水印的宽    ——> 打印的行数(以文字水印的宽为间隔)
+            int columnsNumber = srcImgWidth / width;//图片的宽 除以 文字水印的宽   ——> 每行打印的列数(以文字水印的宽为间隔)
             //防止图片太小而文字水印太长，所以至少打印一次
-            if(rowsNumber < 1){
+            if (rowsNumber < 1) {
                 rowsNumber = 1;
             }
-            if(columnsNumber < 1){
+            if (columnsNumber < 1) {
                 columnsNumber = 1;
             }
-            for(int j=0;j<rowsNumber;j++){
-                for(int i=0;i<columnsNumber;i++){
-                    g.drawString(waterMarkContent, i*width + j*width , -i*width + j*width);//画出水印,并设置水印位置
+            for (int j = 0; j < rowsNumber; j++) {
+                for (int i = 0; i < columnsNumber; i++) {
+                    g.drawString(waterMarkContent, i * width + j * width, -i * width + j * width);//画出水印,并设置水印位置
                 }
             }
             g.dispose();// 释放资源
@@ -74,9 +76,9 @@ public class ImageUtil {
             ImageIO.write(bufImg, fileExt, outImgStream);
         } catch (Exception e) {
             throw new Exception("添加水印失败", e);
-        } finally{
+        } finally {
             try {
-                if(outImgStream != null){
+                if (outImgStream != null) {
                     outImgStream.flush();
                     outImgStream.close();
                 }
@@ -87,25 +89,24 @@ public class ImageUtil {
     }
 
     /**
-     *
-     * @Title: 构造图片
-     * @Description: 生成水印并返回java.awt.image.BufferedImage
-     * @param buffImg 源文件(BufferedImage)
+     * @param buffImg  源文件(BufferedImage)
      * @param waterImg 水印文件(BufferedImage)
-     * @param x 距离右下角的X偏移量
-     * @param y  距离右下角的Y偏移量
-     * @param alpha  透明度, 选择值从0.0~1.0: 完全透明~完全不透明
-     * @param scale  缩放比例，整数，如50表示缩放为0.5
+     * @param x        距离右下角的X偏移量
+     * @param y        距离右下角的Y偏移量
+     * @param alpha    透明度, 选择值从0.0~1.0: 完全透明~完全不透明
+     * @param scale    缩放比例，整数，如50表示缩放为0.5
      * @return BufferedImage
      * @throws IOException
+     * @Title: 构造图片
+     * @Description: 生成水印并返回java.awt.image.BufferedImage
      */
     public static BufferedImage overlyingImage(BufferedImage buffImg, BufferedImage waterImg,
                                                int x, int y, float alpha, int scale) {
 
         // 创建Graphics2D对象，用在底图对象上绘图
         Graphics2D g2d = buffImg.createGraphics();
-        int waterImgWidth = waterImg.getWidth()*scale/100;// 获取层图的宽度
-        int waterImgHeight = waterImg.getHeight()*scale/100;// 获取层图的高度
+        int waterImgWidth = waterImg.getWidth() * scale / 100;// 获取层图的宽度
+        int waterImgHeight = waterImg.getHeight() * scale / 100;// 获取层图的高度
         logger.debug("图片宽度" + waterImgWidth);
         logger.debug("图片高度" + waterImgHeight);
         // 在图形和图像中实现混合和透明效果
@@ -129,10 +130,11 @@ public class ImageUtil {
 
     /**
      * 远程图片转BufferedImage
-     * @param destUrl    远程图片地址
+     *
+     * @param destUrl 远程图片地址
      * @return
      */
-    public static BufferedImage getBufferedImageDestUrl(String destUrl) throws Exception{
+    public static BufferedImage getBufferedImageDestUrl(String destUrl) throws Exception {
         HttpURLConnection conn = null;
         BufferedImage image = null;
         try {
@@ -152,14 +154,15 @@ public class ImageUtil {
 
     /**
      * 输出图片
+     *
      * @param buffImg  BufferedImage对象
      * @param savePath 图像保存路径
      */
-    public static void generateSaveFile(BufferedImage buffImg, String savePath) throws Exception{
+    public static void generateSaveFile(BufferedImage buffImg, String savePath) throws Exception {
         int temp = savePath.lastIndexOf(".") + 1;
         try {
             File outFile = new File(savePath);
-            if(!outFile.exists()){
+            if (!outFile.exists()) {
                 outFile.createNewFile();
             }
             ImageIO.write(buffImg, savePath.substring(temp), outFile);
@@ -172,6 +175,7 @@ public class ImageUtil {
 
     /**
      * 图片base64字符串转BufferedImage
+     *
      * @param imageBase64Str 图片base64字符串
      * @return
      * @throws Exception

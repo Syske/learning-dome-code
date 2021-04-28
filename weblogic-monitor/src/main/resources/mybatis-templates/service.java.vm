@@ -14,5 +14,5 @@ interface ${table.serviceName}
 #else
 public interface ${table.serviceName} {
 
-}
+        }
 #end

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *  Demo class
+ * Demo class
  *
  * @author syske
  * @date 2021/02/24
@@ -16,6 +16,7 @@ public interface CacheService {
 
     /**
      * 缓存strign数据
+     *
      * @param cacheRequestDTO
      * @return
      */
@@ -23,6 +24,7 @@ public interface CacheService {
 
     /**
      * 缓存list数据
+     *
      * @param cacheRequestDTO
      * @return
      */
@@ -30,6 +32,7 @@ public interface CacheService {
 
     /**
      * 删除缓存数据
+     *
      * @param cacheRequestDTO
      * @return
      */
@@ -37,6 +40,7 @@ public interface CacheService {
 
     /**
      * 设置数据过期时间，单位毫秒
+     *
      * @param cacheRequestDTO
      * @return
      */
@@ -44,6 +48,7 @@ public interface CacheService {
 
     /**
      * 获取数据过期时间
+     *
      * @param cacheRequestDTO
      * @return
      */
@@ -51,6 +56,7 @@ public interface CacheService {
 
     /**
      * 获取string缓存数据
+     *
      * @param cacheRequestDTO
      * @return
      */
@@ -58,6 +64,7 @@ public interface CacheService {
 
     /**
      * 获取list缓存数据
+     *
      * @param cacheRequestDTO
      * @return
      */
@@ -65,6 +72,7 @@ public interface CacheService {
 
     /**
      * 查询数据是否存在
+     *
      * @param cacheRequestDTO
      * @return
      */

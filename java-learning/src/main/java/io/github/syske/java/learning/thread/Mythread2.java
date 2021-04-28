@@ -12,7 +12,7 @@ public class Mythread2 extends Thread {
     @Override
     public synchronized void run() {
         super.run();
-        count --;
+        count--;
         try {
             sleep(1000);
         } catch (InterruptedException e) {

@@ -14,11 +14,11 @@ public class HuaWeiTest2 {
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         String input = null;
-        while((input=bf.readLine())!=null){
+        while ((input = bf.readLine()) != null) {
             String[] strings = input.split(" ");
             StringBuilder tmpStrBuilder = new StringBuilder();
             for (int i = strings.length; i > 0; i--) {
-                if(i == 0) {
+                if (i == 0) {
                     tmpStrBuilder.append(strings[i]);
                 } else {
                     tmpStrBuilder.append(strings[i] + " ");

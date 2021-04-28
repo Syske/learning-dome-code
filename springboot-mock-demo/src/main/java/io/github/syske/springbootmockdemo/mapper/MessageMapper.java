@@ -13,8 +13,13 @@ import java.util.List;
  * @date 2021-04-27 下午11:34
  */
 @Component
-public class MockMapper {
+public class MessageMapper {
     public List<String> listStrs(Long id) {
         return new ArrayList();
+    }
+
+    public String insert(String data) {
+        System.out.println("保存数据");
+        return data;
     }
 }

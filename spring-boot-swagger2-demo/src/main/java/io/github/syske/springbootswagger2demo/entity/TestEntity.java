@@ -14,7 +14,7 @@ import java.io.Serializable;
 @ApiModel("swaggerDome实体")
 public class TestEntity implements Serializable {
     // 名称
-    @ApiModelProperty(name = "name",value = "名称：用户名称", required =true, notes = "这个是提示信息")
+    @ApiModelProperty(name = "name", value = "名称：用户名称", required = true, notes = "这个是提示信息")
     private String name;
     // id
     @ApiModelProperty(value = "用户id，默认为010001",

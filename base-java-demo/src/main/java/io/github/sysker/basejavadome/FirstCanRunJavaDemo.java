@@ -6,6 +6,7 @@ public class FirstCanRunJavaDemo {
 
     /**
      * 设置姓名的方法
+     *
      * @param name
      */
     public void setName(String name) {
@@ -14,6 +15,7 @@ public class FirstCanRunJavaDemo {
 
     /**
      * 程序运行入口
+     *
      * @param args
      */
     public static void main(String[] args) {

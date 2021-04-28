@@ -14,17 +14,18 @@
 <body>
 <div id="response" style="border:1px solid #ccc;width: 200px;height: 100px">
 
-</div><br>
+</div>
+<br>
 名字：<input type="text" id="name">
 <a href="javscript:void(0)" onclick="sendMsg()">点击测试</a>
 <script type="text/javascript">
     function sendMsg() {
         $.ajax({
-            url:"log/hello",
-            data: {"name":$("#name").val()},
+            url: "log/hello",
+            data: {"name": $("#name").val()},
             type: "get",
-            success:function (response) {
-                $("#response").append(response+"<br>");
+            success: function (response) {
+                $("#response").append(response + "<br>");
             }
         });
 

@@ -39,9 +39,10 @@ public class HttpClientUtil {
 
     /**
      * 发送 post请求
+     *
      * @param url
      * @param paramString 请求参数
-     * @param headerMap 请求头
+     * @param headerMap   请求头
      * @return
      * @throws Exception
      */
@@ -101,15 +102,15 @@ public class HttpClientUtil {
     }
 
 
-
     /**
      * 发送get请求
+     *
      * @param url
      * @param param
      * @return
      * @throws Exception
      */
-    public String doGet(String url, String param) throws Exception{
+    public String doGet(String url, String param) throws Exception {
         String result = "";
         BufferedReader in = null;
         try {

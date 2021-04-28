@@ -1,8 +1,8 @@
 <div class="page js_show" id="sign-page" style="background: #fff;">
     <div class="sign-img">
-        <img id = "sign-source-img" style="width: 100%" src="" alt="">
+        <img id="sign-source-img" style="width: 100%" src="" alt="">
     </div>
-    <div id = "sign-btn-box">
+    <div id="sign-btn-box">
         <a href="javascript:" class="weui-btn weui-btn_primary" id="to-sign">开始签名</a>
     </div>
 
@@ -20,16 +20,19 @@
                     </div>
                 </div>
                 <div class="weui-half-screen-dialog__bd">
-                    <div id = "sign-tips" style="margin-bottom: 5px; text-align:center">
+                    <div id="sign-tips" style="margin-bottom: 5px; text-align:center">
                         <p>请用手指在虚线框内绘制签名</p>
                     </div>
-                    <div id = "content">
-                        <div id = "signatureparent">
-                            <div id = "signature"></div></div>
+                    <div id="content">
+                        <div id="signatureparent">
+                            <div id="signature"></div>
+                        </div>
                     </div>
-                    <div id = "sign-btns">
-                        <a href="javascript:" id = "sign-reset-btn" class="weui-btn weui-btn_warn" style="float: left; width: 50%; margin-top: 10px;">清除</a>
-                        <a href="javascript:" id = "sign-sure-btn" class="weui-btn weui-btn_primary" style="float: left; width: 50%; margin-top: 10px;">确定</a>
+                    <div id="sign-btns">
+                        <a href="javascript:" id="sign-reset-btn" class="weui-btn weui-btn_warn"
+                           style="float: left; width: 50%; margin-top: 10px;">清除</a>
+                        <a href="javascript:" id="sign-sure-btn" class="weui-btn weui-btn_primary"
+                           style="float: left; width: 50%; margin-top: 10px;">确定</a>
                     </div>
                 </div>
             </div>
@@ -71,9 +74,9 @@
     Original is (c) Dojo Foundation 2004-2010. Released under either AFL or new BSD, see:
     http://dojofoundation.org/license for more information.
     */
-    (function($) {
+    (function ($) {
         var topics = {};
-        $.publish = function(topic, args) {
+        $.publish = function (topic, args) {
             if (topics[topic]) {
                 var currentTopic = topics[topic],
                     args = args || {};
@@ -83,7 +86,7 @@
                 }
             }
         };
-        $.subscribe = function(topic, callback) {
+        $.subscribe = function (topic, callback) {
             if (!topics[topic]) {
                 topics[topic] = [];
             }
@@ -93,7 +96,7 @@
                 "callback": callback
             };
         };
-        $.unsubscribe = function(handle) {
+        $.unsubscribe = function (handle) {
             var topic = handle.topic;
             if (topics[topic]) {
                 var currentTopic = topics[topic];
@@ -109,18 +112,18 @@
 
 
     // loading
-    function showLoading(msg){
+    function showLoading(msg) {
         var $loadingToast = $('#loadingToast');
-            if ($loadingToast.css('display') != 'none') return;
-            if(msg != undefined && msg != null) {
-                $("#loadingToast .weui-toast__content").html(msg);
-            } else {
-                $("#loadingToast .weui-toast__content").html("请稍等……");
-            }
-            $loadingToast.fadeIn(100);
+        if ($loadingToast.css('display') != 'none') return;
+        if (msg != undefined && msg != null) {
+            $("#loadingToast .weui-toast__content").html(msg);
+        } else {
+            $("#loadingToast .weui-toast__content").html("请稍等……");
+        }
+        $loadingToast.fadeIn(100);
     }
 
-    function hideLoading(){
+    function hideLoading() {
         var $loadingToast = $('#loadingToast');
         if ($loadingToast.css('display') == 'none') return;
         $loadingToast.fadeOut(100);
@@ -134,13 +137,13 @@
      * @param canvasWidth
      */
     function signInit(canvasWidth) {
-        (function($){
-            $("#signature").jSignature({'height':'300px', 'width': canvasWidth,'sizeRatio': window.devicePixelRatio});
+        (function ($) {
+            $("#signature").jSignature({'height': '300px', 'width': canvasWidth, 'sizeRatio': window.devicePixelRatio});
 
         })(jQuery);
     }
 
-    $(function(){
+    $(function () {
         var sign_source_img = sessionStorage.getItem("sign-source-img");
         $('#sign-source-img').attr("src", "data:image/png;base64," + sign_source_img);
 
@@ -152,35 +155,35 @@
             $signDialogTips.fadeIn(200);
         });
 
-        $('#dialogs').on('click', '.weui-mask', function(){
+        $('#dialogs').on('click', '.weui-mask', function () {
             $(this).parents('.js_dialog').fadeOut(200);
             $dialog1.removeClass('weui-half-screen-dialog_show');
 
         });
 
-        $('#signDialogTips #make-sure').on('click', function(){
+        $('#signDialogTips #make-sure').on('click', function () {
             $('#signature').html('');
             $signDialogTips.fadeOut(200);
             $signDialog.fadeIn(200);
             $dialog1.addClass('weui-half-screen-dialog_show');
-            console.log($dialog1.width()-2);
-            signInit($dialog1.children('.weui-half-screen-dialog__bd').width()-5)
+            console.log($dialog1.width() - 2);
+            signInit($dialog1.children('.weui-half-screen-dialog__bd').width() - 5)
         });
 
-        $('#js_dialog_sign #close-btn').on('click', function() {
+        $('#js_dialog_sign #close-btn').on('click', function () {
             $signDialog.fadeOut(200);
         })
 
-        $('#js_dialog_sign #sign-reset-btn').on('click', function() {
+        $('#js_dialog_sign #sign-reset-btn').on('click', function () {
             $('#signature').html('');
-            signInit($dialog1.children('.weui-half-screen-dialog__bd').width()-5);
+            signInit($dialog1.children('.weui-half-screen-dialog__bd').width() - 5);
         })
 
-        $('#js_dialog_sign #sign-sure-btn').on('click', function() {
+        $('#js_dialog_sign #sign-sure-btn').on('click', function () {
             showLoading("承诺书签名中，稍等……");
             $(this).parents('.js_dialog').fadeOut(200);
             var data = "";
-            (function($){
+            (function ($) {
                 data = $("#signature").jSignature('getData', "image");
             })(jQuery);
             var datas = sessionStorage.getItem("apply-record-datas");
@@ -189,12 +192,12 @@
             parseJSON['file'] = signSourceImg;
             parseJSON['sign'] = data[1];
 
-            var requestParameter = { "datas": JSON.stringify(parseJSON) };
+            var requestParameter = {"datas": JSON.stringify(parseJSON)};
             var url = "/signTest/signPersonalCommitment";
             aj(url, requestParameter, function (result) {
                 hideLoading();
                 console.log(result);
-                if(result.success) {
+                if (result.success) {
                     $("#sign-btn-box .weui-btn").remove();
                     $('#sign-source-img').attr("src", "data:image/png;base64," + result.obj.datas);
                     var $sureAndCommit = $(" <a href=\"javascript:\" class=\"weui-btn weui-btn_primary\" id=\"sign-sure-commit\">确认提交</a>");

@@ -25,6 +25,7 @@ public class AESUtil {
 
     /**
      * 加密
+     *
      * @param content
      * @return
      */
@@ -62,6 +63,7 @@ public class AESUtil {
 
     /**
      * 解密
+     *
      * @param content
      * @return
      */
@@ -98,7 +100,7 @@ public class AESUtil {
     }
 
     public static void main(String[] args) {
-       // String decryptString = AESDecode("kFqfC5EJ1rGwonLdFCYQHA==");
+        // String decryptString = AESDecode("kFqfC5EJ1rGwonLdFCYQHA==");
         String aesEncode = AESEncode("sxlssydjy_test");
         System.out.println(aesEncode);
     }

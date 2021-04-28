@@ -30,7 +30,7 @@ public class FileManagerController {
             return new AjaxJson(new Exception("文件名不能为空"));
         }
 
-        String base64  = Base64Util.remotePdfToBase64(remotUrl + fileName);
+        String base64 = Base64Util.remotePdfToBase64(remotUrl + fileName);
         AjaxJson result = new AjaxJson("请求成功", true);
         result.setObj(base64);
         return result;

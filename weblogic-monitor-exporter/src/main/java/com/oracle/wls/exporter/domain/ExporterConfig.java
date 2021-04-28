@@ -55,6 +55,7 @@ public class ExporterConfig {
 
     /**
      * Loads a YAML configuration to create a new configuration object.
+     *
      * @param inputStream a reader of a YAML configuration.
      * @return an ExporterConfig object that matches the parsed YAML
      */
@@ -79,7 +80,7 @@ public class ExporterConfig {
      * Creates a set of metrics from a Json object
      *
      * @param selector the description of the metrics to scrape.
-     * @param response  a parsed JSON REST response
+     * @param response a parsed JSON REST response
      * @return a map of metric names to values
      */
     public Map<String, Object> scrapeMetrics(MBeanSelector selector, JsonObject response) {
@@ -91,7 +92,7 @@ public class ExporterConfig {
     }
 
     private String getGlobalQualifiers() {
-        return Optional.ofNullable(domainName).map(n->String.format(DOMAIN_NAME_QUALIFIER, n)).orElse("");
+        return Optional.ofNullable(domainName).map(n -> String.format(DOMAIN_NAME_QUALIFIER, n)).orElse("");
     }
 
     private void processMetrics(Map<String, String> metrics) {
@@ -100,6 +101,7 @@ public class ExporterConfig {
 
     /**
      * Returns the queries needed to create the metrics. May not be the same as the result from {@link #getQueries()}
+     *
      * @return an array of mbean selectors.
      */
     public MBeanSelector[] getEffectiveQueries() {
@@ -111,6 +113,7 @@ public class ExporterConfig {
     /**
      * Returns an array of the mbean selector objects which correspond to the queries section
      * in the YAML.
+     *
      * @return an array of mbean selectors.
      */
     public MBeanSelector[] getQueries() {
@@ -171,7 +174,7 @@ public class ExporterConfig {
     }
 
     private void appendQueries(Object queriesYaml) {
-        for (Map<String,Object> selectorSpec : getAsListOfMaps(queriesYaml)) {
+        for (Map<String, Object> selectorSpec : getAsListOfMaps(queriesYaml)) {
             appendQuery(MBeanSelector.create(selectorSpec));
         }
     }
@@ -197,7 +200,7 @@ public class ExporterConfig {
 
         for (String key : first.getNestedSelectors().keySet())
             if (!first.getNestedSelectors().get(key).mayMergeWith(second.getNestedSelectors().get(key))) return false;
-        
+
         return true;
     }
 
@@ -241,6 +244,7 @@ public class ExporterConfig {
 
     /**
      * Returns the port on which the exporter will contact the REST API, if specified.
+     *
      * @return a port number, or null
      */
     public Integer getRestPort() {
@@ -249,6 +253,7 @@ public class ExporterConfig {
 
     /**
      * Returns true if attribute names should be converted to snake case as metric names
+     *
      * @return true if the conversion should be done
      */
     boolean getMetricsNameSnakeCase() {
@@ -257,6 +262,7 @@ public class ExporterConfig {
 
     /**
      * Returns true if the domain name should be added as a qualifier for all metrics
+     *
      * @return true if the qualifier should be added
      */
     boolean useDomainQualifier() {
@@ -269,6 +275,7 @@ public class ExporterConfig {
 
     /**
      * Appends the queries from the specified configuration
+     *
      * @param config2 an additional configuration to combine with this one
      */
     public void append(ExporterConfig config2) {
@@ -279,6 +286,7 @@ public class ExporterConfig {
     /**
      * Replaces the display rules from the specified configuration. Display rules in
      * the queries and the metricsNameSnakeCase setting.
+     *
      * @param config2 a new configuration whose display rules will replace those from this one
      */
     public void replace(ExporterConfig config2) {

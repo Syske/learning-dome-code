@@ -702,8 +702,8 @@ body[data-weui-theme=dark] .page.home .page__bd img {
 }
 
 #signatureparent {
-    color:darkblue;
-    background-color:#fff;
+    color: darkblue;
+    background-color: #fff;
     /*max-width:600px;*/
     /* padding:20px; */
 }
@@ -711,21 +711,23 @@ body[data-weui-theme=dark] .page.home .page__bd img {
 /*This is the div within which the signature canvas is fitted*/
 #signature {
     border: 1px dashed black;
-    background-color:#fff;
+    background-color: #fff;
     overflow: hidden;
     margin: auto 1px;
 }
 
 /* Drawing the 'gripper' for touch-enabled devices */
 html.touch #content {
-    float:left;
-    width:100%;
+    float: left;
+    width: 100%;
 }
+
 html.touch #scrollgrabber {
-    float:right;
-    width:4%;
-    margin-right:2%;
+    float: right;
+    width: 4%;
+    margin-right: 2%;
 }
+
 html.borderradius #scrollgrabber {
     border-radius: 1em;
 }

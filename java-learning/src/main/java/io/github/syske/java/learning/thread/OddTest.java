@@ -27,7 +27,7 @@ public class OddTest {
      * @return
      */
     public static boolean isOdd1(int i) {
-        if (i%2 == 1) {
+        if (i % 2 == 1) {
             return true;
         } else {
             return false;
@@ -36,20 +36,22 @@ public class OddTest {
 
     /**
      * 普通写法
+     *
      * @param i
      * @return
      */
     public static boolean isOdd2(int i) {
-        return i%2 == 1;
+        return i % 2 == 1;
     }
 
     /**
      * 普通写法：考虑负数的情况
+     *
      * @param i
      * @return
      */
     public static boolean isOdd2_1(int i) {
-        return i%2 == 1 || i%2 == -1;
+        return i % 2 == 1 || i % 2 == -1;
     }
 
     public static boolean isOdd(int i) {
@@ -58,15 +60,17 @@ public class OddTest {
 
     /**
      * 普通写法：考虑负数的情况，优化后
+     *
      * @param i
      * @return
      */
     public static boolean isOdd2_2(int i) {
-        return i%2 != 0;
+        return i % 2 != 0;
     }
 
     /**
      * 高端写法
+     *
      * @param i
      * @return
      */

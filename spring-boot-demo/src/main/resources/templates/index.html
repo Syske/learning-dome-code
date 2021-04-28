@@ -236,7 +236,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-             </li>
+                </li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>
@@ -552,20 +552,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
          * @type {{items: *[]}}
          */
         var menu = {
-            items: [{name: "首页", url: "/", comment: "备注", class:"active", icon: "fa fa-dashboard", isIndex: true},
-                {name: "菜单1", url: "/menu1", comment: "备注", class:"", icon: "fa fa-fw fa-area-chart", isIndex: false},
-                {name: "菜单2", url: "/menu2", comment: "备注", class:"", icon: "fa fa-fw fa-user-plus", isIndex: false}]
+            items: [{name: "首页", url: "/", comment: "备注", class: "active", icon: "fa fa-dashboard", isIndex: true},
+                {name: "菜单1", url: "/menu1", comment: "备注", class: "", icon: "fa fa-fw fa-area-chart", isIndex: false},
+                {name: "菜单2", url: "/menu2", comment: "备注", class: "", icon: "fa fa-fw fa-user-plus", isIndex: false}]
         };
 
         $(".sidebar-menu").children().remove();
         $(menu.items).each(function () {
-            if(this.isIndex) {
-                var item = $("<li class="+ this.class +"><a href=\""+ this.url +"\">" +
-                    "<i class=\" "+ this.icon +"\"></i> <span>"+ this.name +"</span></a></li>");
+            if (this.isIndex) {
+                var item = $("<li class=" + this.class + "><a href=\"" + this.url + "\">" +
+                    "<i class=\" " + this.icon + "\"></i> <span>" + this.name + "</span></a></li>");
                 $(".sidebar-menu").append(item)
             } else {
-                var item = $("<li class="+ this.class +"><a href=\"javascript:void(0)\" onclick=\"menuTo('"+ this.url +"')\">" +
-                    "<i class=\" "+ this.icon +"\"></i> <span>"+ this.name +"</span></a></li>");
+                var item = $("<li class=" + this.class + "><a href=\"javascript:void(0)\" onclick=\"menuTo('" + this.url + "')\">" +
+                    "<i class=\" " + this.icon + "\"></i> <span>" + this.name + "</span></a></li>");
                 $(".sidebar-menu").append(item)
             }
 

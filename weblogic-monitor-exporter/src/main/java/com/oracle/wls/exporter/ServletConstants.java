@@ -5,12 +5,12 @@ package com.oracle.wls.exporter;
 
 /**
  * Constants needed by multiple servlets.
- * 
+ *
  * @author Russell Gold
  */
 public interface ServletConstants {
     String PAGE_HEADER
-          = "<!DOCTYPE html>\n" +
+            = "<!DOCTYPE html>\n" +
             "<html lang=\"en\">\n" +
             "<head>\n" +
             "    <meta charset=\"UTF-8\">\n" +
@@ -25,13 +25,19 @@ public interface ServletConstants {
     String MESSAGES_PAGE = "messages";
     String LOG_PAGE = "log";
 
-    /** The header used by a web client to send its authentication credentials. **/
+    /**
+     * The header used by a web client to send its authentication credentials.
+     **/
     String AUTHENTICATION_HEADER = "Authorization";
 
-    /** The header used by a web client to specify the content type of its data. **/
+    /**
+     * The header used by a web client to specify the content type of its data.
+     **/
     String CONTENT_TYPE_HEADER = "Content-Type";
 
-    /** The header used by a web client to send cookies as part of a request. */
+    /**
+     * The header used by a web client to send cookies as part of a request.
+     */
     String COOKIE_HEADER = "Cookie";
 
     // The field which defines the configuration update action

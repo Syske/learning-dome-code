@@ -131,7 +131,7 @@ public class ImageUtil {
         String solarTerms = element.getLunarTerms();
         // 农节日
         String lunarFestival = element.getLunarFestival();
-       if (!StringUtils.isEmpty(lunarFestival)) {
+        if (!StringUtils.isEmpty(lunarFestival)) {
             contentSecondLineRight.append(" | 今日" + lunarFestival);
         }
         // 节气
@@ -139,9 +139,9 @@ public class ImageUtil {
             contentSecondLineRight.append(" | 今日" + solarTerms);
         }
         String solarFestival = element.getSolarFestival();
-       if (!StringUtils.isEmpty(solarFestival)) {
-           contentSecondLineRight.append(" | 今日" + solarFestival);
-       }
+        if (!StringUtils.isEmpty(solarFestival)) {
+            contentSecondLineRight.append(" | 今日" + solarFestival);
+        }
 
         int contentSecondX = getWordWidth(titleFontBig, contentFirstLineRight) + margin + 20;
 //        header.drawLine(0, bigDateY - getFontAscent(titleFontBig), imageWidth, bigDateY - getFontAscent(titleFontBig));
@@ -270,8 +270,8 @@ public class ImageUtil {
         int contentImgHeight = (contentImg.getHeight() * faceImgWidth / contentImg.getWidth());
         main.drawImage(contentImg, 0, 0, faceImgWidth, contentImgHeight, null);
         String content = "每日读书札记 | " + bookTitle;
-        int contentX = (faceImgWidth - getWordWidth(titleFontSmall, content))/2;
-        main.drawString(content, contentX, faceImgHeight*3/4);
+        int contentX = (faceImgWidth - getWordWidth(titleFontSmall, content)) / 2;
+        main.drawString(content, contentX, faceImgHeight * 3 / 4);
         createImage(faceImage, imgSaveFullPath);
     }
 
@@ -308,7 +308,7 @@ public class ImageUtil {
         int contentHeight = getContentHeight(lineHeight, content, lineWordsNum);
         logger.debug("笔记内容高度：" + contentHeight);
         int authorInfoHeight = getContentHeight(lineHeight, authorInfo, lineWordsNum);
-        int contentStartY = startY + contentImgHeight + (mainContentHeight - contentHeight - authorInfoHeight - margin) / 2 + margin ;
+        int contentStartY = startY + contentImgHeight + (mainContentHeight - contentHeight - authorInfoHeight - margin) / 2 + margin;
         logger.debug("行数：" + lineWordsNum);
         logger.debug("每行字数：" + lineWordsNum);
         logger.debug("笔记行高：" + lineHeight);
@@ -359,7 +359,7 @@ public class ImageUtil {
         }
         int y = length % lineWordsNum;
         if (y == 0) {
-            return (length / lineWordsNum)*lineHeight;
+            return (length / lineWordsNum) * lineHeight;
         }
         return (((length - y) / lineWordsNum) + 1) * lineHeight;
     }
@@ -382,16 +382,16 @@ public class ImageUtil {
         int startIndex = 0;
         while (contentBuilder.length() > lineWordsNum) {
             int endIndex = startIndex + lineWordsNum;
-            if (contentBuilder.charAt(lineWordsNum)=='。'
-                    ||contentBuilder.charAt(lineWordsNum)=='，'
-                    ||contentBuilder.charAt(lineWordsNum)=='：'
-                    ||contentBuilder.charAt(lineWordsNum)=='？'
-                    ||contentBuilder.charAt(lineWordsNum)=='、'
-                    ||contentBuilder.charAt(lineWordsNum)=='—'
-                    ||contentBuilder.charAt(lineWordsNum)=='！') {
+            if (contentBuilder.charAt(lineWordsNum) == '。'
+                    || contentBuilder.charAt(lineWordsNum) == '，'
+                    || contentBuilder.charAt(lineWordsNum) == '：'
+                    || contentBuilder.charAt(lineWordsNum) == '？'
+                    || contentBuilder.charAt(lineWordsNum) == '、'
+                    || contentBuilder.charAt(lineWordsNum) == '—'
+                    || contentBuilder.charAt(lineWordsNum) == '！') {
                 graphics2D.drawString(contentBuilder.substring(0, lineWordsNum - 1), x, y + lineNum * lineHeight);
                 endIndex -= 1;
-                contentBuilder.delete(0, lineWordsNum -1 );
+                contentBuilder.delete(0, lineWordsNum - 1);
             } else {
                 graphics2D.drawString(contentBuilder.substring(0, lineWordsNum), x, y + lineNum * lineHeight);
                 contentBuilder.delete(0, lineWordsNum);

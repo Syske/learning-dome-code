@@ -26,7 +26,7 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author syske
@@ -47,7 +47,7 @@ public class ServerInfoController {
 
     @RequestMapping("/add")
     public String add(ServerInfo serverPort) {
-        return serverInfoService.insert(serverPort)?"true":"false";
+        return serverInfoService.insert(serverPort) ? "true" : "false";
     }
 
     @RequestMapping("/list")
@@ -58,7 +58,7 @@ public class ServerInfoController {
 
     @RequestMapping("/listPortInfo")
     public String listPortInfo(ServerPortInfo serverPortInfo) {
-        return  JSON.toJSONString(serverInfoService.listServerInfo(serverPortInfo));
+        return JSON.toJSONString(serverInfoService.listServerInfo(serverPortInfo));
     }
 
     /**
@@ -82,15 +82,15 @@ public class ServerInfoController {
             map.setIp(portInfo.getIp());
             map.setPort(portInfo.getPort());
             serverRunrecords.add(map);
-           // logger.info("服务器运行数据:{}",serverInfo.toString());
+            // logger.info("服务器运行数据:{}",serverInfo.toString());
         }
         serverRunrecords.sort((serverRunrecord1, serverRunrecord2) -> {
-                    if (serverRunrecord1.getServerName().equals(serverRunrecord2.getServerName())) {
-                        return serverRunrecord1.getIp().compareTo(serverRunrecord2.getIp());
-                    } else {
-                        return serverRunrecord1.getServerName().compareTo(serverRunrecord1.getServerName());
-                    }
-                });
+            if (serverRunrecord1.getServerName().equals(serverRunrecord2.getServerName())) {
+                return serverRunrecord1.getIp().compareTo(serverRunrecord2.getIp());
+            } else {
+                return serverRunrecord1.getServerName().compareTo(serverRunrecord1.getServerName());
+            }
+        });
         return JSON.toJSONString(serverRunrecords);
     }
 }

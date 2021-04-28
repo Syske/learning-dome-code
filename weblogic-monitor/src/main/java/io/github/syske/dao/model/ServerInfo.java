@@ -3,11 +3,12 @@ package io.github.syske.dao.model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author syske
@@ -89,11 +90,11 @@ public class ServerInfo extends Model<ServerInfo> {
     @Override
     public String toString() {
         return "ServerInfo{" +
-        ", id=" + id +
-        ", hostId=" + hostId +
-        ", port=" + port +
-        ", description=" + description +
-        ", comments=" + comments +
-        "}";
+                ", id=" + id +
+                ", hostId=" + hostId +
+                ", port=" + port +
+                ", description=" + description +
+                ", comments=" + comments +
+                "}";
     }
 }

@@ -11,7 +11,7 @@ public class ThreadTest {
         Thread thread2 = new Thread(new MyRunnable("thread2"));
         thread1.start();
         thread2.start();
-        while (i  < j + 10000) {
+        while (i < j + 10000) {
 
             try {
                 thread1.sleep(5000);
@@ -24,7 +24,7 @@ public class ThreadTest {
     }
 }
 
-class MyRunnable implements Runnable{
+class MyRunnable implements Runnable {
     private String name;
 
     public MyRunnable() {

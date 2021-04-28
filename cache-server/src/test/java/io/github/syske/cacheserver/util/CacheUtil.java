@@ -26,12 +26,13 @@ public class CacheUtil<T> {
 
     /**
      * 缓存单个数据
-     * @param obj 要缓存的数据
-     * @param key 缓存数据的key，必须唯一，否则会覆盖已有缓存数据
+     *
+     * @param obj        要缓存的数据
+     * @param key        缓存数据的key，必须唯一，否则会覆盖已有缓存数据
      * @param expireTime 缓存过期时间，如果永不过期，传NULL
      * @return
      */
-    public boolean cacheSingleObjectData(String key,T obj,  Long expireTime) throws Exception {
+    public boolean cacheSingleObjectData(String key, T obj, Long expireTime) throws Exception {
         String serverUrl = CACHE_SERVER_URL_PRE + "/cacheSingleObjectData/";
         CacheRequestDTO<T> cacheRequestDTO = new CacheRequestDTO();
         cacheRequestDTO.setData(obj);
@@ -45,6 +46,7 @@ public class CacheUtil<T> {
 
     /**
      * 缓存list数据
+     *
      * @param list
      * @return
      */
@@ -62,6 +64,7 @@ public class CacheUtil<T> {
 
     /**
      * 删除缓存数据
+     *
      * @param key 要删除的缓存数据的key
      * @return
      */
@@ -77,6 +80,7 @@ public class CacheUtil<T> {
 
     /**
      * 设置缓存数据过期时间
+     *
      * @param key 要设置过期时间的缓存数据的key
      * @return
      */
@@ -93,6 +97,7 @@ public class CacheUtil<T> {
 
     /**
      * 获取缓存数据过期时间，单位ms
+     *
      * @param key 缓存数据的key
      * @return
      */
@@ -108,6 +113,7 @@ public class CacheUtil<T> {
 
     /**
      * 获取单个缓存数据
+     *
      * @param key 缓存数据的key
      * @return
      */
@@ -123,6 +129,7 @@ public class CacheUtil<T> {
 
     /**
      * 获取单个缓存数据
+     *
      * @param key 缓存数据的key
      * @return
      */
@@ -133,11 +140,13 @@ public class CacheUtil<T> {
         log.debug("请求地址：" + serverUrl);
         String result = httpClientUtil.doPost(serverUrl, JSON.toJSONString(cacheRequestDTO));
         JSONObject jsonObject = JSON.parseObject(result);
-        return JSON.parseObject(jsonObject.getString("result"), new TypeReference<List<T>>(){});
+        return JSON.parseObject(jsonObject.getString("result"), new TypeReference<List<T>>() {
+        });
     }
 
     /**
      * 核查数据是否已经缓存
+     *
      * @param key 缓存数据的key
      * @return
      */

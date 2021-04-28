@@ -4,36 +4,36 @@
 package com.oracle.wls.exporter;
 
 public enum ParserState {
-  INITIAL {
-    @Override
-    ParserState processLine(String line, ParserActions actions) {
-      return actions.isStart(line) ? HEADERS : this;
-    }
-  },
-  HEADERS {
-    @Override
-    ParserState processLine(String line, ParserActions actions) {
-      if (line.isEmpty()) {
-        return CONTENT;
-      } else {
-        return actions.addHeader(line);
-      }
-    }
-  },
-  CONTENT {
-    @Override
-    ParserState processLine(String line, ParserActions actions) {
-      if (actions.isEnd(line))
-        return actions.closeItem(DONE);
-      else if (actions.isStart(line))
-        return actions.closeItem(HEADERS);
-      else
-        return actions.addDataLine(line);
-    }
-  },
-  DONE;
+    INITIAL {
+        @Override
+        ParserState processLine(String line, ParserActions actions) {
+            return actions.isStart(line) ? HEADERS : this;
+        }
+    },
+    HEADERS {
+        @Override
+        ParserState processLine(String line, ParserActions actions) {
+            if (line.isEmpty()) {
+                return CONTENT;
+            } else {
+                return actions.addHeader(line);
+            }
+        }
+    },
+    CONTENT {
+        @Override
+        ParserState processLine(String line, ParserActions actions) {
+            if (actions.isEnd(line))
+                return actions.closeItem(DONE);
+            else if (actions.isStart(line))
+                return actions.closeItem(HEADERS);
+            else
+                return actions.addDataLine(line);
+        }
+    },
+    DONE;
 
-  ParserState processLine(String line, ParserActions actions) {
-    return this;
-  }
+    ParserState processLine(String line, ParserActions actions) {
+        return this;
+    }
 }

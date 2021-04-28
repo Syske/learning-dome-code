@@ -12,19 +12,19 @@ import java.util.Scanner;
  * @create: 2020-11-04 16:41
  */
 public class HuaWeiTest3 {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         //Scanner s = new Scanner(System.in);
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         String input = null;
         int i = 0;
         input = bf.readLine();
         int number = Integer.parseInt(bf.readLine());
-        int s = (int) Math.floor(number/2);
+        int s = (int) Math.floor(number / 2);
         String[] strings = new String[Integer.parseInt(input)];
-        while((input=bf.readLine())!=null){
+        while ((input = bf.readLine()) != null) {
 
 
-        //while (s.hasNext()) {
+            //while (s.hasNext()) {
             strings[i] = input;
             i++;
         }

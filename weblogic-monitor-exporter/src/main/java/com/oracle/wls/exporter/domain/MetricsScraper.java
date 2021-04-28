@@ -35,6 +35,7 @@ class MetricsScraper {
 
     /**
      * Scrapes metrics from a response, in accordance with the rules defined in the selector.
+     *
      * @param selector an mbean selector, configured with the metrics we want to find
      * @param response a parsed JSON REST response
      */

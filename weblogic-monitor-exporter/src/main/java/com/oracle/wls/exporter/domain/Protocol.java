@@ -6,13 +6,13 @@ package com.oracle.wls.exporter.domain;
 import javax.servlet.ServletRequest;
 
 public enum Protocol {
-  HTTP, HTTPS;
+    HTTP, HTTPS;
 
-  public String format(String urlPattern, String host, int port) {
-      return String.format(urlPattern, toString().toLowerCase(), host, port);
-  }
+    public String format(String urlPattern, String host, int port) {
+        return String.format(urlPattern, toString().toLowerCase(), host, port);
+    }
 
-  public static Protocol getProtocol(ServletRequest request) {
-    return request.isSecure() ? HTTPS : HTTP;
-  }
+    public static Protocol getProtocol(ServletRequest request) {
+        return request.isSecure() ? HTTPS : HTTP;
+    }
 }

@@ -20,25 +20,25 @@ public class Huawei5 {
         while ((s = bf.readLine()) != null) {
             sb.append(s);
 
-                int length = sb.length();
-            sb.deleteCharAt(length-1);
-                if(length >= 8) {
-                    while(length >= 8) {
-                        System.out.println(sb.substring(0,8));
-                        sb.delete(0, 8);
-                        length = sb.length();
-                    }
-                    if(length > 0 && length < 8) {
-                        sb.append("00000000");
-                        System.out.println(sb.substring(0,8));
-                        sb.delete(0, length);
-                    }
-
-                } else {
+            int length = sb.length();
+            sb.deleteCharAt(length - 1);
+            if (length >= 8) {
+                while (length >= 8) {
+                    System.out.println(sb.substring(0, 8));
+                    sb.delete(0, 8);
+                    length = sb.length();
+                }
+                if (length > 0 && length < 8) {
                     sb.append("00000000");
-                    System.out.println(sb.substring(0,8));
+                    System.out.println(sb.substring(0, 8));
                     sb.delete(0, length);
                 }
+
+            } else {
+                sb.append("00000000");
+                System.out.println(sb.substring(0, 8));
+                sb.delete(0, length);
+            }
 
             /*int lastCount = length % 8;
             if (length == 8) {

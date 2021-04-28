@@ -3,23 +3,24 @@
 <mapper namespace="io.github.syske.dao.mapper.ServerRunrecordMapper">
 
     <!-- 开启二级缓存 -->
-<!--    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+    <!--    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="io.github.syske.dao.model.ServerRunrecord">
-        <id column="id" property="id" />
-        <result column="host_id" property="hostId" />
-        <result column="server_id" property="serverId" />
-        <result column="state" property="state" />
-        <result column="recordtime" property="recordtime" />
-        <result column="last_start_time" property="lastStartTime" />
-        <result column="server_name" property="serverName" />
-        <result column="desecription" property="desecription" />
+        <id column="id" property="id"/>
+        <result column="host_id" property="hostId"/>
+        <result column="server_id" property="serverId"/>
+        <result column="state" property="state"/>
+        <result column="recordtime" property="recordtime"/>
+        <result column="last_start_time" property="lastStartTime"/>
+        <result column="server_name" property="serverName"/>
+        <result column="desecription" property="desecription"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, host_id AS hostId, server_id AS serverId, state, recordtime, last_start_time AS lastStartTime, server_name AS serverName, desecription
+        id, host_id AS hostId, server_id AS serverId, state, recordtime, last_start_time AS lastStartTime, server_name
+        AS serverName, desecription
     </sql>
 
 </mapper>

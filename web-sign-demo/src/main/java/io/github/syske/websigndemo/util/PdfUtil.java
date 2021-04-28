@@ -32,9 +32,9 @@ public class PdfUtil {
     /**
      * 根据pdf模板，生成pdf
      *
-     * @param templateURL      模板完整文件名(远程文件)
-     * @param saveFile 保存文件的完整文件名（包含文件路径）
-     * @param parameters       参数
+     * @param templateURL 模板完整文件名(远程文件)
+     * @param saveFile    保存文件的完整文件名（包含文件路径）
+     * @param parameters  参数
      * @throws DocumentException
      */
     public static void exportPdf(URL templateURL, File saveFile, Map<String, String> parameters) throws Exception {
@@ -152,6 +152,7 @@ public class PdfUtil {
 
     /**
      * 返回图片base64编码
+     *
      * @param pdfFullName
      * @param pageNumber
      * @return
@@ -186,7 +187,7 @@ public class PdfUtil {
             if (tempFile.exists()) {
                 tempFile.delete();
             }
-            if(tempImgFile.exists()) {
+            if (tempImgFile.exists()) {
                 tempImgFile.delete();
             }
         }
@@ -195,11 +196,11 @@ public class PdfUtil {
     /**
      * pdf转图片
      *
-     * @param pdfFullName  pdf完整文件名
+     * @param pdfFullName pdf完整文件名
      * @param imgSavePath 图片保存路径
-     * @param pageNumber 需要导出的pdf页码
-     * @param scale 缩放比例
-     * @param rotation 旋转角度
+     * @param pageNumber  需要导出的pdf页码
+     * @param scale       缩放比例
+     * @param rotation    旋转角度
      * @throws Exception
      */
     public static void pdf2Pic(String pdfFullName, String imgSavePath,

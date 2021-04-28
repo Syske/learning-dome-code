@@ -4,6 +4,7 @@
 package com.oracle.wls.exporter.domain;
 
 import java.util.Map;
+
 /**
  * Configuration for synchronization of queries
  */

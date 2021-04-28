@@ -90,7 +90,7 @@ class DemoInputs {
     }
 
     static final String RESPONSE =
-                    "{'serverRuntimes': {'items': [{\n" +
+            "{'serverRuntimes': {'items': [{\n" +
                     "    'name': 'ejb30mtflexadmin',\n" +
                     "    'applicationRuntimes': {'items': [\n" +
                     "        {\n" +

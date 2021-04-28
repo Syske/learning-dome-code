@@ -26,9 +26,9 @@ public class TestController {
     public String testDruid() throws SQLException {
         DruidPooledConnection connection = dataSourceWrapper.getConnection();
         Statement statement = connection.createStatement();
-        ResultSet  resultSet = statement.executeQuery("SELECT * from user;");
+        ResultSet resultSet = statement.executeQuery("SELECT * from user;");
         System.out.println(resultSet);
-        while(resultSet.next()){
+        while (resultSet.next()) {
             System.out.println(resultSet.getString("username"));
         }
         return "hello druid";

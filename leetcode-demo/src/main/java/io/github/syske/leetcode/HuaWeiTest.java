@@ -19,7 +19,7 @@ public class HuaWeiTest {
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         String input = null;
-        while((input=bf.readLine())!=null){
+        while ((input = bf.readLine()) != null) {
             int a = Math.round(Float.parseFloat(input));
             /*int a = Integer.parseInt(input.substring(0,input.indexOf(".")));
             int b = Integer.parseInt(input.substring(input.indexOf(".")+1,input.indexOf(".")+2));

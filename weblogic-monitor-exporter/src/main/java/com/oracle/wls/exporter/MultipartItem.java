@@ -13,23 +13,23 @@ import java.io.InputStream;
  */
 interface MultipartItem {
 
-  /**
-   * Returns true if this item represents a form field.
-   */
-  boolean isFormField();
+    /**
+     * Returns true if this item represents a form field.
+     */
+    boolean isFormField();
 
-  /**
-   * Returns the name of this field.
-   */
-  String getFieldName();
+    /**
+     * Returns the name of this field.
+     */
+    String getFieldName();
 
-  /**
-   * Returns the value of this item as a string.
-   */
-  String getString();
+    /**
+     * Returns the value of this item as a string.
+     */
+    String getString();
 
-  /**
-   * Returns the value of this item as an input stream.
-   */
-  InputStream getInputStream() throws IOException;
+    /**
+     * Returns the value of this item as an input stream.
+     */
+    InputStream getInputStream() throws IOException;
 }

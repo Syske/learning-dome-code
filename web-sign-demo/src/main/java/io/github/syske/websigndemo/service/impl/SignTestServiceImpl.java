@@ -39,7 +39,7 @@ public class SignTestServiceImpl implements SignTestService {
             // 个人承诺书imgbase64
             String generatePersonalCommitmentImg = generatePersonalCommitmentImg(params);
             results.put("personalCommitment", generatePersonalCommitmentImg);
-            resultData.put("datas",results.getString("personalCommitment"));
+            resultData.put("datas", results.getString("personalCommitment"));
 
             ajaxJson.setObj(resultData);
 
@@ -62,7 +62,7 @@ public class SignTestServiceImpl implements SignTestService {
             // 个人承诺书imgbase64
             String signPersonalCommitmentImg = signPersonalCommitmentImg(params);
             results.put("personalCommitmentSign", signPersonalCommitmentImg);
-            resultData.put("datas",results.getString("personalCommitmentSign"));
+            resultData.put("datas", results.getString("personalCommitmentSign"));
             ajaxJson.setObj(resultData);
         } catch (Exception e) {
             ajaxJson.setSuccess(false);
@@ -73,6 +73,7 @@ public class SignTestServiceImpl implements SignTestService {
 
     /**
      * 生成个人承诺书参数集
+     *
      * @param user
      * @return
      */
@@ -90,6 +91,7 @@ public class SignTestServiceImpl implements SignTestService {
 
     /**
      * 返回承诺书imgbase64:未签名版
+     *
      * @param params
      * @return
      * @throws Exception
@@ -120,6 +122,7 @@ public class SignTestServiceImpl implements SignTestService {
 
     /**
      * 返回承诺书imgbase64:签名版
+     *
      * @param params
      * @return
      * @throws Exception

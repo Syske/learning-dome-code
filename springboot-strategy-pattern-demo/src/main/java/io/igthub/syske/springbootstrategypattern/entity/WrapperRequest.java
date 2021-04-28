@@ -7,8 +7,6 @@ import java.io.Serializable;
  * @description: 请求参数
  * @author: syske
  * @create: 2020-09-12 10:11
- *
- *
  */
 public class WrapperRequest<T> implements Serializable {
     private RequestHeader header;

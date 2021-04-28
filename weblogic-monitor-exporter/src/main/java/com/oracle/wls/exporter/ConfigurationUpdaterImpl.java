@@ -26,8 +26,9 @@ class ConfigurationUpdaterImpl implements ConfigurationUpdater {
 
     /**
      * Creates the updater.
+     *
      * @param syncConfiguration the configuration to apply to the updater
-     * @param errorLog a log to which errors should be reported
+     * @param errorLog          a log to which errors should be reported
      */
     ConfigurationUpdaterImpl(QuerySyncConfiguration syncConfiguration, ErrorLog errorLog) {
         this(Clock.systemUTC(), new WebClientFactoryImpl());
@@ -37,7 +38,8 @@ class ConfigurationUpdaterImpl implements ConfigurationUpdater {
 
     /**
      * Creates a version of the updater to which delegates can be specified. Primarily used for unit testing.
-     * @param clock the clock indicating the current time
+     *
+     * @param clock   the clock indicating the current time
      * @param factory a factory for web clients
      */
     ConfigurationUpdaterImpl(Clock clock, WebClientFactory factory) {
@@ -47,6 +49,7 @@ class ConfigurationUpdaterImpl implements ConfigurationUpdater {
 
     /**
      * Defines an error log to track problems with configuration updates.
+     *
      * @param errorLog the new log
      */
     void setErrorLog(ErrorLog errorLog) {
@@ -55,7 +58,8 @@ class ConfigurationUpdaterImpl implements ConfigurationUpdater {
 
     /**
      * Defines the configuration for this updater
-     * @param repeaterUrl the url to contact to share and retrieve updates
+     *
+     * @param repeaterUrl     the url to contact to share and retrieve updates
      * @param refreshInterval the interval, in seconds, to wait before checking for an update
      */
     void configure(String repeaterUrl, long refreshInterval) {

@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
  * @Auther: liqiang
  * @Date: 2019/5/27 11:54
  * @Description: 计算农历节假日信息
- *         SimpleCalendar.Element element=SimpleCalendar.getCalendarDetail("2019-06-06","yyyy-MM-dd");
- *         element=SimpleCalendar.getCalendarDetail("2019-06-04","yyyy-MM-dd");
+ * SimpleCalendar.Element element=SimpleCalendar.getCalendarDetail("2019-06-06","yyyy-MM-dd");
+ * element=SimpleCalendar.getCalendarDetail("2019-06-04","yyyy-MM-dd");
  */
 public class ChineseCalendar {
     long[] lunarInfo = new long[]{
@@ -38,8 +38,8 @@ public class ChineseCalendar {
             0xb273, 0x6930, 0x7337, 0x6aa0, 0xad50, 0x4b55, 0x4b6f, 0xa570, 0x54e4, 0xd260,
             0xe968, 0xd520, 0xdaa0, 0x6aa6, 0x56df, 0x4ae0, 0xa9d4, 0xa4d0, 0xd150, 0xf252,
             0xd520};
-    List<Element> elements=new ArrayList<Element>();
-    public static  Map<String,ChineseCalendar> cache=new HashMap<String,ChineseCalendar>();
+    List<Element> elements = new ArrayList<Element>();
+    public static Map<String, ChineseCalendar> cache = new HashMap<String, ChineseCalendar>();
     long[] solarMonth = new long[]{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     String[] Gan = new String[]{"甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"};
     String[] Zhi = new String[]{"子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"};
@@ -49,8 +49,8 @@ public class ChineseCalendar {
     char[] nStr1 = new char[]{'日', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'};
     String[] nStr2 = new String[]{"初", "十", "廿", "卅", " "};
 
-    static String[] monthChinese=new String[]{ "正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "冬月", "腊月" };
-    static  String []dayChinese=new String[]{"初一", "初二", "初三", "初四", "初五", "初六", "初七", "初八", "初九", "初十", "十一", "十二","十三","十四","十五","十六","十七","十八","十九","二十","廿一","廿二","廿三","廿四","廿五","廿六","廿七","廿八","廿九","三十","卅一"};
+    static String[] monthChinese = new String[]{"正月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "冬月", "腊月"};
+    static String[] dayChinese = new String[]{"初一", "初二", "初三", "初四", "初五", "初六", "初七", "初八", "初九", "初十", "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十", "廿一", "廿二", "廿三", "廿四", "廿五", "廿六", "廿七", "廿八", "廿九", "三十", "卅一"};
     char[] jcName0 = new char[]{'建', '除', '满', '平', '定', '执', '破', '危', '成', '收', '开', '闭'};
     char[] jcName1 = new char[]{'闭', '建', '除', '满', '平', '定', '执', '破', '危', '成', '收', '开'};
     char[] jcName2 = new char[]{'开', '闭', '建', '除', '满', '平', '定', '执', '破', '危', '成', '收'};
@@ -210,27 +210,28 @@ public class ChineseCalendar {
             "1144  感恩节"};
     private Long length;//公历当月天数
     private int firstWeek;  //公历当月1日星期几
+
     public static Element getCalendarDetail(Date date) throws ParseException {
 
 
-        Calendar cal = Calendar.getInstance() ;
+        Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        int year=cal.get(Calendar.YEAR);
-        int month=cal.get(Calendar.MONTH);
-        String cacheKey=(year+"-"+month);
-        ChineseCalendar lunarCalendarUtil=null;
-        if(false){
-            lunarCalendarUtil=cache.get(cacheKey);
-        }else {
-            lunarCalendarUtil=new ChineseCalendar();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        String cacheKey = (year + "-" + month);
+        ChineseCalendar lunarCalendarUtil = null;
+        if (false) {
+            lunarCalendarUtil = cache.get(cacheKey);
+        } else {
+            lunarCalendarUtil = new ChineseCalendar();
             lunarCalendarUtil.calendar(year, month);
-            cache.put(cacheKey,lunarCalendarUtil);
+            cache.put(cacheKey, lunarCalendarUtil);
         }
 
-        return lunarCalendarUtil.getElements().get(cal.get(Calendar.DATE)-1);
+        return lunarCalendarUtil.getElements().get(cal.get(Calendar.DATE) - 1);
     }
 
-    public static Element getCalendarDetail(String date,String pattern) throws ParseException {
+    public static Element getCalendarDetail(String date, String pattern) throws ParseException {
         SimpleDateFormat df2 = new SimpleDateFormat(pattern);
         return getCalendarDetail(df2.parse(date));
     }
@@ -245,14 +246,14 @@ public class ChineseCalendar {
 
     public void calendar(int y, int m) throws ParseException {
         Lunar lDObj = null;
-        Boolean lL=null;
-        Long lD2=null;
-        Integer lY = null, lM=null, lD = 1, lX = 0, tmp1, tmp2, lM2, lY2=null, tmp3, dayglus, bsg, xs, xs1, fs, fs1, cs, cs1=null;
+        Boolean lL = null;
+        Long lD2 = null;
+        Integer lY = null, lM = null, lD = 1, lX = 0, tmp1, tmp2, lM2, lY2 = null, tmp3, dayglus, bsg, xs, xs1, fs, fs1, cs, cs1 = null;
         String cY, cM, cD; //年柱,月柱,日柱
         Integer[] lDPOS = new Integer[3];
         Integer n = 0;
         Integer firstLM = 0;
-        String dateString = y + "-" +(m+1) + "-" + 1;
+        String dateString = y + "-" + (m + 1) + "-" + 1;
         Date sDObj = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(sDObj);
@@ -273,7 +274,7 @@ public class ChineseCalendar {
         //1900/1/1与 1970/1/1 相差25567日, 1900/1/1 日柱为甲戌日(60进制10)
         SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         df2.setTimeZone(TimeZone.getTimeZone("UTC"));
-        Date date = df2.parse("" + y + "-" + (m+1) + "-" + 1 + " 00:00:00");
+        Date date = df2.parse("" + y + "-" + (m + 1) + "-" + 1 + " 00:00:00");
 
         int oneDayMillis = 86400000;
         long dayCyclical = date.getTime() / oneDayMillis + 25567 + 10;
@@ -288,11 +289,11 @@ public class ChineseCalendar {
         liCHun.set(Calendar.MILLISECOND, 0);
         long time = liCHun.getTime().getTime();
         for (int i = 0; i < this.length; i++) {
-            if(i==18){
-                int b=5;
+            if (i == 18) {
+                int b = 5;
             }
             if (lD > lX) {
-                sDObj= df3.parse("" + y + "-" + (m+1) + "-" + (i+1) + " 00:00:00");   //当月一日日期
+                sDObj = df3.parse("" + y + "-" + (m + 1) + "-" + (i + 1) + " 00:00:00");   //当月一日日期
                 lDObj = new Lunar(sDObj);     //农历
                 lY = lDObj.year;           //农历年
                 tempYear = lY;             // 农历年临时值
@@ -332,13 +333,13 @@ public class ChineseCalendar {
                     lY, lM, lD++, lL,
                     cY, cM, cD, cAnimal(lY));
 //            element.setcDay(cDay(element.getlDay()));
-            int paramterLy2=lY2==null?-1:(lY2 % 12);
-            int paramterLm2=lM2==null?-1:lM2 % 12;
-            long paramterLd2=lD2==null?-1:lD2 % 12;
-            int paramterLy2b=lY2==null?-1:lY2 % 10;
-            int paramterLy2c= (int) (lD2==null?-1:lD2 % 10);
-            int paramterLld=lD==null?-1:lD - 1;
-            element.setSgz5(CalConv2(paramterLy2, paramterLm2, (int) paramterLd2, paramterLy2b,paramterLy2c , lM,paramterLld , m + 1, cs1==null?-1:cs1));
+            int paramterLy2 = lY2 == null ? -1 : (lY2 % 12);
+            int paramterLm2 = lM2 == null ? -1 : lM2 % 12;
+            long paramterLd2 = lD2 == null ? -1 : lD2 % 12;
+            int paramterLy2b = lY2 == null ? -1 : lY2 % 10;
+            int paramterLy2c = (int) (lD2 == null ? -1 : lD2 % 10);
+            int paramterLld = lD == null ? -1 : lD - 1;
+            element.setSgz5(CalConv2(paramterLy2, paramterLm2, (int) paramterLd2, paramterLy2b, paramterLy2c, lM, paramterLld, m + 1, cs1 == null ? -1 : cs1));
             element.setSgz3(cyclical6(lM2 % 12, (int) ((lD2) % 12)));
             elements.add(element);
 
@@ -354,28 +355,28 @@ public class ChineseCalendar {
 
         Pattern p = Pattern.compile("^(\\d{2})(\\d{2})([\\s\\*])(.+)$");
         //国历节日
-        for (String i : sFtv){
-            Matcher matcher=p.matcher(i);
+        for (String i : sFtv) {
+            Matcher matcher = p.matcher(i);
             if (matcher.matches()) {
-                if(i.equals("1212  西安事变纪念日")){
-                    int j=2;
+                if (i.equals("1212  西安事变纪念日")) {
+                    int j = 2;
                 }
                 if (Integer.valueOf(matcher.group(1)).intValue() == (m + 1)) {
-                    elements.get(Integer.valueOf(matcher.group(2)) - 1).solarFestival +=matcher.group(4)+"";
-                    if (matcher.group(3).equals('*'))   elements.get(Integer.valueOf(matcher.group(0)) - 1).color = "red";
+                    elements.get(Integer.valueOf(matcher.group(2)) - 1).solarFestival += matcher.group(4) + "";
+                    if (matcher.group(3).equals('*')) elements.get(Integer.valueOf(matcher.group(0)) - 1).color = "red";
                 }
             }
         }
 
         p = Pattern.compile("^(\\d{2})(.{2})([\\s\\*])(.+)$");
         //农历节日
-        for (String i  :  lFtv){
-            Matcher matcher=p.matcher(i);
+        for (String i : lFtv) {
+            Matcher matcher = p.matcher(i);
             if (matcher.matches()) {
                 tmp1 = Integer.valueOf(matcher.group(1)) - firstLM;
                 if (tmp1 == -11) tmp1 = 1;
                 if (tmp1 >= 0 && tmp1 < n) {
-                    tmp2 = lDPOS[tmp1] +Integer.valueOf(matcher.group(2)) - 1;
+                    tmp2 = lDPOS[tmp1] + Integer.valueOf(matcher.group(2)) - 1;
                     if (tmp2 >= 0 && tmp2 < this.length) {
                         elements.get(tmp2).lunarFestival += matcher.group(4);
                         if (matcher.group(3).equals("*")) elements.get(tmp2).color = "red";
@@ -399,47 +400,47 @@ public class ChineseCalendar {
         //今日
         //if (y == tY && m == tM) this[tD - 1].isToday = true;
     }
+
     //==============================返回公历 y年某m+1月的天数
     public long solarDays(int y, int m) {
         if (m == 1)
-            return(((y % 4 == 0) && (y % 100 != 0) || (y % 400 == 0)) ? 29 : 28);
+            return (((y % 4 == 0) && (y % 100 != 0) || (y % 400 == 0)) ? 29 : 28);
         else
-            return(solarMonth[m]);
+            return (solarMonth[m]);
     }
+
     //============================== 返回阴历 (y年,m+1月)
     public char cyclical6(int num, int num2) {
-        if (num == 0) return(jcName0[num2]);
-        if (num == 1) return(jcName1[num2]);
-        if (num == 2) return(jcName2[num2]);
-        if (num == 3) return(jcName3[num2]);
-        if (num == 4) return(jcName4[num2]);
-        if (num == 5) return(jcName5[num2]);
-        if (num == 6) return(jcName6[num2]);
-        if (num == 7) return(jcName7[num2]);
-        if (num == 8) return(jcName8[num2]);
-        if (num == 9) return(jcName9[num2]);
-        if (num == 10) return(jcName10[num2]);
-        if (num == 11) return(jcName11[num2]);
+        if (num == 0) return (jcName0[num2]);
+        if (num == 1) return (jcName1[num2]);
+        if (num == 2) return (jcName2[num2]);
+        if (num == 3) return (jcName3[num2]);
+        if (num == 4) return (jcName4[num2]);
+        if (num == 5) return (jcName5[num2]);
+        if (num == 6) return (jcName6[num2]);
+        if (num == 7) return (jcName7[num2]);
+        if (num == 8) return (jcName8[num2]);
+        if (num == 9) return (jcName9[num2]);
+        if (num == 10) return (jcName10[num2]);
+        if (num == 11) return (jcName11[num2]);
         return '0';
     }
-    public String  CalConv2(int yy,int  mm,int dd,int y,int d,int m, int dt,int  nm,int nd) {
-        int dy = d  + dd;
+
+    public String CalConv2(int yy, int mm, int dd, int y, int d, int m, int dt, int nm, int nd) {
+        int dy = d + dd;
         if ((yy == 0 && dd == 6) || (yy == 6 && dd == 0) || (yy == 1 && dd == 7) || (yy == 7 && dd == 1) || (yy == 2 && dd == 8) || (yy == 8 && dd == 2) || (yy == 3 && dd == 9) || (yy == 9 && dd == 3) || (yy == 4 && dd == 10) || (yy == 10 && dd == 4) || (yy == 5 && dd == 11) || (yy == 11 && dd == 5)) {
             return "日值岁破 大事不宜";
-        }
-        else if ((mm == 0 && dd == 6) || (mm == 6 && dd == 0) || (mm == 1 && dd == 7) || (mm == 7 && dd == 1) || (mm == 2 && dd == 8) || (mm == 8 && dd == 2) || (mm == 3 && dd == 9) || (mm == 9 && dd == 3) || (mm == 4 && dd == 10) || (mm == 10 && dd == 4) || (mm == 5 && dd == 11) || (mm == 11 && dd == 5)) {
+        } else if ((mm == 0 && dd == 6) || (mm == 6 && dd == 0) || (mm == 1 && dd == 7) || (mm == 7 && dd == 1) || (mm == 2 && dd == 8) || (mm == 8 && dd == 2) || (mm == 3 && dd == 9) || (mm == 9 && dd == 3) || (mm == 4 && dd == 10) || (mm == 10 && dd == 4) || (mm == 5 && dd == 11) || (mm == 11 && dd == 5)) {
             return "日值月破 大事不宜";
-        }
-        else if ((y == 0 && dy == 911) || (y == 1 && dy == 55) || (y == 2 && dy == 111) || (y == 3 && dy == 75) || (y == 4 && dy == 311) || (y == 5 && dy == 9) || (y == 6 && dy == 511) || (y == 7 && dy == 15) || (y == 8 && dy == 711) || (y == 9 && dy == 35)) {
+        } else if ((y == 0 && dy == 911) || (y == 1 && dy == 55) || (y == 2 && dy == 111) || (y == 3 && dy == 75) || (y == 4 && dy == 311) || (y == 5 && dy == 9) || (y == 6 && dy == 511) || (y == 7 && dy == 15) || (y == 8 && dy == 711) || (y == 9 && dy == 35)) {
             return "日值上朔 大事不宜";
-        }
-        else if ((m == 1 && dt == 13) || (m == 2 && dt == 11) || (m == 3 && dt == 9) || (m == 4 && dt == 7) || (m == 5 && dt == 5) || (m == 6 && dt == 3) || (m == 7 && dt == 1) || (m == 7 && dt == 29) || (m == 8 && dt == 27) || (m == 9 && dt == 25) || (m == 10 && dt == 23) || (m == 11 && dt == 21) || (m == 12 && dt == 19)) {
+        } else if ((m == 1 && dt == 13) || (m == 2 && dt == 11) || (m == 3 && dt == 9) || (m == 4 && dt == 7) || (m == 5 && dt == 5) || (m == 6 && dt == 3) || (m == 7 && dt == 1) || (m == 7 && dt == 29) || (m == 8 && dt == 27) || (m == 9 && dt == 25) || (m == 10 && dt == 23) || (m == 11 && dt == 21) || (m == 12 && dt == 19)) {
             return "日值杨公十三忌 大事不宜";
-        }
-        else {
+        } else {
             return "";
         }
     }
+
     //    public Date getUtcDate(String dateStr){
 //        SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //        df2.setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -447,7 +448,7 @@ public class ChineseCalendar {
 //    }
     //============================== 传入 offsenew Datet 返回干支, 0=甲子
     public String cyclical(long num) {
-        return(Gan[(int) (num % 10)] + Zhi[(int) (num % 12)]);
+        return (Gan[(int) (num % 10)] + Zhi[(int) (num % 12)]);
     }
 
     /**
@@ -458,26 +459,30 @@ public class ChineseCalendar {
      */
     public String cAnimal(int year) {
         int i = (year - 1900) % 12;
-        if(i == 0)
+        if (i == 0)
             return Animals[0];
         return Animals[i];
     }
+
     //======================  中文日期
     public String cDay(int d) {
-        String  s;
+        String s;
 
         switch (d) {
-            case  10:
-                s = "初十";  break;
-            case  20:
-                s = "二十";  break;
-            case  30:
-                s = "三十";  break;
-            default  :
+            case 10:
+                s = "初十";
+                break;
+            case 20:
+                s = "二十";
+                break;
+            case 30:
+                s = "三十";
+                break;
+            default:
                 s = nStr2[Double.valueOf(Math.floor(d / 10)).intValue()];
                 s += nStr1[d % 10];
         }
-        return(s);
+        return (s);
     }
     //===== 某年的第n个节气为几日(从0小寒起算)
     /*public int sTerm(int  y,int  n) throws ParseException {
@@ -497,46 +502,50 @@ public class ChineseCalendar {
     }*/
 
     //===== 某年的第n个节气对应的公历日期(从0小寒起算)
-    public Calendar sTerm(int  y, int  n) throws ParseException {
+    public Calendar sTerm(int y, int n) throws ParseException {
         SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         df2.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date date = df2.parse("1900-01-06 02:05:00");
-        Long utcTime2=date.getTime();
-        BigDecimal time2=new BigDecimal(31556925974.7).multiply(new BigDecimal(y - 1900)).add(new BigDecimal( sTermInfo[n]).multiply(BigDecimal.valueOf(60000L)));
-        BigDecimal time=time2.add(BigDecimal.valueOf(utcTime2));
+        Long utcTime2 = date.getTime();
+        BigDecimal time2 = new BigDecimal(31556925974.7).multiply(new BigDecimal(y - 1900)).add(new BigDecimal(sTermInfo[n]).multiply(BigDecimal.valueOf(60000L)));
+        BigDecimal time = time2.add(BigDecimal.valueOf(utcTime2));
         Date offDate = new Date(time.longValue());
-        Calendar cal = Calendar.getInstance() ;
+        Calendar cal = Calendar.getInstance();
         cal.setTimeZone(TimeZone.getTimeZone("UTC"));
         cal.setTime(offDate);
         return cal;
     }
+
     //====================================== 返回农历 y年闰哪个月 1-12 , 没闰返回 0
-    public Long  leapMonth(int y) {
+    public Long leapMonth(int y) {
         long lm = lunarInfo[y - 1900] & 0xf;
-        return(lm == 0xf ? 0 : lm);
+        return (lm == 0xf ? 0 : lm);
     }
+
     //====================================== 返回农历 y年的总天数
     public Long lYearDays(int y) {
         long i, sum = 348;
-        for (i = 0x8000; i > 0x8; i >>= 1) sum += (lunarInfo[y - 1900] & i)!=0 ? 1 : 0;
-        return(sum + leapDays(y));
+        for (i = 0x8000; i > 0x8; i >>= 1) sum += (lunarInfo[y - 1900] & i) != 0 ? 1 : 0;
+        return (sum + leapDays(y));
     }
 
     //====================================== 返回农历 y年闰月的天数
     public int leapDays(int y) {
-        if (leapMonth(y)!=0) return( (lunarInfo[y - 1899] & 0xf) == 0xf ? 30 : 29);
+        if (leapMonth(y) != 0) return ((lunarInfo[y - 1899] & 0xf) == 0xf ? 30 : 29);
         else return 0;
     }
+
     //====================================== 返回农历 y年m月的总天数
-    private int monthDays(int y,int m) {
-        return( (lunarInfo[y - 1900] & (0x10000 >> m))!=0 ? 30 : 29 );
+    private int monthDays(int y, int m) {
+        return ((lunarInfo[y - 1900] & (0x10000 >> m)) != 0 ? 30 : 29);
     }
 
-    public   class Lunar{
-        private  int year;
+    public class Lunar {
+        private int year;
         private boolean isLeap;
-        private  int month;
-        private  int day;
+        private int month;
+        private int day;
+
         public Lunar(Date objDate) throws ParseException {
             int i, leap = 0, temp = 0;
             SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -546,20 +555,20 @@ public class ChineseCalendar {
             SimpleDateFormat df3 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             df3.setTimeZone(TimeZone.getTimeZone("UTC"));
             Date date3 = df3.parse("" + 1900 + "-" + 1 + "-" + 31 + " 00:00:00");
-            long time1=date.getTime();
-            long time2=date3.getTime();
+            long time1 = date.getTime();
+            long time2 = date3.getTime();
 
             int oneDayMillis = 86400000;
-            int offset = (int)(( time1 - time2 ) / oneDayMillis);
+            int offset = (int) ((time1 - time2) / oneDayMillis);
             for (i = 1900; i < 2100 && offset > 0; i++) {
                 temp = lYearDays(i).intValue();
                 offset -= temp;
             }
             if (offset < 0) {
                 offset += temp;
-                    i--;
+                i--;
             }
-           this.year = i;
+            this.year = i;
             leap = leapMonth(i).intValue(); //闰哪个月
             this.isLeap = false;
 
@@ -569,8 +578,7 @@ public class ChineseCalendar {
                     --i;
                     this.isLeap = true;
                     temp = leapDays(this.year);
-                }
-                else {
+                } else {
                     temp = monthDays(this.year, i);
                 }
 
@@ -583,8 +591,7 @@ public class ChineseCalendar {
             if (offset == 0 && leap > 0 && i == leap + 1)
                 if (this.isLeap) {
                     this.isLeap = false;
-                }
-                else {
+                } else {
                     this.isLeap = true;
                     --i;
                 }
@@ -599,21 +606,20 @@ public class ChineseCalendar {
         }
 
 
-
-
     }
 
-    public class Easter{
+    public class Easter {
 
         public int m;
         public int d;
+
         public Easter(int y) throws ParseException {
             int term2 = sTerm(y, 5).get(Calendar.DAY_OF_MONTH); //取得春分日期
             SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             df2.setTimeZone(TimeZone.getTimeZone("UTC"));
-            Date dayTerm2 = df2.parse("" +y + "-" + 3 + "-" + term2 + " 00:00:00");//取得春分的公历日期控件(春分一定出现在3月)
+            Date dayTerm2 = df2.parse("" + y + "-" + 3 + "-" + term2 + " 00:00:00");//取得春分的公历日期控件(春分一定出现在3月)
             Lunar lDayTerm2 = new Lunar(dayTerm2); //取得取得春分农历
-            int lMlen=0;
+            int lMlen = 0;
             if (lDayTerm2.day < 15) //取得下个月圆的相差天数
                 lMlen = 15 - lDayTerm2.day;
             else
@@ -623,28 +629,29 @@ public class ChineseCalendar {
             Date l15 = new Date(dayTerm2.getTime() + 86400000 * lMlen); //求出第一次月圆为公历几日
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(l15);
-            Date dayEaster = new Date(l15.getTime() + 86400000 * ( 7 - calendar.get(Calendar.DAY_OF_WEEK) )); //求出下个周日
+            Date dayEaster = new Date(l15.getTime() + 86400000 * (7 - calendar.get(Calendar.DAY_OF_WEEK))); //求出下个周日
             calendar.setTime(dayEaster);
             this.m = calendar.get(Calendar.MONTH);
             this.d = calendar.get(Calendar.DAY_OF_MONTH);
         }
     }
-    public static  class Element{
-        public  int sYear;
-        public int  sMonth;
+
+    public static class Element {
+        public int sYear;
+        public int sMonth;
         public int sDay;
-        public char  week;
+        public char week;
         public int lYear;
-        public int  lMonth;
+        public int lMonth;
         public String lMonthChinese;
         public String lDayChinese;
-        public int  lDay;
-        public boolean  isLeap;
-        public String  cYear;
+        public int lDay;
+        public boolean isLeap;
+        public String cYear;
         public String cMonth;
         public String cDay;
         public String color;
-        public boolean isToday=false;
+        public boolean isToday = false;
         public String lunarFestival;
         public String solarFestival;
         public String lunarTerms;
@@ -652,8 +659,8 @@ public class ChineseCalendar {
         public char sgz3;
         public String cAnimal;
 
-        public Element(int sYear,int  sMonth, int sDay,char  week,int lYear,int  lMonth,int  lDay,
-                       boolean  isLeap,String  cYear, String cMonth, String cDay, String cAnimal) {
+        public Element(int sYear, int sMonth, int sDay, char week, int lYear, int lMonth, int lDay,
+                       boolean isLeap, String cYear, String cMonth, String cDay, String cAnimal) {
 
             this.isToday = false;
             //瓣句
@@ -667,8 +674,8 @@ public class ChineseCalendar {
             this.lDay = lDay;    //农历日数字
             this.isLeap = isLeap;  //是否为农历闰月?
             //中文
-            this.lMonthChinese=monthChinese[lMonth-1];
-            this.lDayChinese=dayChinese[lDay-1];
+            this.lMonthChinese = monthChinese[lMonth - 1];
+            this.lDayChinese = dayChinese[lDay - 1];
             //八字
             this.cYear = cYear;   //年柱, 2个中文
             this.cMonth = cMonth;  //月柱, 2个中文

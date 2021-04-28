@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
 /**
  * @program: daily-note
  * @description:
@@ -34,6 +35,7 @@ public class FontUtil {
 
     /**
      * 根据字体类型获取字体
+     *
      * @param type
      * @param size
      * @return

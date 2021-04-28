@@ -8,6 +8,7 @@ class ErrorLog {
 
     /**
      * Report an exception.
+     *
      * @param throwable the exception
      */
     void log(Throwable throwable) {
@@ -26,6 +27,7 @@ class ErrorLog {
 
     /**
      * returns the current error log.
+     *
      * @return a string of errors, separated by line breaks.
      */
     String getErrors() {

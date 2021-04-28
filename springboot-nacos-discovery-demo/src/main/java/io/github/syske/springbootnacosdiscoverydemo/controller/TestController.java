@@ -36,6 +36,7 @@ public class TestController {
 
     /**
      * 获取已注册服务的注册信息
+     *
      * @param serviceName
      * @return
      * @throws NacosException
@@ -48,6 +49,7 @@ public class TestController {
 
     /**
      * 注册服务
+     *
      * @param serviceName
      * @param ip
      * @param port
@@ -57,13 +59,14 @@ public class TestController {
     @RequestMapping(value = "/register", method = GET)
     @ResponseBody
     public String register(@RequestParam String serviceName, @RequestParam String ip,
-                                   @RequestParam int port) throws NacosException {
+                           @RequestParam int port) throws NacosException {
         namingService.registerInstance(serviceName, ip, port);
         return "服务注册成功";
     }
 
     /**
      * 发现并调用服务
+     *
      * @param serviceName
      * @return
      * @throws NacosException
@@ -81,6 +84,7 @@ public class TestController {
 
     /**
      * 被注册的服务
+     *
      * @param name
      * @return
      */

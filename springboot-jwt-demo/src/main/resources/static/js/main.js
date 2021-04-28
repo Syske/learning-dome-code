@@ -24,7 +24,7 @@ function checkLogin() {
                 if (res.data === true) {
                     alert('已登录，跳转到回调页面');
                     var redirect = getUrlParam("redirect");
-                    if(redirect != null)
+                    if (redirect != null)
                         window.location.href = redirect;
                     else
                         window.location.href = "/sso/index";
@@ -39,7 +39,7 @@ function checkLogin() {
 function goLogin() {
     alert("无认证信息，即将跳转到登录页面");
     var redirect = getUrlParam("redirect");
-    if(redirect != null)
+    if (redirect != null)
         window.location.href = encodeURI("/sso/userLogin?redirect=" + redirect);
     else
         window.location.href = encodeURI("/sso/userLogin?redirect=" + "/sso/index");

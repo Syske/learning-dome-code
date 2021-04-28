@@ -21,9 +21,10 @@ public class DBHelper {
     private static final String usename = "root";
     private static final String password = "root"; //数据库密码
 
-    private static Connection connection =null;
+    private static Connection connection = null;
+
     //静态代码块负责加载驱动
-    static{//静态块中的代码会优先被执行
+    static {//静态块中的代码会优先被执行
         try {
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
@@ -33,10 +34,10 @@ public class DBHelper {
     }
 
     //单例模式返回数据库连接对象
-    public static Connection getConnection(){
-        if(connection==null){
+    public static Connection getConnection() {
+        if (connection == null) {
             try {
-                connection = DriverManager.getConnection(url,usename,password);
+                connection = DriverManager.getConnection(url, usename, password);
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -45,16 +46,17 @@ public class DBHelper {
         }
         return connection;
     }
+
     public static void main(String[] args) {
         ResultSet resultSet = null;
-        try{
+        try {
             Connection connection = DBHelper.getConnection();
-            Statement statement =  connection.createStatement();
+            Statement statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM goods;");
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 System.out.println(resultSet.getString("name"));
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

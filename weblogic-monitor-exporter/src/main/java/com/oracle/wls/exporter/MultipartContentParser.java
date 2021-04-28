@@ -17,123 +17,123 @@ import javax.servlet.http.HttpServletRequest;
 
 class MultipartContentParser implements ParserActions {
 
-  private final String boundary;
-  private ParserState state = ParserState.INITIAL;
-  private MultipartItem currentItem;
-  private List<MultipartItem> items = new ArrayList<>();
+    private final String boundary;
+    private ParserState state = ParserState.INITIAL;
+    private MultipartItem currentItem;
+    private List<MultipartItem> items = new ArrayList<>();
 
-  MultipartContentParser(String contentType) throws ServletException {
-    Header type = new Header("Content-Type: " + contentType);
-    if (!type.getValue().toLowerCase().equals("multipart/form-data")) throw new ServletException("Not multipart");
-    this.boundary = type.getValue("boundary");
-  }
-
-  static List<MultipartItem> parse(HttpServletRequest request) throws ServletException {
-    try {
-      final MultipartContentParser parser = new MultipartContentParser(request.getContentType());
-      new BufferedReader(new InputStreamReader(request.getInputStream())).lines().forEach(parser::process);
-      return parser.getItems();
-    } catch (IOException e) {
-      throw new ServletException("Unable to parse request", e);
+    MultipartContentParser(String contentType) throws ServletException {
+        Header type = new Header("Content-Type: " + contentType);
+        if (!type.getValue().toLowerCase().equals("multipart/form-data")) throw new ServletException("Not multipart");
+        this.boundary = type.getValue("boundary");
     }
-  }
 
-  String getBoundary() {
-    return boundary;
-  }
-
-  void process(String line) {
-    state = state.processLine(line, this);
-  }
-
-  MultipartItem getCurrentItem() {
-    if (currentItem == null) currentItem = new MultipartItemImpl();
-    return currentItem;
-  }
-
-  List<MultipartItem> getItems() {
-    return Collections.unmodifiableList(items);
-  }
-
-  public ParserState getState() {
-    return state;
-  }
-
-  @Override
-  public boolean isStart(String line) {
-    return line.equals("--" + boundary);
-  }
-
-  @Override
-  public boolean isEnd(String line) {
-    return line.equals("--" + boundary + "--");
-  }
-
-  @Override
-  public ParserState closeItem(ParserState state) {
-    items.add(currentItem);
-    currentItem = null;
-    return state;
-  }
-
-  @Override
-  public ParserState addHeader(String line) {
-    Header header = new Header(line);
-    if (header.getName().equalsIgnoreCase("content-disposition")) {
-      ((MultipartItemImpl) getCurrentItem()).setDisposition(header);
-    } else if (header.getName().equalsIgnoreCase("content-type")) {
-      ((MultipartItemImpl) getCurrentItem()).setContentType(header);
+    static List<MultipartItem> parse(HttpServletRequest request) throws ServletException {
+        try {
+            final MultipartContentParser parser = new MultipartContentParser(request.getContentType());
+            new BufferedReader(new InputStreamReader(request.getInputStream())).lines().forEach(parser::process);
+            return parser.getItems();
+        } catch (IOException e) {
+            throw new ServletException("Unable to parse request", e);
+        }
     }
-    return ParserState.HEADERS;
-  }
 
-  @Override
-  public ParserState addDataLine(String line) {
-    ((MultipartItemImpl) getCurrentItem()).addDataLine(line);
-    return ParserState.CONTENT;
-  }
+    String getBoundary() {
+        return boundary;
+    }
 
-  static class MultipartItemImpl implements MultipartItem {
-    private String name;
-    private String fileName;
-    private StringBuilder contents;
-    private String contentType;
+    void process(String line) {
+        state = state.processLine(line, this);
+    }
 
-    @Override
-    public boolean isFormField() {
-      return fileName == null;
+    MultipartItem getCurrentItem() {
+        if (currentItem == null) currentItem = new MultipartItemImpl();
+        return currentItem;
+    }
+
+    List<MultipartItem> getItems() {
+        return Collections.unmodifiableList(items);
+    }
+
+    public ParserState getState() {
+        return state;
     }
 
     @Override
-    public String getFieldName() {
-      return name;
+    public boolean isStart(String line) {
+        return line.equals("--" + boundary);
     }
 
     @Override
-    public String getString() {
-      return Optional.ofNullable(contents).map(StringBuilder::toString).orElse("");
+    public boolean isEnd(String line) {
+        return line.equals("--" + boundary + "--");
     }
 
     @Override
-    public InputStream getInputStream() throws IOException {
-      return new ByteArrayInputStream(getString().getBytes());
+    public ParserState closeItem(ParserState state) {
+        items.add(currentItem);
+        currentItem = null;
+        return state;
     }
 
-    public void setDisposition(Header header) {
-      name = header.getValue("name");
-      fileName = header.getValue("filename");
+    @Override
+    public ParserState addHeader(String line) {
+        Header header = new Header(line);
+        if (header.getName().equalsIgnoreCase("content-disposition")) {
+            ((MultipartItemImpl) getCurrentItem()).setDisposition(header);
+        } else if (header.getName().equalsIgnoreCase("content-type")) {
+            ((MultipartItemImpl) getCurrentItem()).setContentType(header);
+        }
+        return ParserState.HEADERS;
     }
 
-    public void setContentType(Header header) {
-      contentType = header.getValue();
+    @Override
+    public ParserState addDataLine(String line) {
+        ((MultipartItemImpl) getCurrentItem()).addDataLine(line);
+        return ParserState.CONTENT;
     }
 
-    public void addDataLine(String line) {
-      if (contents == null) {
-        contents = new StringBuilder(line);
-      } else {
-        contents.append(System.lineSeparator()).append(line);
-      }
+    static class MultipartItemImpl implements MultipartItem {
+        private String name;
+        private String fileName;
+        private StringBuilder contents;
+        private String contentType;
+
+        @Override
+        public boolean isFormField() {
+            return fileName == null;
+        }
+
+        @Override
+        public String getFieldName() {
+            return name;
+        }
+
+        @Override
+        public String getString() {
+            return Optional.ofNullable(contents).map(StringBuilder::toString).orElse("");
+        }
+
+        @Override
+        public InputStream getInputStream() throws IOException {
+            return new ByteArrayInputStream(getString().getBytes());
+        }
+
+        public void setDisposition(Header header) {
+            name = header.getValue("name");
+            fileName = header.getValue("filename");
+        }
+
+        public void setContentType(Header header) {
+            contentType = header.getValue();
+        }
+
+        public void addDataLine(String line) {
+            if (contents == null) {
+                contents = new StringBuilder(line);
+            } else {
+                contents.append(System.lineSeparator()).append(line);
+            }
+        }
     }
-  }
 }

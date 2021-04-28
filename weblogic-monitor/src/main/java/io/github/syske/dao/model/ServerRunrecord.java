@@ -3,11 +3,12 @@ package io.github.syske.dao.model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author syske
@@ -128,14 +129,14 @@ public class ServerRunrecord extends Model<ServerRunrecord> {
     @Override
     public String toString() {
         return "ServerRunrecord{" +
-        ", id=" + id +
-        ", hostId=" + hostId +
-        ", serverId=" + serverId +
-        ", state=" + state +
-        ", recordtime=" + recordtime +
-        ", lastStartTime=" + lastStartTime +
-        ", serverName=" + serverName +
-        ", desecription=" + desecription +
-        "}";
+                ", id=" + id +
+                ", hostId=" + hostId +
+                ", serverId=" + serverId +
+                ", state=" + state +
+                ", recordtime=" + recordtime +
+                ", lastStartTime=" + lastStartTime +
+                ", serverName=" + serverName +
+                ", desecription=" + desecription +
+                "}";
     }
 }

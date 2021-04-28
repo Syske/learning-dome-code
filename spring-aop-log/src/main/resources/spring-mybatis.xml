@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<!-- 配置simpledateformat -->
-	<bean id="simpleDateFormat" class="java.text.SimpleDateFormat">
-		<constructor-arg value="yyyy-MM-dd HH:mm:ss"></constructor-arg>
-	</bean>
-	<!-- 引入配置文件 -->
-	<bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:jdbc.properties" />
-	</bean>
-	<!-- 连接池配置 -->
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="${driver}" />
-		<property name="url" value="${url}" />
-		<property name="username" value="${username}" />
-		<property name="password" value="${password}" />
-		<!-- 初始化连接大小 -->
-		<property name="initialSize" value="${initialSize}"></property>
-		<!-- 连接池最大数量 -->
-		<property name="maxActive" value="${maxActive}"></property>
-		<!-- 连接池最大空闲 -->
-		<property name="maxIdle" value="${maxIdle}"></property>
-		<!-- 连接池最小空闲 -->
-		<property name="minIdle" value="${minIdle}"></property>
-		<!-- 获取连接最大等待时间 -->
-		<property name="maxWait" value="${maxWait}"></property>
-	</bean>
+    <!-- 配置simpledateformat -->
+    <bean id="simpleDateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="yyyy-MM-dd HH:mm:ss"></constructor-arg>
+    </bean>
+    <!-- 引入配置文件 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties"/>
+    </bean>
+    <!-- 连接池配置 -->
+    <bean id="dataSource"
+          class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="${initialSize}"></property>
+        <!-- 连接池最大数量 -->
+        <property name="maxActive" value="${maxActive}"></property>
+        <!-- 连接池最大空闲 -->
+        <property name="maxIdle" value="${maxIdle}"></property>
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="${minIdle}"></property>
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="${maxWait}"></property>
+    </bean>
 
-	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
 
-	<!-- 配置SqlSessionFactionBean -->
-	<bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+    <!-- 配置SqlSessionFactionBean -->
+    <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
 
-		<property name="dataSource" ref="dataSource"></property>
-		<!-- 加载mybatis核心配置文件 -->
-		<property name="configLocation" value="classpath:mybatis-config.xml" />
-		<property name="mapperLocations" value="classpath*:mybatis/mapper/*.xml"/>
-		<!-- 配置别名包扫描 -->
-		<property name="typeAliasesPackage" value="io.github.syske.entity"></property>
-		<!-- 注入全局策略 -->
-		<property name="globalConfig" ref="globalConfiguration"></property>
-	</bean>
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<!-- sql映射文件扫描 -->
-		<property name="basePackage" value="io.github.syske.dao"></property>
-	</bean>
+        <property name="dataSource" ref="dataSource"></property>
+        <!-- 加载mybatis核心配置文件 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath*:mybatis/mapper/*.xml"/>
+        <!-- 配置别名包扫描 -->
+        <property name="typeAliasesPackage" value="io.github.syske.entity"></property>
+        <!-- 注入全局策略 -->
+        <property name="globalConfig" ref="globalConfiguration"></property>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- sql映射文件扫描 -->
+        <property name="basePackage" value="io.github.syske.dao"></property>
+    </bean>
 
-	<!-- 定义MyBatisPlus的全局策略配置 -->
-	<bean id="globalConfiguration" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
-		<!-- 2.3版本以后，默认值为true -->
-		<property name="dbColumnUnderline" value="true" />
-		<!-- 全局主键  -->
-		<property name="idType" value="0"></property>
-	</bean>
+    <!-- 定义MyBatisPlus的全局策略配置 -->
+    <bean id="globalConfiguration" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
+        <!-- 2.3版本以后，默认值为true -->
+        <property name="dbColumnUnderline" value="true"/>
+        <!-- 全局主键  -->
+        <property name="idType" value="0"></property>
+    </bean>
 
 </beans>  

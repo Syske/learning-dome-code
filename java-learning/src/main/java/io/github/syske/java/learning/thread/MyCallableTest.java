@@ -11,7 +11,7 @@ import java.util.concurrent.*;
 class MyCallableTest {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        Callable<String> callable = () ->  "hello Callable";
+        Callable<String> callable = () -> "hello Callable";
         ExecutorService executorService = Executors.newFixedThreadPool(1);
         Future<String> submit = executorService.submit(callable);
         System.out.println(submit.get());

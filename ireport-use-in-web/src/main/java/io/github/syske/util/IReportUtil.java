@@ -53,11 +53,11 @@ public class IReportUtil {
      * @throws JRException
      */
     public static FileOutputStream exportPdfFileServer(String reprotfileName,
-            Map<String, Object> parameters, Connection connection)
+                                                       Map<String, Object> parameters, Connection connection)
             throws IOException, JRException {
 
         FileInputStream sourceFileInputStream = new FileInputStream(
-                 reprotfileName);
+                reprotfileName);
         String exportFileName = UUID.randomUUID().toString() + ".pdf";
         FileOutputStream exportFileOutputStream = new FileOutputStream(
                 exportFileName);

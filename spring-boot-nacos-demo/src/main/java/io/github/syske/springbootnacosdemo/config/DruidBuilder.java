@@ -17,6 +17,7 @@ import javax.sql.DataSource;
 /**
  * druid配置构建类
  * 备注: 如数据源的属性有不一致的情况,可把该类中的Bean单独创建一个类
+ *
  * @author sysker
  */
 @Configuration
@@ -24,6 +25,7 @@ public class DruidBuilder {
 
     /**
      * 实例化
+     *
      * @return
      */
     public static DruidBuilder create() {
@@ -32,12 +34,13 @@ public class DruidBuilder {
 
     /**
      * 主数据源: 如果在使用时,不特别指定Bean的名称,默认是使用主数据源操作.
-     * @Primary: 自动装配时当出现多个Bean时,被注解为@Primary的Bean将作为首选者,否则将抛出异常 .
-     * @ConfigurationProperties : 根据配置文件中prefix前缀的属性名称,批量注入属性值.
+     *
      * @return
+     * @Primary: 自动装配时当出现多个Bean时, 被注解为@Primary的Bean将作为首选者,否则将抛出异常 .
+     * @ConfigurationProperties : 根据配置文件中prefix前缀的属性名称,批量注入属性值.
      */
     @Bean(name = "DataSource")
-    public DataSource primaryDataSource(){
+    public DataSource primaryDataSource() {
         // 第一种默认创建方式
         //DruidDataSource druidDataSource = DruidDataSourceBuilder.create().build();
 
@@ -49,6 +52,7 @@ public class DruidBuilder {
 
     /**
      * 创建数据源
+     *
      * @return
      */
     public DruidDataSource buildPromaryDataSource() {

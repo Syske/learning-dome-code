@@ -9,7 +9,7 @@ public class LoggerTest {
     private Logger log4j = Logger.getLogger(this.getClass());
     ch.qos.logback.classic.Logger logback1 = new LoggerContext().getLogger(this.getClass());
     org.slf4j.Logger logback2 = new LoggerContext().getLogger(this.getClass());
-    org.slf4j.Logger logback= LoggerFactory.getLogger(this.getClass());
+    org.slf4j.Logger logback = LoggerFactory.getLogger(this.getClass());
 
 
     @Test
@@ -33,8 +33,8 @@ public class LoggerTest {
 
     @Test
     public void slf4jTest() {
-        logback.error("错误信息：{}，错误原因：{}，错误类型：{}","系统查询异常","网络异常","致命错误");
-        log4j.error("错误信息：" + "系统查询异常" +"，错误原因：" + "网络异常" + "，错误类型：" + "致命错误");
+        logback.error("错误信息：{}，错误原因：{}，错误类型：{}", "系统查询异常", "网络异常", "致命错误");
+        log4j.error("错误信息：" + "系统查询异常" + "，错误原因：" + "网络异常" + "，错误类型：" + "致命错误");
     }
 
 }

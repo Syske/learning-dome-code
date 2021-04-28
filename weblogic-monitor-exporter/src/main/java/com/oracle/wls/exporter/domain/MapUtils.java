@@ -18,6 +18,7 @@ public class MapUtils {
     /**
      * Attempts to retrieve the specified value as an integer. It can recognize the value
      * either as a Number object or a string to be parsed.
+     *
      * @param map a map containing the value
      * @param key the map key at which the value is found
      * @return an integer value derived from the item in the map
@@ -38,6 +39,7 @@ public class MapUtils {
     /**
      * Attempts to retrieve the specified value as a boolean. It can recognize the value
      * either as a Boolean object or a string.
+     *
      * @param map a map containing the value
      * @param key the map key at which the value is found
      * @return a boolean value derived from the item in the map
@@ -64,8 +66,9 @@ public class MapUtils {
 
     /**
      * Creates an exception which describes the failure to interpret a map value
-     * @param key the map key used to retrieve the value
-     * @param value the actual problematic value found
+     *
+     * @param key          the map key used to retrieve the value
+     * @param value        the actual problematic value found
      * @param expectedType a description of the type permitted
      * @return an exception which can be thrown to report a problem
      */
@@ -75,6 +78,7 @@ public class MapUtils {
 
     /**
      * Returns the specified map value as a string.
+     *
      * @param map a map containing the value
      * @param key the map key at which the value is found
      * @return the string representation of the value
@@ -86,6 +90,7 @@ public class MapUtils {
     /**
      * Returns the specified map value as an array of strings. If it is a scalar, it will be
      * returned as an array containing only the found value.
+     *
      * @param map a map containing the value
      * @param key the map key at which the value is found
      * @return the string representation of the value
@@ -112,6 +117,7 @@ public class MapUtils {
 
     /**
      * Returns true if the specified value is a null or empty string.
+     *
      * @param s a string to check
      * @return true if the string has no contents
      */

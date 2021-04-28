@@ -42,6 +42,7 @@ public class AsyncProducer {
                     System.out.printf("%-10d OK %s %n", index,
                             sendResult.getMsgId());
                 }
+
                 @Override
                 public void onException(Throwable e) {
                     System.out.printf("%-10d Exception %s %n", index, e);

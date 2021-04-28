@@ -14,17 +14,17 @@ import org.hamcrest.TypeSafeDiagnosingMatcher;
 
 /**
  * A matcher for Json array-type that uses JsonPath queries.
- *
+ * <p>
  * With this matcher, it is possible to define Hamcrest assertions such as:
- *
- *    assertThat(webClient.jsonQuery,
- *               hasJsonPath("$.children.serverRuntimes.children.groups.fields").withValues("name", "sample1"));
- *
- *    assertThat(querySpec(selector), hasJsonPath("$.fields").includingValues(MBeanSelector.TYPE_FIELD_NAME));
- *
- *    The difference in the query types is that "withValues" requires the specified values to be the full set
- *    of values in the array, while "includingValues" passes as long as all of those specified are present,
- *    even if the array contains other values.
+ * <p>
+ * assertThat(webClient.jsonQuery,
+ * hasJsonPath("$.children.serverRuntimes.children.groups.fields").withValues("name", "sample1"));
+ * <p>
+ * assertThat(querySpec(selector), hasJsonPath("$.fields").includingValues(MBeanSelector.TYPE_FIELD_NAME));
+ * <p>
+ * The difference in the query types is that "withValues" requires the specified values to be the full set
+ * of values in the array, while "includingValues" passes as long as all of those specified are present,
+ * even if the array contains other values.
  *
  * @author Russell Gold
  */

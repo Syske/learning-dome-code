@@ -30,7 +30,7 @@ public class CalendarTest {
 //算两个日期间隔多少天
         Date date1 = format.parse(nowDate);
         Date date2 = format.parse(dbtime2);
-        int days = (int) ((date2.getTime() - date1.getTime()) / (1000*3600*24));
+        int days = (int) ((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
         System.out.println(days);
     }
 

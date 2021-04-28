@@ -69,14 +69,14 @@ public class CacheServiceImpl implements CacheService {
         Long expireTime = cacheRequestDTO.getExpireTime();
         String key = cacheRequestDTO.getKey();
         String data = cacheRequestDTO.getData();
-        logger.debug("缓存数据：key:{},data:{}" ,key , data);
+        logger.debug("缓存数据：key:{},data:{}", key, data);
         boolean setSuccess;
-        if(expireTime == null) {
+        if (expireTime == null) {
             setSuccess = redisUtil.set(key, cacheRequestDTO.getData());
         } else {
             setSuccess = redisUtil.set(key, data, expireTime);
         }
-        return setSuccess ? new Result(cacheRequestDTO.getData()): Result.getFailed("数据缓存失败");
+        return setSuccess ? new Result(cacheRequestDTO.getData()) : Result.getFailed("数据缓存失败");
     }
 
     @Override
@@ -85,18 +85,18 @@ public class CacheServiceImpl implements CacheService {
         String key = cacheRequestDTO.getKey();
         List data = cacheRequestDTO.getData();
         boolean setSuccess;
-        if(expireTime == null) {
+        if (expireTime == null) {
             setSuccess = redisUtil.lSet(key, cacheRequestDTO.getData());
         } else {
             setSuccess = redisUtil.lSet(key, data, expireTime);
         }
-        return setSuccess ? new Result(cacheRequestDTO.getData()): Result.getFailed("数据缓存失败");
+        return setSuccess ? new Result(cacheRequestDTO.getData()) : Result.getFailed("数据缓存失败");
     }
 
     @Override
     public Result deleteCacheData(CacheRequestDTO<Set> cacheRequestDTO) {
         String key = cacheRequestDTO.getKey();
-        if(redisUtil.exists(key)) {
+        if (redisUtil.exists(key)) {
             redisUtil.del(key);
         }
         return new Result();
@@ -109,7 +109,7 @@ public class CacheServiceImpl implements CacheService {
         if (redisUtil.exists(key)) {
             expireSuccess = redisUtil.expire(key, cacheRequestDTO.getExpireTime());
         }
-        return expireSuccess ?  new Result(cacheRequestDTO.getData()): Result.getFailed("设置过期时间失败");
+        return expireSuccess ? new Result(cacheRequestDTO.getData()) : Result.getFailed("设置过期时间失败");
     }
 
     @Override

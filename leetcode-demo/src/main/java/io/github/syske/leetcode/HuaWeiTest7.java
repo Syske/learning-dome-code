@@ -24,33 +24,32 @@ public class HuaWeiTest7 {
         boolean[] isChu = new boolean[input.length()];
         int count = 0;
         ArrayList<Integer> loc = new ArrayList<>();
-        for (int i = 0  ; i < chars.length; i ++) {
+        for (int i = 0; i < chars.length; i++) {
             char c = chars[i];
-            if (c=='*') {
-               numberBuilder.append(",").append(c).append(",");
-                count ++;
+            if (c == '*') {
+                numberBuilder.append(",").append(c).append(",");
+                count++;
                 isCheng[i] = true;
                 loc.add(i);
-            } else  if (c=='/') {
+            } else if (c == '/') {
                 numberBuilder.append(",").append(c).append(",");
-                count ++;
+                count++;
                 isChu[i] = true;
                 loc.add(i);
-            } else if (c=='+') {
-                count ++;
+            } else if (c == '+') {
+                count++;
                 numberBuilder.append(",").append(c).append(",");
                 isJia[i] = true;
                 loc.add(i);
-            } else if (c=='-') {
-                count ++;
+            } else if (c == '-') {
+                count++;
                 numberBuilder.append(",").append(c).append(",");
                 isJian[i] = true;
             } else if (Character.isDigit(c)) {
                 numberBuilder.append(c);
-            } else if (c=='.') {
+            } else if (c == '.') {
                 numberBuilder.append(c);
             }
-
 
 
         }

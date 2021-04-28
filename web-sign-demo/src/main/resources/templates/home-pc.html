@@ -30,7 +30,7 @@
     <!-- city-picker -->
     <link rel="stylesheet" href="city-picker/css/city-picker.css?version=21.1.15">
 
-<!--    <link href="mycss/bwizard.min.css" rel="stylesheet"/>-->
+    <!--    <link href="mycss/bwizard.min.css" rel="stylesheet"/>-->
 
     <style>
         .sweetAlert-hcp {
@@ -95,6 +95,7 @@
             background-clip: padding-box;
             border-radius: 4px;
         }
+
         .detail-label-title {
             font-size: 16px;
         }
@@ -298,7 +299,8 @@
 <script type="text/javascript" src="vali-theme/js/plugins/bootstrap-notify.min.js?version=21.1.15"></script>
 <script type="text/javascript" src="vali-theme/js/plugins/sweetalert.min.js?version=21.1.15"></script>
 <script type="text/javascript" src="vali-theme/js/plugins/bootstrap-datepicker.min.js?version=21.1.15"></script>
-<script type="text/javascript" src="vali-theme/js/plugins/bootstrap-datepicker-zhCN.js?version=21.1.15" charset="UTF-8"></script>
+<script type="text/javascript" src="vali-theme/js/plugins/bootstrap-datepicker-zhCN.js?version=21.1.15"
+        charset="UTF-8"></script>
 
 <script src="city-picker/js/city-picker.data.js?version=21.1.15"></script>
 <script src="city-picker/js/city-picker.min.js?version=21.1.15"></script>
@@ -390,14 +392,12 @@
     });
 
 
-
     function newRecord() {
         //TODO
         $("#apply-sure")[0].checked = false;
 
         $("#signTestCreateFrom")[0].reset();
         $(".photo").remove();
-
 
 
         initApplyForm();
@@ -417,7 +417,7 @@
             var sectionId = $(this).attr("target");
             $("section").css("display", "none");
             $(sectionId).css("display", "block");
-           if ("#signTestQuery" == sectionId) {
+            if ("#signTestQuery" == sectionId) {
 
 
             }
@@ -425,7 +425,7 @@
     }
 
 
-    function initApplyForm () {
+    function initApplyForm() {
 
         initDatePicker()
     }
@@ -444,7 +444,6 @@
     }
 
 
-
     function getRecordFormData() {
         var name = $('#name').val();
         var age = $('#age').val();
@@ -461,8 +460,6 @@
         };
         return param;
     }
-
-
 
 
     function applyRecord() {
@@ -584,8 +581,6 @@
         });
         return parameters;
     }
-
-
 
 
 </script>

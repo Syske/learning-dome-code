@@ -402,6 +402,7 @@ public class HttpClientUtil {
 
     /**
      * from请求
+     *
      * @param url
      * @param params
      * @return
@@ -473,13 +474,13 @@ public class HttpClientUtil {
 
 
         JSONObject params = new JSONObject();
-        params.put("video_id","60_8be004799c424688949704814ea0d16d");
-        params.put("state",3+"");
-        params.put("attr_tags","");
-        params.put("msg","");
+        params.put("video_id", "60_8be004799c424688949704814ea0d16d");
+        params.put("state", 3 + "");
+        params.put("attr_tags", "");
+        params.put("msg", "");
         HttpClientUtil httpUtil = HttpClientUtil.init();
-        httpUtil.setParam("param",params.toJSONString());
-        String URL ="http://abcd.com/v1/ShenHeInfo/shenheNotify?platform=AUDIT&token=94cead75c";
+        httpUtil.setParam("param", params.toJSONString());
+        String URL = "http://abcd.com/v1/ShenHeInfo/shenheNotify?platform=AUDIT&token=94cead75c";
         Map<String, String> post = httpUtil.post(URL);
         System.out.println(post.get("result"));
     }
@@ -487,17 +488,19 @@ public class HttpClientUtil {
     /**
      * POST请求 默认是 UTF-8 编码
      * post("http://xxx.com/search", "a=bcd", "b=xxx");
+     *
      * @param url
      * @param params 请单个编写，内部会自动将等号后字符编码
      * @return
      */
-    public static String post(String url, String... params){
+    public static String post(String url, String... params) {
         return post(url, Charset.forName("UTF-8"), params);
     }
 
     /**
      * POST请求 默认是 UTF-8 编码
      * post("http://xxx.com/search", "a=bcd", "b=xxx");
+     *
      * @param url
      * @param params 请单个编写，内部会自动将等号后字符编码
      * @return
@@ -552,32 +555,33 @@ public class HttpClientUtil {
             throws IOException {
         byte[] bytes = new byte[1024];
         int length = -1;
-        ByteArrayOutputStream byteOutput= new ByteArrayOutputStream();
+        ByteArrayOutputStream byteOutput = new ByteArrayOutputStream();
         while ((length = in.read(bytes)) != -1) {
             byteOutput.write(bytes, 0, length);
         }
         return new String(byteOutput.toByteArray(), charset);
     }
 
-    public static String encodeParams(String... params){
+    public static String encodeParams(String... params) {
         return encodeParams(Charset.forName("UTF-8"), params);
     }
 
     /**
      * 将等号后面的字符串编码
+     *
      * @param params
      * @return
      */
-    private static String encodeParams(Charset charset, String... params){
-        if(params == null || params.length == 0) {
+    private static String encodeParams(Charset charset, String... params) {
+        if (params == null || params.length == 0) {
             return "";
         }
         StringBuffer sb = new StringBuffer();
-        for(String str : params) {
+        for (String str : params) {
             int index = str.indexOf("=");
-            if(index == -1) {
+            if (index == -1) {
                 sb.append(str);
-            }else {
+            } else {
                 try {
                     sb.append(str.substring(0, index)).append("=").append(URLEncoder.encode(str.substring(index + 1), charset.name()));
                 } catch (UnsupportedEncodingException e) {//肯定不会出现
@@ -586,8 +590,8 @@ public class HttpClientUtil {
 
             sb.append("&");
         }
-        if(sb.length() > 0) {
-            sb.deleteCharAt(sb.length()-1);
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
         }
         return sb.toString();
     }
@@ -600,9 +604,10 @@ public class HttpClientUtil {
 
     /**
      * 发送 post请求
+     *
      * @param url
      * @param paramString 请求参数
-     * @param headerMap 请求头
+     * @param headerMap   请求头
      * @return
      * @throws Exception
      */
@@ -620,7 +625,7 @@ public class HttpClientUtil {
         httpPost.setEntity(entity);
 
         httpPost.setHeader("Content-Type", "application/json;charset=utf8");
-        if(headerMap != null) {
+        if (headerMap != null) {
             Set<String> keys = headerMap.keySet();
             Iterator<String> iterator = keys.iterator();
             while (iterator.hasNext()) {
@@ -672,15 +677,15 @@ public class HttpClientUtil {
     }
 
 
-
     /**
      * 发送get请求
+     *
      * @param url
      * @param param
      * @return
      * @throws Exception
      */
-    public String doGet(String url, String param) throws Exception{
+    public String doGet(String url, String param) throws Exception {
         String result = "";
         BufferedReader in = null;
         try {

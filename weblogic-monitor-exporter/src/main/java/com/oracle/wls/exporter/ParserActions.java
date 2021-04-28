@@ -4,13 +4,13 @@
 package com.oracle.wls.exporter;
 
 public interface ParserActions {
-  boolean isStart(String line);
+    boolean isStart(String line);
 
-  ParserState addHeader(String line);
+    ParserState addHeader(String line);
 
-  ParserState addDataLine(String line);
+    ParserState addDataLine(String line);
 
-  boolean isEnd(String line);
+    boolean isEnd(String line);
 
-  ParserState closeItem(ParserState state);
+    ParserState closeItem(ParserState state);
 }

@@ -6,9 +6,9 @@
     position: fixed;
     display: inline-block;
     text-align: left;
-    margin-top:50px;
-    top:5%;
-    left:92%;
+    margin-top: 50px;
+    top: 5%;
+    left: 92%;
     z-index: 10;
 }
 
@@ -28,6 +28,7 @@
     transition: opacity .25s linear, top .25s linear;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
+
 .c-dropdown.is-open .c-dropdown__list {
     opacity: 1;
     visibility: visible;
@@ -46,6 +47,7 @@
     -webkit-transition: background-color .25s linear;
     transition: background-color .25s linear;
 }
+
 .c-dropdown__item:hover {
     background-color: #E6E9ED;
 }
@@ -70,10 +72,12 @@
     -ms-user-select: none;
     user-select: none;
 }
+
 .c-button:hover, .c-button:focus {
     outline: none;
     text-decoration: none;
 }
+
 .c-button:not(:disabled) {
     cursor: pointer;
 }
@@ -95,9 +99,11 @@
     transition: background-color .2s linear;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
+
 .c-button--dropdown:hover {
     background-color: #4593e5;
 }
+
 .c-button--dropdown:after {
     content: "";
     position: absolute;

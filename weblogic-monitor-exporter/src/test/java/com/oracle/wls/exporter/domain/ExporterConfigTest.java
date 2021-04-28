@@ -51,7 +51,7 @@ public class ExporterConfigTest {
             "        values: [invocationTotalCount, executionTimeTotal]\n";
     private static final Map<String, Object> NULL_MAP = null;
 
-    private Map<String,Object> yamlConfig = new HashMap<>();
+    private Map<String, Object> yamlConfig = new HashMap<>();
 
     @Test
     public void whenYamlConfigEmpty_returnNonNullConfiguration() {
@@ -79,7 +79,7 @@ public class ExporterConfigTest {
         ExporterConfig config = ExporterConfig.loadConfig(yamlConfig);
 
         assertThat(config.getMetricsNameSnakeCase(), is(true));
-     }
+    }
 
     @Test
     public void whenDomainQualifierNotSpecified_dontModifyQueries() {
@@ -89,7 +89,7 @@ public class ExporterConfigTest {
         assertThat(queries, arrayWithSize(1));
         assertThat(queries[0].getUrl(Protocol.HTTP, "myhost", 1234),
                 equalTo(String.format(QueryType.RUNTIME_URL_PATTERN, "http", "myhost", 1234)));
-     }
+    }
 
     @Test
     public void whenSpecified_prependConfigurationQuery() {
@@ -100,7 +100,7 @@ public class ExporterConfigTest {
         assertThat(queries[0], sameInstance(MBeanSelector.DOMAIN_NAME_SELECTOR));
         assertThat(queries[1].getUrl(Protocol.HTTP, "myhost", 1234),
                 equalTo(String.format(QueryType.RUNTIME_URL_PATTERN, "http", "myhost", 1234)));
-     }
+    }
 
     @Test
     public void whenNotSpecified_wlsPortIsNull() {
@@ -217,15 +217,15 @@ public class ExporterConfigTest {
 
         assertThat(config.toString(), equalToIgnoringWhiteSpace(CONFIG_WITH_TOP_LEVEL_FIELDS));
     }
-    
+
     private static final String CONFIG_WITH_TOP_LEVEL_FIELDS =
             "queries:\n" +
-            "- key: name\n" +
-            "  values: [state, serverStartupTime]\n" +
-            "  JVMRuntime:\n" +
-            "    prefix: jvm_\n" +
-            "    key: name\n" +
-            "    values: [heapFreeCurrent, heapFreePercent, heapSizeCurrent]\n";
+                    "- key: name\n" +
+                    "  values: [state, serverStartupTime]\n" +
+                    "  JVMRuntime:\n" +
+                    "    prefix: jvm_\n" +
+                    "    key: name\n" +
+                    "    values: [heapFreeCurrent, heapFreePercent, heapSizeCurrent]\n";
 
     @Test
     public void includeSnakeCaseTrueSettingInToString() {
@@ -236,13 +236,13 @@ public class ExporterConfigTest {
 
     private static final String SNAKE_CASE_CONFIG =
             "metricsNameSnakeCase: true\n" +
-            "queries:\n" +
-            "- applicationRuntimes:\n" +
-            "    key: name\n" +
-            "    workManagerRuntimes:\n" +
-            "      prefix: workmanager_\n" +
-            "      key: applicationName\n" +
-            "      values: [pendingRequests, completedRequests, stuckThreadCount]\n";
+                    "queries:\n" +
+                    "- applicationRuntimes:\n" +
+                    "    key: name\n" +
+                    "    workManagerRuntimes:\n" +
+                    "      prefix: workmanager_\n" +
+                    "      key: applicationName\n" +
+                    "      values: [pendingRequests, completedRequests, stuckThreadCount]\n";
 
     @Test
     public void includeRestPortSettingInToString() {
@@ -253,13 +253,13 @@ public class ExporterConfigTest {
 
     private static final String REST_PORT_CONFIG =
             "restPort: 1234\n" +
-            "queries:\n" +
-            "- applicationRuntimes:\n" +
-            "    key: name\n" +
-            "    workManagerRuntimes:\n" +
-            "      prefix: workmanager_\n" +
-            "      key: applicationName\n" +
-            "      values: [pendingRequests, completedRequests, stuckThreadCount]\n";
+                    "queries:\n" +
+                    "- applicationRuntimes:\n" +
+                    "    key: name\n" +
+                    "    workManagerRuntimes:\n" +
+                    "      prefix: workmanager_\n" +
+                    "      key: applicationName\n" +
+                    "      values: [pendingRequests, completedRequests, stuckThreadCount]\n";
 
     @Test
     public void afterAppend_configHasOriginalDestination() {
@@ -292,13 +292,13 @@ public class ExporterConfigTest {
     public void afterAppend_configHasOriginalSnakeCase() {
         assertThat(getAppendedConfiguration(SERVLET_CONFIG, WORK_MANAGER_CONFIG).getMetricsNameSnakeCase(), is(false));
         assertThat(getAppendedConfiguration(WORK_MANAGER_CONFIG, SERVLET_CONFIG).getMetricsNameSnakeCase(), is(true));
-     }
+    }
 
     @Test
     public void afterAppend_configHasOriginalRestPort() {
         assertThat(getAppendedConfiguration(SERVLET_CONFIG, REST_PORT_CONFIG).getRestPort(), nullValue());
         assertThat(getAppendedConfiguration(REST_PORT_CONFIG, SERVLET_CONFIG).getRestPort(), equalTo(1234));
-     }
+    }
 
     @Test
     public void afterAppend_configHasOriginalQuery() {
@@ -347,19 +347,19 @@ public class ExporterConfigTest {
     public void afterReplace_configHasChangedSnakeCase() {
         assertThat(getReplacedConfiguration(SERVLET_CONFIG, WORK_MANAGER_CONFIG).getMetricsNameSnakeCase(), is(true));
         assertThat(getReplacedConfiguration(WORK_MANAGER_CONFIG, SERVLET_CONFIG).getMetricsNameSnakeCase(), is(false));
-     }
+    }
 
     @Test
     public void afterReplace_configHasChangedRestPort() {
         assertThat(getReplacedConfiguration(SERVLET_CONFIG, REST_PORT_CONFIG).getRestPort(), equalTo(1234));
         assertThat(getReplacedConfiguration(REST_PORT_CONFIG, SERVLET_CONFIG).getRestPort(), nullValue());
-     }
+    }
 
     @Test
     public void afterReplace_configHasChangedDomainQualifier() {
         assertThat(getReplacedConfiguration(SERVLET_CONFIG, DOMAIN_QUALIFIER_CONFIG).useDomainQualifier(), is(true));
         assertThat(getReplacedConfiguration(DOMAIN_QUALIFIER_CONFIG, SERVLET_CONFIG).useDomainQualifier(), is(false));
-     }
+    }
 
     @Test
     public void afterReplace_configHasNewQuery() {
@@ -392,45 +392,45 @@ public class ExporterConfigTest {
 
     private static final String MERGEABLE_CONFIG =
             "host: otherhost\n" +
-            "port: 9876\n" +
-            "metricsNameSnakeCase: true\n" +
-            "queries:\n" +
-            "- applicationRuntimes:\n" +
-            "    key: name\n" +
-            "    workManagerRuntimes:\n" +
-            "      prefix: workmanager_\n" +
-            "      key: applicationName\n" +
-            "      values: [pendingRequests, completedRequests, stuckThreadCount]\n" +
-            "- applicationRuntimes:\n" +
-            "    key: name\n" +
-            "    componentRuntimes:\n" +
-            "      type: WebAppComponentRuntime\n" +
-            "      prefix: webapp_config_\n" +
-            "      key: name\n" +
-            "      values: [deploymentState, type, contextRoot, sourceInfo, openSessionsHighCount, openSessionsCurrentCount, sessionsOpenedTotalCount]\n" +
-            "      servlets:\n" +
-            "        prefix: weblogic_servlet_\n" +
-            "        key: servletName\n" +
-            "        values: [invocationTotalCount, executionTimeTotal]\n";
+                    "port: 9876\n" +
+                    "metricsNameSnakeCase: true\n" +
+                    "queries:\n" +
+                    "- applicationRuntimes:\n" +
+                    "    key: name\n" +
+                    "    workManagerRuntimes:\n" +
+                    "      prefix: workmanager_\n" +
+                    "      key: applicationName\n" +
+                    "      values: [pendingRequests, completedRequests, stuckThreadCount]\n" +
+                    "- applicationRuntimes:\n" +
+                    "    key: name\n" +
+                    "    componentRuntimes:\n" +
+                    "      type: WebAppComponentRuntime\n" +
+                    "      prefix: webapp_config_\n" +
+                    "      key: name\n" +
+                    "      values: [deploymentState, type, contextRoot, sourceInfo, openSessionsHighCount, openSessionsCurrentCount, sessionsOpenedTotalCount]\n" +
+                    "      servlets:\n" +
+                    "        prefix: weblogic_servlet_\n" +
+                    "        key: servletName\n" +
+                    "        values: [invocationTotalCount, executionTimeTotal]\n";
 
     private static final String MERGED_CONFIG =
             "metricsNameSnakeCase: true\n" +
-            "queries:\n" +
-            "- applicationRuntimes:\n" +
-            "    key: name\n" +
-            "    workManagerRuntimes:\n" +
-            "      prefix: workmanager_\n" +
-            "      key: applicationName\n" +
-            "      values: [pendingRequests, completedRequests, stuckThreadCount]\n" +
-            "    componentRuntimes:\n" +
-            "      type: WebAppComponentRuntime\n" +
-            "      prefix: webapp_config_\n" +
-            "      key: name\n" +
-            "      values: [deploymentState, type, contextRoot, sourceInfo, openSessionsHighCount, openSessionsCurrentCount, sessionsOpenedTotalCount]\n" +
-            "      servlets:\n" +
-            "        prefix: weblogic_servlet_\n" +
-            "        key: servletName\n" +
-            "        values: [invocationTotalCount, executionTimeTotal]\n";
+                    "queries:\n" +
+                    "- applicationRuntimes:\n" +
+                    "    key: name\n" +
+                    "    workManagerRuntimes:\n" +
+                    "      prefix: workmanager_\n" +
+                    "      key: applicationName\n" +
+                    "      values: [pendingRequests, completedRequests, stuckThreadCount]\n" +
+                    "    componentRuntimes:\n" +
+                    "      type: WebAppComponentRuntime\n" +
+                    "      prefix: webapp_config_\n" +
+                    "      key: name\n" +
+                    "      values: [deploymentState, type, contextRoot, sourceInfo, openSessionsHighCount, openSessionsCurrentCount, sessionsOpenedTotalCount]\n" +
+                    "      servlets:\n" +
+                    "        prefix: weblogic_servlet_\n" +
+                    "        key: servletName\n" +
+                    "        values: [invocationTotalCount, executionTimeTotal]\n";
 
     @Test
     public void afterAppendWithNewTopLevelQuery_configHasMultipleTopLevelQueries() {
@@ -441,15 +441,15 @@ public class ExporterConfigTest {
 
     private static final String PARTITION_CONFIG =
             "queries:\n" +
-            "- partitionRuntimes:\n" +
-            "    key: name\n" +
-            "    keyName: partition\n" +
-            "    applicationRuntimes:\n" +
-            "      key: name\n" +
-            "      workManagerRuntimes:\n" +
-            "        prefix: workmanager_\n" +
-            "        key: applicationName\n" +
-            "        values: [pendingRequests, completedRequests, stuckThreadCount]\n";
+                    "- partitionRuntimes:\n" +
+                    "    key: name\n" +
+                    "    keyName: partition\n" +
+                    "    applicationRuntimes:\n" +
+                    "      key: name\n" +
+                    "      workManagerRuntimes:\n" +
+                    "        prefix: workmanager_\n" +
+                    "        key: applicationName\n" +
+                    "        values: [pendingRequests, completedRequests, stuckThreadCount]\n";
 
 
     @Test
@@ -469,9 +469,9 @@ public class ExporterConfigTest {
 
     private static final String CONFIG_WITH_SINGLE_VALUE =
             "queries:\n" +
-            "- JVMRuntime:\n" +
-            "    key: name\n" +
-            "    values: heapFreeCurrent\n";
+                    "- JVMRuntime:\n" +
+                    "    key: name\n" +
+                    "    values: heapFreeCurrent\n";
 
     @Test(expected = ConfigurationException.class)
     public void whenConfigHasDuplicateValues_reportFailure() {
@@ -480,12 +480,12 @@ public class ExporterConfigTest {
 
     private static final String CONFIG_WITH_DUPLICATE_VALUE =
             "queries:\n" +
-            "- applicationRuntimes:\n" +
-            "    key: name\n" +
-            "    workManagerRuntimes:\n" +
-            "      prefix: workmanager_\n" +
-            "      key: applicationName\n" +
-            "      values: [heapFreeCurrent,heapFreeCurrent]\n";
+                    "- applicationRuntimes:\n" +
+                    "    key: name\n" +
+                    "    workManagerRuntimes:\n" +
+                    "      prefix: workmanager_\n" +
+                    "      key: applicationName\n" +
+                    "      values: [heapFreeCurrent,heapFreeCurrent]\n";
 
     @Test(expected = ConfigurationException.class)
     public void whenConfigHasNoValues_reportFailure() {
@@ -494,9 +494,9 @@ public class ExporterConfigTest {
 
     private static final String CONFIG_WITH_NO_VALUES =
             "queries:\n" +
-            "- JVMRuntime:\n" +
-            "    key: name\n" +
-            "    values: []\n";
+                    "- JVMRuntime:\n" +
+                    "    key: name\n" +
+                    "    values: []\n";
 
     @Test
     public void defineEmptyConfiguration() {
@@ -529,7 +529,7 @@ public class ExporterConfigTest {
         ExporterConfig exporterConfig = loadFromString(DOMAIN_QUALIFIER_CONFIG);
 
         exporterConfig.scrapeMetrics(MBeanSelector.DOMAIN_NAME_SELECTOR, getJsonResponse(CONFIG_RESPONSE));
-        
+
         assertThat(exporterConfig.getDomainName(), equalTo("mydomain"));
     }
 
@@ -547,7 +547,7 @@ public class ExporterConfigTest {
     private Map<String, Object> getMetrics(ExporterConfig exporterConfig) {
         Map<String, Object> metrics = new HashMap<>();
         Arrays.stream(exporterConfig.getEffectiveQueries())
-              .forEach(q -> metrics.putAll(exporterConfig.scrapeMetrics(q, getJsonResponse(getResponse(q)))));
+                .forEach(q -> metrics.putAll(exporterConfig.scrapeMetrics(q, getJsonResponse(getResponse(q)))));
         return metrics;
     }
 
@@ -565,28 +565,28 @@ public class ExporterConfigTest {
 
     private static final String DOMAIN_QUALIFIER_CONFIG =
             ExporterConfig.DOMAIN_QUALIFIER + ": true\n" +
-            "queries:\n" +
-            "- applicationRuntimes:\n" +
-            "    workManagerRuntimes:\n" +
-            "      prefix: workmanager_\n" +
-            "      key: applicationName\n" +
-            "      values: [pendingRequests, completedRequests, stuckThreadCount]\n";
+                    "queries:\n" +
+                    "- applicationRuntimes:\n" +
+                    "    workManagerRuntimes:\n" +
+                    "      prefix: workmanager_\n" +
+                    "      key: applicationName\n" +
+                    "      values: [pendingRequests, completedRequests, stuckThreadCount]\n";
 
     private static final String CONFIG_RESPONSE = "{\"name\": \"mydomain\"}";
 
     private static final String WORK_MANAGER_RESPONSE =
             "{\"applicationRuntimes\": {\"items\": [\n" +
-            "     {\n" +
-            "            \"internal\": false,\n" +
-            "            \"name\": \"mbeans\",\n" +
-            "            \"workManagerRuntimes\": {\"items\": [{\n" +
-            "                \"applicationName\": \"thisOne\",\n" +
-            "                \"pendingRequests\": 2,\n" +
-            "                \"completedRequests\": 15,\n" +
-            "                \"stuckThreadCount\": 3\n" +
-            "              }]}\n" +
-            "     }\n" +
-            "]}}";
+                    "     {\n" +
+                    "            \"internal\": false,\n" +
+                    "            \"name\": \"mbeans\",\n" +
+                    "            \"workManagerRuntimes\": {\"items\": [{\n" +
+                    "                \"applicationName\": \"thisOne\",\n" +
+                    "                \"pendingRequests\": 2,\n" +
+                    "                \"completedRequests\": 15,\n" +
+                    "                \"stuckThreadCount\": 3\n" +
+                    "              }]}\n" +
+                    "     }\n" +
+                    "]}}";
 
     @SuppressWarnings("SameParameterValue")
     private JsonObject getJsonResponse(String jsonString) {

@@ -107,7 +107,6 @@ public class AESSecretUtil {
      * 将二进制转换成16进制
      *
      * @param buf 二进制数组
-     *
      */
     public static String parseByte2HexStr(byte buf[]) {
         StringBuffer sb = new StringBuffer();

@@ -19,7 +19,9 @@ public class LamubdaTest {
         MathOperation subtraction = (a, b) -> a - b;
 
         // 大括号中的返回语句
-        MathOperation multiplication = (int a, int b) -> { return a * b; };
+        MathOperation multiplication = (int a, int b) -> {
+            return a * b;
+        };
 
         // 没有大括号及返回语句
         MathOperation division = (int a, int b) -> a / b;
@@ -58,7 +60,7 @@ public class LamubdaTest {
         void sayMessage(String message);
     }
 
-    private int operate(int a, int b, MathOperation mathOperation){
+    private int operate(int a, int b, MathOperation mathOperation) {
         return mathOperation.operation(a, b);
     }
 }

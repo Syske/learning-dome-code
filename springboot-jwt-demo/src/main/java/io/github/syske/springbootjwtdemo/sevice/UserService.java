@@ -16,7 +16,7 @@ public class UserService {
 
     public User getUser(String username) {
         // 没有此用户直接返回null
-        if (! DataSource.getData().containsKey(username))
+        if (!DataSource.getData().containsKey(username))
             return null;
 
         User user = new User();

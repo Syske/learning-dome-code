@@ -1,100 +1,100 @@
 .keyboard {
-  position: fixed;
-  background: #fff;
-  opacity: 0;
-  width: 100%;
-  height: 57%;
-  bottom: -60%;
-  z-index: 10;
-  padding: 25px 0px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0);
+    position: fixed;
+    background: #fff;
+    opacity: 0;
+    width: 100%;
+    height: 57%;
+    bottom: -60%;
+    z-index: 10;
+    padding: 25px 0px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0);
 }
 
 .keyboard .key {
 
 }
 
-.keyboard .key a{
-  display: inherit;
-  background: #fff;
-  font-size: 18px;
-  text-align: center;
-  list-style: none;
-  margin: 5px;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0);
+.keyboard .key a {
+    display: inherit;
+    background: #fff;
+    font-size: 18px;
+    text-align: center;
+    list-style: none;
+    margin: 5px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0);
 }
 
 .keyboard .key #del-key {
-  background: #dc3545;
-  color: #fff;
+    background: #dc3545;
+    color: #fff;
 }
 
 .keyboard .key #back-key {
-  background: #569be5;
-  color: #fff;
+    background: #569be5;
+    color: #fff;
 }
 
 
 .keyboard .key #del-key-hover {
-  color:#000;
+    color: #000;
 }
 
 .keyboard .key #submit-key {
-  background: #28a745;
-  color: #fff;
+    background: #28a745;
+    color: #fff;
 }
 
 .keyboard .key #submit-key-hover {
-  color:#000;
+    color: #000;
 }
 
 #main-content {
-  padding: 0px 30px;
-  float: left;
-  overflow: hidden;
-  width: 100%;
+    padding: 0px 30px;
+    float: left;
+    overflow: hidden;
+    width: 100%;
 }
 
 .inde-tile {
-  background-color: #eff0f2;
-  border-radius: 6px;
-  padding: 14px;
-  margin-bottom: 20px;
-  position: relative;
-  text-align: center;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    background-color: #eff0f2;
+    border-radius: 6px;
+    padding: 14px;
+    margin-bottom: 20px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 .inde-tile .tile-hot-ribbon {
-  display: block;
-  position: absolute;
-  right: -4px;
-  top: -4px;
-  width: 82px;
+    display: block;
+    position: absolute;
+    right: -4px;
+    top: -4px;
+    width: 82px;
 }
 
 .inde-tile p {
-  font-size: 15px;
-  margin-bottom: 33px;
+    font-size: 15px;
+    margin-bottom: 33px;
 }
 
 .tile-image {
-  height: 100px;
-  margin: 31px 0 27px;
-  vertical-align: bottom;
+    height: 100px;
+    margin: 31px 0 27px;
+    vertical-align: bottom;
 }
 
 .tile-image.big-illustration {
-  height: 111px;
-  margin-top: 20px;
-  width: 112px;
+    height: 111px;
+    margin-top: 20px;
+    width: 112px;
 }
 
 .tile-title {
-  font-size: 20px;
-  margin: 0;
+    font-size: 20px;
+    margin: 0;
 }
 
 .main-body {

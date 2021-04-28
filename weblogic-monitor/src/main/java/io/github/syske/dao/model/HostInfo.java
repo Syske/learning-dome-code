@@ -2,11 +2,12 @@ package io.github.syske.dao.model;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author syske
@@ -87,11 +88,11 @@ public class HostInfo extends Model<HostInfo> {
     @Override
     public String toString() {
         return "HostInfo{" +
-        ", id=" + id +
-        ", name=" + name +
-        ", ip=" + ip +
-        ", username=" + username +
-        ", password=" + password +
-        "}";
+                ", id=" + id +
+                ", name=" + name +
+                ", ip=" + ip +
+                ", username=" + username +
+                ", password=" + password +
+                "}";
     }
 }

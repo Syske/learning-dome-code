@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
  */
 public class CacheTest {
     private CacheUtil cacheUtil = new CacheUtil();
+
     @Test
     public void cacheData() throws Exception {
         boolean singleObjectData = cacheUtil.cacheSingleObjectData("这里是测试内容", "test-cache-12312", -1L);

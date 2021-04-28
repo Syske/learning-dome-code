@@ -61,10 +61,10 @@ abstract public class PassThroughAuthenticationServlet extends HttpServlet {
             webClient.setSessionCookie(sessionCookie);
         else if (Objects.equals(webClient.getAuthentication(), ExporterSession.getAuthentication()))
             webClient.setSessionCookie(ExporterSession.getSessionCookie());
-     }
+    }
 
     private String getSessionCookie(HttpServletRequest req) {
-        for (Enumeration<String> each = req.getHeaders(ServletConstants.COOKIE_HEADER); each.hasMoreElements();) {
+        for (Enumeration<String> each = req.getHeaders(ServletConstants.COOKIE_HEADER); each.hasMoreElements(); ) {
             String sessionCookie = ExporterSession.getSessionCookie(each.nextElement());
             if (sessionCookie != null) return sessionCookie;
         }
@@ -73,16 +73,15 @@ abstract public class PassThroughAuthenticationServlet extends HttpServlet {
 
     /**
      * Performs a servlet action, wrappering it with authentication handling.
-     *
+     * <p>
      * This involves creating an object which can make http calls to the RESTful services, configuring it to
      * include the authentication header, if any, received from client. Any authentication errors from
      * the services will be returned to the client.
      *
-     * @param req the servlet request
-     * @param resp the servlet response
+     * @param req                  the servlet request
+     * @param resp                 the servlet response
      * @param authenticatedService an which actually performs calls to the RESTful services using the supplied client
-     *
-     * @throws IOException if an error occurs in the web client
+     * @throws IOException      if an error occurs in the web client
      * @throws ServletException if some other fatal error occurs
      */
     void doWithAuthentication(HttpServletRequest req, HttpServletResponse resp, AuthenticatedService authenticatedService) throws IOException, ServletException {

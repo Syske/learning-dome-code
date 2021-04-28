@@ -65,6 +65,7 @@ public class ShoppingSettlement {
 
     /**
      * 项目主入口
+     *
      * @param args
      * @throws Exception
      */
@@ -112,9 +113,7 @@ public class ShoppingSettlement {
      * @param goodsInfoList
      * @param couponInfo
      * @param settlementDate
-     *
      * @return
-     *
      * @throws ParseException
      */
     public double calculateTotalAmount(List<GoodsInfo> goodsInfoList,
@@ -146,7 +145,6 @@ public class ShoppingSettlement {
      *
      * @param goodsTypeName     商品种类
      * @param promotionInfoList 促销信息
-     *
      * @return
      */
     private PromotionInfo getGoodsPromotionInfo(String goodsTypeName,
@@ -163,7 +161,6 @@ public class ShoppingSettlement {
      * 获取商品分类名称
      *
      * @param goodsName
-     *
      * @return
      */
     private String getGoodsTypeName(String goodsName) {
@@ -182,7 +179,6 @@ public class ShoppingSettlement {
      * 获取商品信息
      *
      * @param goodsInfoStr
-     *
      * @return
      */
     public GoodsInfo getGoodsInfo(String goodsInfoStr, List<PromotionInfo> promotionInfoList) {
@@ -212,7 +208,6 @@ public class ShoppingSettlement {
      * 获取优惠券信息
      *
      * @param couponInfoStr
-     *
      * @return
      */
     public CouponInfo getCouponInfo(String couponInfoStr) {
@@ -233,9 +228,7 @@ public class ShoppingSettlement {
      * 获取促销信息
      *
      * @param promotionInfoStr
-     *
      * @return
-     *
      * @throws Exception
      */
     public PromotionInfo getPromotionInfo(String promotionInfoStr) throws Exception {
@@ -259,7 +252,6 @@ public class ShoppingSettlement {
      *
      * @param targetDateStr  目标日期，格式 yyyy-MM-dd
      * @param settlementDate 结算日期，格式 yyyy-MM-dd
-     *
      * @return 返回天数
      */
     public static int getCountDownDays(String targetDateStr, String settlementDate) throws ParseException {
@@ -276,7 +268,6 @@ public class ShoppingSettlement {
      * 判断字符串是否为空
      *
      * @param str
-     *
      * @return
      */
     private static boolean isEmpty(String str) {

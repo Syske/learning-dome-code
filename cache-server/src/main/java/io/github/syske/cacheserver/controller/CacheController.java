@@ -33,6 +33,7 @@ public class CacheController {
     public Result<String> cacheSingleObjectData(@RequestBody CacheRequestDTO<String> cacheRequestDTO) {
         return cacheService.cacheSingleObjectData(cacheRequestDTO);
     }
+
     /**
      * 缓存List数据
      *
@@ -43,6 +44,7 @@ public class CacheController {
     public Result<List> cacheListData(@RequestBody CacheRequestDTO<List> cacheRequestDTO) {
         return cacheService.cacheListData(cacheRequestDTO);
     }
+
     /**
      * 删除缓存数据
      *

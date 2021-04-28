@@ -72,7 +72,7 @@
         <!--过滤掉spring无用的debug信息-->
         <logger name="org.springframework" level="error"></logger>
         <!-- 将业务dao接口填写进去,并用控制台输出即可 -->
-         <logger name="org.mybatis" level="DEBUG" additivity="false">
+        <logger name="org.mybatis" level="DEBUG" additivity="false">
             <appender-ref ref="sql"/>
         </logger>
         <logger name="org.apache.ibatis" level="DEBUG" additivity="false">

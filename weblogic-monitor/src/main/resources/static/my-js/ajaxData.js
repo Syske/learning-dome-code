@@ -62,14 +62,13 @@ function addModalServerPortSave() {
 }
 
 
-
 function editHost(data) {
     $("#editForm")[0].reset();
 
     $("#editForm input").each(function () {
         console.log(this.name)
         console.log(data[this.name])
-        if("password_again" == this.name) {
+        if ("password_again" == this.name) {
             $(this).val(data['password']);
         } else {
             $(this).val(data[this.name]);

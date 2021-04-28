@@ -3,16 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<settings>
-		<!-- 打印查询语句 -->
-		<setting name="logImpl" value="STDOUT_LOGGING" />
-	</settings>
-	
-	<!-- <plugins>
-		com.github.pagehelper为PageHelper类所在包名
-		<plugin interceptor="com.github.pagehelper.PageInterceptor">
-			使用下面的方式配置参数，后面会有所有的参数介绍
-			<property name=" reasonable" value="true" />
-		</plugin>
-	</plugins> -->
+    <settings>
+        <!-- 打印查询语句 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!-- <plugins>
+        com.github.pagehelper为PageHelper类所在包名
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            使用下面的方式配置参数，后面会有所有的参数介绍
+            <property name=" reasonable" value="true" />
+        </plugin>
+    </plugins> -->
 </configuration>

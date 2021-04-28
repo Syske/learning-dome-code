@@ -18,6 +18,7 @@ import java.security.Principal;
 @RestController
 public class UserInfoController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @RequestMapping("/user")
     public ResponseEntity<Object> getUser(Principal principal) {
         logger.info("principal:" + principal);

@@ -14,25 +14,28 @@ import java.io.UnsupportedEncodingException;
  */
 public class Base64Util {
 
-    private Base64Util() {}
+    private Base64Util() {
+    }
 
     /**
      * 生成base64字符串
+     *
      * @param sourcesStr
      * @return
      */
-    public static String  encryptBase64(String sourcesStr) throws Exception {
+    public static String encryptBase64(String sourcesStr) throws Exception {
         BASE64Encoder encoder = new BASE64Encoder();
         try {
             return encoder.encode(sourcesStr.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
-            throw new Exception("base64加密失败" ,e);
+            throw new Exception("base64加密失败", e);
         }
 
     }
 
     /**
      * base解码
+     *
      * @param sourcesStr
      * @return
      * @throws Exception
@@ -42,11 +45,10 @@ public class Base64Util {
         try {
             return new String(decoder.decodeBuffer(sourcesStr), "UTF-8");
         } catch (IOException e) {
-            throw new Exception("base64解密失败" ,e);
+            throw new Exception("base64解密失败", e);
         }
 
     }
-
 
 
     public static void main(String[] args) {

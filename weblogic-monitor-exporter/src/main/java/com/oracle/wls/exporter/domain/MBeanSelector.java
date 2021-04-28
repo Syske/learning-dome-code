@@ -41,8 +41,8 @@ public class MBeanSelector {
     private QueryType queryType = QueryType.RUNTIME;
 
     private static MBeanSelector createDomainNameSelector() {
-        Map<String,Object> yaml = new HashMap<>();
-        yaml.put(MBeanSelector.VALUES, new String[] { "name" });
+        Map<String, Object> yaml = new HashMap<>();
+        yaml.put(MBeanSelector.VALUES, new String[]{"name"});
         MBeanSelector selector = MBeanSelector.create(yaml);
         selector.setQueryType(QueryType.CONFIGURATION);
         return selector;
@@ -84,7 +84,7 @@ public class MBeanSelector {
 
     private void setValues(String[] values) {
         if (values.length == 0) throw new ConfigurationException("Values specified as empty array");
-        
+
         Set<String> uniqueValues = new HashSet<>(Arrays.asList(values));
         if (values.length != uniqueValues.size())
             reportDuplicateValues(values, uniqueValues);
@@ -135,6 +135,7 @@ public class MBeanSelector {
 
     /**
      * Creates a hierarchical mbean selector based on a map derived from the YAML spec.
+     *
      * @param map the map of yaml data
      * @return a new mbean selector
      */
@@ -145,6 +146,7 @@ public class MBeanSelector {
     /**
      * Returns the type of mbean to process, from among those captured by this selector. If empty or null,
      * processes all captured mbeans.
+     *
      * @return a string matching the "type" attribute in the query result.
      */
     String getType() {
@@ -153,6 +155,7 @@ public class MBeanSelector {
 
     /**
      * Returns the prefix to be appended to the names of any values extracted from the corresponding mbean.
+     *
      * @return a string. May be null.
      */
     String getPrefix() {
@@ -162,6 +165,7 @@ public class MBeanSelector {
     /**
      * Returns the name of the field to use as a key to describe all values captured by this selector and its children.
      * The key-value pairs will be listed between braces after the value name.
+     *
      * @return the name of a field in the captured mbean.
      */
     String getKey() {
@@ -171,6 +175,7 @@ public class MBeanSelector {
     /**
      * Returns the name to use to add a qualifier for nested metrics whose value is obtained from the
      * value whose name matches the key. If not specified, defaults to the underlying key name.
+     *
      * @return the qualifier name for the exported metric
      */
     String getKeyName() {
@@ -179,6 +184,7 @@ public class MBeanSelector {
 
     /**
      * Returns the names of fields in the underlying mbeans which should be exported.
+     *
      * @return an array of field names.
      */
     String[] getValues() {
@@ -191,6 +197,7 @@ public class MBeanSelector {
 
     /**
      * Returns a map of nested mbean selectors
+     *
      * @return the nested selectors
      */
     Map<String, MBeanSelector> getNestedSelectors() {
@@ -199,6 +206,7 @@ public class MBeanSelector {
 
     /**
      * Returns a JSON string query to be displayed.
+     *
      * @return a JSON string
      */
     public String getPrintableRequest() {
@@ -207,6 +215,7 @@ public class MBeanSelector {
 
     /**
      * Returns a JSON string query to be sent to the REST service.
+     *
      * @return a JSON string
      */
     public String getRequest() {
@@ -240,6 +249,7 @@ public class MBeanSelector {
 
     /**
      * Merges this selector with the specified one. Returns the result of the merge.
+     *
      * @param selector a new selector whose attributes are to be combined with this one
      * @return the combined selector
      */

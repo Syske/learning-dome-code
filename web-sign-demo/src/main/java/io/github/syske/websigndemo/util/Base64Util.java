@@ -18,25 +18,28 @@ import java.util.UUID;
 public class Base64Util {
     private transient static Logger log = LoggerFactory.getLogger(Base64Util.class);
 
-    private Base64Util() {}
+    private Base64Util() {
+    }
 
     /**
      * 生成base64字符串
+     *
      * @param sourcesStr
      * @return
      */
-    public static String  encryptBase64(String sourcesStr) throws Exception {
+    public static String encryptBase64(String sourcesStr) throws Exception {
         BASE64Encoder encoder = new BASE64Encoder();
         try {
             return encoder.encode(sourcesStr.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
-            throw new Exception("base64加密失败" ,e);
+            throw new Exception("base64加密失败", e);
         }
 
     }
 
     /**
      * base解码
+     *
      * @param sourcesStr
      * @return
      * @throws Exception
@@ -46,18 +49,19 @@ public class Base64Util {
         try {
             return new String(decoder.decodeBuffer(sourcesStr), "UTF-8");
         } catch (IOException e) {
-            throw new Exception("base64解密失败" ,e);
+            throw new Exception("base64解密失败", e);
         }
 
     }
 
     /**
      * <p>将base64字符解码保存文件</p>
+     *
      * @param base64Code
      * @param targetPath
      * @throws Exception
      */
-    public static void decoderBase64File(String base64Code,String targetPath) throws Exception {
+    public static void decoderBase64File(String base64Code, String targetPath) throws Exception {
         byte[] buffer = new BASE64Decoder().decodeBuffer(base64Code);
         FileOutputStream out = new FileOutputStream(targetPath);
         out.write(buffer);
@@ -65,14 +69,14 @@ public class Base64Util {
     }
 
     /**
-     *  将base64编码转换成PDF
-     *  @param base64String
-     *  1.使用BASE64Decoder对编码的字符串解码成字节数组
-     *  2.使用底层输入流ByteArrayInputStream对象从字节数组中获取数据；
-     *  3.建立从底层输入流中读取数据的BufferedInputStream缓冲输出流对象；
-     *  4.使用BufferedOutputStream和FileOutputSteam输出数据到指定的文件中
+     * 将base64编码转换成PDF
+     *
+     * @param base64String 1.使用BASE64Decoder对编码的字符串解码成字节数组
+     *                     2.使用底层输入流ByteArrayInputStream对象从字节数组中获取数据；
+     *                     3.建立从底层输入流中读取数据的BufferedInputStream缓冲输出流对象；
+     *                     4.使用BufferedOutputStream和FileOutputSteam输出数据到指定的文件中
      */
-    public static void base64StringToPDF(String base64String, File file){
+    public static void base64StringToPDF(String base64String, File file) {
         BASE64Decoder decoder = new BASE64Decoder();
         BufferedInputStream bin = null;
         FileOutputStream fout = null;
@@ -85,13 +89,13 @@ public class Base64Util {
             //创建从底层输入流中读取数据的缓冲输入流对象
             bin = new BufferedInputStream(bais);
             //创建到指定文件的输出流
-            fout  = new FileOutputStream(file);
+            fout = new FileOutputStream(file);
             //为文件输出流对接缓冲输出流对象
             bout = new BufferedOutputStream(fout);
 
             byte[] buffers = new byte[1024];
             int len = bin.read(buffers);
-            while(len != -1){
+            while (len != -1) {
                 bout.write(buffers, 0, len);
                 len = bin.read(buffers);
             }
@@ -112,15 +116,16 @@ public class Base64Util {
 
     /**
      * PDF转换为Base64编码
+     *
      * @param file
      * @return
      */
     public static String remotePdfToBase64(String file) {
         BASE64Encoder encoder = new BASE64Encoder();
-        InputStream fin =null;
-        BufferedInputStream bin =null;
+        InputStream fin = null;
+        BufferedInputStream bin = null;
         ByteArrayOutputStream baos = null;
-        BufferedOutputStream bout =null;
+        BufferedOutputStream bout = null;
         try {
             URL url = new URL(file);
             fin = url.openStream();
@@ -129,7 +134,7 @@ public class Base64Util {
             bout = new BufferedOutputStream(baos);
             byte[] buffer = new byte[1024];
             int len = bin.read(buffer);
-            while(len != -1){
+            while (len != -1) {
                 bout.write(buffer, 0, len);
                 len = bin.read(buffer);
             }
@@ -161,6 +166,7 @@ public class Base64Util {
 
     /**
      * 文件转化成base64字符串
+     *
      * @param targetFile 文件完整路径
      * @return
      */
@@ -189,8 +195,7 @@ public class Base64Util {
     /**
      * base64字符串转化成图片
      *
-     * @param imgData
-     *            图片编码
+     * @param imgData 图片编码
      * @return
      * @throws IOException
      */
@@ -210,7 +215,7 @@ public class Base64Util {
                 }
             }
             out.write(b);
-        }catch (IOException e) {
+        } catch (IOException e) {
             log.error("图片转换失败：" + e);
             e.printStackTrace();
         } finally {
@@ -223,6 +228,7 @@ public class Base64Util {
 
     /**
      * 图片转化成base64字符串
+     *
      * @param imgPath
      * @return
      */

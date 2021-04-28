@@ -11,6 +11,7 @@ import com.google.common.base.Strings;
 import org.hamcrest.Description;
 
 // verifies that metrics are grouped by name, ignores any comments
+
 /**
  * @author Russell Gold
  */
@@ -23,8 +24,8 @@ public class PrometheusMetricsMatcher extends org.hamcrest.TypeSafeDiagnosingMat
     @Override
     protected boolean matchesSafely(String metricsList, Description description) {
         String[] metrics = Arrays.stream(metricsList.split("\n"))
-              .filter(this::isNotAComment)
-              .toArray(String[]::new);
+                .filter(this::isNotAComment)
+                .toArray(String[]::new);
 
         return allMetricsAreNumeric(description, metrics) && metricsInOrder(description, metrics);
     }

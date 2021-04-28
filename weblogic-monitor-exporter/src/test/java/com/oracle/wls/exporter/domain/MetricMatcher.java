@@ -9,7 +9,7 @@ import java.util.Objects;
 import org.hamcrest.Description;
 
 @SuppressWarnings("unused")
-class MetricMatcher extends org.hamcrest.TypeSafeDiagnosingMatcher<Map<String,Object>> {
+class MetricMatcher extends org.hamcrest.TypeSafeDiagnosingMatcher<Map<String, Object>> {
     private final String expectedKey;
     private final Object expectedValue;
 
@@ -48,9 +48,9 @@ class MetricMatcher extends org.hamcrest.TypeSafeDiagnosingMatcher<Map<String,Ob
     @Override
     public void describeTo(Description description) {
         description.appendText("map containing [")
-                   .appendValue(expectedKey)
-                   .appendText("->")
-                   .appendValue(expectedValue)
-                   .appendText("]");
+                .appendValue(expectedKey)
+                .appendText("->")
+                .appendValue(expectedValue)
+                .appendText("]");
     }
 }

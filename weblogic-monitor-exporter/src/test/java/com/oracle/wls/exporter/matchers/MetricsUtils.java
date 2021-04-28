@@ -11,11 +11,12 @@ class MetricsUtils {
         return spec.contains("{") ? spec.split("\\{")[0] : spec;
     }
 
-/**
- * @author Russell Gold
- */
+    /**
+     * @author Russell Gold
+     */
     static class Uniq implements Predicate<String> {
         String last = "";
+
         @Override
         public boolean test(String s) {
             try {

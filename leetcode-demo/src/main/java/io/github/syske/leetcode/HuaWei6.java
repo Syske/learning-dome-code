@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
  * @create: 2020-11-11 19:14
  */
 public class HuaWei6 {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         String input = null;
         while ((input = bf.readLine()) != null) {

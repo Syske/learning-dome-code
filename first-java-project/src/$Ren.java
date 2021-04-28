@@ -18,17 +18,17 @@ public class $Ren {
         System.out.println(f);
 
         // 除法
-        int g = a/c;
+        int g = a / c;
         System.out.println(g);
         // 复杂四则运算
-        int h = a + c - a * 2/c * (a + b)*2;
+        int h = a + c - a * 2 / c * (a + b) * 2;
         System.out.println(h);
 
         // a对b取余
         int j = c % b;
         System.out.println(j);
 
-        if(a > 0) {
+        if (a > 0) {
             System.out.println("a大于0");
         } else {
             System.out.println("a小于等于0");
@@ -81,7 +81,7 @@ public class $Ren {
         do {
             System.out.println("我是云中志");
             m++;
-        }while (m > 0);
+        } while (m > 0);
         System.out.println("m的值:" + m);
     }
 }

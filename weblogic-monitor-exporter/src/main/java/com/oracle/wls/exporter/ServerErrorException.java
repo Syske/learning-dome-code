@@ -8,13 +8,13 @@ package com.oracle.wls.exporter;
  */
 public class ServerErrorException extends WebClientException {
 
-  final int status;
+    final int status;
 
-  public ServerErrorException(int status) {
-    this.status = status;
-  }
+    public ServerErrorException(int status) {
+        this.status = status;
+    }
 
-  public int getStatus() {
-    return status;
-  }
+    public int getStatus() {
+        return status;
+    }
 }

@@ -50,7 +50,7 @@ public class SaticScheduleTask {
             serverInfo.setServerId(portInfo.getId());
             serverInfo.setHostId(portInfo.getHostId());
             serverInfo.setRecordtime(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
-           // logger.info("服务器运行数据:{}",serverInfo.toString());
+            // logger.info("服务器运行数据:{}",serverInfo.toString());
             serverRunrecordService.insert(serverInfo);
         }
     }

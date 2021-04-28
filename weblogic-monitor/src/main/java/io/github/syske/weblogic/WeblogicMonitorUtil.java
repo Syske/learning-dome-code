@@ -159,7 +159,7 @@ public class WeblogicMonitorUtil {
      * @return
      */
     public static ServerRunrecord getServerInfo(String hostname, String portString,
-                                     String username, String password) {
+                                                String username, String password) {
         final String protocol = "t3";
         MBeanServerConnection mBeanServerConnection = null;
         JmxWeblogic weblogic = new JmxWeblogic();

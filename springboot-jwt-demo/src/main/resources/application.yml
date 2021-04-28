@@ -1,7 +1,7 @@
 server:
   port: 8088
   servlet:
-  # 项目名称（根节点）
+    # 项目名称（根节点）
     context-path: /sso
 spring:
   application:

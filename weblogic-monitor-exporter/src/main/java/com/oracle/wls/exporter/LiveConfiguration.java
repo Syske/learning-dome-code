@@ -26,12 +26,16 @@ import org.yaml.snakeyaml.Yaml;
  * @author Russell Gold
  */
 class LiveConfiguration {
-    /** The path to the configuration file within the web application. */
+    /**
+     * The path to the configuration file within the web application.
+     */
     static final String CONFIG_YML = "/config.yml";
 
-    /** The address used to access WLS (cannot use the address found in the request due to potential server-side request forgery. */
+    /**
+     * The address used to access WLS (cannot use the address found in the request due to potential server-side request forgery.
+     */
     static final String WLS_HOST;
-    
+
     private static ExporterConfig config;
     private static String serverName;
     private static int serverPort;
@@ -86,6 +90,7 @@ class LiveConfiguration {
 
     /**
      * Creates a builder for URLs that can handle retries to alternative ports.
+     *
      * @param request the active servlet request
      * @return the new builder
      */
@@ -99,6 +104,7 @@ class LiveConfiguration {
 
     /**
      * Returns true if the live configuration has at least one query defined
+     *
      * @return a boolean which can be used to decide whether to perform a query
      */
     static boolean hasQueries() {
@@ -107,6 +113,7 @@ class LiveConfiguration {
 
     /**
      * Returns the defined queries as top-level selector objects.
+     *
      * @return an array of hierarchical mbean queries
      */
     static MBeanSelector[] getQueries() {
@@ -115,6 +122,7 @@ class LiveConfiguration {
 
     /**
      * Returns the accumulatedLoggedErrors
+     *
      * @return a string containing errors or the empty string;
      */
     static String getErrors() {
@@ -129,7 +137,7 @@ class LiveConfiguration {
      */
     static void init(ServletConfig servletConfig) {
         if (timestamp != null) return;
-        
+
         InputStream configurationFile = getConfigurationFile(servletConfig);
         initialize(Optional.ofNullable(configurationFile)
                 .map(ExporterConfig::loadConfig)
@@ -155,16 +163,18 @@ class LiveConfiguration {
 
     /**
      * Returns a string representation of the current configuration, prepended with the server location.
+     *
      * @return a human readable representation of the configuration
      */
     static String asString() {
         return "host: " + serverName + '\n' +
-               "port: " + serverPort + '\n' + getConfig();
+                "port: " + serverPort + '\n' + getConfig();
     }
 
     /**
      * Converts a JSON response from the Management RESTful service to Prometheus metrics.
-     * @param selector an MBean selector describing the metrics to extract
+     *
+     * @param selector     an MBean selector describing the metrics to extract
      * @param jsonResponse an object describing the current values of the desired MBean fields
      * @return a map of metric names to values
      */
@@ -209,6 +219,7 @@ class LiveConfiguration {
 
     /**
      * Returns the timestamp of the current configuration.
+     *
      * @return a time in milliseconds, since the epoch
      */
     static long getTimestamp() {
@@ -245,7 +256,8 @@ class LiveConfiguration {
         }
 
         @Override
-        public void shareConfiguration(String configuration) {}
+        public void shareConfiguration(String configuration) {
+        }
 
         @Override
         public ConfigurationUpdate getUpdate() {

@@ -31,7 +31,7 @@ public class MyserviceImpl implements Myservice {
     @Override
     public WrapperResponse handler(WrapperRequest request) {
         RequestHeader header = request.getHeader();
-        if(header != null) {
+        if (header != null) {
             String businessCode = header.getBusinessCode();
             /*if("01001".equals(businessCode)) {
                 // 处理业务01001

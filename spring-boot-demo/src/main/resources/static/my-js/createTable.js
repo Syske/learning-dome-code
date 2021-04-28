@@ -108,8 +108,7 @@ function createCurrentRuningStagee(dataString) {
             // This row is already open - close it
             row.child.hide();
             tr.removeClass('shown');
-        }
-        else {
+        } else {
             // Open this row
             row.child(format(row.data())).show();
             tr.addClass('shown');
@@ -189,7 +188,7 @@ function format(d) {
     // `d` is the original data object for the row
     console.log(d);
     listServerInfoByHostId(d.id);
-    return '<table id='+ d.id  +' cellpadding="5" cellspacing="0" border="0" style="padding-left:20px;' +
+    return '<table id=' + d.id + ' cellpadding="5" cellspacing="0" border="0" style="padding-left:20px;' +
         ' width: 100% ;background: aliceblue;"></table>';
 }
 
@@ -210,7 +209,7 @@ function listServerInfoByHostId(hostId) {
                         "<a class=\"btn btn-social-icon btn-info\" onclick='editServer(\" + JSON.stringify(dataString) + \")'><i class=\"fa fa-edit\"></i></a>\n" +
                         "<a class=\"btn btn-social-icon btn-danger\"><i class=\"fa fa-trash\"></i></a>\n" +
                         "</div></td></tr>");
-                    $("#dataTable #"+ hostId).append(tr);
+                    $("#dataTable #" + hostId).append(tr);
 
                 });
             } else {

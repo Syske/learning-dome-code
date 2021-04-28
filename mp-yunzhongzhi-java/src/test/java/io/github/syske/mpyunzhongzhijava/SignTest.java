@@ -13,6 +13,7 @@ import org.junit.Test;
  */
 public class SignTest {
     private final String token = "59f43dcea4f6848d5cdb18de1f7831be";
+
     @Test
     public void testSing() throws AesException {
         String signature = "6261dd6ca98fe20e7e540e47dee894337e1db288";
@@ -21,6 +22,7 @@ public class SignTest {
         String sha1 = SHA1.getSHA1(token, timeStamp, nonce, signature);
         System.out.println(sha1);
     }
+
     @Test
     public void testSign() throws AesException {
         String signature = "6261dd6ca98fe20e7e540e47dee894337e1db288";
