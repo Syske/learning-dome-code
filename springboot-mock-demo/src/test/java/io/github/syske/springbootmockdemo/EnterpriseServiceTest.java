@@ -28,19 +28,20 @@ public class EnterpriseServiceTest {
     @InjectMocks
     private EnterpriseServiceImpl enterpriseService;
 
-    @Mock
-    private EnterpriseMapper enterpriseMapper;
+//    @Mock
+//    private EnterpriseMapper enterpriseMapper;
 
     @Test
     public void test() {
         ArrayList<String> ls = new ArrayList<>();
         ls.add("sdfsdf");
 //        given(enterpriseMapper.selectEnterprise(12323L)).willReturn("admin");
-        given(enterpriseMapper.selectEnterprise(anyLong())).willReturn("admin");
-        enterpriseService.saveEnterpriseData(12323L, "testets", ls);
-        Assert.assertEquals();
-        Assert.assertFalse();
-        Assert.assertTrue();
-        Assert.assertNull();
+//        given(enterpriseMapper.selectEnterprise(anyLong())).willReturn("admin");
+//        enterpriseService.saveEnterpriseData(12323L, "testets", ls);
+        enterpriseService.saveEnterpriseData(any(), any(), any());
+//        Assert.assertEquals();
+//        Assert.assertFalse();
+//        Assert.assertTrue();
+//        Assert.assertNull();
     }
 }

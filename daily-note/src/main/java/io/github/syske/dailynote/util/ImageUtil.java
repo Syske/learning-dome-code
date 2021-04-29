@@ -33,6 +33,7 @@ public class ImageUtil {
 
     //设置字体
     private Font titleFontBig = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 260f);
+    private Font titleMiddleFontBig = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 80f);
     private Font titleFontLitter = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 60f);
     private Font titleFontSmall = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 40f);
     private Font contentFont = FontUtil.getFont(FontUtil.PINGFANG_FONT, 56f);
@@ -486,6 +487,34 @@ public class ImageUtil {
         graphics.drawLine(width, y, width, height);
         graphics.drawLine(x, height, width, height);
         graphics.drawLine(x, y, x, height);
+    }
+
+
+    /**
+     * 生成公众号封面
+     *
+     * @param imgSaveFullPath
+     * @throws IOException
+     */
+    public void createFaceImg(String content, String imgSaveFullPath) throws IOException {
+        int faceImgWidth = 900;
+        int faceImgHeight = 500;
+        BufferedImage faceImage = new BufferedImage(faceImgWidth, faceImgHeight, BufferedImage.TYPE_INT_RGB);
+        //设置图片的背景色
+        Graphics2D main = faceImage.createGraphics();
+        // 消除锯齿
+        main.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        main.setBackground(new Color(7,193,96));
+        main.setColor(new Color(7,193,96));
+        main.drawRect(0, 0, 900, 500);
+        main.fillRect(0, 0, 900, 500);
+        main.setFont(titleFontLitter);
+//        main.drawImage(contentImg, 0, 0, faceImgWidth, contentImgHeight, null);
+        int contentX = (faceImgWidth - getWordWidth(titleFontLitter, content)) / 2;
+        main.setColor(new Color(251, 255, 249));
+        main.drawString(content, contentX, faceImgHeight * 1 / 2);
+        createImage(faceImage, imgSaveFullPath);
     }
 
 
