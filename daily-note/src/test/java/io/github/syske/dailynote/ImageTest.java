@@ -1,10 +1,12 @@
 package io.github.syske.dailynote;
 
+import io.github.syske.dailynote.util.ChineseColorEnum;
 import io.github.syske.dailynote.util.ImageUtil;
 import io.github.syske.dailynote.util.UUIDUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class ImageTest {
@@ -15,9 +17,9 @@ public class ImageTest {
     public void imgTest() {
 
         try {
-            String mainContent = "当自律变成一种本能的习惯，你就会享受到它的快乐。";
-            String bookTitle = "";
-            String authorName = "村上春树";
+            String mainContent = "日出未必意味着光明，太阳也无非是颗辰星而已，只有在我们醒着时，才是真正的破晓。";
+            String bookTitle = "瓦尔登湖";
+            String authorName = "梭罗";
             StringBuilder authorInfo = new StringBuilder("—— ")
                     .append(authorName);
             if (StringUtils.isNotBlank(bookTitle)) {
@@ -34,7 +36,7 @@ public class ImageTest {
             String imgSaveFullPath = "D:\\tmp\\img\\created\\" + uuidStr + ".jpg";
             String faceImgSaveFullPath = "D:\\tmp\\img\\created\\face-img-" + uuidStr + ".jpg";
 //            String mainContImgPath = cg.getImageUrl();
-            String mainContImgPath = "https://pics2.baidu.com/feed/1ad5ad6eddc451dab4a2d4b6e65b3460d1163247.jpeg?token=8d290b20f0accdd037f0827a323998ba";
+            String mainContImgPath = "https://img1.baidu.com/it/u=956399857,3336931491&fm=26&fmt=auto&gp=0.jpg";
             cg.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, mainContImgPath, mainContent, authorInfo.toString(), footerContent);
             cg.createFaceImg(authorName, mainContImgPath, faceImgSaveFullPath);
         } catch (Exception e) {
@@ -58,6 +60,14 @@ public class ImageTest {
 //            String mainContImgPath = cg.getImageUrl();
         String mainContImgPath = "https://gitee.com/sysker/picBed/raw/master/images/20210204091907.png";
         String bookTitle = "Example Everyday";
-        cg.createFaceImg(bookTitle, imgSaveFullPath);
+        Color backgroundColor = ChineseColorEnum.E_ZHANG_HUANG.getColor();
+        Color fontColor = null;
+        if (ChineseColorEnum.isDark(backgroundColor)) {
+            fontColor = new Color(255, 255, 255);
+        } else {
+            fontColor = new Color(0, 0, 0);
+        }
+        cg.createFaceImg(bookTitle, backgroundColor,
+                fontColor, imgSaveFullPath);
     }
 }

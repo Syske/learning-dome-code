@@ -32,6 +32,10 @@ public class FontUtil {
      */
     public static final int FZLTTH_GBK_FONT = 4;
 
+    /**
+     * 李旭科行书
+     */
+    public static final int LI_XU_KE_FONT = 5;
 
     /**
      * 根据字体类型获取字体
@@ -55,6 +59,9 @@ public class FontUtil {
                 break;
             case FZLTTH_GBK_FONT:
                 path = "D:/tmp/img/test/font/fzltthjwgb10.ttf";
+                break;
+            case LI_XU_KE_FONT:
+                path = "D:/tmp/img/test/font/lixukexingshu.ttf";
                 break;
             default:
                 path = "D:/tmp/img/test/font/simhei.ttf";
