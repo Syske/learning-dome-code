@@ -61,7 +61,7 @@ public class FontUtil {
                 path = "D:/tmp/img/test/font/fzltthjwgb10.ttf";
                 break;
             case LI_XU_KE_FONT:
-                path = "D:/tmp/img/test/font/lixukexingshu.ttf";
+                path = Font.class.getResource("/") + "/font/lixukexingshu.ttf";
                 break;
             default:
                 path = "D:/tmp/img/test/font/simhei.ttf";
