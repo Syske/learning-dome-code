@@ -389,7 +389,7 @@ public class ChineseCalendar {
         if (m == 2 || m == 3) {
             Easter estDay = new Easter(y);
             if (m == estDay.m)
-                elements.get(estDay.d - 1).solarFestival = elements.get(estDay.d - 1).solarFestival + " 复活节(Easter Sunday)";
+                elements.get(estDay.d - 1).solarFestival = elements.get(estDay.d - 1).solarFestival + " 复活节";
         }
 
 

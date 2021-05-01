@@ -19,10 +19,12 @@ public class DateUtil {
      */
     public static int getCountDownDays(String targetDateStr, Date today) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String nowDateStr = format.format(today);  //第二个日期
+        //第二个日期
+        String nowDateStr = format.format(today);
         //算两个日期间隔多少天
         Date nowDate = format.parse(nowDateStr);
-        Date targetDate = format.parse(targetDateStr); // 目标日期
+        // 目标日期
+        Date targetDate = format.parse(targetDateStr);
         int days = (int) ((targetDate.getTime() - nowDate.getTime()) / (1000 * 3600 * 24));
         return days;
     }

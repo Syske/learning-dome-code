@@ -37,6 +37,7 @@ public class ImageUtil {
     private Font titleFontLitter = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 60f);
     private Font titleFontSmall = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 40f);
     private Font contentFont = FontUtil.getFont(FontUtil.PINGFANG_FONT, 56f);
+    private Font contentFontTips = FontUtil.getFont(FontUtil.LI_XU_KE_FONT, 56f);
 
     //生成图片文件
     @SuppressWarnings("restriction")
@@ -494,7 +495,7 @@ public class ImageUtil {
      * @param imgSaveFullPath
      * @throws IOException
      */
-    public void createFaceImg(String content, String imgSaveFullPath) throws IOException {
+    public void createFaceImg(String content, Color backgroundColor, Color fontColor, String imgSaveFullPath) throws IOException {
         int faceImgWidth = 900;
         int faceImgHeight = 500;
         BufferedImage faceImage = new BufferedImage(faceImgWidth, faceImgHeight, BufferedImage.TYPE_INT_RGB);
@@ -502,16 +503,16 @@ public class ImageUtil {
         Graphics2D main = faceImage.createGraphics();
         // 消除锯齿
         main.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        main.setBackground(new Color(7,193,96));
-        main.setColor(new Color(7,193,96));
+        main.setBackground(backgroundColor);
+        main.setColor(backgroundColor);
         main.drawRect(0, 0, 900, 500);
         main.fillRect(0, 0, 900, 500);
         main.setFont(titleFontLitter);
-//        main.drawImage(contentImg, 0, 0, faceImgWidth, contentImgHeight, null);
         int contentX = (faceImgWidth - getWordWidth(titleFontLitter, content)) / 2;
-        main.setColor(new Color(251, 255, 249));
+        main.setColor(fontColor);
         main.drawString(content, contentX, faceImgHeight * 1 / 2);
+        main.setFont(contentFontTips);
+        main.drawString("鹅掌黄", 900 - 200, 500 - 100);
         createImage(faceImage, imgSaveFullPath);
     }
 

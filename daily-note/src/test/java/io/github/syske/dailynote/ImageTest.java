@@ -1,10 +1,12 @@
 package io.github.syske.dailynote;
 
+import io.github.syske.dailynote.util.ChineseColorEnum;
 import io.github.syske.dailynote.util.ImageUtil;
 import io.github.syske.dailynote.util.UUIDUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Date;
 
@@ -37,7 +39,7 @@ public class ImageTest {
 //            String mainContImgPath = cg.getImageUrl();
             String mainContImgPath = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2F84000.jiuchisu.com%2Farticle%2F2017%2F04%2F12017913470913.jpg&refer=http%3A%2F%2F84000.jiuchisu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622421754&t=330af2594b0dfe4d536816ca4541a113";
             cg.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, mainContImgPath, mainContent, authorInfo.toString(), footerContent, date);
-            cg.createFaceImg(authorName, mainContImgPath, faceImgSaveFullPath);
+        cg.createFaceImg(authorName, mainContImgPath, faceImgSaveFullPath);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,6 +61,14 @@ public class ImageTest {
 //            String mainContImgPath = cg.getImageUrl();
         String mainContImgPath = "https://gitee.com/sysker/picBed/raw/master/images/20210204091907.png";
         String bookTitle = "Example Everyday";
-        cg.createFaceImg(bookTitle, imgSaveFullPath);
+        Color backgroundColor = ChineseColorEnum.E_ZHANG_HUANG.getColor();
+        Color fontColor = null;
+        if (ChineseColorEnum.isDark(backgroundColor)) {
+            fontColor = new Color(255, 255, 255);
+        } else {
+            fontColor = new Color(0, 0, 0);
+        }
+        cg.createFaceImg(bookTitle, backgroundColor,
+                fontColor, imgSaveFullPath);
     }
 }
