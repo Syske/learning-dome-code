@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class ImageTest {
 
@@ -15,9 +16,9 @@ public class ImageTest {
     public void imgTest() {
 
         try {
-            String mainContent = "当自律变成一种本能的习惯，你就会享受到它的快乐。";
-            String bookTitle = "";
-            String authorName = "村上春树";
+            String mainContent = "从某种意义上来看，世间一切，都是遇见。就像，冷遇见暖，就有了雨；春遇见冬，有了岁月；天遇见地，有了永恒；人遇见人，有了生命。";
+            String bookTitle = "朗读者";
+            String authorName = "董卿";
             StringBuilder authorInfo = new StringBuilder("—— ")
                     .append(authorName);
             if (StringUtils.isNotBlank(bookTitle)) {
@@ -25,7 +26,7 @@ public class ImageTest {
                         .append(bookTitle)
                         .append("》");
             }
-
+            Date date = new Date();
             String footerContent = "-【每日读书札记】-";
             String qrCodeImgPath = "https://images.cnblogs.com/cnblogs_com/caoleiCoding/921220/o_200830020106qrcode_for_gh_6985fde6e5e8_344.jpg";
 //            String qrCodeImgPath = "D:\\Users\\Administrator\\Downloads\\qrcode_for_gh_6985fde6e5e8_258 (1).jpg";
@@ -34,8 +35,8 @@ public class ImageTest {
             String imgSaveFullPath = "D:\\tmp\\img\\created\\" + uuidStr + ".jpg";
             String faceImgSaveFullPath = "D:\\tmp\\img\\created\\face-img-" + uuidStr + ".jpg";
 //            String mainContImgPath = cg.getImageUrl();
-            String mainContImgPath = "https://pics2.baidu.com/feed/1ad5ad6eddc451dab4a2d4b6e65b3460d1163247.jpeg?token=8d290b20f0accdd037f0827a323998ba";
-            cg.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, mainContImgPath, mainContent, authorInfo.toString(), footerContent);
+            String mainContImgPath = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2F84000.jiuchisu.com%2Farticle%2F2017%2F04%2F12017913470913.jpg&refer=http%3A%2F%2F84000.jiuchisu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622421754&t=330af2594b0dfe4d536816ca4541a113";
+            cg.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, mainContImgPath, mainContent, authorInfo.toString(), footerContent, date);
             cg.createFaceImg(authorName, mainContImgPath, faceImgSaveFullPath);
         } catch (Exception e) {
             e.printStackTrace();

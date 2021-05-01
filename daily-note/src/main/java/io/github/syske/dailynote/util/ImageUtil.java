@@ -70,7 +70,7 @@ public class ImageUtil {
      * @param headerHeight
      * @throws ParseException
      */
-    private void createHeader(int headerHeight) throws ParseException {
+    private void createHeader(int headerHeight, Date date) throws ParseException {
         HashMap<Character, String> weekDirs = new HashMap<>(7);
         weekDirs.put('日', "Sun");
         weekDirs.put('一', "Mon");
@@ -87,14 +87,11 @@ public class ImageUtil {
 
         int margin = 80;
         header.setFont(titleFontBig);
-        Date today = new Date();
-//        SimpleDateFormat dateFormatYmd = new SimpleDateFormat("yyyy-MM-dd");
-//        Date today = dateFormatYmd.parse("2021-03-04");
-        ChineseCalendar.Element element = ChineseCalendar.getCalendarDetail(today);
+        ChineseCalendar.Element element = ChineseCalendar.getCalendarDetail(date);
         logger.debug("农历：" + element.toString());
         // 日期
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
-        String contentFirstLineRight = dateFormat.format(today);
+        String contentFirstLineRight = dateFormat.format(date);
         int bigDateY = headerHeight / 2 + getFontAscent(titleFontBig) - titleFontBig.getSize() / 2;
         logger.debug("日期y坐标：" + bigDateY);
         header.drawString(contentFirstLineRight, margin, bigDateY);
@@ -162,7 +159,7 @@ public class ImageUtil {
 
         // 倒计时
         String countDownTips = "";
-        int countDownDays = DateUtil.getCountDownDays("2021-05-01", today);
+        int countDownDays = DateUtil.getCountDownDays("2021-05-01", date);
         if (countDownDays > 0) {
             countDownTips = "距离五一劳动节还有" + countDownDays + "天";
         } else {
@@ -222,10 +219,11 @@ public class ImageUtil {
      * @param mainContImgPath
      * @param content
      * @param authorInfo
+     * @param date
      * @throws Exception
      */
     public void createReadingNoteCard(String qrCodeImgPath, String imgSaveFullPath, String mainContImgPath,
-                                      String content, String authorInfo, String footerContent) throws Exception {
+                                      String content, String authorInfo, String footerContent, Date date) throws Exception {
         image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
         //设置图片的背景色
         Graphics2D main = image.createGraphics();
@@ -236,7 +234,7 @@ public class ImageUtil {
         //***********************页面头部
         int headerHeight = imageHeight / 5;
         logger.debug("头部高度：" + headerHeight);
-        createHeader(headerHeight);
+        createHeader(headerHeight, date);
         int margin = 50;
 
         createrMainContent(headerHeight, mainContImgPath, content, authorInfo, margin, contentFont);
