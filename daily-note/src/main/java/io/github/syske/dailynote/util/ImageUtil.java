@@ -19,9 +19,14 @@ import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import sun.font.FontDesignMetrics;
 
+/**
+ * @author syske
+ */
+@Component
 public class ImageUtil {
     private final Logger logger = LoggerFactory.getLogger(ImageUtil.class);
 
@@ -160,11 +165,11 @@ public class ImageUtil {
 
         // 倒计时
         String countDownTips = "";
-        int countDownDays = DateUtil.getCountDownDays("2021-05-01", date);
+        int countDownDays = DateUtil.getCountDownDays("2021-06-14", date);
         if (countDownDays > 0) {
-            countDownTips = "距离五一劳动节还有" + countDownDays + "天";
+            countDownTips = "距离端午节还有" + countDownDays + "天";
         } else {
-            countDownTips = "今天是五一劳动节";
+            countDownTips = "今天是端午节";
         }
         header.drawString(countDownTips, contentSecondX, bigDateY + getFontDescent(titleFontSmall));
 
@@ -256,7 +261,7 @@ public class ImageUtil {
      * @param imgSaveFullPath
      * @throws IOException
      */
-    public void createFaceImg(String bookTitle, String imgUrl, String imgSaveFullPath) throws IOException {
+    public void generateBannerPic(String bookTitle, String imgUrl, String imgSaveFullPath) throws IOException {
         int faceImgWidth = 900;
         int faceImgHeight = 500;
         BufferedImage faceImage = new BufferedImage(faceImgWidth, faceImgHeight, BufferedImage.TYPE_INT_RGB);
@@ -495,7 +500,7 @@ public class ImageUtil {
      * @param imgSaveFullPath
      * @throws IOException
      */
-    public void createFaceImg(String content, Color backgroundColor, Color fontColor, String imgSaveFullPath) throws IOException {
+    public void generateBannerPic(String content, Color backgroundColor, Color fontColor, String imgSaveFullPath) {
         int faceImgWidth = 900;
         int faceImgHeight = 500;
         BufferedImage faceImage = new BufferedImage(faceImgWidth, faceImgHeight, BufferedImage.TYPE_INT_RGB);
@@ -512,7 +517,6 @@ public class ImageUtil {
         main.setColor(fontColor);
         main.drawString(content, contentX, faceImgHeight * 1 / 2);
         main.setFont(contentFontTips);
-        main.drawString("鹅掌黄", 900 - 200, 500 - 100);
         createImage(faceImage, imgSaveFullPath);
     }
 

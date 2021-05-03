@@ -39,6 +39,7 @@ public class ThreadForTest {
                     }
                     Thread.sleep(3000L);
                 } catch (Exception e) {
+                    Thread.currentThread().interrupt();
                     System.out.println("报错了" + e);
                     System.out.println("事务回滚");
 

@@ -48,23 +48,20 @@ public class FontUtil {
         // 字体路径
         String path = "";
         switch (type) {
-            case DEFAULT_FONT:
-                path = "D:/tmp/img/test/font/simhei.ttf";
-                break;
             case PINGFANG_FONT:
-                path = "D:/tmp/img/test/font/PingFangSC.ttf";
+                path = getFontPath("font/PingFangSC.ttf");
                 break;
             case PINGFANG_BOLD_FONT:
-                path = "D:/tmp/img/test/font/PingFangBold.ttf";
+                path = getFontPath("font/PingFangBold.ttf");
                 break;
             case FZLTTH_GBK_FONT:
-                path = "D:/tmp/img/test/font/fzltthjwgb10.ttf";
+                path = getFontPath("font/fzltthjwgb10.ttf");
                 break;
             case LI_XU_KE_FONT:
-                path = Font.class.getResource("/") + "/font/lixukexingshu.ttf";
+                path = getFontPath("font/lixukexingshu.ttf");
                 break;
             default:
-                path = "D:/tmp/img/test/font/simhei.ttf";
+                path = getFontPath("font/simhei.ttf");
         }
 
         File file = new File(path);
@@ -88,5 +85,9 @@ public class FontUtil {
             }
         }
         return null;
+    }
+
+    private static String getFontPath(String name) {
+        return FontUtil.class.getClassLoader().getResource(name).getPath();
     }
 }
