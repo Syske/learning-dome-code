@@ -1,9 +1,6 @@
 package io.github.syske.dailynote;
 
-import java.awt.*;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Date;
 
 import cn.hutool.core.io.FileUtil;
@@ -68,17 +65,18 @@ public class ImageTest {
     public void generateBnnerPicTest() {
         String bookTitle = "Example Everyday";
         BannerInfo bannerInfo = new BannerInfo();
-        bannerInfo.setTitle(bookTitle).setBackgroundColor(ChineseColorEnum.E_ZHANG_HUANG);
+        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.BO_LUO_HONG)
+                .setDataStr("2021-05-06");
         imageService.generateBannerPic(bannerInfo);
     }
 
     @Test
     public void testGenerateDailyNotePic() {
         String mainContent =
-            "一个人的行走范围，就是他的世界。";
-        String bookTitle = "青灯";
-        String authorName = "北岛";
-        String bannerPicUrl = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F012fb75c2f189ba80121df900d9cbf.jpg%401280w_1l_2o_100sh.jpg&refer=http%3A%2F%2Fimg.zcool.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622601140&t=981e7ef251a064c34bbd2f55ec45b654";
+            "目标实现了，便是光荣；目标实现不了，人生也会因这一路风雨跋涉变得丰富而充实；在我看来，这就是不虚此生。";
+        String bookTitle = "我喜欢出发";
+        String authorName = "汪国真";
+        String bannerPicUrl = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181027%2F00ad1b193203473db8926e4f2e0ed699.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622850028&t=68c12b8681602ef26a277df0f798dacd";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);

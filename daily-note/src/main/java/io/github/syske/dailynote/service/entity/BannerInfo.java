@@ -24,7 +24,12 @@ public class BannerInfo {
     /**
      * 背景颜色
      */
-    private ChineseColorEnum backgroundColor;
+    private ChineseColorEnum backgroundColorEnum;
+
+    /**
+     * 日期
+     */
+    private String dataStr;
 
     public BannerInfo() {
     }
@@ -33,7 +38,7 @@ public class BannerInfo {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.backgroundColor = backgroundColor;
+        this.backgroundColorEnum = backgroundColor;
     }
 
     public Long getId() {
@@ -63,12 +68,21 @@ public class BannerInfo {
         return this;
     }
 
-    public ChineseColorEnum getBackgroundColor() {
-        return backgroundColor;
+    public ChineseColorEnum getBackgroundColorEnum() {
+        return backgroundColorEnum;
     }
 
-    public BannerInfo setBackgroundColor(ChineseColorEnum backgroundColor) {
-        this.backgroundColor = backgroundColor;
+    public BannerInfo setBackgroundColorEnum(ChineseColorEnum backgroundColorEnum) {
+        this.backgroundColorEnum = backgroundColorEnum;
+        return this;
+    }
+
+    public String getDataStr() {
+        return dataStr;
+    }
+
+    public BannerInfo setDataStr(String dataStr) {
+        this.dataStr = dataStr;
         return this;
     }
 
@@ -78,7 +92,8 @@ public class BannerInfo {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", backgroundColor=" + backgroundColor +
+                ", backgroundColorEnum=" + backgroundColorEnum +
+                ", dataStr='" + dataStr + '\'' +
                 '}';
     }
 }

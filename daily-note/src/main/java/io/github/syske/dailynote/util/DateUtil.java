@@ -1,8 +1,10 @@
 package io.github.syske.dailynote.util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @program: daily-note
@@ -27,5 +29,13 @@ public class DateUtil {
         Date targetDate = format.parse(targetDateStr);
         int days = (int) ((targetDate.getTime() - nowDate.getTime()) / (1000 * 3600 * 24));
         return days;
+    }
+
+    /**
+     * 获取当前时间，时间格式：yyyy-MM-dd
+     * @return
+     */
+    public static String getDatestrYYYY_MM_dd() {
+        return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
     }
 }

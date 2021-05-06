@@ -5,22 +5,22 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
+
 import sun.font.FontDesignMetrics;
 
 /**
@@ -42,7 +42,8 @@ public class ImageUtil {
     private Font titleFontLitter = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 60f);
     private Font titleFontSmall = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 40f);
     private Font contentFont = FontUtil.getFont(FontUtil.PINGFANG_FONT, 56f);
-    private Font contentFontTips = FontUtil.getFont(FontUtil.LI_XU_KE_FONT, 56f);
+    private Font contentFontTips = FontUtil.getFont(FontUtil.LI_XU_KE_FONT, 30f);
+    private Font contentTextFont = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 30f);
 
     //生成图片文件
     @SuppressWarnings("restriction")
@@ -111,23 +112,7 @@ public class ImageUtil {
         logger.debug("titleFontBig字体Descent*2：" + fontDescent * 2);
         logger.debug("titleFontBig字体fontAscent：" + fontAscent);
         logger.debug("titleFontBig字体size：" + titleFontBigSize);
-        /*
-        // 定位线
-        header.drawLine(0, bigDateY, imageWidth, bigDateY);
-        // 定位线
-        header.setColor(Color.red);
-        header.drawLine(0, bigDateY - fontDescent, imageWidth, bigDateY - fontDescent);
-        header.setColor(Color.green);
-        header.drawLine(0, bigDateY - fontDescent*2, imageWidth, bigDateY - fontDescent*2);
-        header.setColor(Color.BLUE);
-        header.drawLine(0, bigDateY - fontAscent, imageWidth, bigDateY - fontAscent);
-        header.setColor(Color.MAGENTA);
-        header.drawLine(0, bigDateY - wordHeight, imageWidth, bigDateY - wordHeight);
-        header.setColor(Color.cyan);
-        header.drawLine(0, bigDateY - (wordHeight+getFontDescent(titleFontBig)*2), imageWidth, bigDateY - (wordHeight+getFontDescent(titleFontBig)*2));
-        header.setColor(Color.yellow);
-        header.drawLine(0, bigDateY - titleFontBigSize, imageWidth, bigDateY - titleFontBigSize);
-*/
+
         // 中文年月日
         header.setColor(Color.black);
         header.setFont(titleFontLitter);
@@ -139,11 +124,13 @@ public class ImageUtil {
             contentSecondLineRight.append(" | 今日" + lunarFestival);
         }
         // 节气
-        if (!StringUtils.isEmpty(solarTerms)) {
+        if (StringUtils.isEmpty(lunarFestival) && !StringUtils.isEmpty(solarTerms)) {
             contentSecondLineRight.append(" | 今日" + solarTerms);
         }
+        // 阳历生日
         String solarFestival = element.getSolarFestival();
-        if (!StringUtils.isEmpty(solarFestival)) {
+        if (StringUtils.isEmpty(lunarFestival)
+                && StringUtils.isEmpty(solarTerms) && !StringUtils.isEmpty(solarFestival)) {
             contentSecondLineRight.append(" | 今日" + solarFestival);
         }
 
@@ -242,16 +229,9 @@ public class ImageUtil {
         logger.debug("头部高度：" + headerHeight);
         createHeader(headerHeight, date);
         int margin = 50;
-
         createrMainContent(headerHeight, mainContImgPath, content, authorInfo, margin, contentFont);
-
-
         createFooter(qrCodeImgPath, footerContent);
-
-
         createImage(image, imgSaveFullPath);
-
-
     }
 
     /**
@@ -500,9 +480,17 @@ public class ImageUtil {
      * @param imgSaveFullPath
      * @throws IOException
      */
-    public void generateBannerPic(String content, Color backgroundColor, Color fontColor, String imgSaveFullPath) {
+    public void generateBannerPic(String content, ChineseColorEnum chineseColorEnum,
+                                  String imgSaveFullPath, String dateStr) {
         int faceImgWidth = 900;
         int faceImgHeight = 500;
+        Color fontColor = null;
+        Color backgroundColor = chineseColorEnum.getColor();
+        if (ChineseColorEnum.isDark(backgroundColor)) {
+            fontColor = new Color(255, 255, 255);
+        } else {
+            fontColor = new Color(0, 0, 0);
+        }
         BufferedImage faceImage = new BufferedImage(faceImgWidth, faceImgHeight, BufferedImage.TYPE_INT_RGB);
         //设置图片的背景色
         Graphics2D main = faceImage.createGraphics();
@@ -510,13 +498,20 @@ public class ImageUtil {
         main.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         main.setBackground(backgroundColor);
         main.setColor(backgroundColor);
-        main.drawRect(0, 0, 900, 500);
-        main.fillRect(0, 0, 900, 500);
+        main.drawRect(0, 0, faceImgWidth, faceImgHeight);
+        main.fillRect(0, 0, faceImgWidth, faceImgHeight);
         main.setFont(titleFontLitter);
         int contentX = (faceImgWidth - getWordWidth(titleFontLitter, content)) / 2;
         main.setColor(fontColor);
-        main.drawString(content, contentX, faceImgHeight * 1 / 2);
+        int mainContentY = faceImgHeight * 1 / 2;
+        main.drawString(content, contentX, mainContentY);
+        main.setFont(contentTextFont);
+        int tipsContentX = (faceImgWidth - getWordWidth(contentTextFont, dateStr)) / 2;
+        main.drawString(dateStr, tipsContentX, mainContentY + 50);
         main.setFont(contentFontTips);
+        main.drawString("配色：" + chineseColorEnum.getColorName(),
+                faceImgWidth - 20 - getWordWidth(contentFontTips, "配色：" + chineseColorEnum.getColorName()),
+                100);
         createImage(faceImage, imgSaveFullPath);
     }
 

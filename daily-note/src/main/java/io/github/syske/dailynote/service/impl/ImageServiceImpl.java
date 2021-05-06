@@ -63,13 +63,9 @@ public class ImageServiceImpl implements ImageService {
     public String generateBannerPic(BannerInfo bannerInfo) {
         String imgSaveFullPath = "D:\\face-img-" + UUIDUtil.getUUIDStr() + ".jpg";
         Color fontColor = null;
-        Color backgroundColor = bannerInfo.getBackgroundColor().getColor();
-        if (ChineseColorEnum.isDark(backgroundColor)) {
-            fontColor = new Color(255, 255, 255);
-        } else {
-            fontColor = new Color(0, 0, 0);
-        }
-        imageUtil.generateBannerPic(bannerInfo.getTitle(), backgroundColor, fontColor, imgSaveFullPath);
+        ChineseColorEnum backgroundColorEnum = bannerInfo.getBackgroundColorEnum();
+        imageUtil.generateBannerPic(bannerInfo.getTitle(), backgroundColorEnum ,
+                imgSaveFullPath, bannerInfo.getDataStr());
         return null;
     }
 }

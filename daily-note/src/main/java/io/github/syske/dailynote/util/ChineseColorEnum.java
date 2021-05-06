@@ -2682,8 +2682,8 @@ public enum ChineseColorEnum {
      * @return
      */
     public static boolean isDark(Color color) {
-        // 浅色
+        // 小于192为浅色，否则为深色
         return  color.getRed() * 0.299 +
-                color.getGreen() * 0.578 + color.getBlue() * 0.114 >= 192;
+                color.getGreen() * 0.578 + color.getBlue() * 0.114 < 192;
     }
 }
