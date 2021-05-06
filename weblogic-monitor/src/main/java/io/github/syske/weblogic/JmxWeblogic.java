@@ -115,7 +115,6 @@ public class JmxWeblogic {
     }
 
     /**
-     *
      * @param objectName
      * @param name
      * @param mBeanServerConnection
@@ -161,7 +160,7 @@ public class JmxWeblogic {
     // TODO
     public static void main(String[] args) throws Exception {
         JmxWeblogic weblogic = new JmxWeblogic();
-       // initConnection();
+        // initConnection();
         String protocol = "t3";
         String hostname = "127.0.01";
         String portString = "9712";
@@ -173,8 +172,7 @@ public class JmxWeblogic {
         ObjectName serverRuntime = getAttribute(runtimeService, "ServerRuntime");
 
 
-
-      //  weblogic.getServerRunrecord(serverRuntime , mBeanServerConnection);
+        //  weblogic.getServerRunrecord(serverRuntime , mBeanServerConnection);
         weblogic.getJVMRuntime(serverRuntime, mBeanServerConnection);
 
 

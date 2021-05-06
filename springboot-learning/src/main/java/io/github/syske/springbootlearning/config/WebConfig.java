@@ -23,7 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new MyFilter());
         registration.setName("myFilter");
-        registration.addUrlPatterns("/test2","/test3");
+        registration.addUrlPatterns("/test2", "/test3");
         //此处尽量小，要比其他Filter靠前
         registration.setOrder(1);
         return registration;
@@ -34,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new MyFilter2());
         registration.setName("myFilter2");
-        registration.addUrlPatterns("/test2","/test3");
+        registration.addUrlPatterns("/test2", "/test3");
         //此处尽量小，要比其他Filter靠前
         registration.setOrder(2);
         return registration;
@@ -42,6 +42,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * 配置拦截器
+     *
      * @return
      */
     @Bean

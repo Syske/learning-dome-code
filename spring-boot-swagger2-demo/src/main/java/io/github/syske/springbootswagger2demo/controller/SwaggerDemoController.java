@@ -18,9 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Api(description = "spring boot swagger demo22222")
 @RequestMapping("/swagger/dome")
 public class SwaggerDemoController {
+    private final Logger logger = LoggerFactory.getLogger(SwaggerDemoController.class);
 
     @ResponseBody
-    @ApiOperation(value = "swagger2示例接口描述",httpMethod = "POST",
+    @ApiOperation(value = "swagger2示例接口描述", httpMethod = "POST",
             notes = "这里是notes信息", response = TestEntity.class)
     @RequestMapping("/list")
     public TestEntity listTest(TestEntity testEntity) {
@@ -34,6 +35,7 @@ public class SwaggerDemoController {
     @RequestMapping("/list2")
     public String listTest2(@ApiParam(name = "name", value = "value",
             allowableValues = "test,test2",example = "小王", required = true) String name) {
+        logger.info("请求参数：{}", name);
         return name + ", hello";
     }
 }

@@ -10,6 +10,7 @@ public interface Myservice<T> {
 
     /**
      * 接口业务方法
+     *
      * @param request
      * @return
      */

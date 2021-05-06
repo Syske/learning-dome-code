@@ -1,0 +1,264 @@
+2021-04-08 22:28:16,885 INFO  main                             - SOFABoot HealthCheck Starting!
+2021-04-08 22:30:16,597 INFO  main                             - SOFABoot HealthCheck Starting!
+2021-04-08 22:31:28,224 INFO  main                             - SOFABoot HealthCheck Starting!
+2021-04-08 22:31:32,839 INFO  main                             - Found 0 HealthChecker implementation:
+2021-04-08 22:31:32,841 INFO  main                             - Found 2 HealthIndicator implementation:sofaBootHealthIndicator,diskSpaceHealthIndicator
+2021-04-08 22:31:32,842 INFO  main                             - Found 0 ReadinessCheckCallback implementation: 
+2021-04-08 22:31:32,843 INFO  main                             - Begin SOFABoot HealthChecker readiness check.
+2021-04-08 22:31:32,845 INFO  main                             - SOFABoot HealthChecker readiness check result: success.
+2021-04-08 22:31:32,845 INFO  main                             - Begin SOFABoot HealthIndicator readiness check.
+2021-04-08 22:31:32,849 INFO  main                             - HealthIndicator[diskSpaceHealthIndicator] readiness check success.
+2021-04-08 22:31:32,852 INFO  main                             - SOFABoot HealthIndicator readiness check result: success.
+2021-04-08 22:31:32,852 INFO  main                             - Begin ReadinessCheckCallback readiness check
+2021-04-08 22:31:32,853 INFO  main                             - ReadinessCheckCallback readiness check result: success.
+2021-04-08 22:31:32,853 INFO  main                             - Readiness check result: success
+2021-04-08 22:31:35,186 INFO  RMI TCP Connection(6)-127.0.0.1  - Begin SOFABoot HealthChecker liveness check.
+2021-04-08 22:31:35,187 INFO  RMI TCP Connection(6)-127.0.0.1  - SOFABoot HealthChecker liveness check result: success.
+2021-04-08 22:39:24,554 INFO  main                             - SOFABoot HealthCheck Starting!
+2021-04-08 22:39:30,738 INFO  main                             - Found 1 HealthChecker implementation:sofaComponentHealthChecker
+2021-04-08 22:39:30,741 INFO  main                             - Found 2 HealthIndicator implementation:sofaBootHealthIndicator,diskSpaceHealthIndicator
+2021-04-08 22:39:30,742 INFO  main                             - Found 1 ReadinessCheckCallback implementation: rpcAfterHealthCheckCallback
+2021-04-08 22:39:30,743 INFO  main                             - Begin SOFABoot HealthChecker readiness check.
+2021-04-08 22:39:30,746 INFO  main                             - HealthChecker[sofaComponentHealthChecker] readiness check success with 0 retry.
+2021-04-08 22:39:30,747 INFO  main                             - SOFABoot HealthChecker readiness check result: success.
+2021-04-08 22:39:30,748 INFO  main                             - Begin SOFABoot HealthIndicator readiness check.
+2021-04-08 22:39:30,754 INFO  main                             - HealthIndicator[diskSpaceHealthIndicator] readiness check success.
+2021-04-08 22:39:30,754 INFO  main                             - SOFABoot HealthIndicator readiness check result: success.
+2021-04-08 22:39:30,754 INFO  main                             - Begin ReadinessCheckCallback readiness check
+2021-04-08 22:39:32,806 INFO  main                             - SOFABoot ReadinessCheckCallback[rpcAfterHealthCheckCallback] check success.
+2021-04-08 22:39:32,807 INFO  main                             - ReadinessCheckCallback readiness check result: success.
+2021-04-08 22:39:32,807 INFO  main                             - Readiness check result: success
+2021-04-08 22:39:34,431 INFO  RMI TCP Connection(4)-127.0.0.1  - Begin SOFABoot HealthChecker liveness check.
+2021-04-08 22:39:34,432 INFO  RMI TCP Connection(4)-127.0.0.1  - HealthChecker[sofaComponentHealthChecker] liveness check success with 0 retry.
+2021-04-08 22:39:34,433 INFO  RMI TCP Connection(4)-127.0.0.1  - SOFABoot HealthChecker liveness check result: success.
+2021-04-08 22:42:01,683 INFO  main                             - SOFABoot HealthCheck Starting!
+2021-04-08 22:42:07,720 INFO  main                             - Found 1 HealthChecker implementation:sofaComponentHealthChecker
+2021-04-08 22:42:07,722 INFO  main                             - Found 2 HealthIndicator implementation:sofaBootHealthIndicator,diskSpaceHealthIndicator
+2021-04-08 22:42:07,723 INFO  main                             - Found 1 ReadinessCheckCallback implementation: rpcAfterHealthCheckCallback
+2021-04-08 22:42:07,724 INFO  main                             - Begin SOFABoot HealthChecker readiness check.
+2021-04-08 22:42:07,726 INFO  main                             - HealthChecker[sofaComponentHealthChecker] readiness check success with 0 retry.
+2021-04-08 22:42:07,727 INFO  main                             - SOFABoot HealthChecker readiness check result: success.
+2021-04-08 22:42:07,727 INFO  main                             - Begin SOFABoot HealthIndicator readiness check.
+2021-04-08 22:42:07,731 INFO  main                             - HealthIndicator[diskSpaceHealthIndicator] readiness check success.
+2021-04-08 22:42:07,731 INFO  main                             - SOFABoot HealthIndicator readiness check result: success.
+2021-04-08 22:42:07,732 INFO  main                             - Begin ReadinessCheckCallback readiness check
+2021-04-08 22:42:09,457 INFO  main                             - SOFABoot ReadinessCheckCallback[rpcAfterHealthCheckCallback] check success.
+2021-04-08 22:42:09,457 INFO  main                             - ReadinessCheckCallback readiness check result: success.
+2021-04-08 22:42:09,457 INFO  main                             - Readiness check result: success
+2021-04-08 22:42:11,425 INFO  RMI TCP Connection(4)-127.0.0.1  - Begin SOFABoot HealthChecker liveness check.
+2021-04-08 22:42:11,426 INFO  RMI TCP Connection(4)-127.0.0.1  - HealthChecker[sofaComponentHealthChecker] liveness check success with 0 retry.
+2021-04-08 22:42:11,426 INFO  RMI TCP Connection(4)-127.0.0.1  - SOFABoot HealthChecker liveness check result: success.
+2021-04-08 22:45:21,305 INFO  main                             - SOFABoot HealthCheck Starting!
+2021-04-08 22:45:34,102 INFO  main                             - Found 1 HealthChecker implementation:sofaComponentHealthChecker
+2021-04-08 22:45:34,105 INFO  main                             - Found 2 HealthIndicator implementation:sofaBootHealthIndicator,diskSpaceHealthIndicator
+2021-04-08 22:45:34,108 INFO  main                             - Found 1 ReadinessCheckCallback implementation: rpcAfterHealthCheckCallback
+2021-04-08 22:45:34,108 INFO  main                             - Begin SOFABoot HealthChecker readiness check.
+2021-04-08 22:45:34,114 INFO  main                             - HealthChecker[sofaComponentHealthChecker] readiness check success with 0 retry.
+2021-04-08 22:45:34,115 INFO  main                             - SOFABoot HealthChecker readiness check result: success.
+2021-04-08 22:45:34,116 INFO  main                             - Begin SOFABoot HealthIndicator readiness check.
+2021-04-08 22:45:34,128 INFO  main                             - HealthIndicator[diskSpaceHealthIndicator] readiness check success.
+2021-04-08 22:45:34,131 INFO  main                             - SOFABoot HealthIndicator readiness check result: success.
+2021-04-08 22:45:34,131 INFO  main                             - Begin ReadinessCheckCallback readiness check
+2021-04-08 22:45:36,587 ERROR main                             - Error occurred while doing ReadinessCheckCallback[rpcAfterHealthCheckCallback] check.
+com.alipay.sofa.rpc.core.exception.SofaRpcRuntimeException: Failed to start bolt server, see more detail from bolt log.
+	at com.alipay.sofa.rpc.server.bolt.BoltServer.start(BoltServer.java:121)
+	at com.alipay.sofa.rpc.boot.container.ServerConfigContainer.startServers(ServerConfigContainer.java:84)
+	at com.alipay.sofa.rpc.boot.context.SofaBootRpcStartListener.onApplicationEvent(SofaBootRpcStartListener.java:74)
+	at com.alipay.sofa.rpc.boot.context.SofaBootRpcStartListener.onApplicationEvent(SofaBootRpcStartListener.java:42)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:398)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:355)
+	at com.alipay.sofa.rpc.boot.health.RpcAfterHealthCheckCallback.onHealthy(RpcAfterHealthCheckCallback.java:45)
+	at com.alipay.sofa.healthcheck.core.AfterReadinessCheckCallbackProcessor.doHealthCheckCallback(AfterReadinessCheckCallbackProcessor.java:95)
+	at com.alipay.sofa.healthcheck.core.AfterReadinessCheckCallbackProcessor.lambda$afterReadinessCheckCallback$1(AfterReadinessCheckCallbackProcessor.java:76)
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193)
+	at java.util.Iterator.forEachRemaining(Iterator.java:116)
+	at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:472)
+	at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:708)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.reduce(ReferencePipeline.java:474)
+	at com.alipay.sofa.healthcheck.core.AfterReadinessCheckCallbackProcessor.afterReadinessCheckCallback(AfterReadinessCheckCallbackProcessor.java:77)
+	at com.alipay.sofa.healthcheck.startup.ReadinessCheckListener.readinessHealthCheck(ReadinessCheckListener.java:103)
+	at com.alipay.sofa.healthcheck.startup.ReadinessCheckListener.onApplicationEvent(ReadinessCheckListener.java:79)
+	at com.alipay.sofa.healthcheck.startup.ReadinessCheckListener.onApplicationEvent(ReadinessCheckListener.java:39)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:398)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:355)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:882)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:127)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:117)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:108)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:246)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:97)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$5(ClassBasedTestDescriptor.java:337)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:342)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$6(ClassBasedTestDescriptor.java:337)
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193)
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175)
+	at java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1382)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:472)
+	at java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:312)
+	at java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:743)
+	at java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:742)
+	at java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:580)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:336)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:259)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$2(ClassBasedTestDescriptor.java:252)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$3(ClassBasedTestDescriptor.java:251)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:29)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:72)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$0(NodeTestTask.java:80)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:72)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:80)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:66)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:110)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:72)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:71)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:110)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:72)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:71)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:74)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+2021-04-08 22:45:36,589 ERROR main                             - ReadinessCheckCallback readiness check result: failed.
+2021-04-08 22:45:36,589 ERROR main                             - Readiness check result: fail
+2021-04-08 22:49:47,817 INFO  main                             - SOFABoot HealthCheck Starting!
+2021-04-08 22:49:58,369 INFO  main                             - Found 1 HealthChecker implementation:sofaComponentHealthChecker
+2021-04-08 22:49:58,373 INFO  main                             - Found 2 HealthIndicator implementation:sofaBootHealthIndicator,diskSpaceHealthIndicator
+2021-04-08 22:49:58,375 INFO  main                             - Found 1 ReadinessCheckCallback implementation: rpcAfterHealthCheckCallback
+2021-04-08 22:49:58,376 INFO  main                             - Begin SOFABoot HealthChecker readiness check.
+2021-04-08 22:49:58,385 INFO  main                             - HealthChecker[sofaComponentHealthChecker] readiness check success with 0 retry.
+2021-04-08 22:49:58,385 INFO  main                             - SOFABoot HealthChecker readiness check result: success.
+2021-04-08 22:49:58,386 INFO  main                             - Begin SOFABoot HealthIndicator readiness check.
+2021-04-08 22:49:58,393 INFO  main                             - HealthIndicator[diskSpaceHealthIndicator] readiness check success.
+2021-04-08 22:49:58,394 INFO  main                             - SOFABoot HealthIndicator readiness check result: success.
+2021-04-08 22:49:58,394 INFO  main                             - Begin ReadinessCheckCallback readiness check
+2021-04-08 22:50:00,586 ERROR main                             - Error occurred while doing ReadinessCheckCallback[rpcAfterHealthCheckCallback] check.
+com.alipay.sofa.rpc.core.exception.SofaRpcRuntimeException: Failed to start bolt server, see more detail from bolt log.
+	at com.alipay.sofa.rpc.server.bolt.BoltServer.start(BoltServer.java:121)
+	at com.alipay.sofa.rpc.boot.container.ServerConfigContainer.startServers(ServerConfigContainer.java:84)
+	at com.alipay.sofa.rpc.boot.context.SofaBootRpcStartListener.onApplicationEvent(SofaBootRpcStartListener.java:74)
+	at com.alipay.sofa.rpc.boot.context.SofaBootRpcStartListener.onApplicationEvent(SofaBootRpcStartListener.java:42)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:398)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:355)
+	at com.alipay.sofa.rpc.boot.health.RpcAfterHealthCheckCallback.onHealthy(RpcAfterHealthCheckCallback.java:45)
+	at com.alipay.sofa.healthcheck.core.AfterReadinessCheckCallbackProcessor.doHealthCheckCallback(AfterReadinessCheckCallbackProcessor.java:95)
+	at com.alipay.sofa.healthcheck.core.AfterReadinessCheckCallbackProcessor.lambda$afterReadinessCheckCallback$1(AfterReadinessCheckCallbackProcessor.java:76)
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193)
+	at java.util.Iterator.forEachRemaining(Iterator.java:116)
+	at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:472)
+	at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:708)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.reduce(ReferencePipeline.java:474)
+	at com.alipay.sofa.healthcheck.core.AfterReadinessCheckCallbackProcessor.afterReadinessCheckCallback(AfterReadinessCheckCallbackProcessor.java:77)
+	at com.alipay.sofa.healthcheck.startup.ReadinessCheckListener.readinessHealthCheck(ReadinessCheckListener.java:103)
+	at com.alipay.sofa.healthcheck.startup.ReadinessCheckListener.onApplicationEvent(ReadinessCheckListener.java:79)
+	at com.alipay.sofa.healthcheck.startup.ReadinessCheckListener.onApplicationEvent(ReadinessCheckListener.java:39)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:398)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:355)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:882)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:127)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:117)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:108)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:246)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:97)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$5(ClassBasedTestDescriptor.java:337)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:342)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$6(ClassBasedTestDescriptor.java:337)
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193)
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175)
+	at java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1382)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:472)
+	at java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:312)
+	at java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:743)
+	at java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:742)
+	at java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:580)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:336)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:259)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$2(ClassBasedTestDescriptor.java:252)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$3(ClassBasedTestDescriptor.java:251)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:29)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:72)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$0(NodeTestTask.java:80)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:72)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:80)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:66)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:110)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:72)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:71)
+	at java.util.ArrayList.forEach(ArrayList.java:1257)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:38)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:110)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:72)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:71)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:32)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:51)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:74)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:47)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+2021-04-08 22:50:00,588 ERROR main                             - ReadinessCheckCallback readiness check result: failed.
+2021-04-08 22:50:00,589 ERROR main                             - Readiness check result: fail

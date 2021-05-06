@@ -1,5 +1,8 @@
 package io.github.syske;
 
+import java.util.Optional;
+import java.util.stream.Stream;
+
 /**
  * @program: lamubda
  * @description: lamubda表达式
@@ -16,7 +19,9 @@ public class LamubdaTest {
         MathOperation subtraction = (a, b) -> a - b;
 
         // 大括号中的返回语句
-        MathOperation multiplication = (int a, int b) -> { return a * b; };
+        MathOperation multiplication = (int a, int b) -> {
+            return a * b;
+        };
 
         // 没有大括号及返回语句
         MathOperation division = (int a, int b) -> a / b;
@@ -36,6 +41,15 @@ public class LamubdaTest {
 
         greetService1.sayMessage("Runoob");
         greetService2.sayMessage("Google");
+
+        Optional<Integer> result = Stream.of("a", "be", "hello")
+                .map(s -> s.length())
+                .filter(l -> l <= 3)
+                .max((o1, o2) -> o1 - o2);
+        System.out.println(result.get());
+
+        Stream<Integer> integerStream = Stream.of("of", "bar", "hello").map(s -> s.length());
+        System.out.println(integerStream.filter(l -> l > 3).max((o1, o2) -> o1 - o2));
     }
 
     interface MathOperation {
@@ -46,7 +60,7 @@ public class LamubdaTest {
         void sayMessage(String message);
     }
 
-    private int operate(int a, int b, MathOperation mathOperation){
+    private int operate(int a, int b, MathOperation mathOperation) {
         return mathOperation.operation(a, b);
     }
 }

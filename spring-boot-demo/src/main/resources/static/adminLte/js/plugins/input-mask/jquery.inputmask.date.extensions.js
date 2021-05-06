@@ -13,30 +13,30 @@ Optional extensions on the jquery.inputmask base
         'h': { //hours
             validator: "[01][0-9]|2[0-3]",
             cardinality: 2,
-            prevalidator: [{ validator: "[0-2]", cardinality: 1 }]
+            prevalidator: [{validator: "[0-2]", cardinality: 1}]
         },
         's': { //seconds || minutes
             validator: "[0-5][0-9]",
             cardinality: 2,
-            prevalidator: [{ validator: "[0-5]", cardinality: 1 }]
+            prevalidator: [{validator: "[0-5]", cardinality: 1}]
         },
         'd': { //basic day
             validator: "0[1-9]|[12][0-9]|3[01]",
             cardinality: 2,
-            prevalidator: [{ validator: "[0-3]", cardinality: 1 }]
+            prevalidator: [{validator: "[0-3]", cardinality: 1}]
         },
         'm': { //basic month
             validator: "0[1-9]|1[012]",
             cardinality: 2,
-            prevalidator: [{ validator: "[01]", cardinality: 1 }]
+            prevalidator: [{validator: "[01]", cardinality: 1}]
         },
         'y': { //basic year
             validator: "(19|20)\\d{2}",
             cardinality: 4,
             prevalidator: [
-                        { validator: "[12]", cardinality: 1 },
-                        { validator: "(19|20)", cardinality: 2 },
-                        { validator: "(19|20)\\d", cardinality: 3 }
+                {validator: "[12]", cardinality: 1},
+                {validator: "(19|20)", cardinality: 2},
+                {validator: "(19|20)\\d", cardinality: 3}
             ]
         }
     });
@@ -47,17 +47,23 @@ Optional extensions on the jquery.inputmask base
             regex: {
                 val1pre: new RegExp("[0-3]"), //daypre
                 val1: new RegExp("0[1-9]|[12][0-9]|3[01]"), //day
-                val2pre: function (separator) { var escapedSeparator = $.inputmask.escapeRegex.call(this, separator); return new RegExp("((0[1-9]|[12][0-9]|3[01])" + escapedSeparator + "[01])"); }, //monthpre
-                val2: function (separator) { var escapedSeparator = $.inputmask.escapeRegex.call(this, separator); return new RegExp("((0[1-9]|[12][0-9])" + escapedSeparator + "(0[1-9]|1[012]))|(30" + escapedSeparator + "(0[13-9]|1[012]))|(31" + escapedSeparator + "(0[13578]|1[02]))"); }//month
+                val2pre: function (separator) {
+                    var escapedSeparator = $.inputmask.escapeRegex.call(this, separator);
+                    return new RegExp("((0[1-9]|[12][0-9]|3[01])" + escapedSeparator + "[01])");
+                }, //monthpre
+                val2: function (separator) {
+                    var escapedSeparator = $.inputmask.escapeRegex.call(this, separator);
+                    return new RegExp("((0[1-9]|[12][0-9])" + escapedSeparator + "(0[1-9]|1[012]))|(30" + escapedSeparator + "(0[13-9]|1[012]))|(31" + escapedSeparator + "(0[13578]|1[02]))");
+                }//month
             },
             leapday: "29/02/",
             separator: '/',
-            yearrange: { minyear: 1900, maxyear: 2099 },
+            yearrange: {minyear: 1900, maxyear: 2099},
             isInYearRange: function (chrs, minyear, maxyear) {
                 var enteredyear = parseInt(chrs.concat(minyear.toString().slice(chrs.length)));
                 var enteredyear2 = parseInt(chrs.concat(maxyear.toString().slice(chrs.length)));
                 return (enteredyear != NaN ? minyear <= enteredyear && enteredyear <= maxyear : false) ||
-            		   (enteredyear2 != NaN ? minyear <= enteredyear2 && enteredyear2 <= maxyear : false);
+                    (enteredyear2 != NaN ? minyear <= enteredyear2 && enteredyear2 <= maxyear : false);
             },
             determinebaseyear: function (minyear, maxyear, hint) {
                 var currentyear = (new Date()).getFullYear();
@@ -90,7 +96,7 @@ Optional extensions on the jquery.inputmask base
                                 isValid = opts.regex.val1.test("0" + chrs.charAt(0));
                                 if (isValid) {
                                     buffer[pos - 1] = "0";
-                                    return { "pos": pos, "c": chrs.charAt(0) };
+                                    return {"pos": pos, "c": chrs.charAt(0)};
                                 }
                             }
                         }
@@ -105,7 +111,7 @@ Optional extensions on the jquery.inputmask base
                                 if (isValid) {
                                     buffer[pos] = "0";
                                     pos++;
-                                    return { "pos": pos };
+                                    return {"pos": pos};
                                 }
                             }
                             return isValid;
@@ -122,7 +128,7 @@ Optional extensions on the jquery.inputmask base
                                 isValid = opts.regex.val2(opts.separator).test(frontValue + "0" + chrs.charAt(0));
                                 if (isValid) {
                                     buffer[pos - 1] = "0";
-                                    return { "pos": pos, "c": chrs.charAt(0) };
+                                    return {"pos": pos, "c": chrs.charAt(0)};
                                 }
                             }
                         }
@@ -139,7 +145,7 @@ Optional extensions on the jquery.inputmask base
                                 if (isValid) {
                                     buffer[pos] = "0";
                                     pos++;
-                                    return { "pos": pos };
+                                    return {"pos": pos};
                                 }
                             }
                             return isValid;
@@ -166,73 +172,73 @@ Optional extensions on the jquery.inputmask base
                     },
                     cardinality: 4,
                     prevalidator: [
-                {
-                    validator: function (chrs, buffer, pos, strict, opts) {
-                        var isValid = opts.isInYearRange(chrs, opts.yearrange.minyear, opts.yearrange.maxyear);
-                        if (!strict && !isValid) {
-                            var yearPrefix = opts.determinebaseyear(opts.yearrange.minyear, opts.yearrange.maxyear, chrs + "0").toString().slice(0, 1);
+                        {
+                            validator: function (chrs, buffer, pos, strict, opts) {
+                                var isValid = opts.isInYearRange(chrs, opts.yearrange.minyear, opts.yearrange.maxyear);
+                                if (!strict && !isValid) {
+                                    var yearPrefix = opts.determinebaseyear(opts.yearrange.minyear, opts.yearrange.maxyear, chrs + "0").toString().slice(0, 1);
 
-                            isValid = opts.isInYearRange(yearPrefix + chrs, opts.yearrange.minyear, opts.yearrange.maxyear);
-                            if (isValid) {
-                                buffer[pos++] = yearPrefix[0];
-                                return { "pos": pos };
-                            }
-                            yearPrefix = opts.determinebaseyear(opts.yearrange.minyear, opts.yearrange.maxyear, chrs + "0").toString().slice(0, 2);
+                                    isValid = opts.isInYearRange(yearPrefix + chrs, opts.yearrange.minyear, opts.yearrange.maxyear);
+                                    if (isValid) {
+                                        buffer[pos++] = yearPrefix[0];
+                                        return {"pos": pos};
+                                    }
+                                    yearPrefix = opts.determinebaseyear(opts.yearrange.minyear, opts.yearrange.maxyear, chrs + "0").toString().slice(0, 2);
 
-                            isValid = opts.isInYearRange(yearPrefix + chrs, opts.yearrange.minyear, opts.yearrange.maxyear);
-                            if (isValid) {
-                                buffer[pos++] = yearPrefix[0];
-                                buffer[pos++] = yearPrefix[1];
-                                return { "pos": pos };
-                            }
-                        }
-                        return isValid;
-                    },
-                    cardinality: 1
-                },
-                {
-                    validator: function (chrs, buffer, pos, strict, opts) {
-                        var isValid = opts.isInYearRange(chrs, opts.yearrange.minyear, opts.yearrange.maxyear);
-                        if (!strict && !isValid) {
-                            var yearPrefix = opts.determinebaseyear(opts.yearrange.minyear, opts.yearrange.maxyear, chrs).toString().slice(0, 2);
-
-                            isValid = opts.isInYearRange(chrs[0] + yearPrefix[1] + chrs[1], opts.yearrange.minyear, opts.yearrange.maxyear);
-                            if (isValid) {
-                                buffer[pos++] = yearPrefix[1];
-                                return { "pos": pos };
-                            }
-
-                            yearPrefix = opts.determinebaseyear(opts.yearrange.minyear, opts.yearrange.maxyear, chrs).toString().slice(0, 2);
-                            if (opts.isInYearRange(yearPrefix + chrs, opts.yearrange.minyear, opts.yearrange.maxyear)) {
-                                var dayMonthValue = buffer.join('').substr(0, 6);
-                                if (dayMonthValue != opts.leapday)
-                                    isValid = true;
-                                else {
-                                    var year = parseInt(chrs, 10);//detect leap year
-                                    if (year % 4 === 0)
-                                        if (year % 100 === 0)
-                                            if (year % 400 === 0)
-                                                isValid = true;
-                                            else isValid = false;
-                                        else isValid = true;
-                                    else isValid = false;
+                                    isValid = opts.isInYearRange(yearPrefix + chrs, opts.yearrange.minyear, opts.yearrange.maxyear);
+                                    if (isValid) {
+                                        buffer[pos++] = yearPrefix[0];
+                                        buffer[pos++] = yearPrefix[1];
+                                        return {"pos": pos};
+                                    }
                                 }
-                            } else isValid = false;
-                            if (isValid) {
-                                buffer[pos - 1] = yearPrefix[0];
-                                buffer[pos++] = yearPrefix[1];
-                                buffer[pos++] = chrs[0];
-                                return { "pos": pos };
-                            }
+                                return isValid;
+                            },
+                            cardinality: 1
+                        },
+                        {
+                            validator: function (chrs, buffer, pos, strict, opts) {
+                                var isValid = opts.isInYearRange(chrs, opts.yearrange.minyear, opts.yearrange.maxyear);
+                                if (!strict && !isValid) {
+                                    var yearPrefix = opts.determinebaseyear(opts.yearrange.minyear, opts.yearrange.maxyear, chrs).toString().slice(0, 2);
+
+                                    isValid = opts.isInYearRange(chrs[0] + yearPrefix[1] + chrs[1], opts.yearrange.minyear, opts.yearrange.maxyear);
+                                    if (isValid) {
+                                        buffer[pos++] = yearPrefix[1];
+                                        return {"pos": pos};
+                                    }
+
+                                    yearPrefix = opts.determinebaseyear(opts.yearrange.minyear, opts.yearrange.maxyear, chrs).toString().slice(0, 2);
+                                    if (opts.isInYearRange(yearPrefix + chrs, opts.yearrange.minyear, opts.yearrange.maxyear)) {
+                                        var dayMonthValue = buffer.join('').substr(0, 6);
+                                        if (dayMonthValue != opts.leapday)
+                                            isValid = true;
+                                        else {
+                                            var year = parseInt(chrs, 10);//detect leap year
+                                            if (year % 4 === 0)
+                                                if (year % 100 === 0)
+                                                    if (year % 400 === 0)
+                                                        isValid = true;
+                                                    else isValid = false;
+                                                else isValid = true;
+                                            else isValid = false;
+                                        }
+                                    } else isValid = false;
+                                    if (isValid) {
+                                        buffer[pos - 1] = yearPrefix[0];
+                                        buffer[pos++] = yearPrefix[1];
+                                        buffer[pos++] = chrs[0];
+                                        return {"pos": pos};
+                                    }
+                                }
+                                return isValid;
+                            }, cardinality: 2
+                        },
+                        {
+                            validator: function (chrs, buffer, pos, strict, opts) {
+                                return opts.isInYearRange(chrs, opts.yearrange.minyear, opts.yearrange.maxyear);
+                            }, cardinality: 3
                         }
-                        return isValid;
-                    }, cardinality: 2
-                },
-                {
-                    validator: function (chrs, buffer, pos, strict, opts) {
-                        return opts.isInYearRange(chrs, opts.yearrange.minyear, opts.yearrange.maxyear);
-                    }, cardinality: 3
-                }
                     ]
                 }
             },
@@ -243,8 +249,14 @@ Optional extensions on the jquery.inputmask base
             placeholder: "mm/dd/yyyy",
             alias: "dd/mm/yyyy", //reuse functionality of dd/mm/yyyy alias
             regex: {
-                val2pre: function (separator) { var escapedSeparator = $.inputmask.escapeRegex.call(this, separator); return new RegExp("((0[13-9]|1[012])" + escapedSeparator + "[0-3])|(02" + escapedSeparator + "[0-2])"); }, //daypre
-                val2: function (separator) { var escapedSeparator = $.inputmask.escapeRegex.call(this, separator); return new RegExp("((0[1-9]|1[012])" + escapedSeparator + "(0[1-9]|[12][0-9]))|((0[13-9]|1[012])" + escapedSeparator + "30)|((0[13578]|1[02])" + escapedSeparator + "31)"); }, //day
+                val2pre: function (separator) {
+                    var escapedSeparator = $.inputmask.escapeRegex.call(this, separator);
+                    return new RegExp("((0[13-9]|1[012])" + escapedSeparator + "[0-3])|(02" + escapedSeparator + "[0-2])");
+                }, //daypre
+                val2: function (separator) {
+                    var escapedSeparator = $.inputmask.escapeRegex.call(this, separator);
+                    return new RegExp("((0[1-9]|1[012])" + escapedSeparator + "(0[1-9]|[12][0-9]))|((0[13-9]|1[012])" + escapedSeparator + "30)|((0[13578]|1[02])" + escapedSeparator + "31)");
+                }, //day
                 val1pre: new RegExp("[01]"), //monthpre
                 val1: new RegExp("0[1-9]|1[012]") //month
             },
@@ -280,7 +292,7 @@ Optional extensions on the jquery.inputmask base
                                 isValid = opts.regex.val2(opts.separator).test(frontValue + "0" + chrs.charAt(0));
                                 if (isValid) {
                                     buffer[pos - 1] = "0";
-                                    return { "pos": pos, "c": chrs.charAt(0) };
+                                    return {"pos": pos, "c": chrs.charAt(0)};
                                 }
                             }
                         }
@@ -315,7 +327,7 @@ Optional extensions on the jquery.inputmask base
                                 if (isValid) {
                                     buffer[pos] = "0";
                                     pos++;
-                                    return { "pos": pos };
+                                    return {"pos": pos};
                                 }
                             }
                             return isValid;
@@ -389,7 +401,7 @@ Optional extensions on the jquery.inputmask base
                                     buffer[pos - 1] = "0";
                                     buffer[pos] = chrs.charAt(0);
                                     pos++;
-                                    return { "pos": pos };
+                                    return {"pos": pos};
                                 }
                             }
                         }
@@ -416,7 +428,7 @@ Optional extensions on the jquery.inputmask base
                                 buffer[pos - 1] = tmp.toString().charAt(0);
                             }
 
-                            return { "pos": pos, "c": buffer[pos] };
+                            return {"pos": pos, "c": buffer[pos]};
                         }
 
                         return isValid;
@@ -430,7 +442,7 @@ Optional extensions on the jquery.inputmask base
                                 if (isValid) {
                                     buffer[pos] = "0";
                                     pos++;
-                                    return { "pos": pos };
+                                    return {"pos": pos};
                                 }
                             }
                             return isValid;

@@ -29,11 +29,12 @@ public class WebServiceConfig {
 
     /**
      * 注入servlet  bean name不能dispatcherServlet 否则会覆盖dispatcherServlet
+     *
      * @return
      */
     @Bean(name = "cxfServlet")
     public ServletRegistrationBean cxfServlet() {
-        return new ServletRegistrationBean(new CXFServlet(),"/service/*");
+        return new ServletRegistrationBean(new CXFServlet(), "/service/*");
     }
 
 
@@ -44,6 +45,7 @@ public class WebServiceConfig {
 
     /**
      * 注册WebServiceDemoService接口到webservice服务
+     *
      * @return
      */
     @Bean(name = "HelloService")
@@ -55,6 +57,7 @@ public class WebServiceConfig {
 
     /**
      * 注册WebServiceDemoService接口到webservice服务
+     *
      * @return
      */
     @Bean(name = "Hello2Service")

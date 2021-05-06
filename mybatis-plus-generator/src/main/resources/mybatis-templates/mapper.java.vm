@@ -10,4 +10,4 @@ package ${package.Mapper};
  *********************************************/
 public interface ${table.mapperName} {
 
-}
+        }

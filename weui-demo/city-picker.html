@@ -51,16 +51,18 @@
             <div class="weui-form__text-area">
                 <h2 class="weui-form__title">城市选择器示例</h2>
             </div>
-         
+
             <div id="apply-form" class="weui-form__control-area" style="margin: 20px 0;">
                 <div style="margin-left: 15px; margin-bottom: 10px; overflow: hidden;">
                     <span style="display: block; width: 5px; height: 25px; background: #10aeff; float: left; margin-right: 10px; border-radius: 2px;"></span>
                     <span style="float: left;">城市信息</span>
                 </div>
                 <div class="weui-cells__title">请认真填写以下信息</div>
-                <div class="weui-cells weui-cells_form"> 
+                <div class="weui-cells weui-cells_form">
                     <div class="weui-cell weui-cell_active weui-cell_access" id="showCityPicker1">
-                        <div class="weui-cell__hd"><label class="weui-label">省份1级<spsn style="color: red; float: left; margin-right: 5px;">*</spsn></label></div>
+                        <div class="weui-cell__hd"><label class="weui-label">省份1级
+                            <spsn style="color: red; float: left; margin-right: 5px;">*</spsn>
+                        </label></div>
                         <div class="weui-cell__bd weui-flex"><label id="city1-label"
                                                                     style="color: #ccc;">请选择省份</label>
                             <input id="city1" type="hidden" tips="请选择省份">
@@ -69,9 +71,11 @@
                     </div>
                 </div>
 
-                <div class="weui-cells weui-cells_form"> 
+                <div class="weui-cells weui-cells_form">
                     <div class="weui-cell weui-cell_active weui-cell_access" id="showCityPicker2">
-                        <div class="weui-cell__hd"><label class="weui-label">城市2级<spsn style="color: red; float: left; margin-right: 5px;">*</spsn></label></div>
+                        <div class="weui-cell__hd"><label class="weui-label">城市2级
+                            <spsn style="color: red; float: left; margin-right: 5px;">*</spsn>
+                        </label></div>
                         <div class="weui-cell__bd weui-flex"><label id="city2-label"
                                                                     style="color: #ccc;">请选择城市</label>
                             <input id="city2" type="hidden" tips="请选择城市">
@@ -80,9 +84,11 @@
                     </div>
                 </div>
 
-                <div class="weui-cells weui-cells_form"> 
+                <div class="weui-cells weui-cells_form">
                     <div class="weui-cell weui-cell_active weui-cell_access" id="showCityPicker3">
-                        <div class="weui-cell__hd"><label class="weui-label">城市区县3级<spsn style="color: red; float: left; margin-right: 5px;">*</spsn></label></div>
+                        <div class="weui-cell__hd"><label class="weui-label">城市区县3级
+                            <spsn style="color: red; float: left; margin-right: 5px;">*</spsn>
+                        </label></div>
                         <div class="weui-cell__bd weui-flex"><label id="city3-label"
                                                                     style="color: #ccc;">请选择城市区县</label>
                             <input id="city3" type="hidden" tips="请选择城市">
@@ -107,99 +113,98 @@
 <script src="./js/weui.min.js"></script>
 <script src="./js/city-data.js"></script>
 
-    <script type="text/javascript">
-        $(function () {
-            $('#make-sure').on('click', function () {
-                var msg = "你选择的省份编码是：" + $('#showCityPicker1  #city1').val() +
+<script type="text/javascript">
+    $(function () {
+        $('#make-sure').on('click', function () {
+            var msg = "你选择的省份编码是：" + $('#showCityPicker1  #city1').val() +
                 "\n你选择的城市编码是：" + $('#showCityPicker2  #city2').val() +
                 "\n你选择的城市区县编码是：" + $('#showCityPicker3  #city3').val()
-                alert();
+            alert();
+        });
+
+        $('#showCityPicker1').on('click', function () {
+            weui.picker(cityData, {
+                defaultValue: [110000],
+                depth: 1,
+                onChange: function (result) {
+                    console.log(result);
+                },
+                onConfirm: function (result) {
+                    console.log(result);
+                    $('#showCityPicker1  #city1-label').html(result[0].label);
+                    $('#showCityPicker1  #city1-label').css("color", "#000");
+                    $('#showCityPicker1  #city1').val(result[0].value);
+                },
+                title: '省份'
             });
+        });
 
-            $('#showCityPicker1').on('click', function () {
-                weui.picker(cityData, {
-                    defaultValue: [110000],
-                    depth: 1,
-                    onChange: function (result) {
-                        console.log(result);
-                    },
-                    onConfirm: function (result) {
-                        console.log(result);
-                        $('#showCityPicker1  #city1-label').html(result[0].label);
-                        $('#showCityPicker1  #city1-label').css("color", "#000");
-                        $('#showCityPicker1  #city1').val(result[0].value);
-                    },
-                    title: '省份'
-                });
-            }); 
-           
-            $('#showCityPicker2').on('click', function () {
-                weui.picker(cityData, {
-                    defaultValue: [110000, 110000],
-                    depth: 2,
-                    onChange: function (result) {
-                        console.log(result);
-                    },
-                    onConfirm: function (result) {
-                        console.log(result);
-                        $('#showCityPicker2  #city2-label').html(result[0].label + " - " + result[1].label);
-                        $('#showCityPicker2  #city2-label').css("color", "#000");
-                        $('#showCityPicker2  #city2').val(result[1].value);
-                    },
-                    title: '城市'
-                });
-            });  
-
-            $('#showCityPicker3').on('click', function () {
-                weui.picker(cityData, {
-                    defaultValue: [110000, 110000, 110101],
-                    depth: 3,
-                    onChange: function (result) {
-                        console.log(result);
-                    },
-                    onConfirm: function (result) {
-                        console.log(result);
-                        $('#showCityPicker3  #city3-label').html(result[0].label + " - " + result[1].label + " - " + result[2].label);
-                        $('#showCityPicker3  #city3-label').css("color", "#000");
-                        $('#showCityPicker3  #city3').val(result[2].value);
-                    },
-                    title: '城市区县'
-                });
-            });  
-        });         
-
-        function validateForm(id) {
-            var validateNotPassCount = 0;
-            var $inputs = $(id + ' input');
-            $inputs.each(function () {
-                if (this.value == null || this.value == undefined || this.value == '') {
-                    errorTips($(this).attr('tips'));
-                    validateNotPassCount++;
-                    return validateNotPassCount;
-                }
+        $('#showCityPicker2').on('click', function () {
+            weui.picker(cityData, {
+                defaultValue: [110000, 110000],
+                depth: 2,
+                onChange: function (result) {
+                    console.log(result);
+                },
+                onConfirm: function (result) {
+                    console.log(result);
+                    $('#showCityPicker2  #city2-label').html(result[0].label + " - " + result[1].label);
+                    $('#showCityPicker2  #city2-label').css("color", "#000");
+                    $('#showCityPicker2  #city2').val(result[1].value);
+                },
+                title: '城市'
             });
-            return validateNotPassCount;
-        }
-    </script>
+        });
+
+        $('#showCityPicker3').on('click', function () {
+            weui.picker(cityData, {
+                defaultValue: [110000, 110000, 110101],
+                depth: 3,
+                onChange: function (result) {
+                    console.log(result);
+                },
+                onConfirm: function (result) {
+                    console.log(result);
+                    $('#showCityPicker3  #city3-label').html(result[0].label + " - " + result[1].label + " - " + result[2].label);
+                    $('#showCityPicker3  #city3-label').css("color", "#000");
+                    $('#showCityPicker3  #city3').val(result[2].value);
+                },
+                title: '城市区县'
+            });
+        });
+    });
+
+    function validateForm(id) {
+        var validateNotPassCount = 0;
+        var $inputs = $(id + ' input');
+        $inputs.each(function () {
+            if (this.value == null || this.value == undefined || this.value == '') {
+                errorTips($(this).attr('tips'));
+                validateNotPassCount++;
+                return validateNotPassCount;
+            }
+        });
+        return validateNotPassCount;
+    }
+</script>
 
 
 <script>
-   
 
 
     // loading
-    function showLoading(msg){
+    function showLoading(msg) {
         var $loadingToast = $('#loadingToast');
-            if ($loadingToast.css('display') != 'none') return;
-            if(msg != undefined && msg != null) {
-                $("#loadingToast .weui-toast__content").html(msg);
-            } else {
-                $("#loadingToast .weui-toast__content").html("请稍等……");
-            }
-            $loadingToast.fadeIn(100);
+        if ($loadingToast.css('display') != 'none') return;
+        if (msg != undefined && msg != null) {
+            $("#loadingToast .weui-toast__content").html(msg);
+        } else {
+            $("#loadingToast .weui-toast__content").html("请稍等……");
+        }
+        $loadingToast.fadeIn(100);
     }
 
-    function hideLoading(){
+    function hideLoading() {
         var $loadingToast = $('#loadingToast');
         if ($loadingToast.css('display') == 'none') return;
         $loadingToast.fadeOut(100);

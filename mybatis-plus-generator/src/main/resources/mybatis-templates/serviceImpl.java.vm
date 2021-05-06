@@ -18,5 +18,5 @@ import org.slf4j.LoggerFactory;
 @Service("")
 public class ${table.serviceImplName} implements ${table.serviceName} {
 
-    private static Logger _log = LoggerFactory.getLogger(${table.serviceImplName}.class);
-}
+private static Logger _log=LoggerFactory.getLogger(${table.serviceImplName}.class);
+        }

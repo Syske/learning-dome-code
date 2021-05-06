@@ -2,8 +2,6 @@ package io.igthub.syske.springbootstrategypattern.entity;
 
 /**
  * 请求头
- *
- *
  */
 public class RequestHeader {
     // 交易编码

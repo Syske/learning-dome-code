@@ -1,6 +1,7 @@
 package io.github.syske.springbootjwtdemo.dao.entity;
 
 import java.io.Serializable;
+
 /**
  * @program: springboot-jwt-demo
  * @description:

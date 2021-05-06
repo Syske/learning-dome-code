@@ -36,38 +36,38 @@ import org.springframework.stereotype.Controller;
 @RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
 public class ${table.controllerName} {
 
-    private static Logger _log = LoggerFactory.getLogger(${table.controllerName}.class);
+private static Logger _log=LoggerFactory.getLogger(${table.controllerName}.class);
 
-    @Autowired
-    private ${table.serviceName} service;
+@Autowired
+private ${table.serviceName} service;
 
 
-    @ApiOperation("新增")
-    @RequestMapping("/add")
-    @ResponseBody
-    public boolean add${entity}(${entity} entity) {
+@ApiOperation("新增")
+@RequestMapping("/add")
+@ResponseBody
+public boolean add${entity}(${entity} entity){
         return service.insert(entity);
         }
 
-    @ApiOperation("查询")
-    @RequestMapping("/list")
-    @ResponseBody
-    public List<${entity}> list${entity}(${entity} entity) {
-        EntityWrapper<${entity}> serviceEntityWrapper = new EntityWrapper<>(entity);
+@ApiOperation("查询")
+@RequestMapping("/list")
+@ResponseBody
+public List<${entity}> list${entity}(${entity} entity){
+        EntityWrapper<${entity}> serviceEntityWrapper=new EntityWrapper<>(entity);
         return service.selectList(serviceEntityWrapper);
-    }
+        }
 
-    @ApiOperation("更新")
-    @RequestMapping("/update")
-    @ResponseBody
-    public boolean update${entity}ById(${entity} entity) {
+@ApiOperation("更新")
+@RequestMapping("/update")
+@ResponseBody
+public boolean update${entity}ById(${entity} entity){
         return service.updateById(entity);
-    }
+        }
 
-    @ApiOperation("删除")
-    @RequestMapping("/delete")
-    @ResponseBody
-    public boolean delete${entity}ById(${entity} entity) {
+@ApiOperation("删除")
+@RequestMapping("/delete")
+@ResponseBody
+public boolean delete${entity}ById(${entity} entity){
         return service.deleteById(entity);
-    }
-}
+        }
+        }

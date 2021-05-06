@@ -21,13 +21,13 @@ public class CollectionTest {
             list.add("addTest" + i);
         }
         long endTime0 = System.currentTimeMillis();
-        System.out.println("list 增加元素 用时(ms)：" + (endTime0- startTime0));
+        System.out.println("list 增加元素 用时(ms)：" + (endTime0 - startTime0));
         long startTime = System.currentTimeMillis();
         if (list.contains("addTest99999999")) {
             System.out.println("addTest9999 list");
         }
         long endTime = System.currentTimeMillis();
-        System.out.println("list contains 用时(ms)：" + (endTime- startTime));
+        System.out.println("list contains 用时(ms)：" + (endTime - startTime));
 
         Set<String> list2 = new HashSet<>();
         long startTime1 = System.currentTimeMillis();
@@ -35,12 +35,12 @@ public class CollectionTest {
             list2.add("addTest" + i);
         }
         long endTime1 = System.currentTimeMillis();
-        System.out.println("set 增加元素 用时(ms)：" + (endTime1- startTime1));
+        System.out.println("set 增加元素 用时(ms)：" + (endTime1 - startTime1));
         long startTime2 = System.currentTimeMillis();
         if (list2.contains("addTest99999999")) {
             System.out.println("addTest9999 set");
         }
         long endTime2 = System.currentTimeMillis();
-        System.out.println("set contains 用时(ms)：" + (endTime2- startTime2));
+        System.out.println("set contains 用时(ms)：" + (endTime2 - startTime2));
     }
 }

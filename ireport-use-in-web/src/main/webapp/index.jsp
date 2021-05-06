@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form action="/ireport"method="get">
+<form action="/ireport" method="get">
     用户名：<input name="username" type="text"><br>
     <input type="submit" name="导出">
 </form>

@@ -10,6 +10,6 @@ public class MyExceptionHandle {
 
     @ExceptionHandler(MyException.class)
     public Result exceptionHandle(MyException e) {
-        return Result.getFailed( "system error:MyException" + e.getMessage(), null);
+        return Result.getFailed("system error:MyException" + e.getMessage(), null);
     }
 }

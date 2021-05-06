@@ -22,27 +22,27 @@ public class MybatisPlusGenerator {
     private static String JDBC_USERNAME = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.username");
     private static String JDBC_PASSWORD = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.password");
     private static String Module_NAME = "";//模块名称
-    private static String BASE_PACKAGE_NAME="io.github.syske.springbootdemo"; // 基础包
+    private static String BASE_PACKAGE_NAME = "io.github.syske.springbootdemo"; // 基础包
     private static String[] TABLES = {"server_info"}; // 生成代码的表名
-    private static String AUTHOR_NAME="syske"; // 基础包
-    private static DbType DB_TYPE=DbType.MYSQL; // 基础包
+    private static String AUTHOR_NAME = "syske"; // 基础包
+    private static DbType DB_TYPE = DbType.MYSQL; // 基础包
 
     public static void main(String[] args) {
 
         String modelPath = "./"; // 指定模块名，没有子模块则保持默认
-        for(int i = 0 ; i<TABLES.length;i++) {
+        for (int i = 0; i < TABLES.length; i++) {
             shell(modelPath, TABLES[i]);
         }
     }
 
-    private static void shell(String modelPath, String tabName){
+    private static void shell(String modelPath, String tabName) {
 
         File file = new File(modelPath);
         String path = file.getAbsolutePath();
         AutoGenerator mpg = new AutoGenerator();
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir(path+"/src/main/java");
+        gc.setOutputDir(path + "/src/main/java");
         gc.setOpen(false);
         gc.setFileOverride(true);
         gc.setActiveRecord(true);
@@ -73,7 +73,7 @@ public class MybatisPlusGenerator {
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-        strategy.setInclude(new String[] {tabName}); // 需要生成的表
+        strategy.setInclude(new String[]{tabName}); // 需要生成的表
         mpg.setStrategy(strategy);
 
         // 包配置
@@ -99,7 +99,7 @@ public class MybatisPlusGenerator {
         };
         mpg.setCfg(cfg);
         //多模块
-        TemplateConfig tc = getTemplateConfig(gc,pc,modelPath,tabName, false);
+        TemplateConfig tc = getTemplateConfig(gc, pc, modelPath, tabName, false);
         if (tc.getMapper() == null && tc.getXml() == null && tc.getService() == null &&
                 tc.getServiceImpl() == null && tc.getController() == null && tc.getEntity(false) == null) {
             return;
@@ -121,23 +121,24 @@ public class MybatisPlusGenerator {
 
     /**
      * 控制包生成的路径与是否覆盖生成
-     * @param gc // 全局配置
-     * @param pc 包配置
-     * @param model model名
+     *
+     * @param gc      // 全局配置
+     * @param pc      包配置
+     * @param model   model名
      * @param tabName 表名
      * @param isCover 是否覆盖生成代码
      * @return TemplateConfig
      */
     private static TemplateConfig getTemplateConfig(GlobalConfig gc, PackageConfig pc, String model, String tabName, boolean isCover) {
         TemplateConfig tc = new TemplateConfig();
-        String entity = getName(tabName,"_");
-        String path = model + "/src/main/java/" +replace( pc.getParent());
+        String entity = getName(tabName, "_");
+        String path = model + "/src/main/java/" + replace(pc.getParent());
         if (!isCover) {
             if (model.endsWith("dao")) {
-                String mapperPath =path + "/" + replace(pc.getMapper()) + "/" + gc.getMapperName().replace("%s",entity) + ".java";
+                String mapperPath = path + "/" + replace(pc.getMapper()) + "/" + gc.getMapperName().replace("%s", entity) + ".java";
                 if (isExists(mapperPath)) {
                     tc.setMapper(null);
-                    System.out.println(gc.getMapperName().replace("%s",entity) + ".java 文件已存在");
+                    System.out.println(gc.getMapperName().replace("%s", entity) + ".java 文件已存在");
                 }
 
                 String modelPath = path + "/" + replace(pc.getEntity()) + "/" + entity + ".java";
@@ -150,36 +151,37 @@ public class MybatisPlusGenerator {
                 tc.setService(null);
                 tc.setServiceImpl(null);
             } else if (model.endsWith("api")) {
-                String servicePath = path + "/" +replace(pc.getService()) + "/" +  gc.getServiceName().replace("%s",entity) + ".java";
+                String servicePath = path + "/" + replace(pc.getService()) + "/" + gc.getServiceName().replace("%s", entity) + ".java";
                 if (isExists(servicePath)) {
                     tc.setService(null);
-                    System.out.println(gc.getServiceName().replace("%s",entity) + ".java 文件已存在");
+                    System.out.println(gc.getServiceName().replace("%s", entity) + ".java 文件已存在");
                 }
                 tc.setController(null);
                 tc.setEntity(null);
                 tc.setServiceImpl(null);
                 tc.setMapper(null);
                 tc.setXml(null);
-            }  else if (model.endsWith("service")) {
-                String serviceImplPath = path + "/" +replace(pc.getServiceImpl()) + "/" +  gc.getServiceImplName().replace("%s",entity) + ".java";
+            } else if (model.endsWith("service")) {
+                String serviceImplPath = path + "/" + replace(pc.getServiceImpl()) + "/" + gc.getServiceImplName().replace("%s", entity) + ".java";
                 if (isExists(serviceImplPath)) {
                     tc.setServiceImpl(null);
-                    System.out.println(gc.getServiceImplName().replace("%s",entity) + ".java 文件已存在");
+                    System.out.println(gc.getServiceImplName().replace("%s", entity) + ".java 文件已存在");
                 }
-                String mapperXmlPath =path + "/" + replace(pc.getXml()) + "/" + gc.getXmlName().replace("%s",entity) + ".xml";
+                String mapperXmlPath = path + "/" + replace(pc.getXml()) + "/" + gc.getXmlName().replace("%s", entity) + ".xml";
                 if (isExists(mapperXmlPath)) {
                     tc.setXml(null);
-                    System.out.println(gc.getXmlName().replace("%s",entity) + ".xml 文件已存在");
+                    System.out.println(gc.getXmlName().replace("%s", entity) + ".xml 文件已存在");
                 }
                 tc.setController(null);
                 tc.setService(null);
                 tc.setMapper(null);
                 tc.setEntity(null);
-            }else if (model.endsWith("web")) {
-                String controllerPath = path + "/" +replace(pc.getController()) + "/" + gc.getControllerName().replace("%s",entity) + ".java";;
+            } else if (model.endsWith("web")) {
+                String controllerPath = path + "/" + replace(pc.getController()) + "/" + gc.getControllerName().replace("%s", entity) + ".java";
+                ;
                 if (isExists(controllerPath)) {
                     tc.setController(null);
-                    System.out.println(gc.getControllerName().replace("%s",entity) + ".java 文件已存在");
+                    System.out.println(gc.getControllerName().replace("%s", entity) + ".java 文件已存在");
                 }
                 tc.setMapper(null);
                 tc.setXml(null);
@@ -199,7 +201,7 @@ public class MybatisPlusGenerator {
                 tc.setServiceImpl(null);
                 tc.setMapper(null);
                 tc.setXml(null);
-            }  else if (model.endsWith("service")) {
+            } else if (model.endsWith("service")) {
                 tc.setController(null);
                 tc.setService(null);
                 tc.setMapper(null);
@@ -218,15 +220,17 @@ public class MybatisPlusGenerator {
 
     /**
      * 将点替换为斜杠
+     *
      * @param name
      * @return
      */
     private static String replace(String name) {
-        return name.replace(".","/");
+        return name.replace(".", "/");
     }
 
     /**
      * 判断文件是否存在
+     *
      * @param path 路径
      * @return
      */
@@ -237,15 +241,16 @@ public class MybatisPlusGenerator {
 
     /**
      * 根据驼峰命名，首字母大写
+     *
      * @param tabName 原名
      * @return 返回生成后的名字
-     *  例如：user_info 返回 UserInfo
+     * 例如：user_info 返回 UserInfo
      */
     public static String getName(String tabName, String reChar) {
         String[] arr = tabName.split(reChar);
         String str = "";
-        for (int i = 0; i < arr.length; i++ ) {
-            String startChar = arr[i].substring(0,1).toUpperCase();
+        for (int i = 0; i < arr.length; i++) {
+            String startChar = arr[i].substring(0, 1).toUpperCase();
             String lastChar = arr[i].substring(1, arr[i].length());
             String newStr = startChar + lastChar;
             str += newStr;

@@ -23,6 +23,7 @@ import com.alibaba.druid.support.http.WebStatFilter;
  * 访问地址: http://localhost:8080/druid
  * 账号: admin
  * 密码: admin
+ *
  * @author syske
  */
 @Configuration
@@ -30,22 +31,23 @@ public class DruidServletConfiguration {
 
     /**
      * 添加druid页面监控servlet
+     *
      * @return
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @Bean
     public ServletRegistrationBean druidServlet() {
         ServletRegistrationBean registrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
         // 白名单
-        Map<String,String> initParameters = new HashMap<>(16);
+        Map<String, String> initParameters = new HashMap<>(16);
         // 禁用HTML页面上的“REST ALL”功能
-        initParameters.put("resetEnable","false");
+        initParameters.put("resetEnable", "false");
         // IP白名单（没有配置或者为空，则允许所有访问）
-        initParameters.put("/druid/*","");
+        initParameters.put("/druid/*", "");
         // ip黑名单
-        initParameters.put("deny","");
+        initParameters.put("deny", "");
         // 监控页面登录用户名
-        initParameters.put("loginUsername","admin");
+        initParameters.put("loginUsername", "admin");
         // 监控页面登录用户密码
         initParameters.put("loginPassword", "admin");
 
@@ -53,7 +55,7 @@ public class DruidServletConfiguration {
         return registrationBean;
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @Bean
     public FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());

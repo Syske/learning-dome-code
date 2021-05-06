@@ -120,8 +120,8 @@ public class CVSUtils {
             ArrayList<String[]> stringsList = new ArrayList<String[]>();
             for (String string : filePathList) {
                 System.out.println(string);
-                for(String lineNumber: dataLineNumber.split(","))
-                stringsList.add(reader(string, Integer.parseInt(lineNumber)));
+                for (String lineNumber : dataLineNumber.split(","))
+                    stringsList.add(reader(string, Integer.parseInt(lineNumber)));
             }
 
 

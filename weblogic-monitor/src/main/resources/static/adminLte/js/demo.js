@@ -16,7 +16,7 @@ $(function () {
     var $pushMenu = $('[data-toggle="push-menu"]').data('lte.pushmenu')
     var $controlSidebar = $('[data-toggle="control-sidebar"]').data('lte.controlsidebar')
     var $layout = $('body').data('lte.layout')
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         // Reinitialize variables on load
         $pushMenu = $('[data-toggle="push-menu"]').data('lte.pushmenu')
         $controlSidebar = $('[data-toggle="control-sidebar"]').data('lte.controlsidebar')

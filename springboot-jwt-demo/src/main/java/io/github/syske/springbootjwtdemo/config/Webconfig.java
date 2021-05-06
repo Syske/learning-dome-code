@@ -17,7 +17,8 @@ public class Webconfig implements WebMvcConfigurer {
     }
 
     /**
-     *  静态资源
+     * 静态资源
+     *
      * @param registry
      */
     @Override

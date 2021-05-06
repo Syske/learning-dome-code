@@ -8,6 +8,7 @@ import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Signature;
+
 /**
  * @program: encrypt-util
  * @description: MD5withRSA和SHA1withRSA签名
@@ -17,6 +18,7 @@ import java.security.Signature;
 
 public class DigitalSignature {
     private static Logger logger = LoggerFactory.getLogger(DigitalSignature.class);
+
     public static void main(String[] args) throws Exception {
         String content = "study hard and make progress everyday";
         logger.debug("content :" + content);

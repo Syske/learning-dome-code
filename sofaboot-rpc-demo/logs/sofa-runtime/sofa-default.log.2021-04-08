@@ -1,0 +1,38 @@
+2021-04-08 22:39:24,464 INFO  main                             - SOFABoot Runtime Starting!
+2021-04-08 22:39:30,042 INFO  main                             - Registering component: service:io.github.syske.sofabootdemo.service.HelloService
+2021-04-08 22:39:30,042 INFO  main                             -  <<PreOut Binding [bolt] Begins - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:39:30,644 INFO  main                             -  <<PreOut Binding [bolt] Ends - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:39:30,644 INFO  main                             -  <<Out Binding [bolt] Begins - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:39:30,683 INFO  main                             -  <<Out Binding [bolt] Ends - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:39:30,684 INFO  main                             - Register Service - io.github.syske.sofabootdemo.service.HelloService
+2021-04-08 22:42:01,618 INFO  main                             - SOFABoot Runtime Starting!
+2021-04-08 22:42:07,024 INFO  main                             - Registering component: service:io.github.syske.sofabootdemo.service.HelloService
+2021-04-08 22:42:07,025 INFO  main                             -  <<PreOut Binding [bolt] Begins - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:42:07,634 INFO  main                             -  <<PreOut Binding [bolt] Ends - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:42:07,634 INFO  main                             -  <<Out Binding [bolt] Begins - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:42:07,673 INFO  main                             -  <<Out Binding [bolt] Ends - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:42:07,673 INFO  main                             - Register Service - io.github.syske.sofabootdemo.service.HelloService
+2021-04-08 22:45:21,147 INFO  main                             - SOFABoot Runtime Starting!
+2021-04-08 22:45:32,963 INFO  main                             - Registering component: service:io.github.syske.sofabootdemo.service.HelloService
+2021-04-08 22:45:32,963 INFO  main                             -  <<PreOut Binding [bolt] Begins - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:45:33,950 INFO  main                             -  <<PreOut Binding [bolt] Ends - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:45:33,950 INFO  main                             -  <<Out Binding [bolt] Begins - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:45:34,047 INFO  main                             -  <<Out Binding [bolt] Ends - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:45:34,048 INFO  main                             - Register Service - io.github.syske.sofabootdemo.service.HelloService
+2021-04-08 22:45:36,718 INFO  main                             - Registering component: reference:io.github.syske.sofabootdemo.service.HelloService:#837645365
+2021-04-08 22:45:36,718 INFO  main                             -  >>In Binding [bolt] Begins - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:45:37,981 INFO  main                             -  >>In Binding [bolt] Ends - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:45:37,981 INFO  main                             -  >>In Binding [jvm] Begins - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:45:37,986 INFO  main                             -  >>In Binding [jvm] Ends - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:49:47,749 INFO  main                             - SOFABoot Runtime Starting!
+2021-04-08 22:49:57,569 INFO  main                             - Registering component: service:io.github.syske.sofabootdemo.service.HelloService
+2021-04-08 22:49:57,570 INFO  main                             -  <<PreOut Binding [bolt] Begins - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:49:58,255 INFO  main                             -  <<PreOut Binding [bolt] Ends - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:49:58,256 INFO  main                             -  <<Out Binding [bolt] Begins - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:49:58,317 INFO  main                             -  <<Out Binding [bolt] Ends - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:49:58,317 INFO  main                             - Register Service - io.github.syske.sofabootdemo.service.HelloService
+2021-04-08 22:50:00,691 INFO  main                             - Registering component: reference:io.github.syske.sofabootdemo.service.HelloService:#-1870391542
+2021-04-08 22:50:00,691 INFO  main                             -  >>In Binding [bolt] Begins - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:50:01,805 INFO  main                             -  >>In Binding [bolt] Ends - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:50:01,807 INFO  main                             -  >>In Binding [jvm] Begins - io.github.syske.sofabootdemo.service.HelloService.
+2021-04-08 22:50:01,818 INFO  main                             -  >>In Binding [jvm] Ends - io.github.syske.sofabootdemo.service.HelloService.

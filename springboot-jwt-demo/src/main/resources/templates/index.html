@@ -9,50 +9,50 @@
 <script th:src="@{js/main.js}"></script>
 <script src="https://cdn.bootcss.com/Base64/1.0.2/base64.js"></script>
 <script>
- /*   var order = getUrlParam("order");
-    switch (order) {
-        case "checkLogin":
-            checkLogin();
-            break;
-        default:
-            console.log("不支持的order:" + order);
+    /*   var order = getUrlParam("order");
+       switch (order) {
+           case "checkLogin":
+               checkLogin();
+               break;
+           default:
+               console.log("不支持的order:" + order);
+       }
+   */
+
+
+    $(function () {
+        checkLoginIndex();
+    })
+
+    function checkLoginIndex() {
+        var token = localStorage.getItem("token");
+        if (token == null || token.length == 0) {
+            goLogin();
+        } else {
+            //有token，检查token是否还有效
+            $.ajax({
+                type: 'post',
+                url: "/sso/checkJwt",
+                beforeSend: function (request) {      //使用beforeSend
+                    request.setRequestHeader("Access-Token", token);
+                    request.setRequestHeader("Content-Type", "application/json");
+                },
+                data: {"token": token},
+                success: function (res) {
+                    console.log(res);
+                    if (res.data === true) {
+                        alert('已登录，跳转到回调页面');
+                        var redirect = getUrlParam("redirect");
+                        if (redirect != null)
+                            window.location.href = redirect;
+
+                    } else {
+                        goLogin();
+                    }
+                }
+            });
+        }
     }
-*/
-
-
- $(function () {
-     checkLoginIndex();
- })
-
- function checkLoginIndex() {
-     var token = localStorage.getItem("token");
-     if (token == null || token.length == 0) {
-         goLogin();
-     } else {
-         //有token，检查token是否还有效
-         $.ajax({
-             type: 'post',
-             url: "/sso/checkJwt",
-             beforeSend: function (request) {      //使用beforeSend
-                 request.setRequestHeader("Access-Token", token);
-                 request.setRequestHeader("Content-Type", "application/json");
-             },
-             data: {"token": token},
-             success: function (res) {
-                 console.log(res);
-                 if (res.data === true) {
-                     alert('已登录，跳转到回调页面');
-                     var redirect = getUrlParam("redirect");
-                     if(redirect != null)
-                         window.location.href = redirect;
-
-                 } else {
-                     goLogin();
-                 }
-             }
-         });
-     }
- }
 
 </script>
 </body>

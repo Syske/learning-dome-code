@@ -26,11 +26,11 @@ class Solution {
 
 
         ArrayList<Integer> list = new ArrayList<Integer>(nums.length);
-        for (int i = 0; i<nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             Integer value = target - nums[i];
-            if(list.contains(value)) {
-                 result[1] = i;
-                 result[0] = list.indexOf(value);
+            if (list.contains(value)) {
+                result[1] = i;
+                result[0] = list.indexOf(value);
                 return result;
             }
             list.add(nums[i]);
@@ -249,7 +249,7 @@ class Solution {
                             || substring.contains("{") || substring.contains("}")) && !"".equals(substring);
         }*/
         char[] chars = s.toCharArray();
-        HashMap<String,String> hashMap = new HashMap<>();
+        HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("(", ")");
         hashMap.put("{", "}");
         hashMap.put("[", "]");
@@ -260,8 +260,8 @@ class Solution {
         return false;
     }
 
-    private boolean containsStr(String source,String target, int start, int end) {
-        return source.substring(start,end ).indexOf(target) > -1;
+    private boolean containsStr(String source, String target, int start, int end) {
+        return source.substring(start, end).indexOf(target) > -1;
     }
 
     public static void main(String[] args) {

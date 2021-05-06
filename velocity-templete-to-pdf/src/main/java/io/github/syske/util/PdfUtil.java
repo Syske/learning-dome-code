@@ -20,17 +20,16 @@ import java.util.Map;
  * @create: 2020-06-30 17:12
  */
 public class PdfUtil {
-   private static Logger logger = LoggerFactory.getLogger(PdfUtil.class);
+    private static Logger logger = LoggerFactory.getLogger(PdfUtil.class);
 
     /**
-     *
-     * @param o 写入的数据
-     * @param out 自定义保存pdf的文件流
+     * @param o            写入的数据
+     * @param out          自定义保存pdf的文件流
      * @param templatePath pdf模板路径
      */
     // 利用模板生成pdf
-    public static void fillTemplate(Map<String,Object> o, OutputStream out, String templatePath)
-    throws Exception {
+    public static void fillTemplate(Map<String, Object> o, OutputStream out, String templatePath)
+            throws Exception {
         PdfReader reader = null;
         ByteArrayOutputStream bos = null;
         PdfStamper stamper = null;
@@ -44,8 +43,8 @@ public class PdfUtil {
             while (it.hasNext()) {
                 String name = it.next();
                 System.out.println(name);
-                String value = o.get(name)!=null?o.get(name).toString():null;
-                form.setField(name,value);
+                String value = o.get(name) != null ? o.get(name).toString() : null;
+                form.setField(name, value);
             }
             stamper.setFormFlattening(true);// 如果为false那么生成的PDF文件还能编辑，一定要设为true
             stamper.close();
@@ -54,7 +53,7 @@ public class PdfUtil {
             PdfCopy copy = new PdfCopy(doc, out);
             doc.open();
             int numberOfPages = reader.getNumberOfPages();
-            for(int i = 1; i <= numberOfPages; i++) {
+            for (int i = 1; i <= numberOfPages; i++) {
                 PdfImportedPage importPage = copy.getImportedPage(new PdfReader(bos.toByteArray()), i);
                 copy.addPage(importPage);
             }
@@ -79,6 +78,7 @@ public class PdfUtil {
             }
         }
     }
+
     public static void main(String[] args) {
         // 模板路径
         String templatePath = "F:\\Users\\sysker\\Desktop\\2019-2020年度协议\\form\\2019年陕西省省级医疗照顾人员服务协议书（医院）.pdf";
@@ -90,7 +90,7 @@ public class PdfUtil {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        Map<String,Object> parameter = new HashMap<String, Object>();
+        Map<String, Object> parameter = new HashMap<String, Object>();
         parameter.put("yfmc", "乙方名称2");
         parameter.put("fddbr", "法定代表人2");
         parameter.put("fdlxdh", "法定代表人联系电话2");

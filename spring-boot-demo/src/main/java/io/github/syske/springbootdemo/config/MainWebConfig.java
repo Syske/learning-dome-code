@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @program: spring-boot-demo
- * @description:  视图配置
+ * @description: 视图配置
  * @author: syske
  * @create: 2020-01-16 17:09
  */

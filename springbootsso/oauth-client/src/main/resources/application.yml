@@ -1,21 +1,21 @@
 auth-server: http://localhost:8880/auth
 server:
- port: 8881
- servlet:
-  context-path: /
+  port: 8881
+  servlet:
+    context-path: /
 
 security:
- basic:
-  enabled: false
+  basic:
+    enabled: false
 
- oauth2:
-  client:
-   clientId: handleCilentId
-   clientSecret: secret
-   accessTokenUri: ${auth-server}/oauth/token
-   userAuthorizationUri: ${auth-server}/oauth/authorize
-  resource:
-   userInfoUri: ${auth-server}/user
+  oauth2:
+    client:
+      clientId: handleCilentId
+      clientSecret: secret
+      accessTokenUri: ${auth-server}/oauth/token
+      userAuthorizationUri: ${auth-server}/oauth/authorize
+    resource:
+      userInfoUri: ${auth-server}/user
 spring:
- thymeleaf:
-  cache: false
+  thymeleaf:
+    cache: false

@@ -6,6 +6,7 @@ package io.github.syske.could;
  * @author: syske
  * @create: 2019-12-11 17:50
  */
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -23,11 +24,12 @@ import org.springframework.web.client.RestTemplate;
 public class ConsumerRibbonApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run( ConsumerRibbonApplication.class, args );
+        SpringApplication.run(ConsumerRibbonApplication.class, args);
     }
 
     @Bean
-    @LoadBalanced //实现负载均衡
+    @LoadBalanced
+        //实现负载均衡
     RestTemplate restTemplate() {
         return new RestTemplate();
     }

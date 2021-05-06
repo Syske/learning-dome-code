@@ -1,0 +1,9 @@
+2021-04-08 22:28:16,634 INFO  main                             - SOFABoot Infrastructure Starting!
+2021-04-08 22:30:16,515 INFO  main                             - SOFABoot Infrastructure Starting!
+2021-04-08 22:31:28,164 INFO  main                             - SOFABoot Infrastructure Starting!
+2021-04-08 22:31:46,384 INFO  http-nio-8088-exec-2             - Loading properties file from URL [jar:file:/E:/TheServer/repository/com/alipay/sofa/healthcheck-sofa-boot-starter/3.1.0/healthcheck-sofa-boot-starter-3.1.0.jar!/META-INF/sofa.versions.properties]
+2021-04-08 22:31:46,385 INFO  http-nio-8088-exec-2             - Loading properties file from URL [jar:file:/E:/TheServer/repository/com/alipay/sofa/infra-sofa-boot-starter/3.1.0/infra-sofa-boot-starter-3.1.0.jar!/META-INF/sofa.versions.properties]
+2021-04-08 22:39:24,414 INFO  main                             - SOFABoot Infrastructure Starting!
+2021-04-08 22:42:01,553 INFO  main                             - SOFABoot Infrastructure Starting!
+2021-04-08 22:45:20,919 INFO  main                             - SOFABoot Infrastructure Starting!
+2021-04-08 22:49:47,428 INFO  main                             - SOFABoot Infrastructure Starting!

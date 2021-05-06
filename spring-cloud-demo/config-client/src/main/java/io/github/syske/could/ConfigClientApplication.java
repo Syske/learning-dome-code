@@ -6,6 +6,7 @@ package io.github.syske.could;
  * @author: syske
  * @create: 2019-12-11 18:38
  */
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +25,7 @@ public class ConfigClientApplication {
     String name;
 
     @RequestMapping(value = "/getName")
-    public String hi(){
+    public String hi() {
         return name;
     }
 }

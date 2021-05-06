@@ -24,7 +24,7 @@ public class MyBaseErrorController implements ErrorController {
 
 
     @RequestMapping(produces = {MediaType.ALL_VALUE})
-    public void error(HttpServletRequest request,  HttpServletResponse response) {
+    public void error(HttpServletRequest request, HttpServletResponse response) {
         setJsonError(response);
     }
 

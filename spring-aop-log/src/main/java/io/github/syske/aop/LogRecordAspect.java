@@ -67,10 +67,10 @@ public class LogRecordAspect {
      *
      * @param joinPoint
      * @param beginTime 开始时间
-     * @param spendTime  用时
-     * @param result  返回结果
+     * @param spendTime 用时
+     * @param result    返回结果
      */
-    private void saveSysLog(ProceedingJoinPoint joinPoint,long beginTime, long spendTime, Object result) {
+    private void saveSysLog(ProceedingJoinPoint joinPoint, long beginTime, long spendTime, Object result) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
 
@@ -79,7 +79,7 @@ public class LogRecordAspect {
         upmsLog.setAppId("pc");
 
         ApiOperation annotation = method.getAnnotation(ApiOperation.class);
-        if(annotation != null){
+        if (annotation != null) {
             //注解上的描述
             upmsLog.setDescription(annotation.value());
         }
@@ -89,7 +89,7 @@ public class LogRecordAspect {
         String params = JSON.toJSONString(args[0]);
         upmsLog.setParameter(params);
 
-        if(result instanceof String) {
+        if (result instanceof String) {
             upmsLog.setResult(result.toString());
         } else {
             // 返回结果
@@ -102,7 +102,6 @@ public class LogRecordAspect {
                 upmsLog.setResult(resultJson);
             }
         }
-
 
 
         //获取request
@@ -132,7 +131,7 @@ public class LogRecordAspect {
         }*/
 
         String path = request.getContextPath();
-        String baseURL =  request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+        String baseURL = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
         upmsLog.setBasePath(baseURL);
 
         // 开始时间
@@ -141,7 +140,7 @@ public class LogRecordAspect {
         upmsLog.setSpendTime(spendTime);
         upmsLog.setCreatetime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         //保存系统日志
-        logger.info("日志信息："+ upmsLog);
+        logger.info("日志信息：" + upmsLog);
         upmsLogService.insert(upmsLog);
     }
 

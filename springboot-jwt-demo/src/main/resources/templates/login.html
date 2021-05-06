@@ -81,7 +81,7 @@
 
         $("#login").click(function () {
             var val = $("#loginForm").valid();
-            if(val) {
+            if (val) {
                 doLogin();
             } else {
                 alert("表单验证不通过")
@@ -149,37 +149,37 @@
 
 
     function doLogin() {
-            var userName = $("#login-username").val();
-            var passWord = $("#login-password").val();
-            /*获取当前输入的账号密码*/
-            localStorage.setItem("userName", userName)
-            localStorage.setItem("passWord", passWord)
-            /*获取记住密码  自动登录的 checkbox的值*/
-            var check1 = $("#check1").prop('checked');
-            var check2 = $('#check2').prop('checked');
-            localStorage.setItem("check1", check1);
-            localStorage.setItem("check2", check2);
-            $.ajax({
-                type: 'post',
-                url: "/sso/login",
-                contentType: "application/json",
-                dataType: 'json',
-                data: JSON.stringify({username: userName, password: passWord}),
-                success: function (res) {
-                    console.log(res)
-                    if (res.code == 1) {
-                        localStorage.setItem("Access-token", res.data);
-                        var redirect = getUrlParam("redirect");
-                        if (redirect != null)
-                            window.location.href = redirect;
-                        else
-                            window.location.href = "/sso/index";
-                    } else {
-                        $("#login-password").val();
-                        alert("账号或密码错误");
-                    }
+        var userName = $("#login-username").val();
+        var passWord = $("#login-password").val();
+        /*获取当前输入的账号密码*/
+        localStorage.setItem("userName", userName)
+        localStorage.setItem("passWord", passWord)
+        /*获取记住密码  自动登录的 checkbox的值*/
+        var check1 = $("#check1").prop('checked');
+        var check2 = $('#check2').prop('checked');
+        localStorage.setItem("check1", check1);
+        localStorage.setItem("check2", check2);
+        $.ajax({
+            type: 'post',
+            url: "/sso/login",
+            contentType: "application/json",
+            dataType: 'json',
+            data: JSON.stringify({username: userName, password: passWord}),
+            success: function (res) {
+                console.log(res)
+                if (res.code == 1) {
+                    localStorage.setItem("Access-token", res.data);
+                    var redirect = getUrlParam("redirect");
+                    if (redirect != null)
+                        window.location.href = redirect;
+                    else
+                        window.location.href = "/sso/index";
+                } else {
+                    $("#login-password").val();
+                    alert("账号或密码错误");
                 }
-            });
+            }
+        });
 
 
     }
@@ -190,7 +190,9 @@
             return this.optional(element) || isCardNo(val);
         }, "请正确输入您的身份证号码");
         $("#loginForm").validate({
-            onfocusout: function(element) { $(element).valid(); },
+            onfocusout: function (element) {
+                $(element).valid();
+            },
             rules: {
                 userName: {
                     required: true,

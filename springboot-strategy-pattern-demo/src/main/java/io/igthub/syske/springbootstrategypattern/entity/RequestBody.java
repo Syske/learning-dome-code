@@ -3,6 +3,7 @@ package io.igthub.syske.springbootstrategypattern.entity;
 
 /**
  * 请求体
+ *
  * @param <T>
  */
 public class RequestBody<T> {

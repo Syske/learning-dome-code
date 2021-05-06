@@ -36,8 +36,8 @@ public class ${table.controllerName} {
 #else
 public class ${table.controllerName} {
 #end
-    private static Logger _log = LoggerFactory.getLogger(${table.controllerName}.class);
+private static Logger _log=LoggerFactory.getLogger(${table.controllerName}.class);
 
-    @Autowired
-    private ${table.serviceName} service;
-}
+@Autowired
+private ${table.serviceName} service;
+        }

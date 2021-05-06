@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xmlns:aop="http://www.springframework.org/schema/aop"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
@@ -11,35 +11,34 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd">
-	<!-- 自动扫描 -->
-	<context:component-scan
-			base-package="io.github.syske">
-		<context:include-filter type="annotation"
-								expression="org.aspectj.lang.annotation.Aspect" />
-	</context:component-scan>
+    <!-- 自动扫描 -->
+    <context:component-scan
+            base-package="io.github.syske">
+        <context:include-filter type="annotation"
+                                expression="org.aspectj.lang.annotation.Aspect"/>
+    </context:component-scan>
 
-	<!-- 设置AOP为自动代理 -->
-	<aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!-- 设置AOP为自动代理 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-	<!-- 开启注解 -->
-	<mvc:annotation-driven />
-	<!-- 配置静态资源 -->
-	<mvc:resources mapping="/resources/**"
-		location="/static/**" />
-
-
-
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		id="internalResourceViewResolver">
-		<!-- 前缀 -->
-		<property name="prefix" value="/WEB-INF/view/" />
-		<!-- 后缀 -->
-		<property name="suffix" value=".jsp" />
-	</bean>
+    <!-- 开启注解 -->
+    <mvc:annotation-driven/>
+    <!-- 配置静态资源 -->
+    <mvc:resources mapping="/resources/**"
+                   location="/static/**"/>
 
 
-	<!-- 表示上述配置的 css 文件不属 viewResolver 解析 -->
-	<mvc:default-servlet-handler/>
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+            id="internalResourceViewResolver">
+        <!-- 前缀 -->
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <!-- 后缀 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+    <!-- 表示上述配置的 css 文件不属 viewResolver 解析 -->
+    <mvc:default-servlet-handler/>
 
 </beans>  
