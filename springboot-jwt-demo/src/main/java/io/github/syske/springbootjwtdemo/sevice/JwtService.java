@@ -28,7 +28,6 @@ public class JwtService {
     private RedisUtil redisUtil;
 
 
-
     /**
      * Description:登录获取token
      *
@@ -54,15 +53,16 @@ public class JwtService {
 
     /**
      * 过期时间小于半小时，返回新的jwt，否则返回原jwt
+     *
      * @param jwt
      * @return
      */
     public String refreshJwt(String jwt) {
-        String secret = (String)redisUtil.get(jwt);
+        String secret = (String) redisUtil.get(jwt);
         Map<String, Claim> map = JwtUtil.decode(jwt, secret);
-        if(map.get("exp").asLong()*1000 - System.currentTimeMillis()/1000<30*60*1000){
+        if (map.get("exp").asLong() * 1000 - System.currentTimeMillis() / 1000 < 30 * 60 * 1000) {
             return this.generateNewJwt(map.get("name").asString());
-        }else{
+        } else {
             return jwt;
         }
     }
@@ -101,9 +101,9 @@ public class JwtService {
      * @date 2019/3/4 18:47
      */
     public ReturnEntity checkJwt(String jwt) {
-            String secret = (String)redisUtil.get(CommonConstant.PREFIX_USER_TOKEN + jwt);
-            JwtUtil.decode(jwt, secret);
-            return ReturnEntity.successResult(1, true);
+        String secret = (String) redisUtil.get(CommonConstant.PREFIX_USER_TOKEN + jwt);
+        JwtUtil.decode(jwt, secret);
+        return ReturnEntity.successResult(1, true);
     }
 
     /**

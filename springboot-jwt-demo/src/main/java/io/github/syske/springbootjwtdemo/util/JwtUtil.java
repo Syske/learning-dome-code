@@ -24,12 +24,14 @@ import java.util.Map;
 public class JwtUtil {
     private static Logger logger = LoggerFactory.getLogger(JwtUtil.class);
 
-    private JwtUtil() {}
+    private JwtUtil() {
+    }
+
     /**
      * Description: 生成一个jwt字符串
      *
-     * @param username    用户名
-     * @param timeOut 超时时间（单位ms）
+     * @param username 用户名
+     * @param timeOut  超时时间（单位ms）
      * @return java.lang.String
      * @author syske
      * @date 2019/3/4 17:26
@@ -50,7 +52,7 @@ public class JwtUtil {
      *
      * @param token  token
      * @param secret secret
-     * @return java.util.Map<java.lang.String                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               com.auth0.jwt.interfaces.Claim>
+     * @return java.util.Map<java.lang.String, com.auth0.jwt.interfaces.Claim>
      * @author syske
      * @date 2019/3/4 18:14
      */

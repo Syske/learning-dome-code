@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class AuthExceptionHandler{
+public class AuthExceptionHandler {
     @ExceptionHandler(AuthException.class)
     public ResultJson exception() {
         ResultJson resultJson = new ResultJson();

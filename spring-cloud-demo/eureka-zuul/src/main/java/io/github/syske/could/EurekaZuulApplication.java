@@ -6,6 +6,7 @@ package io.github.syske.could;
  * @author: syske
  * @create: 2019-12-11 18:29
  */
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -19,6 +20,6 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 public class EurekaZuulApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run( EurekaZuulApplication.class, args );
+        SpringApplication.run(EurekaZuulApplication.class, args);
     }
 }

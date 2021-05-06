@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.text.StringEscapeUtils;
+
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +20,10 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
+
 /**
  * ServletRequest包装类,对request做XSS过滤处理
+ *
  * @author Jozz
  */
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
@@ -47,10 +50,10 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
     @Override
     public String[] getParameterValues(String name) {
         String[] values = super.getParameterValues(name);
-        if(values != null) {
+        if (values != null) {
             int length = values.length;
             String[] escapseValues = new String[length];
-            for(int i = 0; i < length; i++){
+            for (int i = 0; i < length; i++) {
                 escapseValues[i] = StringEscapeUtils.escapeHtml4(values[i]);
             }
             return escapseValues;
@@ -60,32 +63,35 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
     @Override
     public ServletInputStream getInputStream() throws IOException {
-        String str=getRequestBody(super.getInputStream());
-        Map<String,Object> map= JSON.parseObject(str,Map.class);
-        Map<String,Object> resultMap=new HashMap<>(map.size());
-        for(String key:map.keySet()){
-            Object val=map.get(key);
-            if(map.get(key) instanceof String){
-                resultMap.put(key,StringEscapeUtils.escapeHtml4(val.toString()));
-            }else{
-                resultMap.put(key,val);
+        String str = getRequestBody(super.getInputStream());
+        Map<String, Object> map = JSON.parseObject(str, Map.class);
+        Map<String, Object> resultMap = new HashMap<>(map.size());
+        for (String key : map.keySet()) {
+            Object val = map.get(key);
+            if (map.get(key) instanceof String) {
+                resultMap.put(key, StringEscapeUtils.escapeHtml4(val.toString()));
+            } else {
+                resultMap.put(key, val);
             }
         }
-        str=JSON.toJSONString(resultMap);
+        str = JSON.toJSONString(resultMap);
         final ByteArrayInputStream bais = new ByteArrayInputStream(str.getBytes());
         return new ServletInputStream() {
             @Override
             public int read() throws IOException {
                 return bais.read();
             }
+
             @Override
             public boolean isFinished() {
                 return false;
             }
+
             @Override
             public boolean isReady() {
                 return false;
             }
+
             @Override
             public void setReadListener(ReadListener listener) {
             }

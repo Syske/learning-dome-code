@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author syske
@@ -23,6 +23,7 @@ public class ServerInfoServiceImpl extends ServiceImpl<ServerInfoMapper, ServerI
 
     @Autowired
     private ServerInfoMapper serverInfoMapper;
+
     @Override
     public List<ServerPortInfo> listServerInfo(ServerPortInfo serverPortInfo) {
         return serverInfoMapper.listServerInfo(serverPortInfo);

@@ -6,6 +6,7 @@ package io.github.syske;
  * @author: syske
  * @create: 2020-02-18 13:51
  */
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,8 +25,10 @@ import sun.misc.BASE64Encoder;
 
 public class Base64Util {
     private transient static Logger log = LoggerFactory.getLogger(Base64Util.class);
+
     /**
      * base64字符串转byte
+     *
      * @param imageBase64Str
      * @return
      */
@@ -57,6 +60,7 @@ public class Base64Util {
 
     /**
      * 保存图片
+     *
      * @param realPath
      * @param imageStr base64字符串
      * @return imgName
@@ -71,7 +75,7 @@ public class Base64Util {
                 f1.mkdir();
             }
             imgName = UUID.randomUUID().toString() + ".jpg";
-            imgPath = realPath + "/" + imgName ;
+            imgPath = realPath + "/" + imgName;
             File f2 = new File(imgPath);
             if (!f2.exists()) {
                 f2.createNewFile();
@@ -91,8 +95,7 @@ public class Base64Util {
     /**
      * base64字符串转化成图片
      *
-     * @param imgData
-     *            图片编码
+     * @param imgData 图片编码
      * @return
      * @throws IOException
      */
@@ -112,7 +115,7 @@ public class Base64Util {
                 }
             }
             out.write(b);
-        }catch (IOException e) {
+        } catch (IOException e) {
             log.error("图片转换失败：" + e);
             e.printStackTrace();
         } finally {
@@ -125,6 +128,7 @@ public class Base64Util {
 
     /**
      * 图片转化成base64字符串
+     *
      * @param imgPath
      * @return
      */

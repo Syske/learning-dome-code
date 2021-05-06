@@ -19,15 +19,15 @@ import java.util.ArrayList;
  */
 public class PdfCreate {
     public static void main(String[] args) throws Exception {
-       // createPDF();
-    String[] tableHeads = {"test1","test2","test3","test4"};
-    String[] keys = {"test1","test2","test3","test4"};
-    ArrayList<String> contents = new ArrayList<String>(8);
-    for (int i = 0; i < 8; i++) {
-        contents.add("content"+ i );
-    }
+        // createPDF();
+        String[] tableHeads = {"test1", "test2", "test3", "test4"};
+        String[] keys = {"test1", "test2", "test3", "test4"};
+        ArrayList<String> contents = new ArrayList<String>(8);
+        for (int i = 0; i < 8; i++) {
+            contents.add("content" + i);
+        }
         PdfCreate pdfCreate = new PdfCreate();
-        pdfCreate.createPdf("F:\\tests.pdf","测试",tableHeads,keys,contents);
+        pdfCreate.createPdf("F:\\tests.pdf", "测试", tableHeads, keys, contents);
 
 
     }
@@ -205,7 +205,7 @@ public class PdfCreate {
         doc.close();
     }
 
-    public void createPdf(String fileName, String title, String[] tableHeads,String[] keys, ArrayList<String> contents) {
+    public void createPdf(String fileName, String title, String[] tableHeads, String[] keys, ArrayList<String> contents) {
 
         //创建Document对象
         Document doc = new Document(PageSize.A4.rotate(), 0, 0, 50, 0);
@@ -249,17 +249,14 @@ public class PdfCreate {
         }
 
 
-
-
-
-
     }
 
     /**
-     *  合并行的静态函数
+     * 合并行的静态函数
+     *
      * @param rowContent 内容
-     * @param font 字体
-     * @param i 合并行数
+     * @param font       字体
+     * @param i          合并行数
      * @return
      */
 
@@ -278,9 +275,10 @@ public class PdfCreate {
 
     /**
      * 合并列的静态函数
+     *
      * @param colContent 内容
-     * @param font 字体
-     * @param i 合并列数量
+     * @param font       字体
+     * @param i          合并列数量
      * @return
      */
     public static PdfPCell mergeCol(String colContent, Font font, int i) {
@@ -297,8 +295,9 @@ public class PdfCreate {
 
     /**
      * 创建单元格
+     *
      * @param content 内容
-     * @param font 字体
+     * @param font    字体
      * @return
      */
     public static PdfPCell createPDFCell(String content, Font font) {

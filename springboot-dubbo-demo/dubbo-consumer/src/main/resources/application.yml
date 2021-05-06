@@ -1,0 +1,19 @@
+# 应用名称
+#  spring.application.name=dubbo-consumer
+# dubbo 协议
+#  dubbo.protocol.id=dubbo
+#  dubbo.protocol.name=dubbo
+# dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
+#  dubbo.protocol.port=-1
+# Dubbo 消费端订阅服务端的应用名，多个服务提供者用逗号分隔
+# 这里订阅"自己"，会被忽略掉，请根据实际情况添加
+#  dubbo.cloud.subscribed-services=dubbo-consumer
+# dubbo 服务扫描基准包
+#  dubbo.scan.base-packages=io.github.syske.dubboconsumer
+server:
+  port: 8080
+spring:
+  dubbo:
+    registry: zookeeper://127.0.0.1:2181
+  application:
+    name: dubbo-consumer

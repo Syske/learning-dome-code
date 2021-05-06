@@ -15,7 +15,8 @@ import org.springframework.web.servlet.config.annotation.*;
 public class WebConfig implements WebMvcConfigurer {
 
     /**
-     *  如果配置跨域，就增加这个配置
+     * 如果配置跨域，就增加这个配置
+     *
      * @param registry
      */
     @Override
@@ -27,6 +28,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * 跨域支持配置
+     *
      * @param registry
      */
     @Override

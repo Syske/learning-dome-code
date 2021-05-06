@@ -26,7 +26,7 @@ import java.util.Set;
  * @create: 2020-03-13 18:36
  */
 @Service
-public class JwtShiroRealm extends AuthorizingRealm  {
+public class JwtShiroRealm extends AuthorizingRealm {
 
 
     @Autowired

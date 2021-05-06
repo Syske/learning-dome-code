@@ -42,4 +42,13 @@
 38. [logger-demo](./logger-demo)：探讨日志使用问题及门面日志的优势
 39. [springboot-strategy-pattern-demo](./springboot-strategy-pattern-demo)：springboot策略模式解耦
 40. [weui-demo](./weui-demo)：weui魔改测试
+41. [web-sign-demo](./web-sign-demo)：在线生成承诺书，并在线签名
+42. [daily-note](./daily-note)：读书笔记随机生成图片
+43. [weblogic-monitor-exporter](./weblogic-monitor-exporter)：webligic监控
+44. [mp-yunzhongzhi-java](./mp-yunzhongzhi-java)：微信公众号开发
+45. [cache-server](./cache-server)：缓存服务
+46. [springboot-nacos-demo](./springboot-nacos-demo)：springboot整合nacos、druid，动态获取数据源配置信息
+47. [springboot-nacos-discovery-demo](./springboot-nacos-discovery-demo)：基于nacos实现服务注册和服务发现
+48. [activemq-demo](./activemq-demo/)：activeMQ示例
+49. [springboot-mock-demo](./springboot-mock-demo)：springboot整合mock
 

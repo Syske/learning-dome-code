@@ -41,12 +41,12 @@ public class JwtController {
 
     @PostMapping("/refreshJwt")
     public ReturnEntity refreshJwt(String token) {
-            return ReturnEntity.successResult(1, service.refreshJwt(token));
+        return ReturnEntity.successResult(1, service.refreshJwt(token));
     }
 
     @PostMapping("/inValid")
     public ReturnEntity inValid(String token) {
         service.inValid(token);
-        return ReturnEntity.successResult(1,null);
+        return ReturnEntity.successResult(1, null);
     }
 }

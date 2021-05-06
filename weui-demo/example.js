@@ -8,7 +8,8 @@ $(function () {
         $container: $('#container'),
         _pageStack: [],
         _configs: [],
-        _pageAppend: function(){},
+        _pageAppend: function () {
+        },
         _defaultPage: null,
         _pageIndex: 1,
         setDefault: function (defaultPage) {
@@ -56,13 +57,13 @@ $(function () {
             location.hash = config.url;
         },
         _go: function (config) {
-            this._pageIndex ++;
+            this._pageIndex++;
 
             history.replaceState && history.replaceState({_pageIndex: this._pageIndex}, '', location.href);
 
             var html = $(config.template).html();
             var $html = $(html).addClass('slideIn').addClass(config.name);
-            $html.on('animationend webkitAnimationEnd', function(){
+            $html.on('animationend webkitAnimationEnd', function () {
                 $html.removeClass('slideIn').addClass('js_show');
             });
             this.$container.append($html);
@@ -82,7 +83,7 @@ $(function () {
             history.back();
         },
         _back: function (config) {
-            this._pageIndex --;
+            this._pageIndex--;
 
             var stack = this._pageStack.pop();
             if (!stack) {
@@ -114,7 +115,7 @@ $(function () {
         },
         _findInStack: function (url) {
             var found = null;
-            for(var i = 0, len = this._pageStack.length; i < len; i++){
+            for (var i = 0, len = this._pageStack.length; i < len; i++) {
                 var stack = this._pageStack[i];
                 if (stack.config.url === url) {
                     found = stack;
@@ -144,8 +145,8 @@ $(function () {
         }
     };
 
-    function fastClick(){
-        var supportTouch = function(){
+    function fastClick() {
+        var supportTouch = function () {
             try {
                 document.createEvent("TouchEvent");
                 return true;
@@ -155,26 +156,27 @@ $(function () {
         }();
         var _old$On = $.fn.on;
 
-        $.fn.on = function(){
-            if(/click/.test(arguments[0]) && typeof arguments[1] == 'function' && supportTouch){ // 只扩展支持touch的当前元素的click事件
+        $.fn.on = function () {
+            if (/click/.test(arguments[0]) && typeof arguments[1] == 'function' && supportTouch) { // 只扩展支持touch的当前元素的click事件
                 var touchStartY, callback = arguments[1];
-                _old$On.apply(this, ['touchstart', function(e){
+                _old$On.apply(this, ['touchstart', function (e) {
                     touchStartY = e.changedTouches[0].clientY;
                 }]);
-                _old$On.apply(this, ['touchend', function(e){
+                _old$On.apply(this, ['touchend', function (e) {
                     if (Math.abs(e.changedTouches[0].clientY - touchStartY) > 10) return;
 
                     e.preventDefault();
                     callback.apply(this, [e]);
                 }]);
-            }else{
+            } else {
                 _old$On.apply(this, arguments);
             }
             return this;
         };
     }
-    function preload(){
-        $(window).on("load", function(){
+
+    function preload() {
+        $(window).on("load", function () {
             var imgList = [
                 "./images/layers/content.png",
                 "./images/layers/navigation.png",
@@ -186,7 +188,8 @@ $(function () {
             }
         });
     }
-    function androidInputBugFix(){
+
+    function androidInputBugFix() {
         // .container 设置了 overflow 属性, 导致 Android 手机下输入框获取焦点时, 输入法挡住输入框的 bug
         // 相关 issue: https://github.com/weui/weui/issues/15
         // 解决方法:
@@ -203,7 +206,8 @@ $(function () {
             })
         }
     }
-    function setPageManager(){
+
+    function setPageManager() {
         var pages = {}, tpls = $('script[type="text/html"]');
 
         for (var i = 0, len = tpls.length; i < len; ++i) {
@@ -220,25 +224,26 @@ $(function () {
             pageManager.push(pages[page]);
         }
         pageManager
-            .setPageAppend(function($html){
+            .setPageAppend(function ($html) {
                 $html.eq(0).append(footerTmpl);
-                setTimeout(() => {
+                setTimeout(() = > {
                     var $foot = $html.find('.page__ft');
-                    if($foot.length < 1) return;
+                if ($foot.length < 1) return;
 
-                    var winH = $(window).height();
-                    if($foot.position().top + $foot.height() < winH){
-                        $foot.addClass('j_bottom');
-                    }else{
-                        $foot.removeClass('j_bottom');
-                    }
-                });
+                var winH = $(window).height();
+                if ($foot.position().top + $foot.height() < winH) {
+                    $foot.addClass('j_bottom');
+                } else {
+                    $foot.removeClass('j_bottom');
+                }
+            })
+                ;
             })
             .setDefault('home')
             .init();
     }
 
-    function init(){
+    function init() {
         preload();
         fastClick();
         androidInputBugFix();
@@ -246,10 +251,11 @@ $(function () {
         setPageManager();
 
         window.pageManager = pageManager;
-        window.home = function(){
+        window.home = function () {
             location.hash = '';
         };
         pageManager.go('home');
     }
+
     init();
 });

@@ -6,6 +6,7 @@ package io.github.syske.could;
  * @author: syske
  * @create: 2019-12-11 18:35
  */
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;

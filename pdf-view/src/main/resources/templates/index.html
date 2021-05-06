@@ -13,7 +13,7 @@
 <script src="js/sweetalert.min.js"></script>
 <script type="text/javascript">
     $(function () {
-       // alert(getUrlParam("fileName"));
+        // alert(getUrlParam("fileName"));
         //getBase64Str("payment-voucher-of-insurance/004f9367-61a2-4bd8-a722-6eac115d0b13-980000097670-signed.pdf");
         getBase64Str(getUrlParam("fileName"));
     })
@@ -25,7 +25,6 @@
         if (r != null) return unescape(r[2]);
         return null; //返回参数值
     }
-
 
 
     function getBase64Str(fileName) {
@@ -49,7 +48,7 @@
                 }
                 //swal.close();
             },
-            error:function () {
+            error: function () {
                 swal("错误信息", "获取文件失败", "error");
             }
         });

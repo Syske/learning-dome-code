@@ -68,16 +68,16 @@ public class ShiroConfig {
         // 访问401和404页面不通过我们的Filter
         filterRuleMap.put("/401", "anon");
         filterRuleMap.put("/static/**", "anon");
-        filterRuleMap.put("/css/**","anon");
-        filterRuleMap.put("/layui/**","anon");
-        filterRuleMap.put("/img/**","anon");
-        filterRuleMap.put("/js/**","anon");
-        filterRuleMap.put("/index","anon");
-        filterRuleMap.put("/login","anon");
-        filterRuleMap.put("/","anon");
-        filterRuleMap.put("/userLogin","anon");
-        filterRuleMap.put("/logout","logout");//配置退出 过滤器,其中的具体的退出代码Shiro已经实现
-        filterRuleMap.put("/**","authc");//过滤链定义，从上向下顺序执行，一般将/**放在最为下边
+        filterRuleMap.put("/css/**", "anon");
+        filterRuleMap.put("/layui/**", "anon");
+        filterRuleMap.put("/img/**", "anon");
+        filterRuleMap.put("/js/**", "anon");
+        filterRuleMap.put("/index", "anon");
+        filterRuleMap.put("/login", "anon");
+        filterRuleMap.put("/", "anon");
+        filterRuleMap.put("/userLogin", "anon");
+        filterRuleMap.put("/logout", "logout");//配置退出 过滤器,其中的具体的退出代码Shiro已经实现
+        filterRuleMap.put("/**", "authc");//过滤链定义，从上向下顺序执行，一般将/**放在最为下边
         // 所有请求通过我们自己的JWT Filter
         filterRuleMap.put("/**", "jwt");
 

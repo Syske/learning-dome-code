@@ -6,6 +6,7 @@ package io.github.syske.could.controller;
  * @author: syske
  * @create: 2019-12-11 17:52
  */
+
 import io.github.syske.could.service.EchoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,6 @@ public class EchoController {
 
     @GetMapping(value = "/echo")
     public String hi(@RequestParam String name) {
-        return echoService.echo( name );
+        return echoService.echo(name);
     }
 }

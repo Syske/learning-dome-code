@@ -24,29 +24,29 @@ public class Client {
         //打开socket通道
         SocketChannel sc = SocketChannel.open();
         sc.configureBlocking(false);
-        sc.connect(new InetSocketAddress("localhost",3400));
+        sc.connect(new InetSocketAddress("localhost", 3400));
         //创建选择器
         Selector selector = Selector.open();
         //将channel注册到selector中
         sc.register(selector, SelectionKey.OP_CONNECT);
 
         Scanner scanner = new Scanner(System.in);
-        while (true){
+        while (true) {
             selector.select();
             Set<SelectionKey> keys = selector.selectedKeys();
-            System.out.println("keys:"+keys.size());
+            System.out.println("keys:" + keys.size());
             Iterator<SelectionKey> iterator = keys.iterator();
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 SelectionKey key = iterator.next();
                 iterator.remove();
                 //判断此通道上是否在进行连接操作
-                if (key.isConnectable()){
+                if (key.isConnectable()) {
                     sc.finishConnect();
                     //注册写操作
-                    sc.register(selector,SelectionKey.OP_WRITE);
+                    sc.register(selector, SelectionKey.OP_WRITE);
                     System.out.println("server connected...");
                     break;
-                }else  if (key.isWritable()){
+                } else if (key.isWritable()) {
                     System.out.println("please input message:");
                     String message = scanner.nextLine();
                     writeBuffer.clear();
@@ -59,14 +59,14 @@ public class Client {
                     //如果你对不止一种事件感兴趣，那么可以用“位或”操作符将常量连接起来
                     //int interestSet = SelectionKey.OP_READ | SelectionKey.OP_WRITE;
                     //使用interest集合
-                    sc.register(selector,SelectionKey.OP_WRITE | SelectionKey.OP_READ);
-                }else if(key.isReadable()){
+                    sc.register(selector, SelectionKey.OP_WRITE | SelectionKey.OP_READ);
+                } else if (key.isReadable()) {
                     System.out.print("receive message:");
                     SocketChannel client = (SocketChannel) key.channel();
                     //将缓冲区清空以备下次读取
                     readBuffer.clear();
                     int num = client.read(readBuffer);
-                    System.out.println(new String(readBuffer.array(),0, num));
+                    System.out.println(new String(readBuffer.array(), 0, num));
                     //注册写操作，下一次写
                     sc.register(selector, SelectionKey.OP_WRITE);
                 }

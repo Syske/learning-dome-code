@@ -26,7 +26,7 @@ public class IreportServlet extends javax.servlet.http.HttpServlet {
 
             String sourceFileName = context.getRealPath("ireport/"
                     + "ireport-demo.jasper");
-            IReportUtil.exportPdfFileServer(sourceFileName, "D:/test.pdf",parameters, connection);
+            IReportUtil.exportPdfFileServer(sourceFileName, "D:/test.pdf", parameters, connection);
         } catch (JRException e) {
             e.printStackTrace();
         }

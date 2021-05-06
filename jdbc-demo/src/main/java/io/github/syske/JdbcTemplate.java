@@ -17,7 +17,7 @@ public class JdbcTemplate {
     /**
      * 查询的封装方法
      */
-    public <T> List<T> queryForList(RowMapper<T> mapper, String sql, Object[] params){
+    public <T> List<T> queryForList(RowMapper<T> mapper, String sql, Object[] params) {
         List<T> returnResult = new ArrayList<T>();
         Connection conn = null; // 一个数据库连接
         PreparedStatement pre = null; // 预编译对象
@@ -30,23 +30,23 @@ public class JdbcTemplate {
             setParams(params, pre);
             rs = pre.executeQuery();
             int rownum = 0;
-            while(rs.next()){
+            while (rs.next()) {
                 rownum++;
                 returnResult.add(mapper.mappingRow(rs, rownum));
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }finally{
+        } finally {
             DbUtil.closeConnection(conn, pre, rs);
         }
         return returnResult;
     }
 
-    private void setParams(Object[] params, PreparedStatement pre) throws SQLException{
-        if(params != null){
-            for(int i = 0; i < params.length; i++){
-                pre.setObject(i+1, params[i]);
+    private void setParams(Object[] params, PreparedStatement pre) throws SQLException {
+        if (params != null) {
+            for (int i = 0; i < params.length; i++) {
+                pre.setObject(i + 1, params[i]);
             }
         }
     }

@@ -11,6 +11,7 @@ import java.util.Map;
  */
 public class DataSource {
     public static Map<String, Map<String, String>> data;
+
     static {
 
         Map<String, String> detail = new HashMap<>();

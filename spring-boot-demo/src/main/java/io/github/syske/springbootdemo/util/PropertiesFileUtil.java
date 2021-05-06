@@ -28,13 +28,13 @@ public class PropertiesFileUtil {
     }
 
     public static synchronized PropertiesFileUtil getInstance(String name) {
-        PropertiesFileUtil conf = (PropertiesFileUtil)configMap.get(name);
+        PropertiesFileUtil conf = (PropertiesFileUtil) configMap.get(name);
         if (null == conf) {
             conf = new PropertiesFileUtil(name);
             configMap.put(name, conf);
         }
 
-        if ((new Date()).getTime() - conf.getLoadTime().getTime() > (long)TIME_OUT) {
+        if ((new Date()).getTime() - conf.getLoadTime().getTime() > (long) TIME_OUT) {
             conf = new PropertiesFileUtil(name);
             configMap.put(name, conf);
         }

@@ -1,0 +1,2 @@
+2021-04-08 22:45:38,747 INFO  SOFA-CLI-DISCONN-io.github.syske.sofabootdemo.service.HelloService-6-T1 com.alipay.sofa.rpc.transport.bolt.BoltClientTransport - Try disconnect client transport now. The connection is 192.168.43.143:58825 -> 192.168.43.143:12200.
+2021-04-08 22:45:38,916 INFO  SOFA-RPC-ShutdownHook            com.alipay.sofa.rpc.transport.ClientTransportFactory - Shutdown all client transport now!

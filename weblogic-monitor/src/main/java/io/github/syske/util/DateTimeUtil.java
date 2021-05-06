@@ -15,11 +15,13 @@ import java.util.GregorianCalendar;
  */
 public class DateTimeUtil {
 
-    private DateTimeUtil() {}
+    private DateTimeUtil() {
+    }
 
     /**
      * 获取当前时间
-     * @param format  格式
+     *
+     * @param format 格式
      * @return
      */
     public static String getCurrentDateTime(String format) {
@@ -28,7 +30,8 @@ public class DateTimeUtil {
 
     /**
      * 获取第futuredayCount天2后的时间
-     * @param fomat 格式
+     *
+     * @param fomat          格式
      * @param futuredayCount 天数
      * @return
      */
@@ -39,6 +42,6 @@ public class DateTimeUtil {
         calendar.add(calendar.DATE, futuredayCount);
         String futureDate = simpleDateFormat.format(calendar.getTime());
 
-         return futureDate;
+        return futureDate;
     }
 }

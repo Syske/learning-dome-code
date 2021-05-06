@@ -25,23 +25,23 @@ public class AutoRobotCmd {
             // 实例化机器人
             Robot robot = new Robot();
             // 先将鼠标移动到开始菜单的位置
-           // robot.mouseMove(29, 1056);
+            // robot.mouseMove(29, 1056);
 
-          //  robot.delay(500);
+            //  robot.delay(500);
             // 单击鼠标左键
-           // robot.mousePress(InputEvent.BUTTON1_MASK);
+            // robot.mousePress(InputEvent.BUTTON1_MASK);
             // 释放鼠标
-           // robot.mouseRelease(InputEvent.BUTTON1_MASK);
+            // robot.mouseRelease(InputEvent.BUTTON1_MASK);
             // 延时500ms
-           // robot.delay(500);
+            // robot.delay(500);
             // 将鼠标移动到对应位置
-          //  robot.mouseMove(29, 1021);
+            //  robot.mouseMove(29, 1021);
             // 单击鼠标左键
-          //  robot.mousePress(InputEvent.BUTTON1_MASK);
+            //  robot.mousePress(InputEvent.BUTTON1_MASK);
             // 释放鼠标
-           // robot.mouseRelease(InputEvent.BUTTON1_MASK);
+            // robot.mouseRelease(InputEvent.BUTTON1_MASK);
             // 延时500ms
-           // robot.delay(500);
+            // robot.delay(500);
 			/*// 输入
 			robot.keyPress(KeyEvent.VK_C);
 			// 			

@@ -16,6 +16,6 @@ public class ExceptionHandle {
 
     @ExceptionHandler(Exception.class)
     public AjaxJson exceptionHandler(Exception e) {
-        return new AjaxJson( e);
+        return new AjaxJson(e);
     }
 }

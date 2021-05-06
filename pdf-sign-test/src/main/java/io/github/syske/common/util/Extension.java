@@ -20,6 +20,7 @@ public class Extension {
     public byte[] getValue() {
         return value;
     }
+
     public boolean isCritical() {
         return critical;
     }

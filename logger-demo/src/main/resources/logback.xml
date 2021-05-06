@@ -9,81 +9,81 @@
     </appender>
 
     <root level="DEBUG">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
     </root>
-<!--
-    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <!--
+        <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+        <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
-    <property name="LOG_HOME" value="./log"/>
-    <property name="LOG_PREFIX" value="logger-demo-xxx"/>-->
+        <property name="LOG_HOME" value="./log"/>
+        <property name="LOG_PREFIX" value="logger-demo-xxx"/>-->
 
 
-  <!--  &lt;!&ndash;输出到控制台 ConsoleAppender&ndash;&gt;
-    <appender name="consoleLog1" class="ch.qos.logback.core.ConsoleAppender">
-        &lt;!&ndash;展示格式 layout&ndash;&gt;
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>
-                <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
-            </pattern>
-        </layout>
-        &lt;!&ndash; 过滤掉Error级别的日志，此appender仅筛选Error级别日志并输出到控制台
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-             <level>ERROR</level>
-        </filter>
-         &ndash;&gt;
-    </appender>
-    &lt;!&ndash;
-    %p:输出优先级，即DEBUG,INFO,WARN,ERROR,FATAL
-    %r:输出自应用启动到输出该日志讯息所耗费的毫秒数
-    %t:输出产生该日志事件的线程名
-    %f:输出日志讯息所属的类别的类别名
-    %c:输出日志讯息所属的类的全名
-    %d:输出日志时间点的日期或时间，指定格式的方式： %d{yyyy-MM-dd HH:mm:ss}
-    %l:输出日志事件的发生位置，即输出日志讯息的语句在他所在类别的第几行。
-    %m:输出代码中指定的讯息，如log(message)中的message
-    %n:输出一个换行符号
-    &ndash;&gt;
-    &lt;!&ndash;
-    Appender: 设置日志信息的去向,常用的有以下几个
-    ch.qos.logback.core.ConsoleAppender (控制台)
-    ch.qos.logback.core.rolling.RollingFileAppender (文件大小到达指定尺寸的时候产生一个新文件)
-    ch.qos.logback.core.FileAppender (文件，不推荐使用)
-    &ndash;&gt;
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        &lt;!&ndash;&lt;!&ndash; 被写入的文件名，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建 &ndash;&gt;&ndash;&gt;
-        <File>${LOG_HOME}/${LOG_PREFIX}-info.log</File>
-        &lt;!&ndash;<encoder>：对记录事件进行格式化。&ndash;&gt;
-        <encoder>
-            &lt;!&ndash;格式化输出：%d表示日期,后面跟时间格式，默认%data{yyyy-MM-dd}，%thread表示线程名， %msg：日志消息，%n是换行符&ndash;&gt;
-            <pattern>%date [%level] [%thread] %logger{60} [%file : %line] %msg%n</pattern>
-        </encoder>
-        &lt;!&ndash;RollingFileAppender:&ndash;&gt;
-        &lt;!&ndash;滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。&ndash;&gt;
-        &lt;!&ndash;<rollingPolicy>:当发生滚动时，决定RollingFileAppender 的行为，涉及文件移动和重命名。&ndash;&gt;
-        &lt;!&ndash;TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动&ndash;&gt;
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            &lt;!&ndash;<fileNamePattern>:
-            必要节点，包含文件名及“%d”转换符， “%d”可以包含一个 java.text.SimpleDateFormat指定的时间格式，如：%d{yyyy-MM}。
-            如果直接使用 %d，默认格式是 yyyy-MM-dd。RollingFileAppender 的file字节点可有可无，通过设置file，可以为活动文件和归档文件指定不同位置，当前日志总是记录到file指定的文件（活动文件），活动文件的名字不会改变；
-            如果没设置file，活动文件的名字会根据fileNamePattern的值，每隔一段时间改变一次。“/”或者“\”会被当做目录分隔符。&ndash;&gt;
-            &lt;!&ndash;<fileNamePattern>${LOG_HOME}/daily/${LOG_FILE}.%d{yyyy-MM-dd}.gz</fileNamePattern>&ndash;&gt;
-            &lt;!&ndash;压缩文件的保存路径以及保存格式，这里必须将文件压缩，.%i 必须有。如果按上面的配置会报错&ndash;&gt;
-            <fileNamePattern>${LOG_HOME}/daily/${LOG_FILE}_%d{yyyy-MM-dd}.log.%i.gz</fileNamePattern>
+    <!--  &lt;!&ndash;输出到控制台 ConsoleAppender&ndash;&gt;
+      <appender name="consoleLog1" class="ch.qos.logback.core.ConsoleAppender">
+          &lt;!&ndash;展示格式 layout&ndash;&gt;
+          <layout class="ch.qos.logback.classic.PatternLayout">
+              <pattern>
+                  <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+              </pattern>
+          </layout>
+          &lt;!&ndash; 过滤掉Error级别的日志，此appender仅筛选Error级别日志并输出到控制台
+          <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+               <level>ERROR</level>
+          </filter>
+           &ndash;&gt;
+      </appender>
+      &lt;!&ndash;
+      %p:输出优先级，即DEBUG,INFO,WARN,ERROR,FATAL
+      %r:输出自应用启动到输出该日志讯息所耗费的毫秒数
+      %t:输出产生该日志事件的线程名
+      %f:输出日志讯息所属的类别的类别名
+      %c:输出日志讯息所属的类的全名
+      %d:输出日志时间点的日期或时间，指定格式的方式： %d{yyyy-MM-dd HH:mm:ss}
+      %l:输出日志事件的发生位置，即输出日志讯息的语句在他所在类别的第几行。
+      %m:输出代码中指定的讯息，如log(message)中的message
+      %n:输出一个换行符号
+      &ndash;&gt;
+      &lt;!&ndash;
+      Appender: 设置日志信息的去向,常用的有以下几个
+      ch.qos.logback.core.ConsoleAppender (控制台)
+      ch.qos.logback.core.rolling.RollingFileAppender (文件大小到达指定尺寸的时候产生一个新文件)
+      ch.qos.logback.core.FileAppender (文件，不推荐使用)
+      &ndash;&gt;
+      <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+          &lt;!&ndash;&lt;!&ndash; 被写入的文件名，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建 &ndash;&gt;&ndash;&gt;
+          <File>${LOG_HOME}/${LOG_PREFIX}-info.log</File>
+          &lt;!&ndash;<encoder>：对记录事件进行格式化。&ndash;&gt;
+          <encoder>
+              &lt;!&ndash;格式化输出：%d表示日期,后面跟时间格式，默认%data{yyyy-MM-dd}，%thread表示线程名， %msg：日志消息，%n是换行符&ndash;&gt;
+              <pattern>%date [%level] [%thread] %logger{60} [%file : %line] %msg%n</pattern>
+          </encoder>
+          &lt;!&ndash;RollingFileAppender:&ndash;&gt;
+          &lt;!&ndash;滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件。&ndash;&gt;
+          &lt;!&ndash;<rollingPolicy>:当发生滚动时，决定RollingFileAppender 的行为，涉及文件移动和重命名。&ndash;&gt;
+          &lt;!&ndash;TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动&ndash;&gt;
+          <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+              &lt;!&ndash;<fileNamePattern>:
+              必要节点，包含文件名及“%d”转换符， “%d”可以包含一个 java.text.SimpleDateFormat指定的时间格式，如：%d{yyyy-MM}。
+              如果直接使用 %d，默认格式是 yyyy-MM-dd。RollingFileAppender 的file字节点可有可无，通过设置file，可以为活动文件和归档文件指定不同位置，当前日志总是记录到file指定的文件（活动文件），活动文件的名字不会改变；
+              如果没设置file，活动文件的名字会根据fileNamePattern的值，每隔一段时间改变一次。“/”或者“\”会被当做目录分隔符。&ndash;&gt;
+              &lt;!&ndash;<fileNamePattern>${LOG_HOME}/daily/${LOG_FILE}.%d{yyyy-MM-dd}.gz</fileNamePattern>&ndash;&gt;
+              &lt;!&ndash;压缩文件的保存路径以及保存格式，这里必须将文件压缩，.%i 必须有。如果按上面的配置会报错&ndash;&gt;
+              <fileNamePattern>${LOG_HOME}/daily/${LOG_FILE}_%d{yyyy-MM-dd}.log.%i.gz</fileNamePattern>
 
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                &lt;!&ndash;保存文件的大小，超过该大小自动创建新文件。旧文件压缩保存到daily目录下&ndash;&gt;
-                <maxFileSize>1MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-            &lt;!&ndash;&lt;!&ndash; 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每个月滚动，如果是6，则只保存最近6天的文件，删除之前的旧文件 包括压缩文件 &ndash;&gt;&ndash;&gt;
-            &lt;!&ndash;&lt;!&ndash; 每产生一个日志文件，该日志文件的保存期限天数 &ndash;&gt;&ndash;&gt;
-            <maxHistory>1</maxHistory>
-        </rollingPolicy>
-    </appender>
-    &lt;!&ndash;root是默认的logger 这里设定输出级别是info&ndash;&gt;
-    <root level="INFO">
-        &lt;!&ndash;定义了两个appender，日志会通过往这两个appender里面写&ndash;&gt;
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
-    </root>-->
+              <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                  &lt;!&ndash;保存文件的大小，超过该大小自动创建新文件。旧文件压缩保存到daily目录下&ndash;&gt;
+                  <maxFileSize>1MB</maxFileSize>
+              </timeBasedFileNamingAndTriggeringPolicy>
+              &lt;!&ndash;&lt;!&ndash; 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件。假设设置每个月滚动，如果是6，则只保存最近6天的文件，删除之前的旧文件 包括压缩文件 &ndash;&gt;&ndash;&gt;
+              &lt;!&ndash;&lt;!&ndash; 每产生一个日志文件，该日志文件的保存期限天数 &ndash;&gt;&ndash;&gt;
+              <maxHistory>1</maxHistory>
+          </rollingPolicy>
+      </appender>
+      &lt;!&ndash;root是默认的logger 这里设定输出级别是info&ndash;&gt;
+      <root level="INFO">
+          &lt;!&ndash;定义了两个appender，日志会通过往这两个appender里面写&ndash;&gt;
+          <appender-ref ref="CONSOLE"/>
+          <appender-ref ref="FILE"/>
+      </root>-->
 </configuration>

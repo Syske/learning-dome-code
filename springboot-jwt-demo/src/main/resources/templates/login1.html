@@ -3,7 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>认证中心登录页面</title>
@@ -44,7 +44,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         var redirect = getUrlParam("redirect");
                         console.log(redirect)
                         console.log(redirect != null)
-                        if(redirect != null)
+                        if (redirect != null)
                             window.location.href = redirect;
                         else
                             window.location.href = "/sso/index";
@@ -73,7 +73,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     console.log(res.data)
                     alert("登录成功，跳转到回调地址");
                     var redirect = getUrlParam("redirect");
-                    if(redirect != null)
+                    if (redirect != null)
                         window.location.href = redirect;
                     else
                         window.location.href = "/sso/index";
@@ -88,14 +88,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         $.ajax({
             type: 'get',
             url: "/sso/forwardTo",
-            beforeSend: function(request) {      //使用beforeSend
+            beforeSend: function (request) {      //使用beforeSend
                 request.setRequestHeader("Access-Token", token);
-                request.setRequestHeader("Content-Type","application/json");
+                request.setRequestHeader("Content-Type", "application/json");
             },
-            data: {"url":url},
+            data: {"url": url},
             contentType: "application/html",
             success: function (page) {
-                window.location.href = "/sso/" + url ;
+                window.location.href = "/sso/" + url;
             },
             error: function () {
                 alert("跳转失败")

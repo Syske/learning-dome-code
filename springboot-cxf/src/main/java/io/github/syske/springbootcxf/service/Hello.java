@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License. You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -35,11 +35,11 @@ public interface Hello {
 
     @WebResult(name = "return", targetNamespace = "")
     @RequestWrapper(localName = "sayHello",
-                    targetNamespace = "http://service.ws.sample/",
-                    className = "sample.ws.service.SayHello")
+            targetNamespace = "http://service.ws.sample/",
+            className = "sample.ws.service.SayHello")
     @WebMethod(action = "urn:SayHello")
     @ResponseWrapper(localName = "sayHelloResponse",
-                     targetNamespace = "http://service.ws.sample/",
-                     className = "sample.ws.service.SayHelloResponse")
+            targetNamespace = "http://service.ws.sample/",
+            className = "sample.ws.service.SayHelloResponse")
     String sayHello(@WebParam(name = "myname", targetNamespace = "") String myname);
 }

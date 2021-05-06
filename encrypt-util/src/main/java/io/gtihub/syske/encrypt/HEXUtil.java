@@ -10,8 +10,7 @@ public class HEXUtil {
     /**
      * hex字符串转byte数组
      *
-     * @param inHex
-     *            待转换的Hex字符串
+     * @param inHex 待转换的Hex字符串
      * @return 转换后的byte数组结果
      */
     public static byte[] hexToByteArray(String inHex) {
@@ -38,8 +37,7 @@ public class HEXUtil {
     /**
      * Hex字符串转byte
      *
-     * @param inHex
-     *            待转换的Hex字符串
+     * @param inHex 待转换的Hex字符串
      * @return 转换后的byte
      */
     public static byte hexToByte(String inHex) {
@@ -49,8 +47,7 @@ public class HEXUtil {
     /**
      * 字节数组转16进制
      *
-     * @param bytes
-     *            需要转换的byte数组
+     * @param bytes 需要转换的byte数组
      * @return 转换后的Hex字符串
      */
     public static String bytesToHex(byte[] bytes) {
@@ -67,6 +64,7 @@ public class HEXUtil {
 
     /**
      * bytes转hex字符串
+     *
      * @param bytes
      * @return
      */
@@ -74,7 +72,7 @@ public class HEXUtil {
 
         final char[] HEX_DIGITS = "0123456789ABCDEF".toCharArray();
         StringBuilder ret = new StringBuilder(bytes.length * 2);
-        for (int i=0; i<bytes.length; i++) {
+        for (int i = 0; i < bytes.length; i++) {
             ret.append(HEX_DIGITS[(bytes[i] >> 4) & 0x0f]);
             ret.append(HEX_DIGITS[bytes[i] & 0x0f]);
         }

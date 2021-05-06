@@ -7,14 +7,14 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="io.github.syske.mybatisplus.dao.model.User">
-        <id column="id" property="id" />
-        <result column="userName" property="userName" />
-        <result column="nickName" property="nickName" />
-        <result column="sex" property="sex" />
-        <result column="password" property="password" />
-        <result column="registerTime" property="registerTime" />
-        <result column="sign" property="sign" />
-        <result column="status" property="status" />
+        <id column="id" property="id"/>
+        <result column="userName" property="userName"/>
+        <result column="nickName" property="nickName"/>
+        <result column="sex" property="sex"/>
+        <result column="password" property="password"/>
+        <result column="registerTime" property="registerTime"/>
+        <result column="sign" property="sign"/>
+        <result column="status" property="status"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->

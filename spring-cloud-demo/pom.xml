@@ -11,7 +11,6 @@
     <description>Demo project for Spring Boot</description>
 
 
-
     <modules>
         <module>eureka-server</module>
         <module>eureka-clinet</module>

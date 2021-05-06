@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>name complex type�� Java �ࡣ
- * 
+ *
  * <p>����ģʽƬ��ָ�������ڴ����е�Ԥ�����ݡ�
- * 
+ *
  * <pre>
  * &lt;complexType name="name"&gt;
  *   &lt;complexContent&gt;
@@ -22,12 +22,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "name", propOrder = {
-    "myname"
+        "myname"
 })
 public class Name {
 
@@ -35,11 +33,9 @@ public class Name {
 
     /**
      * ��ȡmyname���Ե�ֵ��
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getMyname() {
         return myname;
@@ -47,11 +43,9 @@ public class Name {
 
     /**
      * ����myname���Ե�ֵ��
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setMyname(String value) {
         this.myname = value;

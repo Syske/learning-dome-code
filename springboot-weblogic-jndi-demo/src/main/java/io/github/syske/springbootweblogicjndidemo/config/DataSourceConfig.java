@@ -22,28 +22,28 @@ public class DataSourceConfig {
     @Value("${spring.datasource.jndi-name}")
     private String JNDI_NAME;
 
-        @Bean(name = "dataSource")
-        public DataSource jndiDataSource() throws IllegalArgumentException, NamingException {
+    @Bean(name = "dataSource")
+    public DataSource jndiDataSource() throws IllegalArgumentException, NamingException {
 
-            JndiObjectFactoryBean bean = new JndiObjectFactoryBean();
+        JndiObjectFactoryBean bean = new JndiObjectFactoryBean();
 
-            Properties properties = new Properties();
-            properties.put(Context.INITIAL_CONTEXT_FACTORY, "weblogic.jndi.WLInitialContextFactory");
-            properties.put(Context.PROVIDER_URL, "t3://127.0.0.1:6201");
-            //weblogic账号
-            properties.put(Context.SECURITY_PRINCIPAL, "weblogic");
-            //weblogic密码
-            properties.put(Context.SECURITY_CREDENTIALS, "weblogic2019");//
+        Properties properties = new Properties();
+        properties.put(Context.INITIAL_CONTEXT_FACTORY, "weblogic.jndi.WLInitialContextFactory");
+        properties.put(Context.PROVIDER_URL, "t3://127.0.0.1:6201");
+        //weblogic账号
+        properties.put(Context.SECURITY_PRINCIPAL, "weblogic");
+        //weblogic密码
+        properties.put(Context.SECURITY_CREDENTIALS, "weblogic2019");//
 
-            bean.setJndiEnvironment(properties);
+        bean.setJndiEnvironment(properties);
 
-            bean.setResourceRef(true);
-            bean.setJndiName(JNDI_NAME);
-            bean.setProxyInterface(DataSource.class);
-            bean.setLookupOnStartup(false);
-            bean.afterPropertiesSet();
+        bean.setResourceRef(true);
+        bean.setJndiName(JNDI_NAME);
+        bean.setProxyInterface(DataSource.class);
+        bean.setLookupOnStartup(false);
+        bean.afterPropertiesSet();
 
-            return (DataSource) bean.getObject();
+        return (DataSource) bean.getObject();
 
-        }
+    }
 }

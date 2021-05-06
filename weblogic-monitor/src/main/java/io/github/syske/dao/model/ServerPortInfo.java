@@ -14,7 +14,7 @@ import java.io.Serializable;
 
 public class ServerPortInfo extends Model<ServerPortInfo> {
     private static final long serialVersionUID = 1L;
-     /**
+    /**
      * 主机名
      */
     private String name;

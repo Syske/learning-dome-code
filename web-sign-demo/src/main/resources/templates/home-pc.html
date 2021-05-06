@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>在线签名示例</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="renderer" content="webkit">
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <!-- Loading Bootstrap -->
+
+    <!-- Loading Flat UI Pro -->
+    <link href="mycss/flat-ui.css" rel="stylesheet">
+
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="vali-theme/css/main.css?version=21.1.15">
+    <!-- Font-icon css-->
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+
+    <!-- loading plugin-->
+    <link rel="stylesheet" href="mycss/swiper.min.css?version=21.1.15">
+    <link rel="stylesheet" href="mycss/swiper.css?version=21.1.15">
+    <link rel="stylesheet" href="mycss/menu.css?version=21.1.15">
+    <link rel="stylesheet" href="mycss/mycss.css?version=21.1.15">
+    <link rel="stylesheet" href="mycss/personInfoShow.css?version=21.1.15">
+
+    <link rel="stylesheet" type="text/css" href="vali-theme/css/font-awesome.min.css?version=21.1.15">
+
+    <!-- city-picker -->
+    <link rel="stylesheet" href="city-picker/css/city-picker.css?version=21.1.15">
+
+    <!--    <link href="mycss/bwizard.min.css" rel="stylesheet"/>-->
+
+    <style>
+        .sweetAlert-hcp {
+            width: 90em;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+        }
+
+        .sweetAlert-hcp h2 {
+            font-family: "normal";
+            font-size: 28px;
+        }
+
+        #signatureparent {
+            color: #000;
+            background-color: #fff;
+            /*max-width:600px;*/
+            padding: 10px;
+        }
+
+        /*This is the div within which the signature canvas is fitted*/
+        #signature {
+            border: 2px dotted black;
+            background-color: #fff;
+        }
+
+        /* Drawing the 'gripper' for touch-enabled devices */
+        html.touch #content {
+            float: left;
+            width: 92%;
+        }
+
+        html.touch #scrollgrabber {
+            float: right;
+            width: 4%;
+            margin-right: 2%;
+
+        }
+
+        html.borderradius #scrollgrabber {
+            border-radius: 1em;
+        }
+
+        .person-info-card {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.16);
+            margin: 15px 0px;
+            border-radius: 20px;
+        }
+
+        .detail-label-data {
+            /*border-bottom: 1px solid #a5a4a4;*/
+            text-align: center;
+            font-size: 16px;
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #e9ecef;
+            background-clip: padding-box;
+            border-radius: 4px;
+        }
+
+        .detail-label-title {
+            font-size: 16px;
+        }
+
+
+    </style>
+
+</head>
+
+<body style=" background:#fafafa">
+<header class="app-header"><a class="app-header__logo" href="/">在线签名示例</a>
+</header>
+<div class="main-body">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="tile">
+                <div class="row">
+
+
+                    <div class="col-md-9">
+                        <div class="r-content">
+                            <div class="flexslider" style="height: 560px;">
+                                <div class="slides">
+
+                                    <!-- 新增备案模态框 -->
+                                    <div id="addydjyrecodModal" class="modal fade bs-example-modal-lg" tabindex="-1"
+                                         role="dialog" aria-labelledby="myLargeModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">个人承诺书</h5>
+                                                    <button class="close" type="button" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">×</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="row col-lg-12" id="signTestCreateFrom">
+                                                        <div class="col-lg-6">
+
+                                                            <div style="overflow: hidden;overflow: hidden; margin: 20px auto;  margin-top: 50px;font-weight: 600;">
+                                                                <span style="display: block; width: 5px; height: 25px; background: #10aeff; float: left; margin-right: 10px; border-radius: 2px;"></span>
+                                                                <span style="float: left;">个人信息</span>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="name">姓名</label>
+                                                                <input class="form-control" id="name" type="text"
+                                                                       placeholder="请输入姓名">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="sex">性别</label>
+                                                                <input class="form-control" id="sex" type="text"
+                                                                       placeholder="请输入性别">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="age">年龄</label>
+                                                                <input class="form-control" id="age" type="text"
+                                                                       placeholder="请输入年龄">
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label">出生日期</label>
+                                                                <input class="form-control" type="text" id="startTime">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="description">描述信息</label>
+                                                                <input class="form-control" id="description" type="text"
+                                                                       placeholder="请输入描述信息">
+                                                            </div>
+                                                        </div>
+
+
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button id="apply-accept" class="btn btn-primary" type="button"
+                                                            onclick="applyRecord()">立即开通
+                                                    </button>
+                                                    <button id="apply-cancel" class="btn btn-secondary" type="button"
+                                                            data-dismiss="modal">取消
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 通知信息模态框 -->
+                                    <div id="ydjyrecodNoticeModal" class="modal fade bs-example-modal-lg" tabindex="-1"
+                                         role="dialog" aria-labelledby="myLargeModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title">提示信息</h3>
+                                                    <button class="close" type="button" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">×</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div id="tips-msg">
+                                                        这里填写你需要展示的信息
+                                                    </div>
+                                                    <div class="tile-footer btn-group pull-right col-md-12">
+                                                        <div class="form-check col-md-8 offset-2">
+                                                            <label class="form-check-label">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                       id="apply-sure">我已阅读并同意以上内容
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button id="notice-accept" class="btn btn-primary" type="button"
+                                                            onclick="generatePersonalCommitment()">我已阅读并同意
+                                                    </button>
+                                                    <button id="notice-cancel" class="btn btn-secondary" type="button"
+                                                            data-dismiss="modal">取消
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--个人承诺书及签名-->
+                                    <div id="ydjyrecodSignModal" class="modal fade bs-example-modal-lg" tabindex="-1"
+                                         role="dialog" aria-labelledby="myLargeModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title">个人承诺书</h3>
+                                                    <button class="close" type="button" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">×</span></button>
+                                                </div>
+                                                <div class="modal-body" style="overflow: auto;max-height:500px;">
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button id="accept" class="btn btn-primary" type="button"
+                                                            onclick="toSign()">开始签名
+                                                    </button>
+                                                    <button id="cancel" class="btn btn-secondary" type="button"
+                                                            data-dismiss="modal">取消
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <section class="no-display flex-active-slide" id="signTestQuery"
+                                             style="width: 100%; float: left; display: block">
+                                        <div class="profile">
+                                            <h2 class="animated fadeInDown">在线签名测试</h2>
+                                            <div class="sep1"></div>
+                                            <div class="personal-info col-md-12 no-padding animated flipInX">
+                                                <div class="tile-title-w-btn">
+                                                    <p class="bs-component">
+                                                        <button class="btn btn-info" type="button"
+                                                                onclick="newRecord()"><i
+                                                                class="fa fa-fw fa-lg fa-pencil-square-o"></i>新增
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </section>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<!-- Essential javascripts for application to work-->
+<script src="vali-theme/js/jquery.min.js?version=21.1.15"></script>
+<script src="vali-theme/js/popper.min.js?version=21.1.15"></script>
+<script src="vali-theme/js/bootstrap.min.js?version=21.1.15"></script>
+<script src="vali-theme/js/main.js?version=21.1.15"></script>
+<!-- The javascript plugin to display page loading on top-->
+<!--<script src="vali-theme/js/plugins/pace.min.js"></script>-->
+<!-- Page specific javascripts-->
+<script type="text/javascript" src="util/util.js?version=21.1.15"></script>
+
+<script type="text/javascript" src="jquery-form/jquery.form.js?version=21.1.15"></script>
+<script type="text/javascript" src="vali-theme/js/plugins/jquery.dataTables.min.js?version=21.1.15"></script>
+<script type="text/javascript" src="vali-theme/js/plugins/dataTables.bootstrap.min.js?version=21.1.15"></script>
+<script type="text/javascript" src="vali-theme/js/plugins/bootstrap-notify.min.js?version=21.1.15"></script>
+<script type="text/javascript" src="vali-theme/js/plugins/sweetalert.min.js?version=21.1.15"></script>
+<script type="text/javascript" src="vali-theme/js/plugins/bootstrap-datepicker.min.js?version=21.1.15"></script>
+<script type="text/javascript" src="vali-theme/js/plugins/bootstrap-datepicker-zhCN.js?version=21.1.15"
+        charset="UTF-8"></script>
+
+<script src="city-picker/js/city-picker.data.js?version=21.1.15"></script>
+<script src="city-picker/js/city-picker.min.js?version=21.1.15"></script>
+
+<!-- center - menu -->
+<script type="text/javascript" src="my-js/menu.js?version=21.1.15"></script>
+<!-- Swiper JS -->
+<script src="my-js/swiper.min.js?version=21.1.15"></script>
+
+<script src="my-js/utils.js?version=21.1.15"></script>
+<script src="js/my-js.js?version=21.1.15"></script>
+<script src="my-js/upload.js?version=21.1.15"></script>
+
+<!--签名插件-->
+<script src="my-js/jSignature/modernizr.js?version=21.1.15"></script>
+<script src="my-js/jSignature/jSignature.js?version=21.1.15"></script>
+<script src="my-js/jSignature/jSignature.CompressorBase30.js?version=21.1.15"></script>
+<script src="my-js/jSignature/jSignature.CompressorSVG.js?version=21.1.15"></script>
+<script src="my-js/jSignature/jSignature.UndoButton.js?version=21.1.15"></script>
+<script src="my-js/jSignature/signhere/jSignature.SignHere.js?version=21.1.15"></script>
+<script src="my-js/city-data.js?version=21.1.15"></script>
+
+<script>
+    function signInit() {
+        $("#signature").html('');
+        // This is the part where jSignature is initialized.
+        var $sigdiv = $("#signature").jSignature({'height': '300px', 'width': '100%'})
+
+        $('#sign-make-sure').click(function () {
+            notice();
+            var data = $sigdiv.jSignature('getData', 'image');
+
+            var datas = sessionStorage.getItem("apply-record-datas");
+            var signSourceImg = sessionStorage.getItem("sign-source-img");
+            var parseJSON = JSON.parse(datas);
+            parseJSON['file'] = signSourceImg;
+            parseJSON['sign'] = data[1];
+
+            var requestParameter = {"datas": JSON.stringify(parseJSON)};
+            var url = "/signTest/signPersonalCommitment";
+            aj(url, requestParameter, function (result) {
+                if (result.success) {
+                    swal.close();
+                    var modal_body_html = "<img id='sign-source-img' style='width: 100%' src='data:image/png;base64, " + result.obj.datas + "' >"
+                    $("#ydjyrecodSignModal .modal-body").html(modal_body_html);
+                    var modal_footer_html = "<button class=\"btn btn-primary\" type=\"button\" onclick=\"toSign()\">\n" +
+                        " <i class=\"fa fa-fw fa-lg fa-check-circle\"></i>重新签名\n</button>\n" +
+                        " <button id=\"save-commit\" class=\"btn btn-danger\" type=\"button\" onclick='saveCommit()'>\n" +
+                        " <i class=\"fa fa-fw fa-lg fa-trash\"></i>保存并提交\n</button>\n";
+                    $("#ydjyrecodSignModal .modal-footer").html(modal_footer_html);
+                    $("#ydjyrecodSignModal").modal({
+                        backdrop: "static",//点击空白处不关闭对话框
+                        show: true
+                    });
+                } else {
+                    swal("生成个人承诺书失败", result.msg, "error");
+                }
+            }, function (err) {
+                console.log(err);
+            });
+
+        });
+
+        $('#rest').click(function () {
+            $sigdiv.jSignature('reset')
+        });
+    }
+
+    function saveCommit() {
+        var datas = sessionStorage.getItem("apply-record-datas");
+        console.log(datas)
+        var parseJSON = JSON.parse(datas);
+        var signedImgSrc = $('#ydjyrecodSignModal .modal-body #sign-source-img').attr("src");
+        parseJSON['file'] = signedImgSrc.split(",")[1];
+        console.log(parseJSON)
+        console.log('保存并提交');
+    }
+
+
+    $(function () {
+        //applySubmit();
+        $("#applyReset").click(function () {
+            $("#signTestCreateFrom")[0].reset();
+        });
+
+        menuChange();
+
+
+    });
+
+
+    function newRecord() {
+        //TODO
+        $("#apply-sure")[0].checked = false;
+
+        $("#signTestCreateFrom")[0].reset();
+        $(".photo").remove();
+
+
+        initApplyForm();
+
+
+        $('#addydjyrecodModal').modal({
+            backdrop: "static",//点击空白处不关闭对话框
+            show: true
+        });
+    }
+
+    // 切换菜单
+    function menuChange() {
+        $(".l-content li").click(function () {
+            $('.l-content li:not(this)').removeClass("flex-active");
+            $(this).addClass("flex-active");
+            var sectionId = $(this).attr("target");
+            $("section").css("display", "none");
+            $(sectionId).css("display", "block");
+            if ("#signTestQuery" == sectionId) {
+
+
+            }
+        });
+    }
+
+
+    function initApplyForm() {
+
+        initDatePicker()
+    }
+
+
+    function initDatePicker() {
+        // 起始时间默认为当前日期向前延申5天
+        $('#startTime').datepicker({
+            language: 'cn',
+            format: "yyyy-mm-dd",
+            autoclose: true,
+            todayHighlight: true,
+            startDate: '-5d',
+            endDate: new Date(),
+        });
+    }
+
+
+    function getRecordFormData() {
+        var name = $('#name').val();
+        var age = $('#age').val();
+        var gender = $('#sex').val();
+        var birthday = $('#startTime').val();
+        var description = $('#description').val();
+
+        var param = {
+            "name": name,
+            "age": age,
+            "gender": gender,
+            "birthday": birthday,
+            "description": description
+        };
+        return param;
+    }
+
+
+    function applyRecord() {
+
+        var recordFormData = getRecordFormData();
+        console.log(recordFormData);
+        if (recordFormData == undefined || recordFormData == null) {
+            return;
+        }
+        $('#addydjyrecodModal').modal('hide');
+
+        $('#ydjyrecodNoticeModal').modal({
+            backdrop: "static",//点击空白处不关闭对话框
+            show: true
+        });
+    }
+
+    function generatePersonalCommitment() {
+        if (!$("#apply-sure").is(':checked')) {
+            swal({
+                title: "请阅读并同意以上内容！",
+                type: "error",
+                icon: "error",
+                showCancelButton: true,
+                confirmButtonColor: "#dd6b55",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            });
+        } else {
+            notice();
+            var formData = getRecordFormData();
+            getPersonalCommitment(formData, function (result) {
+                    if (result.success) {
+                        var modal_body_html = "<img style='width: 100%' src='data:image/png;base64," + result.obj.datas + "'>"
+                        $("#ydjyrecodSignModal .modal-body").html(modal_body_html)
+                        var modal_footer_html = "<button id=\"accept\" class=\"btn btn-primary\" type=\"button\" onclick=\"toSign()\">开始签名\n" +
+                            "</button>\n" +
+                            "<button id=\"cancel\" class=\"btn btn-secondary\" type=\"button\" data-dismiss=\"modal\">取消\n" +
+                            "</button>";
+                        $("#ydjyrecodSignModal .modal-footer").html(modal_footer_html);
+                        sessionStorage.setItem("sign-source-img", result.obj.datas);
+                        swal.close();
+                        $('#ydjyrecodNoticeModal').modal('hide');
+                        $("#ydjyrecodSignModal").modal({
+                            backdrop: "static",//点击空白处不关闭对话框
+                            show: true
+                        });
+                    } else {
+                        swal("错误信息", result.msg, "error");
+                    }
+                },
+                function (error) {
+                    swal("错误信息", error, "error");
+                });
+        }
+    }
+
+    function getPersonalCommitment(param, successFn, errorFn) {
+        var datas = JSON.stringify(param);
+        var data = {"datas": datas};
+        sessionStorage.setItem("apply-record-datas", datas);
+        var url = "/signTest/generatePersonalCommitment";
+        aj(url, data, successFn, errorFn);
+    }
+
+    function toSign() {
+        swal({
+                title: "温馨提示",
+                text: "请确保备案本人签名，以免无法通过备案！",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#dd6b55",
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    swal.close();
+                    sign();
+                } else {
+                    swal("取消操作！", "您取消了操作！ :)", "error");
+                }
+            }
+        );
+
+    }
+
+    function sign() {
+        var sign_html = "<div id = \"sign-tips\" style=\"margin-bottom: 5px; text-align:center\">\n" +
+            "                        <p>请用鼠标在虚线框内绘制签名</p>\n" +
+            "                    </div>" +
+            "<div id=\"content\">\n" +
+            "                   <div id=\"signatureparent\">\n" +
+            "                       <div id=\"signature\"></div>\n" +
+            "                   </div></div>\n";
+        $("#ydjyrecodSignModal .modal-body").html(sign_html);
+        var modal_footer_html = "<button id=\"sign-make-sure\" class=\"btn btn-primary\" type=\"button\">\n" +
+            " <i class=\"fa fa-fw fa-lg fa-check-circle\"></i>确认\n</button>\n" +
+            " <button id=\"rest\" class=\"btn btn-danger\" type=\"button\">\n" +
+            " <i class=\"fa fa-fw fa-lg fa-trash\"></i>重置\n</button>\n";
+        $("#ydjyrecodSignModal .modal-footer").html(modal_footer_html);
+        $("#ydjyrecodSignModal").modal({
+            backdrop: "static",//点击空白处不关闭对话框
+            show: true
+        });
+        signInit();
+    }
+
+
+    function getFormData(id) {
+        var $inputs = $(id + ' input');
+        var parameters = {"service": "test"};
+        $inputs.each(function () {
+            parameters[this.id] = this.value;
+        });
+        return parameters;
+    }
+
+
+</script>
+
+
+</html>

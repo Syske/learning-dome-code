@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author syske

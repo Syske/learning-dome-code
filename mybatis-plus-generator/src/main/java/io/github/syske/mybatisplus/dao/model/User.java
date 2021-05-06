@@ -1,11 +1,12 @@
 package io.github.syske.mybatisplus.dao.model;
 
 import com.baomidou.mybatisplus.activerecord.Model;
+
 import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author syske
@@ -121,14 +122,14 @@ public class User extends Model<User> {
     @Override
     public String toString() {
         return "User{" +
-        ", id=" + id +
-        ", userName=" + userName +
-        ", nickName=" + nickName +
-        ", sex=" + sex +
-        ", password=" + password +
-        ", registerTime=" + registerTime +
-        ", sign=" + sign +
-        ", status=" + status +
-        "}";
+                ", id=" + id +
+                ", userName=" + userName +
+                ", nickName=" + nickName +
+                ", sex=" + sex +
+                ", password=" + password +
+                ", registerTime=" + registerTime +
+                ", sign=" + sign +
+                ", status=" + status +
+                "}";
     }
 }

@@ -22,9 +22,11 @@ import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 public class Base64Util {
-	private transient static Logger log = LoggerFactory.getLogger(Base64Util.class);
+    private transient static Logger log = LoggerFactory.getLogger(Base64Util.class);
+
     /**
-     * base64×Ö·û´®×ªbyte
+     * base64ï¿½Ö·ï¿½ï¿½ï¿½×ªbyte
+     *
      * @param imageBase64Str
      * @return
      */
@@ -34,17 +36,17 @@ public class Base64Util {
         try {
             if (imageBase64Str.indexOf("data:image/jpeg;base64,") != -1) {
                 b1 = decoder.decodeBuffer(imageBase64Str.replaceAll("data:image/jpeg;base64,", ""));
-			} else if (imageBase64Str.indexOf("data:image/png;base64,") != -1) {
-				b1 = decoder.decodeBuffer(imageBase64Str.replaceAll(
-						"data:image/png;base64,", ""));
-			} else if (imageBase64Str.indexOf("data:image/jpg;base64,") != -1) {
-				b1 = decoder.decodeBuffer(imageBase64Str.replaceAll(
-						"data:image/jpg;base64,", ""));
-			} else {
-				b1 = decoder.decodeBuffer(imageBase64Str);
-			}
+            } else if (imageBase64Str.indexOf("data:image/png;base64,") != -1) {
+                b1 = decoder.decodeBuffer(imageBase64Str.replaceAll(
+                        "data:image/png;base64,", ""));
+            } else if (imageBase64Str.indexOf("data:image/jpg;base64,") != -1) {
+                b1 = decoder.decodeBuffer(imageBase64Str.replaceAll(
+                        "data:image/jpg;base64,", ""));
+            } else {
+                b1 = decoder.decodeBuffer(imageBase64Str);
+            }
             for (int i = 0; i < b1.length; ++i) {
-                if (b1[i] < 0) {// µ÷ÕûÒì³£Êý¾Ý
+                if (b1[i] < 0) {// ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½
                     b1[i] += 256;
                 }
             }
@@ -55,22 +57,23 @@ public class Base64Util {
     }
 
     /**
-     * ±£´æÍ¼Æ¬
+     * ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
+     *
      * @param realPath
-     * @param imageStr base64×Ö·û´®
+     * @param imageStr base64ï¿½Ö·ï¿½ï¿½ï¿½
      * @return imgName
      */
     public static String filePath(String realPath, String imageStr) {
         String imgPath = "";
         String imgName = "";
         try {
-        	byte[] imageBytes = base64topng(imageStr);
+            byte[] imageBytes = base64topng(imageStr);
             File f1 = new File(realPath);
             if (!f1.exists()) {
                 f1.mkdir();
             }
             imgName = UUID.randomUUID().toString() + ".jpg";
-            imgPath = realPath + "/" + imgName ;
+            imgPath = realPath + "/" + imgName;
             File f2 = new File(imgPath);
             if (!f2.exists()) {
                 f2.createNewFile();
@@ -85,36 +88,34 @@ public class Base64Util {
         }
         return imgName;
     }
-    
-    
+
+
     /**
-     * base64×Ö·û´®×ª»¯³ÉÍ¼Æ¬
-     * 
-     * @param imgData
-     *            Í¼Æ¬±àÂë
-     * @param imgFilePath
-     *            ´æ·Åµ½±¾µØÂ·¾¶
+     * base64ï¿½Ö·ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Í¼Æ¬
+     *
+     * @param imgData     Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
+     * @param imgFilePath ï¿½ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
      * @return
      * @throws IOException
      */
-    public static String GenerateImage(String filePath, String imgData) throws IOException { // ¶Ô×Ö½ÚÊý×é×Ö·û´®½øÐÐBase64½âÂë²¢Éú³ÉÍ¼Æ¬
-    	String imgName = UUID.randomUUID().toString() + ".jpg";
-    	if (imgData == null) // Í¼ÏñÊý¾ÝÎª¿Õ
+    public static String GenerateImage(String filePath, String imgData) throws IOException { // ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Base64ï¿½ï¿½ï¿½ë²¢ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
+        String imgName = UUID.randomUUID().toString() + ".jpg";
+        if (imgData == null) // Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
             return null;
         BASE64Decoder decoder = new BASE64Decoder();
         OutputStream out = null;
         try {
             out = new FileOutputStream(filePath + imgName);
-            // Base64½âÂë
+            // Base64ï¿½ï¿½ï¿½ï¿½
             byte[] b = decoder.decodeBuffer(imgData);
             for (int i = 0; i < b.length; ++i) {
-                if (b[i] < 0) {// µ÷ÕûÒì³£Êý¾Ý
+                if (b[i] < 0) {// ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½
                     b[i] += 256;
                 }
             }
             out.write(b);
-        }catch (IOException e) {
-            log.error("Í¼Æ¬×ª»»Ê§°Ü£º" + e);
+        } catch (IOException e) {
+            log.error("Í¼Æ¬×ªï¿½ï¿½Ê§ï¿½Ü£ï¿½" + e);
             e.printStackTrace();
         } finally {
             out.flush();
@@ -122,70 +123,69 @@ public class Base64Util {
         }
         return imgName;
     }
-    
+
     /**
-     * base64×Ö·û´®×ª»¯³ÉÍ¼Æ¬
-     * 
-     * @param imgData
-     *            Í¼Æ¬±àÂë
-     * @param imgFilePath
-     *            ´æ·Åµ½sftpÂ·¾¶
+     * base64ï¿½Ö·ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Í¼Æ¬
+     *
+     * @param imgData     Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
+     * @param imgFilePath ï¿½ï¿½Åµï¿½sftpÂ·ï¿½ï¿½
      * @return
      * @throws IOException
      */
-    public static String saveFileToFileServerForWB(String imgFilePath, String imgData) throws IOException { // ¶Ô×Ö½ÚÊý×é×Ö·û´®½øÐÐBase64½âÂë²¢Éú³ÉÍ¼Æ¬
-    	String imgName = UUID.randomUUID().toString() + ".jpg";
-    	if (imgData == null) // Í¼ÏñÊý¾ÝÎª¿Õ
-    		return null;
-    	BASE64Decoder decoder = new BASE64Decoder();
-    	try {
-    		// Base64½âÂë
-    		byte[] b = decoder.decodeBuffer(imgData);
-    		uploadFile(new ByteArrayInputStream(b), imgName, imgFilePath);
-    	} catch (IOException e) {
-    		log.error("Í¼Æ¬±£´æÊ§°Ü£º" + e);
-    		e.printStackTrace();
-    	} catch (SftpException e) {
-    		log.error("Í¼Æ¬±£´æÊ§°Ü£º" + e);
-			e.printStackTrace();
-		} 
-    	return imgName;
+    public static String saveFileToFileServerForWB(String imgFilePath, String imgData) throws IOException { // ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Base64ï¿½ï¿½ï¿½ë²¢ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
+        String imgName = UUID.randomUUID().toString() + ".jpg";
+        if (imgData == null) // Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
+            return null;
+        BASE64Decoder decoder = new BASE64Decoder();
+        try {
+            // Base64ï¿½ï¿½ï¿½ï¿½
+            byte[] b = decoder.decodeBuffer(imgData);
+            uploadFile(new ByteArrayInputStream(b), imgName, imgFilePath);
+        } catch (IOException e) {
+            log.error("Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½" + e);
+            e.printStackTrace();
+        } catch (SftpException e) {
+            log.error("Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½" + e);
+            e.printStackTrace();
+        }
+        return imgName;
     }
-    
+
     /**
-     * ±£´æÍ¼Æ¬ÖÁÎÄ¼þ·þÎñÆ÷
-     * @param imgSavePath
-     *            ´æ·Åµ½sftpÂ·¾¶
-     * @param imageStr base64×Ö·û´®
+     * ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     *
+     * @param imgSavePath ï¿½ï¿½Åµï¿½sftpÂ·ï¿½ï¿½
+     * @param imageStr    base64ï¿½Ö·ï¿½ï¿½ï¿½
      * @return imgName
      */
     public static String saveFileToFileServerForWX(String imgSavePath, String imageStr) {
-    	String imgName = UUID.randomUUID().toString() + ".jpg";
-    	try {
-    		byte[] imageBytes = base64topng(imageStr);
-    		uploadFile(new ByteArrayInputStream(imageBytes), imgName, imgSavePath);
-    	} catch (Exception e) {
-    		log.error("Í¼Æ¬±£´æÊ§°Ü£º" + e);
-    		e.printStackTrace();
-    	}
-    	return imgName;
+        String imgName = UUID.randomUUID().toString() + ".jpg";
+        try {
+            byte[] imageBytes = base64topng(imageStr);
+            uploadFile(new ByteArrayInputStream(imageBytes), imgName, imgSavePath);
+        } catch (Exception e) {
+            log.error("Í¼Æ¬ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½" + e);
+            e.printStackTrace();
+        }
+        return imgName;
     }
-    
-    
+
+
     /**
-     * Í¼Æ¬×ª»¯³Ébase64×Ö·û´®
+     * Í¼Æ¬×ªï¿½ï¿½ï¿½ï¿½base64ï¿½Ö·ï¿½ï¿½ï¿½
+     *
      * @param imgPath
      * @return
      */
-    public static String GetImageStr(String imgPath) {// ½«Í¼Æ¬ÎÄ¼þ×ª»¯Îª×Ö½ÚÊý×é×Ö·û´®£¬²¢¶ÔÆä½øÐÐBase64±àÂë´¦Àí
-        String imgFile = imgPath;// ´ý´¦ÀíµÄÍ¼Æ¬
+    public static String GetImageStr(String imgPath) {// ï¿½ï¿½Í¼Æ¬ï¿½Ä¼ï¿½×ªï¿½ï¿½Îªï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Base64ï¿½ï¿½ï¿½ë´¦ï¿½ï¿½
+        String imgFile = imgPath;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
         InputStream in = null;
         byte[] data = null;
-        String encode = null; // ·µ»ØBase64±àÂë¹ýµÄ×Ö½ÚÊý×é×Ö·û´®
-        // ¶Ô×Ö½ÚÊý×éBase64±àÂë
+        String encode = null; // ï¿½ï¿½ï¿½ï¿½Base64ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½Base64ï¿½ï¿½ï¿½ï¿½
         BASE64Encoder encoder = new BASE64Encoder();
         try {
-            // ¶ÁÈ¡Í¼Æ¬×Ö½ÚÊý×é
+            // ï¿½ï¿½È¡Í¼Æ¬ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½
             in = new FileInputStream(imgFile);
             data = new byte[in.available()];
             in.read(data);
@@ -196,33 +196,33 @@ public class Base64Util {
             try {
                 in.close();
             } catch (IOException e) {
-            	log.error("Í¼Æ¬×ª»»Ê§°Ü£º" + e);
+                log.error("Í¼Æ¬×ªï¿½ï¿½Ê§ï¿½Ü£ï¿½" + e);
                 e.printStackTrace();
             }
         }
         return encode;
     }
-    
+
     /**
-	 * Î¢ÐÅ½Ó¿ÚÉÏ´«¸½¼þ
-	 * 
-	 * @param fileInput  ÎÄ¼þÁ÷
-	 * @param saveFileName ±£´æÎÄ¼þÃû
-	 * @param fileSavePath ±£´æÂ·¾¶
-	 * @throws FileNotFoundException
-	 * @throws SftpException
-	 */
-	public static void uploadFile(InputStream fileInput, String saveFileName, String fileSavePath) throws FileNotFoundException,
-			SftpException {
-		SFTPUtils sftp = new SFTPUtils(PropertiesUtils.SFTP_USERNAME_FILE_SERVER,
-				PropertiesUtils.SFTP_PASSWORD_FILE_SERVER, PropertiesUtils.STFP_URL_FILE_SERVER,
-				Integer.parseInt(PropertiesUtils.SFTP_PORT_FILE_SERVER));
+     * Î¢ï¿½Å½Ó¿ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½
+     *
+     * @param fileInput    ï¿½Ä¼ï¿½ï¿½ï¿½
+     * @param saveFileName ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
+     * @param fileSavePath ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
+     * @throws FileNotFoundException
+     * @throws SftpException
+     */
+    public static void uploadFile(InputStream fileInput, String saveFileName, String fileSavePath) throws FileNotFoundException,
+            SftpException {
+        SFTPUtils sftp = new SFTPUtils(PropertiesUtils.SFTP_USERNAME_FILE_SERVER,
+                PropertiesUtils.SFTP_PASSWORD_FILE_SERVER, PropertiesUtils.STFP_URL_FILE_SERVER,
+                Integer.parseInt(PropertiesUtils.SFTP_PORT_FILE_SERVER));
 
-		ChannelSftp csftp = sftp.login();
+        ChannelSftp csftp = sftp.login();
 
-		sftp.upload(fileSavePath, saveFileName, fileInput, csftp);
-		sftp.logout(csftp);
+        sftp.upload(fileSavePath, saveFileName, fileInput, csftp);
+        sftp.logout(csftp);
 
-	}
-	
+    }
+
 }

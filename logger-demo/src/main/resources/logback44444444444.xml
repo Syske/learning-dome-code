@@ -6,12 +6,12 @@
 <!-- debug 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <!-- 动态日志级别 -->
-    <jmxConfigurator />
+    <jmxConfigurator/>
     <!-- 定义日志文件 输出位置 -->
     <!-- <property name="log_dir" value="C:/test" />-->
-    <property name="log_dir" value="/home/hadmin/data/logs/src" />
+    <property name="log_dir" value="/home/hadmin/data/logs/src"/>
     <!-- 日志最大的历史 30天 -->
-    <property name="maxHistory" value="30" />
+    <property name="maxHistory" value="30"/>
 
     <!-- ConsoleAppender 控制台输出日志 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -126,14 +126,14 @@
     <!-- root级别 DEBUG -->
     <root>
         <!-- 打印debug级别日志及以上级别日志 -->
-        <level value="debug" />
+        <level value="debug"/>
         <!-- 控制台输出 -->
-        <appender-ref ref="console" />
+        <appender-ref ref="console"/>
         <!-- 文件输出 -->
-        <appender-ref ref="ERROR" />
-        <appender-ref ref="INFO" />
-        <appender-ref ref="WARN" />
-        <appender-ref ref="DEBUG" />
-        <appender-ref ref="TRACE" />
+        <appender-ref ref="ERROR"/>
+        <appender-ref ref="INFO"/>
+        <appender-ref ref="WARN"/>
+        <appender-ref ref="DEBUG"/>
+        <appender-ref ref="TRACE"/>
     </root>
 </configuration>

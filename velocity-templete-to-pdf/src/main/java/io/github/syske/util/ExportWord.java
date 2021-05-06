@@ -30,7 +30,7 @@ public class ExportWord {
 //        return filePathName;
 //    }
 
-    public static String export(Map<String,Object> data, String filePathName) throws Exception {
+    public static String export(Map<String, Object> data, String filePathName) throws Exception {
         String xmlFile = "template/bdz/pre-bdz.xml";
         String vmContext = getXmlString(xmlFile);
         String re = VelocityUtil.evaluateString(vmContext, data);
@@ -39,7 +39,7 @@ public class ExportWord {
     }
 
     public static String getXmlString(String xmlName) throws Exception {
-        logger.info("xmlName==={}",xmlName);
+        logger.info("xmlName==={}", xmlName);
         StringBuffer xml = new StringBuffer();
         try {
             InputStream is = ExportWord.class.getClassLoader().getResourceAsStream(xmlName);
@@ -55,7 +55,7 @@ public class ExportWord {
     }
 
 
-    public static void writeFileTxt(String re,String filePathName) throws Exception {
+    public static void writeFileTxt(String re, String filePathName) throws Exception {
         File file = new File(filePathName).getParentFile();
         if (!file.exists()) {
             file.mkdirs();

@@ -1,6 +1,7 @@
 package io.github.syske.pdfview.entity;
 
 import com.alibaba.fastjson.JSONObject;
+
 import java.io.Serializable;
 import java.util.Map;
 

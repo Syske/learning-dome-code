@@ -39,14 +39,10 @@ public class Pkcs {
     }
 
     /**
-     * @param password
-     *            密码
-     * @param issuerStr 颁发机构信息
-     *
-     * @param subjectStr 使用者信息
-     *
+     * @param password       密码
+     * @param issuerStr      颁发机构信息
+     * @param subjectStr     使用者信息
      * @param certificateCRL 颁发地址
-     *
      * @return
      */
     public static Map<String, byte[]> createCert(String password,
@@ -66,7 +62,7 @@ public class Pkcs {
                     keyPair, result, certificateCRL, null);
             // cretkey随便写，标识别名
             keyStore.setKeyEntry("cretkey", keyPair.getPrivate(),
-                    password.toCharArray(), new Certificate[] { cert });
+                    password.toCharArray(), new Certificate[]{cert});
             out = new ByteArrayOutputStream();
             cert.verify(keyPair.getPublic());
             keyStore.store(out, password.toCharArray());
@@ -181,13 +177,13 @@ public class Pkcs {
         return cert;
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         // CN: 名字与姓氏    OU : 组织单位名称
         // O ：组织名称  L : 城市或区域名称  E : 电子邮件
         // ST: 州或省份名称  C: 单位的两字母国家代码
         String issuerStr = "CN=电子签名,OU=github,O=github,C=CN,L=西安,ST=陕西";
         String subjectStr = "CN=电子签名,OU=github,O=github,C=CN,L=西安,ST=陕西";
-        String certificateCRL  = "https://syske.github.io/";
+        String certificateCRL = "https://syske.github.io/";
         Map<String, byte[]> result = createCert("123456", issuerStr, subjectStr, certificateCRL);
 
         FileOutputStream outPutStream = new FileOutputStream("D:/keystore.p12"); // ca.jks
