@@ -65,18 +65,17 @@ public class ImageTest {
     public void generateBnnerPicTest() {
         String bookTitle = "Example Everyday";
         BannerInfo bannerInfo = new BannerInfo();
-        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.BO_LUO_HONG)
-                .setDataStr("2021-05-06");
+        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.KONG_QUE_LAN);
         imageService.generateBannerPic(bannerInfo);
     }
 
     @Test
     public void testGenerateDailyNotePic() {
         String mainContent =
-            "目标实现了，便是光荣；目标实现不了，人生也会因这一路风雨跋涉变得丰富而充实；在我看来，这就是不虚此生。";
-        String bookTitle = "我喜欢出发";
-        String authorName = "汪国真";
-        String bannerPicUrl = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181027%2F00ad1b193203473db8926e4f2e0ed699.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622850028&t=68c12b8681602ef26a277df0f798dacd";
+            "不管全世界所有人怎么说，我都认为自己的感受才是最真实的。无论别人怎么看，我都尽可能不打乱自己的节奏。喜欢的事自然可以坚持，不喜欢怎么也长久不了。";
+        String bookTitle = "";
+        String authorName = "佚名";
+        String bannerPicUrl = "https://img2.baidu.com/it/u=2627620227,1186363145&fm=26&fmt=auto&gp=0.jpg";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
@@ -113,6 +112,12 @@ public class ImageTest {
         } catch (Exception e) {
 
         }
+    }
 
+    @Test
+    public void testFileExtSubString() {
+        String uuidStr = UUIDUtil.getUUIDStr();
+        String imgSaveFullPath = "D:\\tmp\\img\\created\\" + uuidStr + ".jpg";
+        System.out.println(imgSaveFullPath.substring(imgSaveFullPath.lastIndexOf('.') + 1));
     }
 }
