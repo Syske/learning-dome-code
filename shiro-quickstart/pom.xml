@@ -24,7 +24,6 @@
             <artifactId>shiro-core</artifactId>
             <version>1.4.2</version>
         </dependency>
-
         <!-- configure logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -44,7 +43,6 @@
             <artifactId>log4j-core</artifactId>
             <version>2.13.2</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.slf4j</groupId>
