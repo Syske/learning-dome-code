@@ -239,3 +239,6 @@ public class ExcuterConfig {
 https://github.com/Syske/learning-dome-code/tree/dev/springboot-activemq-demo
 ```
 
+更多java优质内容，请关注我的公众号【云中志】
+
+http://weixin.qq.com/r/M3Xl-WzE-zGArSie9yAh
