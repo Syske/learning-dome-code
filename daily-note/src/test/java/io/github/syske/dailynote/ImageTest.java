@@ -72,10 +72,10 @@ public class ImageTest {
     @Test
     public void testGenerateDailyNotePic() {
         String mainContent =
-            "不管全世界所有人怎么说，我都认为自己的感受才是最真实的。无论别人怎么看，我都尽可能不打乱自己的节奏。喜欢的事自然可以坚持，不喜欢怎么也长久不了。";
+            "生活是种律动，须有光有影，有左有右，有晴有雨，滋味就含在这变而不猛的曲折里。";
         String bookTitle = "";
-        String authorName = "佚名";
-        String bannerPicUrl = "https://img2.baidu.com/it/u=2627620227,1186363145&fm=26&fmt=auto&gp=0.jpg";
+        String authorName = "老舍";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);

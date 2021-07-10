@@ -151,11 +151,12 @@ public class ImageUtil {
 
         // 倒计时
         String countDownTips = "";
-        int countDownDays = DateUtil.getCountDownDays("2021-06-14", date);
+        int countDownDays = DateUtil.getCountDownDays("2021-09-21", date);
         if (countDownDays > 0) {
-            countDownTips = "距离端午节还有" + countDownDays + "天";
+//            countDownTips = "距离端午节还有" + countDownDays + "天";
+            countDownTips = "2021年已过半，要好好努力呀！";
         } else {
-            countDownTips = "今天是端午节";
+            countDownTips = "今天是中秋节";
         }
         header.drawString(countDownTips, contentSecondX, bigDateY + getFontDescent(titleFontSmall));
 
