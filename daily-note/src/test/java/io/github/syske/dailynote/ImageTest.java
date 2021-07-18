@@ -63,19 +63,19 @@ public class ImageTest {
 
     @Test
     public void generateBnnerPicTest() {
-        String bookTitle = "Example Everyday";
+        String bookTitle = "spring-starter";
         BannerInfo bannerInfo = new BannerInfo();
-        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.KONG_QUE_LAN);
+        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.FEN_LV);
         imageService.generateBannerPic(bannerInfo);
     }
 
     @Test
     public void testGenerateDailyNotePic() {
         String mainContent =
-            "生活是种律动，须有光有影，有左有右，有晴有雨，滋味就含在这变而不猛的曲折里。";
-        String bookTitle = "";
-        String authorName = "老舍";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80";
+            "生命的过程，无论是阳春白雪，青菜豆腐，我都得尝尝是什么滋味，才不枉来走这么一遭。";
+        String bookTitle = "撒哈拉的故事";
+        String authorName = "三毛";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1624610441529-00cd7a349d9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1638&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
