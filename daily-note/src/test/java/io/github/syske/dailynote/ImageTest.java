@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.platform.commons.util.StringUtils;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -35,9 +36,9 @@ public class ImageTest {
 
         try {
             String mainContent =
-                "我或许败北，或许迷失自己，或许哪里也抵达不了，或许我已失去一切，任凭怎么挣扎也只能徒呼奈何，或许我只是徒然掬一把废墟灰烬，唯我一人蒙在鼓里，或许这里没有任何人把赌注下在我身上。无所谓。有一点是明确的：至少我有值得等待有值得寻求的东西。";
-            String bookTitle = "村上春树";
-            String authorName = "奇鸟行状录";
+                "树不可长得太快。一年生当柴，三年五年生当桌椅，十年百年的才有可能成栋梁。故要养深积厚，等待时间。";
+            String bookTitle = "";
+            String authorName = "佚名";
             StringBuilder authorInfo = new StringBuilder("—— ").append(authorName);
             if (StringUtils.isNotBlank(bookTitle)) {
                 authorInfo.append("《").append(bookTitle).append("》");
@@ -63,19 +64,26 @@ public class ImageTest {
 
     @Test
     public void generateBnnerPicTest() {
-        String bookTitle = "Example Everyday";
+        String bookTitle = "线程池";
         BannerInfo bannerInfo = new BannerInfo();
-        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.KONG_QUE_LAN);
+        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.XIA_KE_QING);
         imageService.generateBannerPic(bannerInfo);
     }
 
     @Test
     public void testGenerateDailyNotePic() {
         String mainContent =
-            "不管全世界所有人怎么说，我都认为自己的感受才是最真实的。无论别人怎么看，我都尽可能不打乱自己的节奏。喜欢的事自然可以坚持，不喜欢怎么也长久不了。";
+//            "你要去相信，时光且长，你终将长成自己想要的模样，拥抱独属于你的未来。";
+//            "做你最愿意做的那件事，那才是你真正的天赋所在。";
+            "人生长短，弹指一瞬。日常的重复，容易让人产生错觉，会认为一切都来得及，会有时间开始做自己喜欢的事情。";
+//            "不管幸与不幸，都不要为自己的人生设限，以免阻挡了生命的阳光。";
+//            "陪伴是最好的爱，可以抵挡世间所有的坚硬，温暖生命所有的岁月。";
+//            "趁着岁月静好，勇敢去爱。不要等到时机消逝，再为那份错过的爱而懊悔、哭泣。我们终将赴一场名为爱的宴会，哪怕最后只剩回忆。";
+//            "有人总说：已经晚了。实际上，现在就是最好的时光。对于一个真正有所追求的人来说，生命的每个时期都是年轻的、及时的。";
+//            "我不知道怎样才能过得更好，但是我尽力让现在当下的自己完好无损。";
         String bookTitle = "";
-        String authorName = "佚名";
-        String bannerPicUrl = "https://img2.baidu.com/it/u=2627620227,1186363145&fm=26&fmt=auto&gp=0.jpg";
+        String authorName = "摩西奶奶";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1518782999472-72f2ca3cb18f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1368&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
