@@ -1,0 +1,2 @@
+#-------starter自动装配---------
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.syske.starter.demo.config.AutoConfigurationClass

@@ -51,5 +51,8 @@
 47. [springboot-nacos-discovery-demo](./springboot-nacos-discovery-demo)：基于nacos实现服务注册和服务发现
 48. [activemq-demo](./activemq-demo/)：activeMQ示例
 49. [springboot-mock-demo](./springboot-mock-demo)：springboot整合mock
-50. [springboot-activemq-demo](./springboot-activemq-demo/)：springboot整合ActiveMQ
+50. [springboot-activemq-demo/](./springboot-activemq-demo/)：springboot整合ActiveMQ
+51. [jms-center-demo](./jms-center-demo)：消息中心
+52. [springboot-starter-demo](./springboot-starter-demo)：手写自己的第一个spring-boot-starter
+53. [spring-boot-srater-test](./spring-boot-srater-test)：手写spring-boot-starter测试
 
