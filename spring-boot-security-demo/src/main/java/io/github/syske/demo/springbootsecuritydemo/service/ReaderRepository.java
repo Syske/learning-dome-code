@@ -25,13 +25,16 @@ public class ReaderRepository implements UserDetailsService {
             return new UserInfo("admin", new BCryptPasswordEncoder()
                     .encode("admin"));
         } else {
-            return null;
+            throw new UsernameNotFoundException("用戶不存在");
         }
     }
 
     public static class UserInfo implements UserDetails {
         private String username;
         private String password;
+
+        public UserInfo() {
+        }
 
         public UserInfo(String username, String password) {
             this.username = username;

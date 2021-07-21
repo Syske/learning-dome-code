@@ -24,7 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * @date 2021-07-20 7:50
  */
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
     @Autowired
@@ -32,9 +32,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(username -> {
-            System.out.println(username);
-            return readerRepository.loadUserByUsername("admin");
-                    }).passwordEncoder(new BCryptPasswordEncoder());
+        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+                .withUser("syske").password("123456").and()
+                .withUser("admin").password("admin");
+        auth.userDetailsService(name -> {
+            return readerRepository.loadUserByUsername(name);
+        }).passwordEncoder(new BCryptPasswordEncoder());
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().anyRequest().authenticated().and()
+                .formLogin().and()
+                .httpBasic();
     }
 }
