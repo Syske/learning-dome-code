@@ -153,7 +153,6 @@ public class ImageUtil {
         String countDownTips = "";
         int countDownDays = DateUtil.getCountDownDays("2021-09-21", date);
         if (countDownDays > 0) {
-//            countDownTips = "距离端午节还有" + countDownDays + "天";
             countDownTips = "2021年已过半，要好好努力呀！";
         } else {
             countDownTips = "今天是中秋节";
@@ -256,9 +255,12 @@ public class ImageUtil {
         main.setFont(titleFontSmall);
         int contentImgHeight = (contentImg.getHeight() * faceImgWidth / contentImg.getWidth());
         main.drawImage(contentImg, 0, 0, faceImgWidth, contentImgHeight, null);
-        String content = "每日读书札记 | " + bookTitle;
-        int contentX = (faceImgWidth - getWordWidth(titleFontSmall, content)) / 2;
-        main.drawString(content, contentX, faceImgHeight * 3 / 4);
+        StringBuilder content = new StringBuilder("每日读书札记");
+        if (!StringUtils.isEmpty(bookTitle)) {
+            content.append(" | ").append(bookTitle);
+        }
+        int contentX = (faceImgWidth - getWordWidth(titleFontSmall, content.toString())) / 2;
+        main.drawString(content.toString(), contentX, faceImgHeight * 3 / 4);
         createImage(faceImage, imgSaveFullPath);
     }
 

@@ -24,7 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * @date 2021-07-20 7:50
  */
 @Configuration
-//@EnableWebSecurity
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
     @Autowired
@@ -32,18 +32,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("syske").password("123456").and()
-                .withUser("admin").password("admin");
-        auth.userDetailsService(name -> {
-            return readerRepository.loadUserByUsername(name);
-        }).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(username -> {
+            System.out.println(username);
+            return readerRepository.loadUserByUsername(username);
+                    }).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated().and()
-                .formLogin().and()
-                .httpBasic();
+        http.authorizeRequests()
+                //限定 ” /user/welcome ”请求赋予角色 ROLE_USER 或者 ROLE_ADMIN
+                .antMatchers("/user/welcome").hasAnyRole("USER", "ADMIN")
+                // 限定 ” /admin/ ”下所有请求权限赋予角色 ROLE_ADMIN
+                .antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
+                // 其他路径允许签名后访问
+                .anyRequest().permitAll()
+                // 对于没有配置权限的其他请求允许匿名访问
+                .and().anonymous()
+                // 使用spring security 默认的登录页面
+                .and().formLogin()
+//                .loginPage("/login")
+//                .failureForwardUrl("/fail")
+                .successForwardUrl("/user/welcome")
+//                .defaultSuccessUrl("/user/welcome")
+                // 启动 HTTP 基础验证
+                .and().httpBasic();
     }
 }
