@@ -63,9 +63,9 @@ public class ImageTest {
 
     @Test
     public void generateBnnerPicTest() {
-        String bookTitle = "Example Everyday";
+        String bookTitle = "spring boot";
         BannerInfo bannerInfo = new BannerInfo();
-        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.KONG_QUE_LAN);
+        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.QING_TING_LAN);
         imageService.generateBannerPic(bannerInfo);
     }
 
@@ -74,15 +74,15 @@ public class ImageTest {
         String mainContent =
 //            "你要去相信，时光且长，你终将长成自己想要的模样，拥抱独属于你的未来。";
 //            "做你最愿意做的那件事，那才是你真正的天赋所在。";
-            "人生长短，弹指一瞬。日常的重复，容易让人产生错觉，会认为一切都来得及，会有时间开始做自己喜欢的事情。";
-//            "不管幸与不幸，都不要为自己的人生设限，以免阻挡了生命的阳光。";
+//            "人生长短，弹指一瞬。日常的重复，容易让人产生错觉，会认为一切都来得及，会有时间开始做自己喜欢的事情。";
+            "不管幸与不幸，都不要为自己的人生设限，以免阻挡了生命的阳光。";
 //            "陪伴是最好的爱，可以抵挡世间所有的坚硬，温暖生命所有的岁月。";
 //            "趁着岁月静好，勇敢去爱。不要等到时机消逝，再为那份错过的爱而懊悔、哭泣。我们终将赴一场名为爱的宴会，哪怕最后只剩回忆。";
 //            "有人总说：已经晚了。实际上，现在就是最好的时光。对于一个真正有所追求的人来说，生命的每个时期都是年轻的、及时的。";
 //            "我不知道怎样才能过得更好，但是我尽力让现在当下的自己完好无损。";
         String bookTitle = "";
         String authorName = "摩西奶奶";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1518782999472-72f2ca3cb18f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1368&q=80";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1441981974669-8f9bc0978b64?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
