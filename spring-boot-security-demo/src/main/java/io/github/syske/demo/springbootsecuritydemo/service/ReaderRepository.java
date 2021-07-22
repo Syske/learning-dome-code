@@ -3,6 +3,7 @@ package io.github.syske.demo.springbootsecuritydemo.service;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,23 +27,21 @@ public class ReaderRepository implements UserDetailsService {
 
     private static Map<String, UserDetails> userDetailsMap = Maps.newHashMap();
 
-    static {
-        userDetailsMap.put("admin", new UserInfo("admin", encrypt("admin"), "ROLE_ADMIN"));
-        userDetailsMap.put("user", new UserInfo("user", encrypt("123456"), "ROLE_USER"));
-        userDetailsMap.put("test", new UserInfo("test", encrypt("test"), "ROLE_TEST"));
-    }
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+            userDetailsMap.put("admin", new UserInfo("admin", passwordEncoder.encode("admin"), "ROLE_ADMIN"));
+            userDetailsMap.put("user", new UserInfo("user", passwordEncoder.encode("123456"), "ROLE_USER"));
+            userDetailsMap.put("test", new UserInfo("test", passwordEncoder.encode("test"), "ROLE_TEST"));
         if (userDetailsMap.containsKey(username)) {
             return userDetailsMap.get(username);
         } else {
             throw new UsernameNotFoundException("用户不存在");
         }
-    }
-
-    private static String encrypt(String password) {
-        return new BCryptPasswordEncoder().encode(password);
     }
 
     public static class UserInfo implements UserDetails {

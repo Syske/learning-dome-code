@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+    用户名：<input name="username" id="username" type="text"><br>
+    密码：<input name="password" id = "password" type="password"><br>
+    <button id="login-btn">登录</button>
+    <input name="_csrf" type="hidden">
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="application/javascript">
+    $(function () {
+       $("#login-btn").click(function () {
+           $.ajax({
+               url: "/loginService",
+               method: "get",
+               dataType:"json",
+               data: {"username": $("#username").val() , "password": $("#password").val()},
+               success: function (rep) {
+                   console.log(rep)
+               }
+           })
+       })
+    })
+</script>
+
+</body>
+</html>
