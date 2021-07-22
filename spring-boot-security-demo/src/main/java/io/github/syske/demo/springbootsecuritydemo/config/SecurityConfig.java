@@ -42,9 +42,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 //限定 ” /user/welcome ”请求赋予角色 ROLE_USER 或者 ROLE_ADMIN
-                .antMatchers("/user/welcome").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/welcome").hasAnyRole("USER", "ADMIN", "TEST")
                 // 限定 ” /admin/ ”下所有请求权限赋予角色 ROLE_ADMIN
                 .antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/test/**").hasAnyAuthority("ROLE_TEST")
+                .antMatchers("/user/**").hasAnyAuthority("ROLE_USER")
                 // 其他路径允许签名后访问
                 .anyRequest().permitAll()
                 // 对于没有配置权限的其他请求允许匿名访问
@@ -53,8 +55,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin()
 //                .loginPage("/login")
 //                .failureForwardUrl("/fail")
-                .successForwardUrl("/user/welcome")
-//                .defaultSuccessUrl("/user/welcome")
+//                .successForwardUrl("/user/welcome")
+                .defaultSuccessUrl("/welcome")
+                .and().rememberMe().tokenValiditySeconds(30).key("remember-me")
                 // 启动 HTTP 基础验证
                 .and().httpBasic();
     }

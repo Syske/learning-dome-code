@@ -27,9 +27,9 @@ public class ReaderRepository implements UserDetailsService {
     private static Map<String, UserDetails> userDetailsMap = Maps.newHashMap();
 
     static {
-        userDetailsMap.put("admin", new UserInfo("admin", encrypt("admin"), "ADMIN"));
-        userDetailsMap.put("user", new UserInfo("user", encrypt("123456"), "USER"));
-        userDetailsMap.put("test", new UserInfo("test", encrypt("test"), "TEST"));
+        userDetailsMap.put("admin", new UserInfo("admin", encrypt("admin"), "ROLE_ADMIN"));
+        userDetailsMap.put("user", new UserInfo("user", encrypt("123456"), "ROLE_USER"));
+        userDetailsMap.put("test", new UserInfo("test", encrypt("test"), "ROLE_TEST"));
     }
 
     @Override

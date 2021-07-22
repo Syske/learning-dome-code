@@ -20,10 +20,4 @@ public class UserController {
             return "hello, user -" + name;
 
         }
-
-    @GetMapping("welcome")
-    public Object welcome(String name) {
-        return "welcome, user -" + name;
-
-    }
 }
