@@ -30,8 +30,6 @@ public class ReaderRepository implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
             userDetailsMap.put("admin", new UserInfo("admin", passwordEncoder.encode("admin"), "ROLE_ADMIN"));

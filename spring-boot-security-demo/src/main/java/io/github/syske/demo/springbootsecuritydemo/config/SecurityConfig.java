@@ -1,10 +1,12 @@
 /* Copyright © 2021 syske. All rights reserved. */
 package io.github.syske.demo.springbootsecuritydemo.config;
 
+import io.github.syske.demo.springbootsecuritydemo.filter.SyskFilter;
 import io.github.syske.demo.springbootsecuritydemo.service.ReaderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -38,7 +40,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SyskeAuthenticationSuccessHandler successHandler;
 
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(syskeAuthenticationProvider);
@@ -54,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/test/**").hasAnyAuthority("ROLE_TEST", "ROLE_ADMIN")
                 .antMatchers("/user/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
             // 其他路径允许签名后访问
-//            .anyRequest().permitAll()
+            .anyRequest().permitAll()
             // 对于没有配置权限的其他请求允许匿名访问
             .and().anonymous()
             // 使用spring security 默认的登录页面
@@ -62,12 +63,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
              .failureForwardUrl("/fail")
              .successForwardUrl("/user/welcome")
             .failureHandler(handler)
-                .defaultSuccessUrl("/welcome")
+//                .defaultSuccessUrl("/welcome")
                 .successHandler(successHandler)
                 .and().rememberMe()
             .tokenValiditySeconds(30).key("remember-me")
             // 启动 HTTP 基础验证
-            .and().httpBasic();
+            .and().httpBasic()
+        .and().csrf().disable();
     }
 
     @Bean

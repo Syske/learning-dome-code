@@ -23,6 +23,9 @@ import java.util.Objects;
 @RestController
 public class LoginController {
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     private static Map<String, UserDetails> userDetailsMap = Maps.newHashMap();
 
     static {
@@ -43,24 +46,27 @@ public class LoginController {
         return new BCryptPasswordEncoder().encode(password);
     }
 
-    @GetMapping("/loginService")
+    @PostMapping("/loginService")
     public Object login(String username, String password) {
-        HashMap<String, Object> result = Maps.newHashMap();
+       /* HashMap<String, Object> result = Maps.newHashMap();
         UserDetails userDetails = loadUserByUsername(username);
         if (Objects.isNull(userDetails)) {
             result.put("code", 0001);
             result.put("message", "用户不存在");
+            result.put("success", Boolean.FALSE);
             return result;
         }
-        if (userDetails.getPassword().equals(new BCryptPasswordEncoder().encode(password))) {
+        if (bCryptPasswordEncoder.matches(password, bCryptPasswordEncoder.encode(password))) {
             result.put("code", 2000);
             result.put("message", "登录成功");
+            result.put("success", Boolean.TRUE);
             return result;
         } else {
             result.put("code", 0002);
             result.put("message", "用户名或密码错误");
+            result.put("success", Boolean.FALSE);
             return result;
-        }
-
+        }*/
+        return  null;
     }
 }

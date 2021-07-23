@@ -16,11 +16,17 @@
        $("#login-btn").click(function () {
            $.ajax({
                url: "/loginService",
-               method: "get",
+               method: "post",
                dataType:"json",
                data: {"username": $("#username").val() , "password": $("#password").val()},
                success: function (rep) {
                    console.log(rep)
+                   if (rep.success) {
+                       console.log("登录成功");
+                       window.location.href = "/welcome";
+                   } else {
+                       alert(rep.message)
+                   }
                }
            })
        })

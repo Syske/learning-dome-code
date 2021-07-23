@@ -1,6 +1,9 @@
 /* Copyright © 2021 syske. All rights reserved. */
 package io.github.syske.demo.springbootsecuritydemo.config;
 
+import io.github.syske.demo.springbootsecuritydemo.filter.SyskFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -22,5 +25,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("/admin/hello").setViewName("admin/hello");
         registry.addViewController("/test/hello").setViewName("test/hello");
         registry.addViewController("/index").setViewName("index");
+        registry.addViewController("/403").setViewName("403");
     }
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>禁止访问</title>
+</head>
+<body>
+当前用户没有权限访问相关资源
+
+<SCRIPT type="text/javascript">
+    var maxtime =  10; // 按秒计算，自己调整!
+    function CountDown() {
+        if (maxtime >= 0) {
+            seconds = Math.floor(maxtime % 60);
+            msg = seconds + "秒后跳转至首页";
+            document.getElementById("timer").innerHTML = msg;
+            --maxtime;
+        } else{
+            clearInterval(timer);
+            window.location.href = "/index"
+        }
+    }
+    timer = setInterval("CountDown()", 1000);
+</SCRIPT>
+<div id="timer" style="color:red"></div>
+<div id="warring" style="color:red"></div>
+</body>
+</html>
