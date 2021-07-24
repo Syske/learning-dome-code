@@ -2,6 +2,7 @@
 package io.github.syske.demo.springbootsecuritydemo.config;
 
 import io.github.syske.demo.springbootsecuritydemo.filter.SyskFilter;
+import io.github.syske.demo.springbootsecuritydemo.handler.SyskeLogoutSuccessHandler;
 import io.github.syske.demo.springbootsecuritydemo.service.ReaderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import io.github.syske.demo.springbootsecuritydemo.handler.SyskeAuthenticationFailureHandler;
 import io.github.syske.demo.springbootsecuritydemo.handler.SyskeAuthenticationProvider;
 import io.github.syske.demo.springbootsecuritydemo.handler.SyskeAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
 
 /**
  * 配置类
@@ -40,6 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SyskeAuthenticationSuccessHandler successHandler;
 
+    @Autowired
+    private SyskeLogoutSuccessHandler syskeLogoutSuccessHandler;
+
+    @Autowired
+    private InMemoryTokenRepositoryImpl inMemoryTokenRepository;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(syskeAuthenticationProvider);
@@ -60,13 +69,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and().anonymous()
             // 使用spring security 默认的登录页面
             .and().formLogin().loginPage("/userLogin").loginProcessingUrl("/loginService")
-             .failureForwardUrl("/fail")
-             .successForwardUrl("/user/welcome")
+                .failureForwardUrl("/fail")
             .failureHandler(handler)
 //                .defaultSuccessUrl("/welcome")
                 .successHandler(successHandler)
+                .successForwardUrl("/user/welcome")
+                .and().logout().logoutUrl("/login/out")
+                .logoutSuccessHandler(syskeLogoutSuccessHandler)
                 .and().rememberMe()
             .tokenValiditySeconds(30).key("remember-me")
+                .tokenRepository(inMemoryTokenRepository)
             // 启动 HTTP 基础验证
             .and().httpBasic()
         .and().csrf().disable();
@@ -77,4 +89,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public InMemoryTokenRepositoryImpl inMemoryTokenRepository() {
+        return new InMemoryTokenRepositoryImpl();
+    }
 }
