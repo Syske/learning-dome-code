@@ -43,7 +43,7 @@ public class DateUtil {
      * 获取当前时间的月份
      * @return
      */
-    public static String getDateMothStr() {
-        return new SimpleDateFormat("MM").format(new Date());
+    public static String getDateYearMothStr() {
+        return new SimpleDateFormat("yyyy-MM").format(new Date());
     }
 }

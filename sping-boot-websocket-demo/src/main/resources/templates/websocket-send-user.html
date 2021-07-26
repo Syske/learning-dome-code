@@ -2,18 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>websocket STOMP</title>
+    <title>send-user</title>
 </head>
 <body>
-websocket兼容STOMP测试<br>
+websocket兼容STOMP测试  send-user<br>
 <div>
     <div>
         <button id = "connect" onclick="connect()">连接</button>
         <button id = "disconnect" disabled="disabled" onclick="disconnect()">断开连接</button>
-</div>
+    </div>
     <div id = "conversationDiv">
         <p>
             <label>发送消息内容</label>
+        </p>
+        <p>
+            发送给：<input id="user">
         </p>
         <p>
             <textarea id="message" rows = "5"></textarea>
@@ -33,17 +36,7 @@ websocket兼容STOMP测试<br>
 <script src="https://cdn.bootcdn.net/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script type="text/javascript">
-    function logout() {
-        closeWebSocket();
-        $.ajax({
-            url: "/logout",
-            type: "POST",
-            success: function (rsp) {
-                console.log("退出登录成功")
-                console.log(rsp)
-            }
-        })
-    }
+
 
     var stompClient = null;
     // 设置连接
@@ -60,7 +53,7 @@ websocket兼容STOMP测试<br>
 
     function connect() {
         // 定义请求服务器的端点
-        var socket = new SockJS('/socket');
+        var socket = new SockJS('/wsuser');
         // stomp客户端
         stompClient = Stomp.over(socket);
         // 连接服务器端点
@@ -80,9 +73,11 @@ websocket兼容STOMP测试<br>
     // 向/request/send服务端发送消息
     function sendMessage() {
         var message = $("#message").val();
+        var user = $("#user").val();
         // 发送消息到"/request/send"，其中/request是服务器定义的前缀
         // 而/send则是@MessageMapping所配置的路径
-        stompClient.send("/request/send", {}, message);
+        var messageSend = user + ": " + message
+        stompClient.send("/request/sendToUser", {}, messageSend);
     }
     connect();
 </script>

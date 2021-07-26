@@ -18,5 +18,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/websocket").setViewName("websocket");
         registry.addViewController("/websocket2").setViewName("websocket2");
+        registry.addViewController("/websocket-receive").setViewName("websocket-stomp-receive");
+        registry.addViewController("/websocket-send-user").setViewName("websocket-send-user");
+        registry.addViewController("/websocket-user-receive").setViewName("websocket-user-receive");
     }
 }

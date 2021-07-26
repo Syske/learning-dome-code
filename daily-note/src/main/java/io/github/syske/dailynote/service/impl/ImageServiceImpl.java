@@ -50,7 +50,7 @@ public class ImageServiceImpl implements ImageService {
     private final String FACE_IMG_PREFIX = "face-img-";
 
     {
-        File savePath = new File(noteCardSavePath + DateUtil.getDateMothStr() + PATH_LINE);
+        File savePath = new File(noteCardSavePath + DateUtil.getDateYearMothStr() + PATH_LINE);
         if (!savePath.exists()) {
             savePath.mkdirs();
         }
@@ -70,7 +70,7 @@ public class ImageServiceImpl implements ImageService {
             }
             Date date = new Date();
             String uuidStr = UUIDUtil.getUUIDStr();
-            String imgSaveFullPath = noteCardSavePath + DateUtil.getDateMothStr() + PATH_LINE + DateUtil.getDatestrYYYY_MM_dd() + ".jpg";
+            String imgSaveFullPath = noteCardSavePath + DateUtil.getDateYearMothStr() + PATH_LINE + DateUtil.getDatestrYYYY_MM_dd() + ".jpg";
             String faceImgSaveFullPath = faceImgSave + DateUtil.getDatestrYYYY_MM_dd() + ".jpg";
             String bannerPicUrl = noteBookInfo.getBannerPicUrl();
             imageUtil.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, bannerPicUrl, noteBookInfo.getNoteContent(), authorInfo.toString(), footerContent, date);

@@ -41,6 +41,24 @@ public class WebSocketService {
         nameMap.put("jingwei", "精卫");
     }
 
+    /**
+     * 获取 nameMap
+     *
+     * @return nameMap
+     */
+    public Map<String, String> getNameMap() {
+        return nameMap;
+    }
+
+    /**
+     * 设置 nameMap
+     *
+     * @param nameMap nameMap
+     */
+    public void setNameMap(Map<String, String> nameMap) {
+        this.nameMap = nameMap;
+    }
+
     // 在线数量
     private static AtomicInteger onlineCount = new AtomicInteger(0);
 
