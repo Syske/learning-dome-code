@@ -1,0 +1,42 @@
+/* Copyright © 2021 syske. All rights reserved. */
+package com.example.spingboowebsocketdemo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.security.Principal;
+
+/**
+ * websocket controller
+ *
+ * @author syske
+ * @version 1.0
+ * @date 2021-07-26 8:14
+ */
+@RestController
+public class WebsocketController {
+
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
+
+    @MessageMapping("/send")
+    @SendTo("/sub/chat")
+    public String sendMessage(String value) {
+        return value;
+    }
+
+@MessageMapping("/sendToUser")
+    public void sendToUser(Principal principal, String body) {
+        String srcUser = principal.getName();
+        String[] args = body.split(",");
+        String desUser = args[0];
+        String message = String.format("【%s】给你发来消息：%s", srcUser, args[1]);
+        // 发送到用户和监听地址
+        simpMessagingTemplate.convertAndSendToUser(desUser, "/queue/customer", message);
+
+    }
+
+}
