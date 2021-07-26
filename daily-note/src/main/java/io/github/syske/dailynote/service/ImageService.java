@@ -25,4 +25,12 @@ public interface ImageService {
      * @return
      */
     String generateBannerPic(BannerInfo bannerInfo);
+
+    /**
+     * 生成带图片的banner
+     * @param title
+     * @param bannerPicUrl
+     * @return
+     */
+    String generateBannerPicWithImage(String title, String bannerPicUrl);
 }

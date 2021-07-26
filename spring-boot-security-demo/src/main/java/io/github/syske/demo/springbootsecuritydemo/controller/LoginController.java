@@ -1,18 +1,16 @@
 package io.github.syske.demo.springbootsecuritydemo.controller;
 
-import com.google.common.collect.Maps;
-import io.github.syske.demo.springbootsecuritydemo.service.ReaderRepository;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import com.google.common.collect.Maps;
+
+import io.github.syske.demo.springbootsecuritydemo.service.ReaderRepository;
 
 /**
  * @program: spring-boot-security-demo
@@ -46,27 +44,4 @@ public class LoginController {
         return new BCryptPasswordEncoder().encode(password);
     }
 
-    @PostMapping("/loginService")
-    public Object login(String username, String password) {
-       /* HashMap<String, Object> result = Maps.newHashMap();
-        UserDetails userDetails = loadUserByUsername(username);
-        if (Objects.isNull(userDetails)) {
-            result.put("code", 0001);
-            result.put("message", "用户不存在");
-            result.put("success", Boolean.FALSE);
-            return result;
-        }
-        if (bCryptPasswordEncoder.matches(password, bCryptPasswordEncoder.encode(password))) {
-            result.put("code", 2000);
-            result.put("message", "登录成功");
-            result.put("success", Boolean.TRUE);
-            return result;
-        } else {
-            result.put("code", 0002);
-            result.put("message", "用户名或密码错误");
-            result.put("success", Boolean.FALSE);
-            return result;
-        }*/
-        return  null;
-    }
 }

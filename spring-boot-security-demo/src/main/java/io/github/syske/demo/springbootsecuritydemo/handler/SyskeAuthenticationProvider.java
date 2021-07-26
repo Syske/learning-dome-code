@@ -11,7 +11,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentRememberMeToken;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -30,6 +33,9 @@ public class SyskeAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private ReaderRepository readerRepository;
 
+    @Autowired
+    private InMemoryTokenRepositoryImpl inMemoryTokenRepository;
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         UserDetails userDetails = readerRepository.loadUserByUsername(authentication.getName());
@@ -40,6 +46,9 @@ public class SyskeAuthenticationProvider implements AuthenticationProvider {
         String credentials = (String)authentication.getCredentials();
         String encodePassword = passwordEncoder.encode(credentials);
         if (passwordEncoder.matches(credentials, encodePassword)) {
+            PersistentRememberMeToken persistentRememberMeToken =
+                    new PersistentRememberMeToken(userDetails.getUsername(), encodePassword, "token-test", new Date());
+            inMemoryTokenRepository.createNewToken(persistentRememberMeToken);
             return new UsernamePasswordAuthenticationToken(userDetails, encodePassword, userDetails.getAuthorities());
         } else {
             authentication.setAuthenticated(false);

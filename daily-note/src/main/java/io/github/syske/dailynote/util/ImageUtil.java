@@ -242,8 +242,8 @@ public class ImageUtil {
      * @param imgSaveFullPath
      * @throws IOException
      */
-    public void generateBannerPic(String bookTitle, String imgUrl, String imgSaveFullPath) throws IOException {
-        int faceImgWidth = 900;
+    public void generateBannerPic(String title, String imgUrl, String imgSaveFullPath) throws IOException {
+        int faceImgWidth = 1175;
         int faceImgHeight = 500;
         BufferedImage faceImage = new BufferedImage(faceImgWidth, faceImgHeight, BufferedImage.TYPE_INT_RGB);
         // 设置图片的背景色
@@ -255,12 +255,8 @@ public class ImageUtil {
         main.setFont(titleFontSmall);
         int contentImgHeight = (contentImg.getHeight() * faceImgWidth / contentImg.getWidth());
         main.drawImage(contentImg, 0, 0, faceImgWidth, contentImgHeight, null);
-        StringBuilder content = new StringBuilder("每日读书札记");
-        if (!StringUtils.isEmpty(bookTitle)) {
-            content.append(" | ").append(bookTitle);
-        }
-        int contentX = (faceImgWidth - getWordWidth(titleFontSmall, content.toString())) / 2;
-        main.drawString(content.toString(), contentX, faceImgHeight * 3 / 4);
+        int contentX = (faceImgWidth - getWordWidth(titleFontSmall, title)) / 2;
+        main.drawString(title, contentX, faceImgHeight / 2);
         createImage(faceImage, imgSaveFullPath);
     }
 
@@ -497,8 +493,7 @@ public class ImageUtil {
      * @param imgSaveFullPath
      * @throws IOException
      */
-    public void generateBannerPic(String content, ChineseColorEnum chineseColorEnum, String imgSaveFullPath,
-        String dateStr) {
+    public void generateBannerPic(String content, ChineseColorEnum chineseColorEnum, String imgSaveFullPath) {
         int faceImgWidth = 900;
         int faceImgHeight = 500;
         Color fontColor = null;
@@ -523,11 +518,7 @@ public class ImageUtil {
         int mainContentY = faceImgHeight * 1 / 2;
         main.drawString(content, contentX, mainContentY);
         main.setFont(contentTextFont);
-        /*int tipsContentX = (faceImgWidth - getWordWidth(contentTextFont, dateStr)) / 2;
-        main.drawString(dateStr, tipsContentX, mainContentY + 50);*/
         main.setFont(contentFontTips);
-//        main.drawString("配色：" + chineseColorEnum.getColorName(),
-//            faceImgWidth - 20 - getWordWidth(contentFontTips, "配色：" + chineseColorEnum.getColorName()), 100);
         createImage(faceImage, imgSaveFullPath);
     }
 

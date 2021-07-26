@@ -5,6 +5,29 @@
     <title>欢迎页</title>
 </head>
 <body>
-你好
+你好<br>
+<button id="logout-btn">退出登录</button>
+<br><a href="/logout1">退出登录页面</a>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="application/javascript">
+    $(function () {
+        $("#logout-btn").click(function () {
+            $.ajax({
+                url: "/logout",
+                method: "post",
+                dataType:"json",
+                success: function (rep) {
+                    console.log(rep)
+                    if (rep.success) {
+                        console.log("退出登录成功");
+                        window.location.href = "/welcome";
+                    } else {
+                        alert(rep.message)
+                    }
+                }
+            })
+        })
+    })
+</script>
 </body>
 </html>

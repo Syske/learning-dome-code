@@ -21,6 +21,7 @@ import io.github.syske.demo.springbootsecuritydemo.handler.SyskeAuthenticationFa
 import io.github.syske.demo.springbootsecuritydemo.handler.SyskeAuthenticationProvider;
 import io.github.syske.demo.springbootsecuritydemo.handler.SyskeAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * 配置类
@@ -68,14 +69,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // 对于没有配置权限的其他请求允许匿名访问
             .and().anonymous()
             // 使用spring security 默认的登录页面
-            .and().formLogin().loginPage("/userLogin").loginProcessingUrl("/loginService")
-                .failureForwardUrl("/fail")
+            .and().formLogin().loginPage("/userLogin")
+                .loginProcessingUrl("/loginService")
+             .failureForwardUrl("/fail")
+             .successForwardUrl("/user/welcome")
             .failureHandler(handler)
-//                .defaultSuccessUrl("/welcome")
+                .defaultSuccessUrl("/welcome")
                 .successHandler(successHandler)
-                .successForwardUrl("/user/welcome")
-                .and().logout().logoutUrl("/login/out")
+                .and().logout()
+                .logoutUrl("/logout1")
+//                .logoutSuccessUrl("/logoutPage")
                 .logoutSuccessHandler(syskeLogoutSuccessHandler)
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and().rememberMe()
             .tokenValiditySeconds(30).key("remember-me")
                 .tokenRepository(inMemoryTokenRepository)
