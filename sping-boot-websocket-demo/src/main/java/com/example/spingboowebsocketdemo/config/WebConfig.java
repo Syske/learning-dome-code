@@ -17,5 +17,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/websocket").setViewName("websocket");
+        registry.addViewController("/websocket2").setViewName("websocket2");
     }
 }

@@ -63,9 +63,9 @@ public class ImageTest {
 
     @Test
     public void generateBnnerPicTest() {
-        String bookTitle = "spring-boot-security";
+        String bookTitle = "spring-boot-websocket";
         BannerInfo bannerInfo = new BannerInfo();
-        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.DAN_LAN_HUI);
+        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.DA_HONG);
         imageService.generateBannerPic(bannerInfo);
     }
 
@@ -80,10 +80,10 @@ public class ImageTest {
 //            "趁着岁月静好，勇敢去爱。不要等到时机消逝，再为那份错过的爱而懊悔、哭泣。我们终将赴一场名为爱的宴会，哪怕最后只剩回忆。";
 //            "有人总说：已经晚了。实际上，现在就是最好的时光。对于一个真正有所追求的人来说，生命的每个时期都是年轻的、及时的。";
 //            "--我不知道怎样才能过得更好，但是我尽力让现在当下的自己完好无损。";
-            "请再悄悄加点油，无论如何都想听你说：我终于成为不负众望的人了。";
-        String bookTitle = "时光序";
-        String authorName = "";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1625487658520-12cfd2e2181a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
+            "我从来都是佩服那些比自己拼命努力的人，他们值得得到赞扬。而那些嘲讽他们的人，要么是真的无知，要么就是因自己做不到而为自己弱小的心理与沉浸在安逸中找借口罢了。";
+        String bookTitle = "";
+        String authorName = "佚名";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1599736947723-29f6cf4b67a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1338&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
