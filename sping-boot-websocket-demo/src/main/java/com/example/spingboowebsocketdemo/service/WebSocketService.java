@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -105,7 +104,8 @@ public class WebSocketService {
     }
 
     @OnClose
-    public void onClose() {
+    public void onClose(Session session) {
+        logger.info("{}退出群聊！", session.getUserPrincipal().getName());
         webSocketServiceSet.remove(this);
         subOnlineCount();
     }
