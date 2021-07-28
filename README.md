@@ -57,4 +57,5 @@
 53. [spring-boot-srater-test](./spring-boot-srater-test)：手写spring-boot-starter测试
 54. [spring-boot-security-demo](./spring-boot-security-demo)：spring-boot-security实战demo
 55. [sping-boot-websocket-demo](./sping-boot-websocket-demo)：spring-boot-websocket搭建简易聊天室
+56. [spring-webflux-demo](./spring-webflux-demo)：spring-webflux简单入门
 
