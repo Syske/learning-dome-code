@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件管理</title>
+</head>
+<body>
+<h1>文件导出</h1>
+
+    名称：<input type="text" name="name" id = "name">
+    <input type="submit" name="文件导出" id="submit">
+
+<div id = "export-message"></div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<h1>文件下载中心</h1>
+<ul id = "fileList">
+
+</ul>
+
+<a href="/file/1231232/download/file-index.html"></a>
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+<script>
+    $("#submit").click(function () {
+        $.ajax({
+            url : "/file/1231232/export",
+            data : {"name": $("#name").val()},
+            type : "get",
+            success : function(data) {
+                $('#export-message').html('');
+                $('#export-message').html(data);
+                $('#fileList').children("a").remove();
+                var fileHref = $("<a href='/file/1231232/download/" + data.fileId +"'> " + data.fileId + "</a>")
+                $('#fileList').append(fileHref);
+
+            }
+        });
+    });
+
+</script>
+</html>

@@ -35,9 +35,9 @@ public class ImageTest {
 
         try {
             String mainContent =
-                "我或许败北，或许迷失自己，或许哪里也抵达不了，或许我已失去一切，任凭怎么挣扎也只能徒呼奈何，或许我只是徒然掬一把废墟灰烬，唯我一人蒙在鼓里，或许这里没有任何人把赌注下在我身上。无所谓。有一点是明确的：至少我有值得等待有值得寻求的东西。";
-            String bookTitle = "村上春树";
-            String authorName = "奇鸟行状录";
+                "树不可长得太快。一年生当柴，三年五年生当桌椅，十年百年的才有可能成栋梁。故要养深积厚，等待时间。";
+            String bookTitle = "";
+            String authorName = "佚名";
             StringBuilder authorInfo = new StringBuilder("—— ").append(authorName);
             if (StringUtils.isNotBlank(bookTitle)) {
                 authorInfo.append("《").append(bookTitle).append("》");
@@ -63,24 +63,33 @@ public class ImageTest {
 
     @Test
     public void generateBnnerPicTest() {
-        String bookTitle = "Example Everyday";
+        String bookTitle = "spring-boot-websocket";
         BannerInfo bannerInfo = new BannerInfo();
-        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.BO_LUO_HONG)
-                .setDataStr("2021-05-06");
+        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.MEI_DIE_LV);
         imageService.generateBannerPic(bannerInfo);
     }
 
     @Test
     public void testGenerateDailyNotePic() {
         String mainContent =
-            "目标实现了，便是光荣；目标实现不了，人生也会因这一路风雨跋涉变得丰富而充实；在我看来，这就是不虚此生。";
-        String bookTitle = "我喜欢出发";
-        String authorName = "汪国真";
-        String bannerPicUrl = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20181027%2F00ad1b193203473db8926e4f2e0ed699.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622850028&t=68c12b8681602ef26a277df0f798dacd";
+//            "你要去相信，时光且长，你终将长成自己想要的模样，拥抱独属于你的未来。";
+//            "做你最愿意做的那件事，那才是你真正的天赋所在。";
+//            "人生长短，弹指一瞬。日常的重复，容易让人产生错觉，会认为一切都来得及，会有时间开始做自己喜欢的事情。";
+//            "不管幸与不幸，都不要为自己的人生设限，以免阻挡了生命的阳光。";
+//            "陪伴是最好的爱，可以抵挡世间所有的坚硬，温暖生命所有的岁月。";
+//            "趁着岁月静好，勇敢去爱。不要等到时机消逝，再为那份错过的爱而懊悔、哭泣。我们终将赴一场名为爱的宴会，哪怕最后只剩回忆。";
+//            "有人总说：已经晚了。实际上，现在就是最好的时光。对于一个真正有所追求的人来说，生命的每个时期都是年轻的、及时的。";
+//            "--我不知道怎样才能过得更好，但是我尽力让现在当下的自己完好无损。";
+            "所谓努力，就是主动而有目的的活动。";
+        String bookTitle = "";
+        String authorName = "村上春树";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1521579971123-1192931a1452?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
         imageService.generateDailyNoteCard(noteBookInfo);
+        String title = "spring-boot-websocket";
+        imageService.generateBannerPicWithImage(title, bannerPicUrl);
     }
 
     @Test
@@ -113,6 +122,12 @@ public class ImageTest {
         } catch (Exception e) {
 
         }
+    }
 
+    @Test
+    public void testFileExtSubString() {
+        String uuidStr = UUIDUtil.getUUIDStr();
+        String imgSaveFullPath = "D:\\tmp\\img\\created\\" + uuidStr + ".jpg";
+        System.out.println(imgSaveFullPath.substring(imgSaveFullPath.lastIndexOf('.') + 1));
     }
 }

@@ -46,29 +46,26 @@ public class FontUtil {
      */
     public static Font getFont(int type, float size) {
         // 字体路径
-        String path = "";
+        InputStream fontInputStream = null;
         switch (type) {
             case PINGFANG_FONT:
-                path = getFontPath("font/PingFangSC.ttf");
+                fontInputStream = getFontInputStream("font/PingFangSC.ttf");
                 break;
             case PINGFANG_BOLD_FONT:
-                path = getFontPath("font/PingFangBold.ttf");
+                fontInputStream = getFontInputStream("font/PingFangBold.ttf");
                 break;
             case FZLTTH_GBK_FONT:
-                path = getFontPath("font/fzltthjwgb10.ttf");
+                fontInputStream = getFontInputStream("font/fzltthjwgb10.ttf");
                 break;
             case LI_XU_KE_FONT:
-                path = getFontPath("font/lixukexingshu.ttf");
+                fontInputStream = getFontInputStream("font/lixukexingshu.ttf");
                 break;
             default:
-                path = getFontPath("font/simhei.ttf");
+                fontInputStream = getFontInputStream("font/simhei.ttf");
         }
 
-        File file = new File(path);
-        InputStream inputStream = null;
         try {
-            inputStream = new FileInputStream(file);
-            Font sPfBoldFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+            Font sPfBoldFont = Font.createFont(Font.TRUETYPE_FONT, fontInputStream);
             sPfBoldFont = sPfBoldFont.deriveFont(size);
             return sPfBoldFont;
         } catch (FontFormatException e) {
@@ -77,8 +74,8 @@ public class FontUtil {
             e.printStackTrace();
         } finally {
             try {
-                if (inputStream != null) {
-                    inputStream.close();
+                if (fontInputStream != null) {
+                    fontInputStream.close();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -87,7 +84,7 @@ public class FontUtil {
         return null;
     }
 
-    private static String getFontPath(String name) {
-        return FontUtil.class.getClassLoader().getResource(name).getPath();
+    private static InputStream getFontInputStream(String name) {
+        return FontUtil.class.getClassLoader().getResourceAsStream(name);
     }
 }

@@ -38,4 +38,12 @@ public class DateUtil {
     public static String getDatestrYYYY_MM_dd() {
         return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
     }
+
+    /**
+     * 获取当前时间的月份
+     * @return
+     */
+    public static String getDateYearMothStr() {
+        return new SimpleDateFormat("yyyy-MM").format(new Date());
+    }
 }

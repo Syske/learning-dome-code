@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket STOMP</title>
+</head>
+<body>
+websocket兼容STOMP测试<br>
+<div>
+    <div>
+        <button id = "connect" onclick="connect()">连接</button>
+        <button id = "disconnect" disabled="disabled" onclick="disconnect()">断开连接</button>
+</div>
+    <div id = "conversationDiv">
+        <p>
+            <label>发送消息内容</label>
+        </p>
+        <p>
+            <textarea id="message" rows = "5"></textarea>
+        </p>
+        <p>
+            <button id = "sendMsg" onclick="sendMessage()">发送</button>
+        </p>
+        <p id = "response">
+
+        </p>
+    </div>
+
+    <a href="#" target="/websocket-receive">跳转到消息接收页</a>
+</div>
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script type="text/javascript">
+    function logout() {
+        closeWebSocket();
+        $.ajax({
+            url: "/logout",
+            type: "POST",
+            success: function (rsp) {
+                console.log("退出登录成功")
+                console.log(rsp)
+            }
+        })
+    }
+
+    var stompClient = null;
+    // 设置连接
+    function setConnected(connected) {
+        $("#connect").attr({"disabled": connected});
+        $("#disconnect").attr({"disabled": !connected});
+        if (connected) {
+            $("#conversationDiv").show();
+        } else {
+            $("#conversationDiv").hide();
+        }
+        $("#response").html("")
+    }
+
+    function connect() {
+        // 定义请求服务器的端点
+        var socket = new SockJS('/socket');
+        // stomp客户端
+        stompClient = Stomp.over(socket);
+        // 连接服务器端点
+        stompClient.connect({}, function (frame) {
+            // 建立连接后的回调
+            setConnected(true);
+        })
+    }
+    // 断开socket连接
+    function disconnect() {
+        if (stompClient != null) {
+            stompClient.disconnect();
+        }
+        setConnected(false);
+        console.log("Disconnected");
+    }
+    // 向/request/send服务端发送消息
+    function sendMessage() {
+        var message = $("#message").val();
+        // 发送消息到"/request/send"，其中/request是服务器定义的前缀
+        // 而/send则是@MessageMapping所配置的路径
+        stompClient.send("/request/send", {}, message);
+    }
+    connect();
+</script>
+
+</body>
+</html>

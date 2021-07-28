@@ -5,14 +5,19 @@ import io.github.syske.dailynote.service.ImageService;
 import io.github.syske.dailynote.service.entity.BannerInfo;
 import io.github.syske.dailynote.service.entity.NoteBookInfo;
 import io.github.syske.dailynote.util.ChineseColorEnum;
+import io.github.syske.dailynote.util.DateUtil;
 import io.github.syske.dailynote.util.ImageUtil;
 import io.github.syske.dailynote.util.UUIDUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -34,6 +39,23 @@ public class ImageServiceImpl implements ImageService {
     private final String footerContent = "-【每日读书札记】-";
     private ImageUtil imageUtil = new ImageUtil();
 
+    @Value("${note.card.image.save.path}")
+    private String noteCardSavePath;
+
+    @Value("${note.card.face.image.save.path}")
+    private String faceImgSave;
+
+    private final String PATH_LINE = "\\";
+
+    private final String FACE_IMG_PREFIX = "face-img-";
+
+    {
+        File savePath = new File(noteCardSavePath + DateUtil.getDateYearMothStr() + PATH_LINE);
+        if (!savePath.exists()) {
+            savePath.mkdirs();
+        }
+    }
+
     @Override
     public String generateDailyNoteCard(@NonNull NoteBookInfo noteBookInfo) {
         try {
@@ -48,11 +70,15 @@ public class ImageServiceImpl implements ImageService {
             }
             Date date = new Date();
             String uuidStr = UUIDUtil.getUUIDStr();
-            String imgSaveFullPath = "D:\\tmp\\img\\created\\" + uuidStr + ".jpg";
-            String faceImgSaveFullPath = "D:\\tmp\\img\\created\\face-img-" + uuidStr + ".jpg";
+            String imgSaveFullPath = noteCardSavePath + DateUtil.getDateYearMothStr() + PATH_LINE + DateUtil.getDatestrYYYY_MM_dd() + ".jpg";
+            String faceImgSaveFullPath = faceImgSave + DateUtil.getDatestrYYYY_MM_dd() + ".jpg";
             String bannerPicUrl = noteBookInfo.getBannerPicUrl();
             imageUtil.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, bannerPicUrl, noteBookInfo.getNoteContent(), authorInfo.toString(), footerContent, date);
-            imageUtil.generateBannerPic(authorName, bannerPicUrl, faceImgSaveFullPath);
+            StringBuilder content = new StringBuilder("每日读书札记");
+            if (!StringUtils.isEmpty(bookTitle)) {
+                content.append(" | ").append(bookTitle);
+            }
+            imageUtil.generateBannerPic(content.toString(), bannerPicUrl, faceImgSaveFullPath);
         } catch (Exception e) {
             logger.error("生成每日读书札记出错", e);
         }
@@ -61,11 +87,22 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public String generateBannerPic(BannerInfo bannerInfo) {
-        String imgSaveFullPath = "D:\\face-img-" + UUIDUtil.getUUIDStr() + ".jpg";
+        String imgSaveFullPath = faceImgSave + FACE_IMG_PREFIX + UUIDUtil.getUUIDStr() + ".jpg";
         Color fontColor = null;
         ChineseColorEnum backgroundColorEnum = bannerInfo.getBackgroundColorEnum();
         imageUtil.generateBannerPic(bannerInfo.getTitle(), backgroundColorEnum ,
-                imgSaveFullPath, bannerInfo.getDataStr());
+                imgSaveFullPath);
+        return null;
+    }
+
+    @Override
+    public String generateBannerPicWithImage(String title, String bannerPicUrl) {
+        String imgSaveFullPath =  faceImgSave + FACE_IMG_PREFIX  + UUIDUtil.getUUIDStr() + ".jpg";
+        try {
+            imageUtil.generateBannerPic(title, bannerPicUrl, imgSaveFullPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

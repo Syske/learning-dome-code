@@ -18,10 +18,10 @@ import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 import sun.font.FontDesignMetrics;
+
+import javax.imageio.ImageIO;
 
 /**
  * @author syske
@@ -32,11 +32,20 @@ public class ImageUtil {
 
     private BufferedImage image;
 
-    private int imageWidth = 1215;  //图片的宽度
-    private int imageHeight = 2160; //图片的高度
-    private int footerHeight = 280; //图片的高度
+    /**
+     * 图片的宽度
+      */
+    private int imageWidth = 1215;
+    /**
+     * 图片的高度
+      */
+    private int imageHeight = 2160;
+    /**
+     *  图片的页脚高度
+      */
+    private int footerHeight = 280;
 
-    //设置字体
+    // 设置字体
     private Font titleFontBig = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 260f);
     private Font titleMiddleFontBig = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 80f);
     private Font titleFontLitter = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 60f);
@@ -45,27 +54,19 @@ public class ImageUtil {
     private Font contentFontTips = FontUtil.getFont(FontUtil.LI_XU_KE_FONT, 30f);
     private Font contentTextFont = FontUtil.getFont(FontUtil.PINGFANG_BOLD_FONT, 30f);
 
-    //生成图片文件
+    /**
+     * 生成图片文件
+     * @param image
+     * @param fileLocation
+     */
     @SuppressWarnings("restriction")
     public void createImage(BufferedImage image, String fileLocation) {
-        BufferedOutputStream bos = null;
         if (image != null) {
-            try {
-                FileOutputStream fos = new FileOutputStream(fileLocation);
-                bos = new BufferedOutputStream(fos);
-                JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(bos);
-                encoder.encode(image);
-                bos.close();
+            try (FileOutputStream fos = new FileOutputStream(fileLocation)) {
+                ImageIO.write(image,
+                        fileLocation.substring(fileLocation.lastIndexOf(".") + 1), fos);
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                if (bos != null) {//关闭输出流
-                    try {
-                        bos.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
         }
 
@@ -89,7 +90,7 @@ public class ImageUtil {
         Graphics2D header = image.createGraphics();
         // 抗锯齿
         header.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
-        //设置字体颜色，先设置颜色，再填充内容
+        // 设置字体颜色，先设置颜色，再填充内容
         header.setColor(Color.BLACK);
 
         int margin = 80;
@@ -129,21 +130,19 @@ public class ImageUtil {
         }
         // 阳历生日
         String solarFestival = element.getSolarFestival();
-        if (StringUtils.isEmpty(lunarFestival)
-                && StringUtils.isEmpty(solarTerms) && !StringUtils.isEmpty(solarFestival)) {
+        if (StringUtils.isEmpty(lunarFestival) && StringUtils.isEmpty(solarTerms)
+            && !StringUtils.isEmpty(solarFestival)) {
             contentSecondLineRight.append(" | 今日" + solarFestival);
         }
 
         int contentSecondX = getWordWidth(titleFontBig, contentFirstLineRight) + margin + 20;
-//        header.drawLine(0, bigDateY - getFontAscent(titleFontBig), imageWidth, bigDateY - getFontAscent(titleFontBig));
-//        header.drawLine(0, bigDateY - getFontAscent(titleFontBig) + titleFontBig.getSize(), imageWidth, bigDateY - getFontAscent(titleFontBig) + titleFontBig.getSize());
         int contentSecondY = bigDateY - (getWordHeight(titleFontSmall) + getWordHeight(titleFontLitter) + 20);
         header.drawString(contentSecondLineRight.toString(), contentSecondX, contentSecondY);
 
         header.setColor(Color.GRAY);
         header.setFont(titleFontLitter);
         String contentSecondLine = element.getcYear() + "[" + element.getcAnimal() + "]年 " + element.getcMonth() + "月 "
-                + element.getcDay() + "日";
+            + element.getcDay() + "日";
         header.drawString(contentSecondLine, contentSecondX, bigDateY - titleFontLitter.getSize());
 
         // 日期提示：日期宜忌
@@ -152,18 +151,18 @@ public class ImageUtil {
 
         // 倒计时
         String countDownTips = "";
-        int countDownDays = DateUtil.getCountDownDays("2021-06-14", date);
+        int countDownDays = DateUtil.getCountDownDays("2021-09-21", date);
         if (countDownDays > 0) {
-            countDownTips = "距离端午节还有" + countDownDays + "天";
+            countDownTips = "2021年已过半，要好好努力呀！";
         } else {
-            countDownTips = "今天是端午节";
+            countDownTips = "今天是中秋节";
         }
         header.drawString(countDownTips, contentSecondX, bigDateY + getFontDescent(titleFontSmall));
 
         // 宜忌提醒
         /*String dateTips = element.getSgz5();
         StringBuilder footerTips = new StringBuilder();
-
+        
         if(!StringUtils.isEmpty(dateTips)) {
             logger.info(" 今日宜忌 | " + dateTips);
             footerTips.append("今日宜忌:")
@@ -186,20 +185,22 @@ public class ImageUtil {
         BufferedImage bimg = null;
         footer.setColor(Color.BLACK);
         footer.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        //设置字体
+        // 设置字体
         int fontSize = 60;
         Font titleFont = FontUtil.getFont(FontUtil.PINGFANG_FONT, 60.0f);
 
         footer.setFont(titleFont);
         drawDashedLine(footer, imageHeight - footerHeight, 0, imageWidth, 20);
-        footer.drawString(footerContent, (image.getWidth() - footerContent.length() * fontSize) / 2, image.getHeight() - 140);
+        footer.drawString(footerContent, (image.getWidth() - footerContent.length() * fontSize) / 2,
+            image.getHeight() - 140);
         try {
             bimg = javax.imageio.ImageIO.read(new URL(footerImgUrl));
         } catch (Exception e) {
         }
 
         if (bimg != null) {
-            footer.drawImage(bimg, image.getWidth() - footerHeight + 40, image.getHeight() - footerHeight + 40, 200, 200, null);
+            footer.drawImage(bimg, image.getWidth() - footerHeight + 40, image.getHeight() - footerHeight + 40, 200,
+                200, null);
             footer.dispose();
         }
     }
@@ -216,15 +217,15 @@ public class ImageUtil {
      * @throws Exception
      */
     public void createReadingNoteCard(String qrCodeImgPath, String imgSaveFullPath, String mainContImgPath,
-                                      String content, String authorInfo, String footerContent, Date date) throws Exception {
+        String content, String authorInfo, String footerContent, Date date) throws Exception {
         image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
-        //设置图片的背景色
+        // 设置图片的背景色
         Graphics2D main = image.createGraphics();
-        //设置区域颜色
+        // 设置区域颜色
         main.setColor(new Color(248, 253, 246));
         main.fillRect(0, 0, imageWidth, imageHeight);
 
-        //***********************页面头部
+        // ***********************页面头部
         int headerHeight = imageHeight / 5;
         logger.debug("头部高度：" + headerHeight);
         createHeader(headerHeight, date);
@@ -241,11 +242,11 @@ public class ImageUtil {
      * @param imgSaveFullPath
      * @throws IOException
      */
-    public void generateBannerPic(String bookTitle, String imgUrl, String imgSaveFullPath) throws IOException {
-        int faceImgWidth = 900;
+    public void generateBannerPic(String title, String imgUrl, String imgSaveFullPath) throws IOException {
+        int faceImgWidth = 1175;
         int faceImgHeight = 500;
         BufferedImage faceImage = new BufferedImage(faceImgWidth, faceImgHeight, BufferedImage.TYPE_INT_RGB);
-        //设置图片的背景色
+        // 设置图片的背景色
         Graphics2D main = faceImage.createGraphics();
         BufferedImage contentImg = javax.imageio.ImageIO.read(new URL(imgUrl));
         // 消除锯齿
@@ -254,9 +255,8 @@ public class ImageUtil {
         main.setFont(titleFontSmall);
         int contentImgHeight = (contentImg.getHeight() * faceImgWidth / contentImg.getWidth());
         main.drawImage(contentImg, 0, 0, faceImgWidth, contentImgHeight, null);
-        String content = "每日读书札记 | " + bookTitle;
-        int contentX = (faceImgWidth - getWordWidth(titleFontSmall, content)) / 2;
-        main.drawString(content, contentX, faceImgHeight * 3 / 4);
+        int contentX = (faceImgWidth - getWordWidth(titleFontSmall, title)) / 2;
+        main.drawString(title, contentX, faceImgHeight / 2);
         createImage(faceImage, imgSaveFullPath);
     }
 
@@ -269,9 +269,9 @@ public class ImageUtil {
      * @param authorInfo
      * @throws IOException
      */
-    private void createrMainContent(int startY, String mainContentImgPath,
-                                    String content, String authorInfo, int margin, Font font) throws IOException {
-        //***********************插入中间图片
+    private void createrMainContent(int startY, String mainContentImgPath, String content, String authorInfo,
+        int margin, Font font) throws IOException {
+        // ***********************插入中间图片
         BufferedImage contentImg = javax.imageio.ImageIO.read(new URL(mainContentImgPath));
 
         Graphics2D mainPic = image.createGraphics();
@@ -293,7 +293,8 @@ public class ImageUtil {
         int contentHeight = getContentHeight(lineHeight, content, lineWordsNum);
         logger.debug("笔记内容高度：" + contentHeight);
         int authorInfoHeight = getContentHeight(lineHeight, authorInfo, lineWordsNum);
-        int contentStartY = startY + contentImgHeight + (mainContentHeight - contentHeight - authorInfoHeight - margin) / 2 + margin;
+        int contentStartY =
+            startY + contentImgHeight + (mainContentHeight - contentHeight - authorInfoHeight - margin) / 2 + margin;
         logger.debug("行数：" + lineWordsNum);
         logger.debug("每行字数：" + lineWordsNum);
         logger.debug("笔记行高：" + lineHeight);
@@ -302,7 +303,8 @@ public class ImageUtil {
         logger.debug("作品信息高度：" + authorInfoHeight);
 
         int contentLength = content.length();
-        String substring = lineWordsNum > contentLength ? content.substring(0, contentLength) : content.substring(0, lineWordsNum);
+        String substring =
+            lineWordsNum > contentLength ? content.substring(0, contentLength) : content.substring(0, lineWordsNum);
         int contentWidth = getWordWidth(font, substring);
         logger.debug("内容宽度：" + contentWidth);
         drawString(mainPic, (imageWidth - contentWidth) / 2, contentStartY, content, lineWordsNum, lineHeight);
@@ -324,7 +326,7 @@ public class ImageUtil {
         String resurt = httpClientUtil.doPost("https://api.ixiaowai.cn/gqapi/gqapi.php?return=json", "");
         JSONObject jsonObject = JSON.parseObject(resurt);
         System.out.println(resurt);
-        String imgurl = (String) jsonObject.get("imgurl");
+        String imgurl = (String)jsonObject.get("imgurl");
         System.out.println(imgurl);
         return imgurl;
     }
@@ -352,12 +354,18 @@ public class ImageUtil {
     /**
      * 自动换行添加文字
      *
-     * @param graphics2D   画板
-     * @param x            x坐标
-     * @param y            y坐标
-     * @param content      内容
-     * @param lineWordsNum 每行字数
-     * @param lineHeight   行高
+     * @param graphics2D
+     *            画板
+     * @param x
+     *            x坐标
+     * @param y
+     *            y坐标
+     * @param content
+     *            内容
+     * @param lineWordsNum
+     *            每行字数
+     * @param lineHeight
+     *            行高
      * @return
      */
     private int drawString(Graphics2D graphics2D, int x, int y, String content, int lineWordsNum, int lineHeight) {
@@ -367,13 +375,10 @@ public class ImageUtil {
         int startIndex = 0;
         while (contentBuilder.length() > lineWordsNum) {
             int endIndex = startIndex + lineWordsNum;
-            if (contentBuilder.charAt(lineWordsNum) == '。'
-                    || contentBuilder.charAt(lineWordsNum) == '，'
-                    || contentBuilder.charAt(lineWordsNum) == '：'
-                    || contentBuilder.charAt(lineWordsNum) == '？'
-                    || contentBuilder.charAt(lineWordsNum) == '、'
-                    || contentBuilder.charAt(lineWordsNum) == '—'
-                    || contentBuilder.charAt(lineWordsNum) == '！') {
+            if (contentBuilder.charAt(lineWordsNum) == '。' || contentBuilder.charAt(lineWordsNum) == '，'
+                || contentBuilder.charAt(lineWordsNum) == '：' || contentBuilder.charAt(lineWordsNum) == '？'
+                || contentBuilder.charAt(lineWordsNum) == '、' || contentBuilder.charAt(lineWordsNum) == '—'
+                || contentBuilder.charAt(lineWordsNum) == '！') {
                 graphics2D.drawString(contentBuilder.substring(0, lineWordsNum - 1), x, y + lineNum * lineHeight);
                 endIndex -= 1;
                 contentBuilder.delete(0, lineWordsNum - 1);
@@ -391,11 +396,16 @@ public class ImageUtil {
     /**
      * 绘制水平虚线
      *
-     * @param graphics2D 画布
-     * @param y          y轴坐标
-     * @param x          起始x坐标
-     * @param endX       终止x坐标
-     * @param size       虚线大小（小短线的长度）
+     * @param graphics2D
+     *            画布
+     * @param y
+     *            y轴坐标
+     * @param x
+     *            起始x坐标
+     * @param endX
+     *            终止x坐标
+     * @param size
+     *            虚线大小（小短线的长度）
      */
     private void drawDashedLine(Graphics2D graphics2D, int y, int x, int endX, int size) {
         int times = Math.abs(x - endX) / (size * 2);
@@ -445,7 +455,6 @@ public class ImageUtil {
         return metrics.getAscent();
     }
 
-
     /**
      * 获取字体基准线baseline以下高度
      *
@@ -460,11 +469,16 @@ public class ImageUtil {
     /**
      * 绘制矩形边框
      *
-     * @param graphics 画布
-     * @param x        x坐标
-     * @param y        y坐标
-     * @param width    宽度
-     * @param height   高度
+     * @param graphics
+     *            画布
+     * @param x
+     *            x坐标
+     * @param y
+     *            y坐标
+     * @param width
+     *            宽度
+     * @param height
+     *            高度
      */
     private void drawBox(Graphics graphics, int x, int y, int width, int height) {
         graphics.drawLine(x, y, width, y);
@@ -473,15 +487,13 @@ public class ImageUtil {
         graphics.drawLine(x, y, x, height);
     }
 
-
     /**
      * 生成公众号封面
      *
      * @param imgSaveFullPath
      * @throws IOException
      */
-    public void generateBannerPic(String content, ChineseColorEnum chineseColorEnum,
-                                  String imgSaveFullPath, String dateStr) {
+    public void generateBannerPic(String content, ChineseColorEnum chineseColorEnum, String imgSaveFullPath) {
         int faceImgWidth = 900;
         int faceImgHeight = 500;
         Color fontColor = null;
@@ -492,7 +504,7 @@ public class ImageUtil {
             fontColor = new Color(0, 0, 0);
         }
         BufferedImage faceImage = new BufferedImage(faceImgWidth, faceImgHeight, BufferedImage.TYPE_INT_RGB);
-        //设置图片的背景色
+        // 设置图片的背景色
         Graphics2D main = faceImage.createGraphics();
         // 消除锯齿
         main.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -506,14 +518,8 @@ public class ImageUtil {
         int mainContentY = faceImgHeight * 1 / 2;
         main.drawString(content, contentX, mainContentY);
         main.setFont(contentTextFont);
-        int tipsContentX = (faceImgWidth - getWordWidth(contentTextFont, dateStr)) / 2;
-        main.drawString(dateStr, tipsContentX, mainContentY + 50);
         main.setFont(contentFontTips);
-        main.drawString("配色：" + chineseColorEnum.getColorName(),
-                faceImgWidth - 20 - getWordWidth(contentFontTips, "配色：" + chineseColorEnum.getColorName()),
-                100);
         createImage(faceImage, imgSaveFullPath);
     }
-
 
 }
