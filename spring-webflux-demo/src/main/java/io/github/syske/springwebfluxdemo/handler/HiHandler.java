@@ -8,6 +8,8 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 /**
  * hi服务处理器
  *
@@ -18,7 +20,8 @@ import reactor.core.publisher.Mono;
 @Component
 public class HiHandler {
     public Mono<ServerResponse> sayHi(ServerRequest request) {
+        Optional<Object> name = request.attribute("name");
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue("Hi , this is SpringWebFlux"));
+                .body(BodyInserters.fromValue("{\"message\": \"Hi , this is SpringWebFlux, " + name.orElse("null") + "\"}"));
     }
 }
