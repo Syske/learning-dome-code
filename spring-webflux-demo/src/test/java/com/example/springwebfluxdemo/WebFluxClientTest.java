@@ -1,6 +1,7 @@
 /* Copyright © 2021 syske. All rights reserved. */
 package com.example.springwebfluxdemo;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -14,7 +15,9 @@ import reactor.core.publisher.Mono;
  * @date 2021-07-29 7:53
  */
 public class WebFluxClientTest {
-    public static void main(String[] args) {
+
+    @Test
+    public void test() {
         WebClient client = WebClient.create("http://localhost:8999");
         // 定义POST请求
         Mono<String> serverResponseMono = client.get()
@@ -31,18 +34,20 @@ public class WebFluxClientTest {
         String block = serverResponseMono.block();
         System.out.println("服务器响应数据：" + block);
 
-       /* Mono<ServerResponse> serverResponseMono = client.post()
+        Mono<String> serverResponseMono2 = client.post()
                 // 设置请求URI
-                .uri("/webflux/hi")
+                .uri("/webflux/hi2")
                 // 请求体content-type
                 .contentType(MediaType.APPLICATION_JSON)
                 // 请求体内容
-                .body(Mono.just("{\"name\": \"syske\"}"), ServerResponse.class)
+                .body(Mono.just("{\"name\": \"syske\"}"), String.class)
                 // 设定响应体类型
                 .accept(MediaType.APPLICATION_JSON)
                 // 设置请求结果检索规则
                 .retrieve()
                 // 将结果体转换为Mono封装的数据流
-                .bodyToMono(ServerResponse.class);*/
+                .bodyToMono(String.class);
+        String block1 = serverResponseMono2.block();
+        System.out.println("block1:" + block1);
     }
 }
