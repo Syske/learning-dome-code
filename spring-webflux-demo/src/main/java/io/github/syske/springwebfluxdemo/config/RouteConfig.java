@@ -25,4 +25,11 @@ public class RouteConfig {
                 .route(RequestPredicates.GET("webflux/hi")
                         .and(RequestPredicates.accept(MediaType.ALL)), handler::sayHi);
     }
+
+    @Bean
+    public RouterFunction<ServerResponse> routSayHi2(HiHandler handler) {
+        return RouterFunctions
+                .route(RequestPredicates.POST("webflux/hi2")
+                        .and(RequestPredicates.accept(MediaType.ALL)), handler::sayHi2);
+    }
 }
