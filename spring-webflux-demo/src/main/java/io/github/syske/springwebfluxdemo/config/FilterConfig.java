@@ -31,12 +31,12 @@ public class FilterConfig {
     private String HEADER_NAME = "header_name";
     private String HEADER_PASSWORD = "header_password";
 
-    @Bean
+//    @Bean
     public RouterFunction<ServerResponse> securityRouter() {
     RouterFunction<ServerResponse> routerFunction = route(
             GET("/security/user/{id}")
     .and(accept(MediaType.APPLICATION_JSON)), userHandler::getUser)
-            .filter((requst, next) -> filterLogic(requst, next));
+            .filter((request, next) -> filterLogic(request, next));
     return routerFunction;
     }
 
