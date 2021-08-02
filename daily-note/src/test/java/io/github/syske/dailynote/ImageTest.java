@@ -63,9 +63,9 @@ public class ImageTest {
 
     @Test
     public void generateBnnerPicTest() {
-        String bookTitle = "spring-boot-websocket";
+        String bookTitle = "spring-cloud";
         BannerInfo bannerInfo = new BannerInfo();
-        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.MEI_DIE_LV);
+        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.JIAN_NIAO_LAN);
         imageService.generateBannerPic(bannerInfo);
     }
 
@@ -80,15 +80,15 @@ public class ImageTest {
 //            "趁着岁月静好，勇敢去爱。不要等到时机消逝，再为那份错过的爱而懊悔、哭泣。我们终将赴一场名为爱的宴会，哪怕最后只剩回忆。";
 //            "有人总说：已经晚了。实际上，现在就是最好的时光。对于一个真正有所追求的人来说，生命的每个时期都是年轻的、及时的。";
 //            "--我不知道怎样才能过得更好，但是我尽力让现在当下的自己完好无损。";
-            "所谓努力，就是主动而有目的的活动。";
-        String bookTitle = "";
-        String authorName = "村上春树";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1521579971123-1192931a1452?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
+            "心中有光，脚下有路，生命终将绽放。";
+        String bookTitle = "了不起的老爸";
+        String authorName = "";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1494488180300-4c634d1b2124?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
         imageService.generateDailyNoteCard(noteBookInfo);
-        String title = "spring-boot-websocket";
+        String title = "spring-cloud";
         imageService.generateBannerPicWithImage(title, bannerPicUrl);
     }
 

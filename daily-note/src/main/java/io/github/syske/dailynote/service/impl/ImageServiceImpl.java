@@ -49,7 +49,7 @@ public class ImageServiceImpl implements ImageService {
 
     private final String FACE_IMG_PREFIX = "face-img-";
 
-    {
+    private void initSavePath() {
         File savePath = new File(noteCardSavePath + DateUtil.getDateYearMothStr() + PATH_LINE);
         if (!savePath.exists()) {
             savePath.mkdirs();
@@ -58,6 +58,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public String generateDailyNoteCard(@NonNull NoteBookInfo noteBookInfo) {
+        initSavePath();
         try {
             String authorName = noteBookInfo.getAuthor();
             StringBuilder authorInfo = new StringBuilder("—— ")
