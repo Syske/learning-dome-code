@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @version 1.0
  * @date 2021-08-03 7:54
  */
-@FeignClient("user")
+@FeignClient("user-service")
 public interface UserService {
 
     @GetMapping("/user/{id}")
