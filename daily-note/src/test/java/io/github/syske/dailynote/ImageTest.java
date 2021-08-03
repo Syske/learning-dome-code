@@ -80,10 +80,10 @@ public class ImageTest {
 //            "趁着岁月静好，勇敢去爱。不要等到时机消逝，再为那份错过的爱而懊悔、哭泣。我们终将赴一场名为爱的宴会，哪怕最后只剩回忆。";
 //            "有人总说：已经晚了。实际上，现在就是最好的时光。对于一个真正有所追求的人来说，生命的每个时期都是年轻的、及时的。";
 //            "--我不知道怎样才能过得更好，但是我尽力让现在当下的自己完好无损。";
-            "心中有光，脚下有路，生命终将绽放。";
-        String bookTitle = "了不起的老爸";
-        String authorName = "";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1494488180300-4c634d1b2124?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2689&q=80";
+            "在所谓的人世间摸爬滚打至今，我唯一愿意视为真理的就只有这一句话：一切都会过去的。";
+        String bookTitle = "";
+        String authorName = "佚名";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1595306882393-251d8e085b3d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
