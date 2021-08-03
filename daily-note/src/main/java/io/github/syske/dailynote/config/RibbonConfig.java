@@ -1,7 +1,7 @@
 /* Copyright © 2021 syske. All rights reserved. */
 package io.github.syske.dailynote.config;
 
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+//import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 public class RibbonConfig {
 
     // 多节点负载
-    @LoadBalanced
+//    @LoadBalanced
     @Bean(name = "restTemplate")
     public RestTemplate restTemplate() {
         return new RestTemplate();
