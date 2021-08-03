@@ -27,7 +27,7 @@ public class ProductController {
     public Object queryUserByProductId() {
         List<JSONObject> jsonObjectList = Lists.newArrayList();
         for (int i = 0; i < 10; i++) {
-            JSONObject forObject = restTemplate.getForObject("http://user-center/user/" + (i + 1), JSONObject.class);
+            JSONObject forObject = restTemplate.getForObject("http://USER-CENTER/user/" + (i + 1), JSONObject.class);
             jsonObjectList.add(forObject);
         }
         return jsonObjectList;
