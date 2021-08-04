@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,6 +30,15 @@ public class ProductController {
         for (int i = 0; i < 10; i++) {
             JSONObject forObject = restTemplate.getForObject("http://user-center/user/" + (i + 1), JSONObject.class);
             jsonObjectList.add(forObject);
+        }
+        return jsonObjectList;
+    }
+
+    @RequestMapping("/testHystrix")
+    public Object testHystrix() {
+        List<JSONObject> jsonObjectList = Lists.newArrayList();
+        for (int i = 0; i < 10; i++) {
+            jsonObjectList.add(restTemplate.getForObject("http://spring-cloud-Hystrix-demo/hystrix/" + i, JSONObject.class));
         }
         return jsonObjectList;
     }
