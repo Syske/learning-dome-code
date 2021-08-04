@@ -13,4 +13,9 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <modules>
+        <module>product-service</module>
+        <module>user-center</module>
+    </modules>
+
 </project>
