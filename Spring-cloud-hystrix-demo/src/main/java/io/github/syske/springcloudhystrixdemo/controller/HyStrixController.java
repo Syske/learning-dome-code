@@ -22,17 +22,17 @@ import java.util.List;
 @RestController
 public class HyStrixController {
 
-    @RequestMapping("/hystrix/{name}")
-    @HystrixCommand(fallbackMethod = "error")
+    @RequestMapping("/tetHystrix/{name}")
+    @HystrixCommand(fallbackMethod = "error", commandProperties= {})
     public Object hystrix(@PathVariable(name = "name") String name) {
         JSONObject jsonObject = new JSONObject();
         try {
-            Double v = 3000 * Math.random();
-            System.out.println("name: " + name + " 睡眠时间：" + v);
-            jsonObject.put("sleep", v.longValue());
+//            Double v = 3000 * Math.random();
+            System.out.println("name: " + name + " 睡眠时间：" + 1500);
+            jsonObject.put("sleep", 1500);
             jsonObject.put("name", name);
             jsonObject.put("message", "请求成功");
-            Thread.sleep(v.longValue());
+            Thread.sleep(1500);
         } catch (Exception e) {
             System.out.println(e);
         }

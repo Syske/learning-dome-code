@@ -38,7 +38,7 @@ public class ProductController {
     public Object testHystrix() {
         List<JSONObject> jsonObjectList = Lists.newArrayList();
         for (int i = 0; i < 10; i++) {
-            jsonObjectList.add(restTemplate.getForObject("http://spring-cloud-Hystrix-demo/hystrix/" + i, JSONObject.class));
+            jsonObjectList.add(restTemplate.getForObject("http://spring-cloud-Hystrix-demo/tetHystrix/" + i, JSONObject.class));
         }
         return jsonObjectList;
     }

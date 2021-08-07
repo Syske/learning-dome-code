@@ -59,5 +59,8 @@
 55. [sping-boot-websocket-demo](./sping-boot-websocket-demo)：spring-boot-websocket搭建简易聊天室
 56. [spring-webflux-demo](./spring-webflux-demo)：spring-webflux简单入门
 57. [spring-cloud-eureka-demo](./spring-cloud-eureka-demo)：spring-cloud之服务治理组件Eureka
-58. [spring-cloud-client-demo](./spring-cloud-client-demo)：spring-cloud服务治理组件Eureka客户端
+58. [spring-cloud-client-demo](./spring-cloud-client-demo/spring-cloud-client-demo)：spring-cloud服务间调用之ribbon(Eureka客户端）
+59. [spinrg-cloud-client-feign-demo](./spring-cloud-client-demo/spinrg-cloud-client-feign-demo)：spring-cloud服务间调用之feign(Eureka客户端)
+60. [Spring-cloud-hystrix-demo](./Spring-cloud-hystrix-demo)：spring-cloud整合hystrix断路器
+61. [spring-cloud-hystrix-dashboard-demo](./spring-cloud-hystrix-dashboard-demo)：spring-cloud整合hystrix-dashboard监控
 
