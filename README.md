@@ -4,7 +4,7 @@
 
 1. [mybatis-plus-generator](./mybatis-plus-generator)：基于mybatis-plus的代码自动生成器
 2. [druid-datasouce-decrypt](./druid-datasouce-decrypt)：基于spring boot DRUID数据源的密码加密及数据源监控
-3. [lamubda](./lamubda)：lamubda表达式学习demo
+3. [lambda-demo](./lambda-demo)：lamubda表达式学习demo
 4. [springbootsso](./springbootsso)：springboot整合Oauth2单点登陆项目，还有点问题，后续继续优化
 5. [codeoptimization](./codeoptimization)：代码优化测试
 6. [Itext-pdf](./Itext-pdf)：Itext生成pdf文件示例
