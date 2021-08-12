@@ -23,19 +23,48 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
+        <!-- facade接口 -->
         <dependency>
             <groupId>io.github.syske</groupId>
             <artifactId>common-facade</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
+        <!-- dubbo核心依赖 -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
             <version>2.7.7</version>
+        </dependency>
+        <!-- zookeeper核心依赖 -->
+        <!--<dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.6.1</version>
+        </dependency>-->
+        <!-- zookeeper客户端依赖 -->
+        <!--<dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>3.3.0</version>
+        </dependency>-->
+        <!-- zookeeper客户端依赖 -->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>2.12.0</version>
+       <!--     <exclusions>
+                <exclusion>
+                    <groupId>org.apache.zookeeper</groupId>
+                    <artifactId>zookeeper</artifactId>
+                </exclusion>
+            </exclusions>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
 
         <dependency>
@@ -80,7 +109,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
-                    <mainClass>io.github.syske.springbootdubbodemo.springbootdubbodemo.io.github.syske.demo.SpringBootDubboDemoApplication</mainClass>
+                    <mainClass>io.github.syske.springbootdubbodemo.springbootdubbodemo.io.github.syske.demo.DemoProviderApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
