@@ -4,6 +4,7 @@ package io.github.syske.demo.service.facade;
 import io.github.syske.common.facade.DemoService;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.dubbo.rpc.RpcContext;
+import org.apache.dubbo.rpc.protocol.dubbo.DubboProtocol;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -16,9 +17,8 @@ import java.util.Date;
  * @version 1.0
  * @date 2021-08-11 8:35
  */
-//@DubboService(version = "1.0", interfaceName = "demoService", interfaceClass = DubboService.class)
 @Service
-@DubboService
+@DubboService(version = "1.0", interfaceName = "demoService", interfaceClass = DemoService.class, loadbalance = "roundrobin")
 public class DemoServiceImpl implements DemoService {
     @Override
     public String sayHello(String name) {

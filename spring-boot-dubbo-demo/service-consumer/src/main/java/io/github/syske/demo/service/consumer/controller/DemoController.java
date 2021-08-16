@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/dubbo")
 public class DemoController {
-    @DubboReference
+    @DubboReference(version = "1.0", interfaceName = "demoService", interfaceClass = DemoService.class, loadbalance = "roundrobin")
     private DemoService demoService;
 
     @RequestMapping("/test")
