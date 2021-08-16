@@ -63,4 +63,6 @@
 59. [spinrg-cloud-client-feign-demo](./spring-cloud-client-demo/spinrg-cloud-client-feign-demo)：spring-cloud服务间调用之feign(Eureka客户端)
 60. [Spring-cloud-hystrix-demo](./Spring-cloud-hystrix-demo)：spring-cloud整合hystrix断路器
 61. [spring-cloud-hystrix-dashboard-demo](./spring-cloud-hystrix-dashboard-demo)：spring-cloud整合hystrix-dashboard监控
+62. [spirng-cloud-zuul-demo](./spirng-cloud-zuul-demo)：spring-cloud整合zuul应用网关
+63. [spring-boot-dubbo-demo](./spring-boot-dubbo-demo)：spring-boot整合dubbo
 
