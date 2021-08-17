@@ -1,12 +1,12 @@
 package io.github.syske.logger;
 
 import ch.qos.logback.classic.LoggerContext;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.core.Logger;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
 public class LoggerTest {
-    private Logger log4j = Logger.getLogger(this.getClass());
+    private Logger log4j = org.apache.logging.log4j.core.LoggerContext.getContext().getLogger("LoggerTest");
     ch.qos.logback.classic.Logger logback1 = new LoggerContext().getLogger(this.getClass());
     org.slf4j.Logger logback2 = new LoggerContext().getLogger(this.getClass());
     org.slf4j.Logger logback = LoggerFactory.getLogger(this.getClass());
