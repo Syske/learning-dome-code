@@ -13,6 +13,7 @@ import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @author syske
@@ -27,27 +28,10 @@ public class DemoConsumerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DemoConsumerApplication.class, args);
+     /*   ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("consumer.xml");
+        context.start();
+        DemoService demoService = (DemoService) context.getBean("demoService");
+        String hello = demoService.sayHello("world");
+        System.out.println(hello);*/
     }
-
-//    @Bean
-//    public ConfigCenterConfig configCenterConfig() {
-//        ConfigCenterConfig configCenter = new   ConfigCenterConfig();
-//        configCenter.setAddress("zookeeper://127.0.0.1:2181");
-//        return configCenter;
-//    }
-
-   /* @Bean
-    public ApplicationConfig applicationConfig() {
-        ApplicationConfig applicationConfig = new ApplicationConfig();
-        applicationConfig.setName("dubbo-server");
-        return applicationConfig;
-    }
-
-    @Bean
-    public RegistryConfig registryConfig() {
-        RegistryConfig registryConfig = new RegistryConfig();
-        registryConfig.setAddress("zookeeper://127.0.0.1:2181");
-        registryConfig.setClient("curator");
-        return registryConfig;
-    }*/
 }

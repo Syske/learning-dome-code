@@ -2,6 +2,7 @@ package io.github.syske.demo.service.consumer.controller;
 
 import io.github.syske.common.facade.DemoService;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.config.annotation.Method;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/dubbo")
 public class DemoController {
-    @DubboReference(version = "1.0", interfaceName = "demoService", interfaceClass = DemoService.class, loadbalance = "roundrobin")
+    @DubboReference(version = "1.0", interfaceName = "demoService", interfaceClass = DemoService.class,
+            loadbalance = "roundrobin", methods = {@Method(name = "sayHello", oninvoke = "callBackDemoService.oninvoke")})
     private DemoService demoService;
 
     @RequestMapping("/test")
