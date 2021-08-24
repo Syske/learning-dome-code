@@ -33,4 +33,14 @@ public interface ImageService {
      * @return
      */
     String generateBannerPicWithImage(String title, String bannerPicUrl);
+
+    /**
+     * 根据指定宽高生成图片
+     * @param title
+     * @param bannerPicUrl
+     * @param faceImgWidth
+     * @param faceImgHeight
+     * @return
+     */
+    String generateBannerPicWithImage(String title, String bannerPicUrl, int faceImgWidth, int faceImgHeight);
 }

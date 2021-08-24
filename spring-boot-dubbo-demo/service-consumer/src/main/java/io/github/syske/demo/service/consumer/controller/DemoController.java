@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/dubbo")
 public class DemoController {
-    @DubboReference(version = "1.0", interfaceName = "demoService", interfaceClass = DemoService.class,
+    @DubboReference(version = "1.0", interfaceName = "demoService", retries = 4, check = false, interfaceClass = DemoService.class,
             loadbalance = "roundrobin", methods = {@Method(name = "sayHello", oninvoke = "callBackDemoService.oninvoke")})
     private DemoService demoService;
 

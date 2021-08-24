@@ -106,4 +106,15 @@ public class ImageServiceImpl implements ImageService {
         }
         return null;
     }
+
+    @Override
+    public String generateBannerPicWithImage(String title, String bannerPicUrl, int faceImgWidth, int faceImgHeight) {
+        String imgSaveFullPath =  faceImgSave + FACE_IMG_PREFIX  + UUIDUtil.getUUIDStr() + ".jpg";
+        try {
+            imageUtil.generateBannerPic(title, bannerPicUrl, imgSaveFullPath, faceImgWidth, faceImgHeight);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
