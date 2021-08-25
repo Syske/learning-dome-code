@@ -263,11 +263,11 @@ public class ImageUtil {
         int contentImgHeight = (contentImg.getHeight() * faceImgWidth / contentImg.getWidth());
         int x = (contentImg.getWidth() - faceImgWidth) / 2;
         int y = (contentImg.getHeight() - contentImgHeight) / 2;
-        logger.info("contentImg.getHeight = {}, contentImg.getWidth = {}, contentImgHeight = {}, faceImgHeight = {}, (faceImgHeight - contentImgHeight) % faceImgHeight  = {}, (faceImgHeight - contentImgHeight) % faceImgHeight  > 0 = {}",
-                contentImg.getHeight(), contentImg.getWidth(), contentImgHeight, faceImgHeight, (faceImgHeight - contentImgHeight) % faceImgHeight , (faceImgHeight - contentImgHeight) % faceImgHeight > 0);
+        logger.info("contentImg.getHeight = {}, contentImg.getWidth = {}, contentImgHeight = {}, faceImgHeight = {}, (faceImgHeight - contentImgHeight)/ 2  = {}, (faceImgHeight - contentImgHeight)/ 2 > 0 = {}",
+                contentImg.getHeight(), contentImg.getWidth(), contentImgHeight, faceImgHeight, (faceImgHeight - contentImgHeight)/ 2 , (faceImgHeight - contentImgHeight)/ 2  > 0);
         // 图片裁切
-        BufferedImage subimage = contentImg.getSubimage(x, y, faceImgWidth, contentImgHeight);
-        main.drawImage(subimage, 0, (faceImgHeight - contentImgHeight) % faceImgHeight , faceImgWidth, contentImgHeight, null);
+//        BufferedImage subimage = contentImg.getSubimage(x, y, faceImgWidth, contentImgHeight);
+        main.drawImage(contentImg, 0, (faceImgHeight - contentImgHeight)/2 , faceImgWidth, contentImgHeight, null);
         int contentX = (faceImgWidth - getWordWidth(titleFontSmall, title)) / 2;
         main.drawString(title, contentX, faceImgHeight / 2);
         createImage(faceImage, imgSaveFullPath);

@@ -82,10 +82,10 @@ public class ImageTest {
 //            "趁着岁月静好，勇敢去爱。不要等到时机消逝，再为那份错过的爱而懊悔、哭泣。我们终将赴一场名为爱的宴会，哪怕最后只剩回忆。";
 //            "有人总说：已经晚了。实际上，现在就是最好的时光。对于一个真正有所追求的人来说，生命的每个时期都是年轻的、及时的。";
 //            "--我不知道怎样才能过得更好，但是我尽力让现在当下的自己完好无损。";
-            "放弃很容易，但坚持一定很酷……加油！";
-        String bookTitle = "致奋斗者";
-        String authorName = "佚名";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1440778303588-435521a205bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80";
+            "人世间摸爬滚打至今，我唯一愿意视为真理的，就只有这一句话。一切都会过去的。";
+        String bookTitle = "人间失格";
+        String authorName = "太宰治";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1530064161350-7824b8cdeee9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
@@ -95,11 +95,28 @@ public class ImageTest {
     @Test
     public void batchCreatePic() {
 
-        String bannerPicUrl0 = "https://images.unsplash.com/photo-1576070175736-d1c6f0acd3a6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
+        String bannerPicUrl0 = "https://images.unsplash.com/photo-1517260911058-0fcfd733702f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1413&q=80";
+        String bannerPicUrl1 = "https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80";
+        String bannerPicUrl2 = "https://images.unsplash.com/photo-1544298903-35eee5a95b4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1395&q=80";
+        String bannerPicUrl3 = "https://images.unsplash.com/photo-1570469104943-b3f9aa53f049?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80";
+        String bannerPicUrl4 = "https://images.unsplash.com/photo-1544933863-582aca697094?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=933&q=80";
+        String bannerPicUrl5 = "https://images.unsplash.com/photo-1531219432768-9f540ce91ef3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
 
-        List<String> urlList = Lists.newArrayList(bannerPicUrl0);
+        List<String> urlList = Lists.newArrayList(
+                bannerPicUrl0,
+                bannerPicUrl1,
+                bannerPicUrl2,
+                bannerPicUrl3,
+                bannerPicUrl4,
+                bannerPicUrl5
+        );
         List<String> titleList = Lists.newArrayList(
-                "post请求阻塞问题回顾"
+                "趁热打铁，我们今天来手写一个RPC框架……",
+                "基于redis实现rpc服务注册",
+                "增加动态代理，实现真正意义上的rpc",
+                "解决接口与动态代理绑定问题，实现rpc的最后一站",
+                "整合zk作为注册中心，实现更合理的rpc服务注册",
+                "手写rpc服务 | 优化zk注册工具类，完善注册机制"
                 );
 
         for (int i = 0; i < urlList.size(); i++) {

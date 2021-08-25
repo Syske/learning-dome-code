@@ -1,6 +1,7 @@
 package io.github.syske.demo.service.consumer.controller;
 
 import io.github.syske.common.facade.DemoService;
+import org.apache.dubbo.common.constants.ClusterRules;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.Method;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/dubbo")
 public class DemoController {
     @DubboReference(version = "1.0", interfaceName = "demoService", retries = 4, check = false, interfaceClass = DemoService.class,
-            loadbalance = "roundrobin", methods = {@Method(name = "sayHello", oninvoke = "callBackDemoService.oninvoke")})
+            url = "",loadbalance = "roundrobin", cluster =  ClusterRules.FAIL_FAST, methods = {@Method(name = "sayHello", oninvoke = "callBackDemoService.oninvoke")})
     private DemoService demoService;
 
     @RequestMapping("/test")
