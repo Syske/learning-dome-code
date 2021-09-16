@@ -37,9 +37,9 @@ public class ImageTest {
 
         try {
             String mainContent =
-                "树不可长得太快。一年生当柴，三年五年生当桌椅，十年百年的才有可能成栋梁。故要养深积厚，等待时间。";
-            String bookTitle = "";
-            String authorName = "佚名";
+                "不是每个人都能功成名就，我们中有些人注定要在日常生活的点滴中寻找生命的意义。。";
+            String bookTitle = "生活大爆炸";
+            String authorName = "";
             StringBuilder authorInfo = new StringBuilder("—— ").append(authorName);
             if (StringUtils.isNotBlank(bookTitle)) {
                 authorInfo.append("《").append(bookTitle).append("》");
@@ -47,7 +47,7 @@ public class ImageTest {
             Date date = new Date();
             String footerContent = "-【每日读书札记】-";
             String qrCodeImgPath =
-                "https://images.cnblogs.com/cnblogs_com/caoleiCoding/921220/o_200830020106qrcode_for_gh_6985fde6e5e8_344.jpg";
+                "https://images.unsplash.com/photo-1543097692-fa13c6cd8595?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80";
             // String qrCodeImgPath = "D:\\Users\\Administrator\\Downloads\\qrcode_for_gh_6985fde6e5e8_258 (1).jpg";
             // String mainContImgPath = "D:\\Users\\Administrator\\Pictures\\Saved Pictures\\wallhaven-vgl8o8.jpg";
             String uuidStr = UUIDUtil.getUUIDStr();
@@ -82,10 +82,10 @@ public class ImageTest {
 //            "趁着岁月静好，勇敢去爱。不要等到时机消逝，再为那份错过的爱而懊悔、哭泣。我们终将赴一场名为爱的宴会，哪怕最后只剩回忆。";
 //            "有人总说：已经晚了。实际上，现在就是最好的时光。对于一个真正有所追求的人来说，生命的每个时期都是年轻的、及时的。";
 //            "--我不知道怎样才能过得更好，但是我尽力让现在当下的自己完好无损。";
-            "人世间摸爬滚打至今，我唯一愿意视为真理的，就只有这一句话。一切都会过去的。";
-        String bookTitle = "人间失格";
-        String authorName = "太宰治";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1530064161350-7824b8cdeee9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
+            "每一次的失败，都是为下一次的成功做铺垫，它会显得你有了巨大的近步！所以，答应我，不要为一次的失败，放弃了下一次成功的机会。";
+        String bookTitle = "";
+        String authorName = "佚名";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1605580802385-ea99fa386b51?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2551&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
@@ -95,34 +95,25 @@ public class ImageTest {
     @Test
     public void batchCreatePic() {
 
-        String bannerPicUrl0 = "https://images.unsplash.com/photo-1517260911058-0fcfd733702f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1413&q=80";
-        String bannerPicUrl1 = "https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80";
-        String bannerPicUrl2 = "https://images.unsplash.com/photo-1544298903-35eee5a95b4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1395&q=80";
-        String bannerPicUrl3 = "https://images.unsplash.com/photo-1570469104943-b3f9aa53f049?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80";
-        String bannerPicUrl4 = "https://images.unsplash.com/photo-1544933863-582aca697094?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=933&q=80";
-        String bannerPicUrl5 = "https://images.unsplash.com/photo-1531219432768-9f540ce91ef3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
+        String bannerPicUrl0 = "https://images.unsplash.com/photo-1627433488375-61f25ad84e29?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80";
+        String bannerPicUrl1 = "https://images.unsplash.com/photo-1627385472635-f99f370eb50b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1334&q=80";
+        String bannerPicUrl2 = "https://images.unsplash.com/photo-1627336284014-0a8b0ccd3534?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1789&q=80";
 
         List<String> urlList = Lists.newArrayList(
                 bannerPicUrl0,
                 bannerPicUrl1,
-                bannerPicUrl2,
-                bannerPicUrl3,
-                bannerPicUrl4,
-                bannerPicUrl5
-        );
+                bannerPicUrl2
+                );
         List<String> titleList = Lists.newArrayList(
-                "趁热打铁，我们今天来手写一个RPC框架……",
-                "基于redis实现rpc服务注册",
-                "增加动态代理，实现真正意义上的rpc",
-                "解决接口与动态代理绑定问题，实现rpc的最后一站",
-                "整合zk作为注册中心，实现更合理的rpc服务注册",
-                "手写rpc服务 | 优化zk注册工具类，完善注册机制"
+                "spring-boot之webflux简单入门 - 上",
+                "spring-boot之webflux简单入门 - 中",
+                "spring-webflux真 · 流式编程"
                 );
 
         for (int i = 0; i < urlList.size(); i++) {
             String bannerPicUrl = urlList.get(i);
             String title = titleList.get(i);
-            imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 300);
+            imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 600);
         }
 
     }
