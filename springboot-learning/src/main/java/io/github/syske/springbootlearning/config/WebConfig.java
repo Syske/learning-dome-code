@@ -1,5 +1,6 @@
 package io.github.syske.springbootlearning.config;
 
+import io.github.syske.springbootlearning.convert.DateConverter;
 import io.github.syske.springbootlearning.convert.SyskeConverter;
 import io.github.syske.springbootlearning.filter.ExceptionFilter;
 import io.github.syske.springbootlearning.filter.MyFilter;
@@ -60,5 +61,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new SyskeConverter());
+        registry.addConverter(new DateConverter());
     }
 }

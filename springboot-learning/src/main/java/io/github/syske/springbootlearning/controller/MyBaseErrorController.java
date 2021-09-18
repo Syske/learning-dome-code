@@ -2,6 +2,8 @@ package io.github.syske.springbootlearning.controller;
 
 import com.alibaba.fastjson.JSON;
 import io.github.syske.springbootlearning.entity.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -17,6 +19,7 @@ import java.io.PrintWriter;
 @RestController
 @RequestMapping(value = "error")
 public class MyBaseErrorController implements ErrorController {
+    private final Logger logger = LoggerFactory.getLogger(MyBaseErrorController.class);
     private static final String path_default = "/error";
 
     @Autowired
@@ -25,6 +28,7 @@ public class MyBaseErrorController implements ErrorController {
 
     @RequestMapping(produces = {MediaType.ALL_VALUE})
     public void error(HttpServletRequest request, HttpServletResponse response) {
+        logger.warn("response status: {}, ruquest info: {}", response.getStatus(), request.getPathInfo());
         setJsonError(response);
     }
 
@@ -33,6 +37,7 @@ public class MyBaseErrorController implements ErrorController {
             produces = {"text/html"}
     )
     public void errorHtml(HttpServletRequest request, HttpServletResponse response) {
+        logger.warn("response status: {}, ruquest info: {}", response.getStatus(), request.getPathInfo());
         setJsonError(response);
     }
 
@@ -44,11 +49,12 @@ public class MyBaseErrorController implements ErrorController {
     private void setJsonError(HttpServletResponse response) {
         PrintWriter writer = null;
         try {
+            String message = JSON.toJSONString(Result.getFailed(response.getStatus(), "未知错误", null));
             response.setStatus(200);
             response.setHeader("Content-type", "text/html;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
             writer = response.getWriter();
-            writer.write(JSON.toJSONString(Result.getFailed("未知错误", null)));
+            writer.write(message);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

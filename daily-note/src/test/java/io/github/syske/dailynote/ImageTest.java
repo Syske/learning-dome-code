@@ -82,10 +82,10 @@ public class ImageTest {
 //            "趁着岁月静好，勇敢去爱。不要等到时机消逝，再为那份错过的爱而懊悔、哭泣。我们终将赴一场名为爱的宴会，哪怕最后只剩回忆。";
 //            "有人总说：已经晚了。实际上，现在就是最好的时光。对于一个真正有所追求的人来说，生命的每个时期都是年轻的、及时的。";
 //            "--我不知道怎样才能过得更好，但是我尽力让现在当下的自己完好无损。";
-            "每一次的失败，都是为下一次的成功做铺垫，它会显得你有了巨大的近步！所以，答应我，不要为一次的失败，放弃了下一次成功的机会。";
-        String bookTitle = "";
-        String authorName = "佚名";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1605580802385-ea99fa386b51?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2551&q=80";
+            "生命的意义并不在于通过折腾、透支年轻的躯体，来寻得未来凭借物质、权利垒砌的安全感，而是洞悉世间路径，寻找到一条让内心踏实、宁静、格局广阔的路径，在路上与纯粹的自己重逢。";
+        String bookTitle = "人生海海 素履之往";
+        String authorName = "云鲸航";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1506886908870-1e5c3e685b3d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1700&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);

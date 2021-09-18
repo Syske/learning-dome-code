@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Result {
-    private int code;
-    private boolean success;
+    private Integer code;
+    private Boolean success;
     private String msg;
     private Object result;
 
@@ -23,23 +23,23 @@ public class Result {
         return new Result(1, true, "请求成功", result);
     }
 
-    public static Result getFailed(String msg, Object result) {
-        return new Result(0, false, msg, result);
+    public static Result getFailed(Integer errorCode, String msg, Object result) {
+        return new Result(errorCode, false, msg, result);
     }
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
-    public boolean isSuccess() {
+    public Boolean isSuccess() {
         return success;
     }
 
-    public void setSuccess(boolean success) {
+    public void setSuccess(Boolean success) {
         this.success = success;
     }
 
