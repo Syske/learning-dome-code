@@ -32,36 +32,6 @@ public class ImageTest {
     @Autowired
     private ImageService imageService;
 
-    @Test
-    public void imgTest() {
-
-        try {
-            String mainContent =
-                "树不可长得太快。一年生当柴，三年五年生当桌椅，十年百年的才有可能成栋梁。故要养深积厚，等待时间。";
-            String bookTitle = "";
-            String authorName = "佚名";
-            StringBuilder authorInfo = new StringBuilder("—— ").append(authorName);
-            if (StringUtils.isNotBlank(bookTitle)) {
-                authorInfo.append("《").append(bookTitle).append("》");
-            }
-            Date date = new Date();
-            String footerContent = "-【每日读书札记】-";
-            String qrCodeImgPath =
-                "https://images.cnblogs.com/cnblogs_com/caoleiCoding/921220/o_200830020106qrcode_for_gh_6985fde6e5e8_344.jpg";
-            // String qrCodeImgPath = "D:\\Users\\Administrator\\Downloads\\qrcode_for_gh_6985fde6e5e8_258 (1).jpg";
-            // String mainContImgPath = "D:\\Users\\Administrator\\Pictures\\Saved Pictures\\wallhaven-vgl8o8.jpg";
-            String uuidStr = UUIDUtil.getUUIDStr();
-            String imgSaveFullPath = "D:\\tmp\\img\\created\\" + uuidStr + ".jpg";
-            String faceImgSaveFullPath = "D:\\tmp\\img\\created\\face-img-" + uuidStr + ".jpg";
-            // String mainContImgPath = cg.getImageUrl();
-            String mainContImgPath = "https://img0.baidu.com/it/u=2568490282,3538825398&fm=26&fmt=auto&gp=0.jpg";
-            cg.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, mainContImgPath, mainContent,
-                authorInfo.toString(), footerContent, date);
-            cg.generateBannerPic(authorName, mainContImgPath, faceImgSaveFullPath);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Test
     public void generateBnnerPicTest() {
@@ -74,18 +44,10 @@ public class ImageTest {
     @Test
     public void testGenerateDailyNotePic() {
         String mainContent =
-//            "你要去相信，时光且长，你终将长成自己想要的模样，拥抱独属于你的未来。";
-//            "做你最愿意做的那件事，那才是你真正的天赋所在。";
-//            "人生长短，弹指一瞬。日常的重复，容易让人产生错觉，会认为一切都来得及，会有时间开始做自己喜欢的事情。";
-//            "不管幸与不幸，都不要为自己的人生设限，以免阻挡了生命的阳光。";
-//            "陪伴是最好的爱，可以抵挡世间所有的坚硬，温暖生命所有的岁月。";
-//            "趁着岁月静好，勇敢去爱。不要等到时机消逝，再为那份错过的爱而懊悔、哭泣。我们终将赴一场名为爱的宴会，哪怕最后只剩回忆。";
-//            "有人总说：已经晚了。实际上，现在就是最好的时光。对于一个真正有所追求的人来说，生命的每个时期都是年轻的、及时的。";
-//            "--我不知道怎样才能过得更好，但是我尽力让现在当下的自己完好无损。";
-            "人世间摸爬滚打至今，我唯一愿意视为真理的，就只有这一句话。一切都会过去的。";
-        String bookTitle = "人间失格";
-        String authorName = "太宰治";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1530064161350-7824b8cdeee9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
+                "我希望今天能够感激所拥有的，而不是遗憾所失去的。";
+        String bookTitle = "";
+        String authorName = "佚名";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1619498560614-9bbfab571365?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
@@ -95,34 +57,25 @@ public class ImageTest {
     @Test
     public void batchCreatePic() {
 
-        String bannerPicUrl0 = "https://images.unsplash.com/photo-1517260911058-0fcfd733702f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1413&q=80";
-        String bannerPicUrl1 = "https://images.unsplash.com/photo-1473186578172-c141e6798cf4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80";
-        String bannerPicUrl2 = "https://images.unsplash.com/photo-1544298903-35eee5a95b4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1395&q=80";
-        String bannerPicUrl3 = "https://images.unsplash.com/photo-1570469104943-b3f9aa53f049?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80";
-        String bannerPicUrl4 = "https://images.unsplash.com/photo-1544933863-582aca697094?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=933&q=80";
-        String bannerPicUrl5 = "https://images.unsplash.com/photo-1531219432768-9f540ce91ef3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
+        String bannerPicUrl0 = "https://images.unsplash.com/photo-1630590874752-61fbfc9ff5a6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80";
+        String bannerPicUrl1 = "https://images.unsplash.com/photo-1630524221837-33f97e89815d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80";
+        String bannerPicUrl2 = "https://images.unsplash.com/photo-1429277005502-eed8e872fe52?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80";
 
         List<String> urlList = Lists.newArrayList(
                 bannerPicUrl0,
                 bannerPicUrl1,
-                bannerPicUrl2,
-                bannerPicUrl3,
-                bannerPicUrl4,
-                bannerPicUrl5
+                bannerPicUrl2
         );
         List<String> titleList = Lists.newArrayList(
-                "趁热打铁，我们今天来手写一个RPC框架……",
-                "基于redis实现rpc服务注册",
-                "增加动态代理，实现真正意义上的rpc",
-                "解决接口与动态代理绑定问题，实现rpc的最后一站",
-                "整合zk作为注册中心，实现更合理的rpc服务注册",
-                "手写rpc服务 | 优化zk注册工具类，完善注册机制"
+                "空指针排查回顾",
+                "agent技术",
+                "spring-boot-starter"
                 );
 
         for (int i = 0; i < urlList.size(); i++) {
             String bannerPicUrl = urlList.get(i);
             String title = titleList.get(i);
-            imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 300);
+            imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 500);
         }
 
     }
