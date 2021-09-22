@@ -15,7 +15,7 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 public class ResultCondition implements Condition {
     @Override
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-        Boolean matches = true;
+        Boolean matches = false;
         System.out.println("ResultCondition matches =" + matches);
         return matches;
     }

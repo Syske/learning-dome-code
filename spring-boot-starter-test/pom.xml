@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.syske</groupId>
-    <artifactId>spring-boot-srater-test</artifactId>
+    <artifactId>spring-boot-starter-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-srater-test</name>
+    <name>spring-boot-starter-test</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -74,7 +74,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
-                    <mainClass>io.github.syske.springbootsratertest.SpringBootSraterTestApplication</mainClass>
+                    <mainClass>io.github.syske.springbootsratertest.SpringBootStarterTestApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
