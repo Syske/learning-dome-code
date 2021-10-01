@@ -1,6 +1,7 @@
 /* Copyright © 2021 syske. All rights reserved. */
 package io.github.syske.springbootlearning.config.condition;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;

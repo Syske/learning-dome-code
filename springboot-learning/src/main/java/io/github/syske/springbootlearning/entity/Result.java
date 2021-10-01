@@ -1,5 +1,7 @@
 package io.github.syske.springbootlearning.entity;
 
+import org.springframework.context.annotation.Bean;
+
 import java.util.HashMap;
 import java.util.Map;
 
