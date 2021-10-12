@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>command-mode</artifactId>
+    <artifactId>decorator-mode</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
