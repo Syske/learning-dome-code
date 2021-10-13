@@ -11,6 +11,7 @@
     <modules>
         <module>command-mode</module>
         <module>decorator-mode</module>
+        <module>adapter-mode</module>
     </modules>
 
     <properties>
