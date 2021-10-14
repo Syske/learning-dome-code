@@ -65,5 +65,5 @@
 61. [spring-cloud-hystrix-dashboard-demo](./spring-cloud-hystrix-dashboard-demo)：spring-cloud整合hystrix-dashboard监控
 62. [spirng-cloud-zuul-demo](./spirng-cloud-zuul-demo)：spring-cloud整合zuul应用网关
 63. [spring-boot-dubbo-demo](./spring-boot-dubbo-demo)：spring-boot整合dubbo
-64. [design-mode-learning](./design-mode-learning)：设计模式示例
+64. [design-pattern-learning](./design-pattern-learning)：设计模式示例
 
