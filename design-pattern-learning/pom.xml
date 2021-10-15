@@ -13,6 +13,7 @@
         <module>decorator-pattern</module>
         <module>adapter-pattern</module>
         <module>facade-pattern</module>
+        <module>template-pattern</module>
     </modules>
 
     <properties>
