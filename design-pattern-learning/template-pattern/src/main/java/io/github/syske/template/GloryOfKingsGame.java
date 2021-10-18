@@ -8,7 +8,7 @@ package io.github.syske.template;
  */
 public class GloryOfKingsGame extends GameAbstract{
     @Override
-    void initialize() {
+    public void initialize() {
         System.out.println("=================游戏初始化==================");
         System.out.println("初始化游戏数据");
         System.out.println("等待确认");
@@ -16,7 +16,7 @@ public class GloryOfKingsGame extends GameAbstract{
     }
 
     @Override
-    void startPlay() {
+    public void startPlay() {
         System.out.println("=================开始游戏==================");
         System.out.println("敌人还有五秒到达战场……");
         System.out.println("First blood!  第一滴血");
@@ -32,7 +32,7 @@ public class GloryOfKingsGame extends GameAbstract{
     }
 
     @Override
-    void endPlay() {
+    public void endPlay() {
         System.out.println("=================游戏结束==================");
         System.out.println("victory! 赢了");
     }
