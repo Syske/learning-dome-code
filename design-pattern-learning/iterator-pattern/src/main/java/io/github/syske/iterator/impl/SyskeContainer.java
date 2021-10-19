@@ -1,29 +1,26 @@
-/* Copyright © 2021 syske. All rights reserved. */
 package io.github.syske.iterator.impl;
 
 import io.github.syske.iterator.Container;
 import io.github.syske.iterator.Iterator;
 
 /**
- * @author syske
- * @version 1.0
- * @date 2021-10-18 21:17
+ * @program: design-pattern-learning
+ * @description:
+ * @author: syske
+ * @date: 2021-10-18 13:12
  */
 public class SyskeContainer implements Container {
-    public Object[] values = {"云中志" , "java" ,"志哥" , "syske"};
+    Object[] container = {"syske", "云中志", "志哥"};
 
     @Override
-    public Iterator getIterator() {
+    public Iterator iterator() {
         return new SyskeIterator();
     }
-
     private class SyskeIterator implements Iterator {
-
         int index;
-
         @Override
         public boolean hasNext() {
-            if(index < values.length){
+            if(index < container.length){
                 return true;
             }
             return false;
@@ -31,8 +28,8 @@ public class SyskeContainer implements Container {
 
         @Override
         public Object next() {
-            if(this.hasNext()){
-                return values[index++];
+            if (hasNext()) {
+                return container[index++];
             }
             return null;
         }

@@ -1,11 +1,16 @@
-/* Copyright © 2021 syske. All rights reserved. */
 package io.github.syske.iterator;
 
 /**
- * @author syske
- * @version 1.0
- * @date 2021-10-18 21:17
+ * @program: design-pattern-learning
+ * @description: 容器接口
+ * @author: syske
+ * @date: 2021-10-18 13:09
  */
 public interface Container {
-    Iterator getIterator();
+    /**
+     * 获取适配器
+     *
+     * @return
+     */
+    Iterator iterator();
 }
