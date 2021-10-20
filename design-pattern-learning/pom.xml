@@ -16,6 +16,7 @@
         <module>template-pattern</module>
         <module>iterator-pattern</module>
         <module>composite-pattern</module>
+        <module>state-pattern</module>
     </modules>
 
     <properties>
