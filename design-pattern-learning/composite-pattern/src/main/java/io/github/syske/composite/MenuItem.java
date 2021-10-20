@@ -41,6 +41,9 @@ public class MenuItem extends MenuComponent {
 
     @Override
     public void print() {
-        super.print();
+        System.out.println("==========start=============");
+        System.out.printf("name: %s  price: ￥%s%n", this.getName(), this.getPrice());
+        System.out.printf("description: %s  isVegetarian: %s%n", this.getDescription(), this.isVegetarian());
+        System.out.println("==========end=============");
     }
 }

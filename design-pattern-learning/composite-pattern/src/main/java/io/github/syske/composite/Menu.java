@@ -2,6 +2,7 @@
 package io.github.syske.composite;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @author syske
@@ -35,16 +36,26 @@ public class Menu extends MenuComponent {
 
     @Override
     public String getName() {
-        return super.getName();
+        return this.name;
     }
 
     @Override
     public String getDescription() {
-        return super.getDescription();
+        return this.description;
     }
 
     @Override
     public void print() {
-        super.print();
+        System.out.println("==========start=============");
+        System.out.printf("name: %s", this.getName());
+        System.out.printf("description: %s", this.getDescription());
+        System.out.println("==========child start=============");
+        Iterator<Component> iterator = menuComponents.iterator();
+        while (iterator.hasNext()) {
+            MenuComponent component = (MenuComponent)iterator.next();
+            component.print();
+        }
+        System.out.println("==========child end=============");
+        System.out.println("============end===========");
     }
 }
