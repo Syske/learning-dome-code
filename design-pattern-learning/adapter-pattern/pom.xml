@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>adapter-mode</artifactId>
+    <artifactId>adapter-pattern</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
