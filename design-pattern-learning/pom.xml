@@ -17,6 +17,7 @@
         <module>iterator-pattern</module>
         <module>composite-pattern</module>
         <module>state-pattern</module>
+        <module>mvc-pattern</module>
     </modules>
 
     <properties>
