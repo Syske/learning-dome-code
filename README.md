@@ -66,4 +66,5 @@
 62. [spirng-cloud-zuul-demo](./spirng-cloud-zuul-demo)：spring-cloud整合zuul应用网关
 63. [spring-boot-dubbo-demo](./spring-boot-dubbo-demo)：spring-boot整合dubbo
 64. [design-pattern-learning](./design-pattern-learning)：设计模式示例
+65. [spring-boot-counter-limiter](./spring-boot-counter-limiter)：基于redis的计数器限流实现
 
