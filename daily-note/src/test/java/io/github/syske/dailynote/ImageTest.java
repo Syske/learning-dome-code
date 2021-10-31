@@ -2,11 +2,13 @@ package io.github.syske.dailynote;
 
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.junit.platform.commons.util.StringUtils;
 import org.junit.runner.RunWith;
@@ -31,41 +33,10 @@ public class ImageTest {
     private ImageService imageService;
 
     @Test
-    public void imgTest() {
-
-        try {
-            String mainContent =
-                "树不可长得太快。一年生当柴，三年五年生当桌椅，十年百年的才有可能成栋梁。故要养深积厚，等待时间。";
-            String bookTitle = "";
-            String authorName = "佚名";
-            StringBuilder authorInfo = new StringBuilder("—— ").append(authorName);
-            if (StringUtils.isNotBlank(bookTitle)) {
-                authorInfo.append("《").append(bookTitle).append("》");
-            }
-            Date date = new Date();
-            String footerContent = "-【每日读书札记】-";
-            String qrCodeImgPath =
-                "https://images.cnblogs.com/cnblogs_com/caoleiCoding/921220/o_200830020106qrcode_for_gh_6985fde6e5e8_344.jpg";
-            // String qrCodeImgPath = "D:\\Users\\Administrator\\Downloads\\qrcode_for_gh_6985fde6e5e8_258 (1).jpg";
-            // String mainContImgPath = "D:\\Users\\Administrator\\Pictures\\Saved Pictures\\wallhaven-vgl8o8.jpg";
-            String uuidStr = UUIDUtil.getUUIDStr();
-            String imgSaveFullPath = "D:\\tmp\\img\\created\\" + uuidStr + ".jpg";
-            String faceImgSaveFullPath = "D:\\tmp\\img\\created\\face-img-" + uuidStr + ".jpg";
-            // String mainContImgPath = cg.getImageUrl();
-            String mainContImgPath = "https://img0.baidu.com/it/u=2568490282,3538825398&fm=26&fmt=auto&gp=0.jpg";
-            cg.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, mainContImgPath, mainContent,
-                authorInfo.toString(), footerContent, date);
-            cg.generateBannerPic(authorName, mainContImgPath, faceImgSaveFullPath);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
     public void generateBnnerPicTest() {
-        String bookTitle = "spring-boot-websocket";
+        String bookTitle = "七夕快乐！";
         BannerInfo bannerInfo = new BannerInfo();
-        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.MEI_DIE_LV);
+        bannerInfo.setTitle(bookTitle).setBackgroundColorEnum(ChineseColorEnum.YAN_ZHI_HONG);
         imageService.generateBannerPic(bannerInfo);
     }
 
@@ -80,16 +51,61 @@ public class ImageTest {
 //            "趁着岁月静好，勇敢去爱。不要等到时机消逝，再为那份错过的爱而懊悔、哭泣。我们终将赴一场名为爱的宴会，哪怕最后只剩回忆。";
 //            "有人总说：已经晚了。实际上，现在就是最好的时光。对于一个真正有所追求的人来说，生命的每个时期都是年轻的、及时的。";
 //            "--我不知道怎样才能过得更好，但是我尽力让现在当下的自己完好无损。";
-            "所谓努力，就是主动而有目的的活动。";
+            "无人问津也好，技不如人也罢，你要试着安静下来，去做自己该做的事，而不是让烦躁焦虑毁掉你本就不多的热情和定力。";
         String bookTitle = "";
-        String authorName = "村上春树";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1521579971123-1192931a1452?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
+        String authorName = "佚名";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1605376077744-ad84ee16c30b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
         imageService.generateDailyNoteCard(noteBookInfo);
-        String title = "spring-boot-websocket";
-        imageService.generateBannerPicWithImage(title, bannerPicUrl);
+    }
+
+    @Test
+    public void createPic() {
+        String title = "真RPC | 增加动态代理，实现真正意义上的rpc";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1542005638-c3507d86bbc9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
+
+        imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 400);
+    }
+
+    @Test
+    public void batchCreatePic() {
+
+        String bannerPicUrl0 = "https://images.unsplash.com/photo-1516545595035-b494dd0161e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
+        String bannerPicUrl1 = "https://images.unsplash.com/photo-1567604539011-ce1f37c5d657?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
+        String bannerPicUrl2 = "https://images.unsplash.com/photo-1530003869863-a1df77a829ae?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1844&q=80";
+        String bannerPicUrl3 = "https://images.unsplash.com/photo-1511988751684-e0f483dac631?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
+        String bannerPicUrl4 = "https://images.unsplash.com/photo-1512972972907-6d71529c5e92?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1742&q=80";
+        String bannerPicUrl5 = "https://images.unsplash.com/photo-1536585806558-81c7ea4d393d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
+        String bannerPicUrl6 = "https://images.unsplash.com/photo-1583475020831-fb4fbb497315?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
+
+
+        List<String> urlList = Lists.newArrayList(
+                bannerPicUrl0,
+                bannerPicUrl1,
+                bannerPicUrl2,
+                bannerPicUrl3,
+                bannerPicUrl4,
+                bannerPicUrl5,
+                bannerPicUrl6
+                );
+        List<String> titleList = Lists.newArrayList(
+                "spring-boot启动过程中的实例化方式",
+                "spring-boot启动过程实例化补充——关于@Bean",
+                "spring-boot自定义容器初始化组件",
+                "Spring boot进阶回顾，然后我悟了……",
+                "spring-boot转换服务组件剖析",
+                "spring-boot转换服务ConversionService二次剖析",
+                "spring-boot条件配置——conditionContext"
+                );
+
+        for (int i = 0; i < urlList.size(); i++) {
+            String bannerPicUrl = urlList.get(i);
+            String title = titleList.get(i);
+            imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 400);
+        }
+
     }
 
     @Test

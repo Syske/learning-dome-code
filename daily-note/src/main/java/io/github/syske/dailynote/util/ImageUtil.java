@@ -1,8 +1,16 @@
 package io.github.syske.dailynote.util;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import sun.font.FontDesignMetrics;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -10,18 +18,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-
-import sun.font.FontDesignMetrics;
-
-import javax.imageio.ImageIO;
 
 /**
  * @author syske
@@ -151,11 +147,11 @@ public class ImageUtil {
 
         // 倒计时
         String countDownTips = "";
-        int countDownDays = DateUtil.getCountDownDays("2021-09-21", date);
+        int countDownDays = DateUtil.getCountDownDays("2021-12-25", date);
         if (countDownDays > 0) {
             countDownTips = "2021年已过半，要好好努力呀！";
-        } else {
-            countDownTips = "今天是中秋节";
+        } else if (countDownDays == 0) {
+            countDownTips = "今天是圣诞节";
         }
         header.drawString(countDownTips, contentSecondX, bigDateY + getFontDescent(titleFontSmall));
 
@@ -245,6 +241,17 @@ public class ImageUtil {
     public void generateBannerPic(String title, String imgUrl, String imgSaveFullPath) throws IOException {
         int faceImgWidth = 1175;
         int faceImgHeight = 500;
+        this.generateBannerPic(title, imgUrl, imgSaveFullPath, faceImgWidth, faceImgHeight);
+    }
+
+    /**
+     * 生成公众号封面
+     *
+     * @param imgUrl
+     * @param imgSaveFullPath
+     * @throws IOException
+     */
+    public void generateBannerPic(String title, String imgUrl, String imgSaveFullPath, int faceImgWidth, int faceImgHeight) throws IOException {
         BufferedImage faceImage = new BufferedImage(faceImgWidth, faceImgHeight, BufferedImage.TYPE_INT_RGB);
         // 设置图片的背景色
         Graphics2D main = faceImage.createGraphics();
@@ -254,7 +261,13 @@ public class ImageUtil {
         main.setColor(Color.white);
         main.setFont(titleFontSmall);
         int contentImgHeight = (contentImg.getHeight() * faceImgWidth / contentImg.getWidth());
-        main.drawImage(contentImg, 0, 0, faceImgWidth, contentImgHeight, null);
+        int x = (contentImg.getWidth() - faceImgWidth) / 2;
+        int y = (contentImg.getHeight() - contentImgHeight) / 2;
+        logger.info("contentImg.getHeight = {}, contentImg.getWidth = {}, contentImgHeight = {}, faceImgHeight = {}, (faceImgHeight - contentImgHeight)/ 2  = {}, (faceImgHeight - contentImgHeight)/ 2 > 0 = {}",
+                contentImg.getHeight(), contentImg.getWidth(), contentImgHeight, faceImgHeight, (faceImgHeight - contentImgHeight)/ 2 , (faceImgHeight - contentImgHeight)/ 2  > 0);
+        // 图片裁切
+//        BufferedImage subimage = contentImg.getSubimage(x, y, faceImgWidth, contentImgHeight);
+        main.drawImage(contentImg, 0, (faceImgHeight - contentImgHeight)/2 , faceImgWidth, contentImgHeight, null);
         int contentX = (faceImgWidth - getWordWidth(titleFontSmall, title)) / 2;
         main.drawString(title, contentX, faceImgHeight / 2);
         createImage(faceImage, imgSaveFullPath);

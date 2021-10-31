@@ -4,7 +4,7 @@
 
 1. [mybatis-plus-generator](./mybatis-plus-generator)：基于mybatis-plus的代码自动生成器
 2. [druid-datasouce-decrypt](./druid-datasouce-decrypt)：基于spring boot DRUID数据源的密码加密及数据源监控
-3. [lamubda](./lamubda)：lamubda表达式学习demo
+3. [lambda-demo](./lambda-demo)：lamubda表达式学习demo
 4. [springbootsso](./springbootsso)：springboot整合Oauth2单点登陆项目，还有点问题，后续继续优化
 5. [codeoptimization](./codeoptimization)：代码优化测试
 6. [Itext-pdf](./Itext-pdf)：Itext生成pdf文件示例
@@ -54,8 +54,17 @@
 50. [springboot-activemq-demo/](./springboot-activemq-demo/)：springboot整合ActiveMQ
 51. [jms-center-demo](./jms-center-demo)：消息中心
 52. [springboot-starter-demo](./springboot-starter-demo)：手写自己的第一个spring-boot-starter
-53. [spring-boot-srater-test](./spring-boot-srater-test)：手写spring-boot-starter测试
+53. [spring-boot-starter-test](./spring-boot-starter-test)：手写spring-boot-starter测试
 54. [spring-boot-security-demo](./spring-boot-security-demo)：spring-boot-security实战demo
 55. [sping-boot-websocket-demo](./sping-boot-websocket-demo)：spring-boot-websocket搭建简易聊天室
 56. [spring-webflux-demo](./spring-webflux-demo)：spring-webflux简单入门
+57. [spring-cloud-eureka-demo](./spring-cloud-eureka-demo)：spring-cloud之服务治理组件Eureka
+58. [spring-cloud-client-demo](./spring-cloud-client-demo/spring-cloud-client-demo)：spring-cloud服务间调用之ribbon(Eureka客户端）
+59. [spinrg-cloud-client-feign-demo](./spring-cloud-client-demo/spinrg-cloud-client-feign-demo)：spring-cloud服务间调用之feign(Eureka客户端)
+60. [Spring-cloud-hystrix-demo](./Spring-cloud-hystrix-demo)：spring-cloud整合hystrix断路器
+61. [spring-cloud-hystrix-dashboard-demo](./spring-cloud-hystrix-dashboard-demo)：spring-cloud整合hystrix-dashboard监控
+62. [spirng-cloud-zuul-demo](./spirng-cloud-zuul-demo)：spring-cloud整合zuul应用网关
+63. [spring-boot-dubbo-demo](./spring-boot-dubbo-demo)：spring-boot整合dubbo
+64. [design-pattern-learning](./design-pattern-learning)：设计模式示例
+65. [spring-boot-counter-limiter](./spring-boot-counter-limiter)：基于redis的计数器限流实现
 

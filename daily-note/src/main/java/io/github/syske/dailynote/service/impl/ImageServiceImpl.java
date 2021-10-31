@@ -49,7 +49,7 @@ public class ImageServiceImpl implements ImageService {
 
     private final String FACE_IMG_PREFIX = "face-img-";
 
-    {
+    private void initSavePath() {
         File savePath = new File(noteCardSavePath + DateUtil.getDateYearMothStr() + PATH_LINE);
         if (!savePath.exists()) {
             savePath.mkdirs();
@@ -58,6 +58,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public String generateDailyNoteCard(@NonNull NoteBookInfo noteBookInfo) {
+        initSavePath();
         try {
             String authorName = noteBookInfo.getAuthor();
             StringBuilder authorInfo = new StringBuilder("—— ")
@@ -100,6 +101,17 @@ public class ImageServiceImpl implements ImageService {
         String imgSaveFullPath =  faceImgSave + FACE_IMG_PREFIX  + UUIDUtil.getUUIDStr() + ".jpg";
         try {
             imageUtil.generateBannerPic(title, bannerPicUrl, imgSaveFullPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public String generateBannerPicWithImage(String title, String bannerPicUrl, int faceImgWidth, int faceImgHeight) {
+        String imgSaveFullPath =  faceImgSave + FACE_IMG_PREFIX  + UUIDUtil.getUUIDStr() + ".jpg";
+        try {
+            imageUtil.generateBannerPic(title, bannerPicUrl, imgSaveFullPath, faceImgWidth, faceImgHeight);
         } catch (IOException e) {
             e.printStackTrace();
         }

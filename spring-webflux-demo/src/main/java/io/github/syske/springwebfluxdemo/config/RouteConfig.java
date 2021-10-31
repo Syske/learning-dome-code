@@ -23,6 +23,15 @@ public class RouteConfig {
     public RouterFunction<ServerResponse> routSayHi(HiHandler handler) {
         return RouterFunctions
                 .route(RequestPredicates.GET("webflux/hi")
-                        .and(RequestPredicates.accept(MediaType.ALL)), handler::sayHi);
+                        .and(RequestPredicates.accept(MediaType.ALL)), handler::sayHi)
+                .andRoute(RequestPredicates.GET("/webflux/test")
+                        .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), handler::sendTimePerSec);
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> routSayHi2(HiHandler handler) {
+        return RouterFunctions
+                .route(RequestPredicates.POST("webflux/hi2")
+                        .and(RequestPredicates.accept(MediaType.ALL)), handler::sayHi2);
     }
 }

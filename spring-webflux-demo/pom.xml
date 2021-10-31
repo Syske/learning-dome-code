@@ -22,6 +22,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>30.1.1-jre</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
@@ -42,6 +48,16 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.rsocket</groupId>
+                <artifactId>rsocket-core</artifactId>
+                <version>1.0.0-RC3</version>
+            </dependency>
+            <dependency>
+                <groupId>io.rsocket</groupId>
+                <artifactId>rsocket-transport-netty</artifactId>
+                <version>1.0.0-RC3</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
