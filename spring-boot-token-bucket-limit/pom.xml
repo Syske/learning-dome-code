@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.syske</groupId>
-    <artifactId>spring-boot-bucket-limit</artifactId>
+    <artifactId>spring-boot-token-bucket-limit</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-bucket-limit</name>
+    <name>spring-boot-token-bucket-limit</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -19,12 +19,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.72</version>
         </dependency>
 
         <dependency>
@@ -69,7 +63,8 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
-                    <mainClass>io.github.syske.springbootbucketlimit.SpringBootBucketLimitApplication</mainClass>
+                    <mainClass>io.github.syske.springboottokenbucketlimit.SpringBootTokenBucketLimitApplication
+                    </mainClass>
                 </configuration>
                 <executions>
                     <execution>

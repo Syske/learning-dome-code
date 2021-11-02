@@ -18,6 +18,11 @@ public final class LeakyBucket {
     // 第一次请求之后,木桶在这个时间点开始漏水
     private long leakTimeStamp;
 
+    public LeakyBucket(int capacity, int leakRate) {
+        this.capacity = capacity;
+        this.leakRate = leakRate;
+    }
+
     public LeakyBucket(int leakRate) {
         this.leakRate = leakRate;
     }

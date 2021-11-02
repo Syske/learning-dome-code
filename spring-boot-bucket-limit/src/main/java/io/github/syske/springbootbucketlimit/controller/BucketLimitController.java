@@ -1,6 +1,8 @@
 /* Copyright © 2021 syske. All rights reserved. */
 package io.github.syske.springbootbucketlimit.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import io.github.syske.springbootbucketlimit.annotation.LeakyBucketLimit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +20,13 @@ import java.util.concurrent.*;
 public class BucketLimitController {
     private static final Logger logger = LoggerFactory.getLogger(BucketLimitController.class);
 
+    @LeakyBucketLimit(limitBeanName = "leakyBucket")
     @GetMapping("/bucket")
     public Object bucketTest() {
-        return true;
+        JSONObject result = new JSONObject();
+        result.put("result", "请求成功");
+        logger.info("timestamp: {}, result: {}", System.currentTimeMillis(), result);
+        return result;
     }
 
     private void bucket() {
