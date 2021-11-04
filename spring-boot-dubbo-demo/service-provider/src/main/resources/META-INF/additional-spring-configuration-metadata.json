@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "application.dubbo.registry.server.name",
+      "type": "java.lang.String",
+      "description": "Description for application.dubbo.registry.server.name."
+  }
+] }
