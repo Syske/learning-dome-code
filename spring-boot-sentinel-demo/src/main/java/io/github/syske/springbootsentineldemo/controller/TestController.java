@@ -24,7 +24,7 @@ public class TestController {
             try {
                 entry = SphU.entry("HelloWorld");
                 /*您的业务逻辑 - 开始*/
-                System.out.println("hello world");
+                System.out.printf("timestamp:%s, helle\n", System.currentTimeMillis());
                 /*您的业务逻辑 - 结束*/
             } catch (BlockException e1) {
                 /*流控逻辑处理 - 开始*/
@@ -45,7 +45,7 @@ public class TestController {
         rule.setResource("HelloWorld");
         rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
         // Set limit QPS to 20.
-        rule.setCount(20);
+        rule.setCount(5);
         rules.add(rule);
         FlowRuleManager.loadRules(rules);
     }

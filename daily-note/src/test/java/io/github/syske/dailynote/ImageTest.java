@@ -51,10 +51,10 @@ public class ImageTest {
 //            "趁着岁月静好，勇敢去爱。不要等到时机消逝，再为那份错过的爱而懊悔、哭泣。我们终将赴一场名为爱的宴会，哪怕最后只剩回忆。";
 //            "有人总说：已经晚了。实际上，现在就是最好的时光。对于一个真正有所追求的人来说，生命的每个时期都是年轻的、及时的。";
 //            "--我不知道怎样才能过得更好，但是我尽力让现在当下的自己完好无损。";
-            "别小看上天赋予你的能力，相信自己，通过学习来不断完善自己，内心强大的人，才是真正有思想的人，才是真正的无所畏惧。";
-        String bookTitle = "";
-        String authorName = "尼采";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1623360533871-22addc9c7357?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80";
+            "你内心肯定有着某种火焰，能把你和其他人区别开来。";
+        String bookTitle = "平凡之路";
+        String authorName = "朴树";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1466120262033-5fb3f4f67132?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1662&q=80";
         NoteBookInfo noteBookInfo = new NoteBookInfo();
         noteBookInfo.setBookTitle(bookTitle).setAuthor(authorName).setNoteContent(mainContent)
             .setBannerPicUrl(bannerPicUrl);
@@ -63,47 +63,38 @@ public class ImageTest {
 
     @Test
     public void createPic() {
-        String title = "真RPC | 增加动态代理，实现真正意义上的rpc";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1542005638-c3507d86bbc9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
+        String title = "多线程之Semaphore";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1613764706704-d336f5ca7487?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1596&q=80";
 
-        imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 400);
+        imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 300);
     }
 
     @Test
     public void batchCreatePic() {
 
-        String bannerPicUrl0 = "https://images.unsplash.com/photo-1516545595035-b494dd0161e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
-        String bannerPicUrl1 = "https://images.unsplash.com/photo-1567604539011-ce1f37c5d657?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
-        String bannerPicUrl2 = "https://images.unsplash.com/photo-1530003869863-a1df77a829ae?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1844&q=80";
-        String bannerPicUrl3 = "https://images.unsplash.com/photo-1511988751684-e0f483dac631?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
-        String bannerPicUrl4 = "https://images.unsplash.com/photo-1512972972907-6d71529c5e92?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1742&q=80";
-        String bannerPicUrl5 = "https://images.unsplash.com/photo-1536585806558-81c7ea4d393d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
-        String bannerPicUrl6 = "https://images.unsplash.com/photo-1583475020831-fb4fbb497315?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
+        String bannerPicUrl0 = "https://images.unsplash.com/photo-1600981963888-7b01503c432c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1744&q=80";
+        String bannerPicUrl1 = "https://images.unsplash.com/photo-1473172707857-f9e276582ab6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
+        String bannerPicUrl2 = "https://images.unsplash.com/photo-1580299285357-157703fd4db1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2391&q=80";
+        String bannerPicUrl3 = "https://images.unsplash.com/photo-1524780279384-6fc289a86154?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
 
 
         List<String> urlList = Lists.newArrayList(
                 bannerPicUrl0,
                 bannerPicUrl1,
                 bannerPicUrl2,
-                bannerPicUrl3,
-                bannerPicUrl4,
-                bannerPicUrl5,
-                bannerPicUrl6
+                bannerPicUrl3
                 );
         List<String> titleList = Lists.newArrayList(
-                "spring-boot启动过程中的实例化方式",
-                "spring-boot启动过程实例化补充——关于@Bean",
-                "spring-boot自定义容器初始化组件",
-                "Spring boot进阶回顾，然后我悟了……",
-                "spring-boot转换服务组件剖析",
-                "spring-boot转换服务ConversionService二次剖析",
-                "spring-boot条件配置——conditionContext"
+                "设计模式详解——外观模式",
+                "设计模式详解——模板方法模式",
+                "设计模式详解——迭代器模式",
+                "设计模式详解——组合模式"
                 );
 
         for (int i = 0; i < urlList.size(); i++) {
             String bannerPicUrl = urlList.get(i);
             String title = titleList.get(i);
-            imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 400);
+            imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 300);
         }
 
     }
