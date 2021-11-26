@@ -1,6 +1,7 @@
 package io.github.syske;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -16,7 +17,7 @@ public class ListLamubdaTest {
         listString.add("b");
         listString.add("c");
         listString.add("d");
-        Optional<String> first = listString.stream().filter(num -> num != "a").findFirst();
+        Optional<String> first = listString.stream().filter(num -> !Objects.equals(num, "a")).findFirst();
         System.out.println(first.get());
     }
 }

@@ -1,5 +1,6 @@
 package io.github.syske;
 
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -13,15 +14,13 @@ public class LamubdaTest {
     public static void main(String[] args) {
         LamubdaTest tester = new LamubdaTest();
         // 类型声明
-        MathOperation addition = (int a, int b) -> a + b;
+        MathOperation addition = Integer::sum;
 
         // 不用类型声明
         MathOperation subtraction = (a, b) -> a - b;
 
         // 大括号中的返回语句
-        MathOperation multiplication = (int a, int b) -> {
-            return a * b;
-        };
+        MathOperation multiplication = (int a, int b) -> a * b;
 
         // 没有大括号及返回语句
         MathOperation division = (int a, int b) -> a / b;
@@ -43,12 +42,12 @@ public class LamubdaTest {
         greetService2.sayMessage("Google");
 
         Optional<Integer> result = Stream.of("a", "be", "hello")
-                .map(s -> s.length())
+                .map(String::length)
                 .filter(l -> l <= 3)
-                .max((o1, o2) -> o1 - o2);
+                .max(Comparator.comparingInt(o -> o));
         System.out.println(result.get());
 
-        Stream<Integer> integerStream = Stream.of("of", "bar", "hello").map(s -> s.length());
+        Stream<Integer> integerStream = Stream.of("of", "bar", "hello").map(String::length);
         System.out.println(integerStream.filter(l -> l > 3).max((o1, o2) -> o1 - o2));
     }
 
