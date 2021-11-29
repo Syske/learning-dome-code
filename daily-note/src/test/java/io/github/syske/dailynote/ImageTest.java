@@ -72,10 +72,10 @@ public class ImageTest {
     @Test
     public void batchCreatePic() {
 
-        String bannerPicUrl0 = "https://images.unsplash.com/photo-1600981963888-7b01503c432c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1744&q=80";
-        String bannerPicUrl1 = "https://images.unsplash.com/photo-1473172707857-f9e276582ab6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
-        String bannerPicUrl2 = "https://images.unsplash.com/photo-1580299285357-157703fd4db1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2391&q=80";
-        String bannerPicUrl3 = "https://images.unsplash.com/photo-1524780279384-6fc289a86154?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80";
+        String bannerPicUrl0 = "https://images.unsplash.com/photo-1510832198440-a52376950479?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1167&q=80";
+        String bannerPicUrl1 = "https://images.unsplash.com/photo-1581687004185-f912200c4a31?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
+        String bannerPicUrl2 = "https://images.unsplash.com/photo-1503342521957-a6c73074d732?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80";
+        String bannerPicUrl3 = "https://images.unsplash.com/photo-1581716664010-2ba06ce8f51a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80";
 
 
         List<String> urlList = Lists.newArrayList(
@@ -85,10 +85,10 @@ public class ImageTest {
                 bannerPicUrl3
                 );
         List<String> titleList = Lists.newArrayList(
-                "设计模式详解——外观模式",
-                "设计模式详解——模板方法模式",
-                "设计模式详解——迭代器模式",
-                "设计模式详解——组合模式"
+                " 流式编程时代，效率之王了解下？",
+                " 要想java学的好，optional少不了",
+                "lambda表达式之forEach",
+                "forEach、forItem和forI的性能测试"
                 );
 
         for (int i = 0; i < urlList.size(); i++) {
