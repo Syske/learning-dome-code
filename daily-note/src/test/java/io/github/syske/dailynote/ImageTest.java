@@ -63,8 +63,8 @@ public class ImageTest {
 
     @Test
     public void createPic() {
-        String title = "多线程之Semaphore";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1613764706704-d336f5ca7487?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1596&q=80";
+        String title = "wsl搭建k8s集群补充内容";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1637348982424-d8d179203cf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1229&q=80";
 
         imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 300);
     }
