@@ -6,12 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jms.JmsProperties;
+import org.springframework.jms.connection.ConnectionFactoryUtils;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessageCreator;
+import org.springframework.jms.support.JmsUtils;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
-import org.springframework.messaging.core.MessagePostProcessor;
 import org.springframework.stereotype.Service;
 
 import javax.jms.Connection;
@@ -51,7 +51,7 @@ public class JmsSendService {
         JmsBaseTemplate.send(new ActiveMQQueue(queueName), session -> {
             ObjectMessage message = session.createObjectMessage(messageInfo);
             //设置延迟时间
-            message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, 60*1000L);
+            message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, 5*60*1000L);
             return message;
         });
     }
@@ -74,7 +74,7 @@ public class JmsSendService {
             producer.setDeliveryMode(JmsProperties.DeliveryMode.PERSISTENT.getValue());
             ObjectMessage message = session.createObjectMessage(messageInfo);
             //设置延迟时间
-            message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, 60*1000L);
+            message.setLongProperty(ScheduledMessage.AMQ_SCHEDULED_DELAY, 5*60*1000L);
             // 发送消息
             producer.send(message);
             logger.info("发送消息：{}", messageInfo);
@@ -82,19 +82,8 @@ public class JmsSendService {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (producer != null) {
-                    producer.close();
-                }
-                if (session != null) {
-                    session.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            JmsUtils.closeSession(session);
+            ConnectionFactoryUtils.releaseConnection(connection, connectionFactory, Boolean.TRUE);
         }
     }
 
