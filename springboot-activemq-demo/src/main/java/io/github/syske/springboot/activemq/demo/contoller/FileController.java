@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Objects;
 
 /**
  * @program: springboot-activemq-demo
@@ -38,5 +39,20 @@ public class FileController {
                                @PathVariable("file_id") String fileId,
                                HttpServletResponse response) {
         return fileService.download(userId, fileId, response);
+    }
+
+    @GetMapping("/jms/delay/test")
+    public Object delayMessage() {
+        return fileService.delayMessage();
+    }
+
+    @GetMapping("/jms/delay2/test")
+    public Object delayMessage2() {
+        return fileService.delayMessage();
+    }
+
+    @GetMapping("/jms/normal/test")
+    public Object delayNormalMessage() {
+        return fileService.normalMessage();
     }
 }

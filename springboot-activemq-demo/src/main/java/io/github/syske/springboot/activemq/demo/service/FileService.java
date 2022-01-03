@@ -20,6 +20,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,6 +42,7 @@ public class FileService {
 
     /**
      * 文件导出
+     *
      * @param name
      * @param userId
      * @return
@@ -62,6 +65,7 @@ public class FileService {
 
     /**
      * 下载文件
+     *
      * @param userId
      * @param fileId
      * @return
@@ -100,7 +104,7 @@ public class FileService {
     }
 
     private void responseFile(HttpServletResponse response, JSONObject result, File file) {
-        try (FileInputStream fileInputStream = new FileInputStream(file)){
+        try (FileInputStream fileInputStream = new FileInputStream(file)) {
             response.reset();
             response.addHeader("Content-Disposition", "attachment;filename=\"" + file.getName() + "\"");
             response.addHeader("Content-Length", "" + file.length());
@@ -144,7 +148,7 @@ public class FileService {
         }
     }
 
-    @JmsListener(destination = "file-export-queue",  containerFactory = "jmsListenerContainerFactory")
+    @JmsListener(destination = "file-export-queue", containerFactory = "jmsListenerContainerFactory")
     public void testMq(String message) {
         logger.info("文件导出业务入参：{}", message);
         JSONObject messageJsonObject = JSON.parseObject(message);
@@ -157,7 +161,7 @@ public class FileService {
             String fileKey = String.format("fileExport.%s.%s", userId, fileId);
             // 查询数据
             List<String> dataList = Lists.newArrayList("张三", "历史", "周三");
-            try(FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
+            try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
                 for (String s : dataList) {
                     fileOutputStream.write(s.getBytes(StandardCharsets.UTF_8));
                     fileOutputStream.write("\n".getBytes());
@@ -168,6 +172,36 @@ public class FileService {
             }
         }
 
+    }
+
+    public String delayMessage() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        jmsSendService.sendDelayMessage("delay-message", "hello delay " + dateFormat.format(new Date()));
+        return "true";
+    }
+
+    @JmsListener(destination = "delay-message", containerFactory = "jmsListenerContainerFactory")
+    public void dealDelayMessage(String message) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        logger.info("delay-message 收到消息： {}, timestamp：{}", message, dateFormat.format(new Date()));
+    }
+
+    public String normalMessage() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        jmsSendService.sendMessage("normal-message", "normal message " + dateFormat.format(new Date()));
+        return "true";
+    }
+
+    @JmsListener(destination = "normal-message", containerFactory = "jmsListenerContainerFactory")
+    public void dealNormalMessage(String message) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        logger.info("normal-message 收到消息： {}, timestamp：{}", message, dateFormat.format(new Date()));
+    }
+
+    public String delayMessage2() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        jmsSendService.sendDelayMessage2("delay-message", "delay2 kkkkkk " + dateFormat.format(new Date()));
+        return "true";
     }
 
 }
