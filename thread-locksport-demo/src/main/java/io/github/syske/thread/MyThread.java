@@ -9,15 +9,18 @@ package io.github.syske.thread;
 public class MyThread extends Thread {
     @Override
     public void run() {
-        System.out.println(Thread.currentThread().getState());
+        State state = Thread.currentThread().getState();
         System.out.println("run 方法开始执行了");
+        System.out.printf("运行中线程的状态：%s\n", state);
+        System.out.println("run 方法运行结束");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         MyThread myThread = new MyThread();
-        State state = myThread.getState();
-        System.out.println(state);
+        System.out.printf("线程新建后的状态：%s\n" ,myThread.getState());
         myThread.start();
-        System.out.println(myThread.getState());
+        System.out.printf("线程启动后的状态：%s\n", myThread.getState());
+        Thread.sleep(1000);
+        System.out.printf("线程运行后的状态：%s\n", myThread.getState());
     }
 }

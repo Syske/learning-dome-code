@@ -136,5 +136,6 @@ public class ImageTest {
         String uuidStr = UUIDUtil.getUUIDStr();
         String imgSaveFullPath = "D:\\tmp\\img\\created\\" + uuidStr + ".jpg";
         System.out.println(imgSaveFullPath.substring(imgSaveFullPath.lastIndexOf('.') + 1));
+        this.hashCode();
     }
 }

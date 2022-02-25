@@ -34,7 +34,7 @@ public class LambdaTest {
         Map<Long, Double> collect11 = userList.stream().collect(Collectors.groupingBy(User::getId, Collectors.averagingLong(User::getId)));
         System.out.println(collect11);
         Double collect12 = userList.stream().collect(Collectors.averagingLong(User::getId));
-        Long collect13 = userList.parallelStream().collect(Collectors.reducing(User::getId));
+//        Long collect13 = userList.parallelStream().collect(Collectors.reducing(User::getId));
 
         Map<Long, String> collect6 = userList.stream().collect(Collectors.toMap(User::getId, User::getUsername, (a, b) -> a));
         Map<Long, User> collect7 = userList.stream().collect(Collectors.toMap(User::getId, Function.identity()));
