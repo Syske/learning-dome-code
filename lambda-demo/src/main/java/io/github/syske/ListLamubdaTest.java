@@ -1,8 +1,6 @@
 package io.github.syske;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -29,6 +27,9 @@ public class ListLamubdaTest {
         });
 
         new ListLamubdaTest().functionTest("syske", "hello", parameter -> System.out.println( "syske, " + parameter));
+        new ListLamubdaTest().testFunction(1, 2, ListLamubdaTest::add);
+        new ListLamubdaTest().setMyFunctionInterface2("parameter1", "parameter2", "parameter3", "parameter4", "parameter5",
+                (t, r, u, x, y) -> System.out.printf("%s.%s.%s.%s.%s", t, r, u, x,y));
 
     }
 
@@ -87,6 +88,21 @@ public class ListLamubdaTest {
         if ("syske".equals(test)) {
             myFunctionInterface.syske(parameter);
         }
+    }
+
+    private static Integer add(int a, int b) {
+        return a + b;
+    }
+
+    public void testFunction(Integer a, Integer b, BiFunction<Integer, Integer, Integer> function) {
+        System.out.println(function.apply(a, b));
+
+    }
+
+
+
+    public void setMyFunctionInterface2(String t, String r, String u, String x, String y, MyFunctionInterface2<String, String, String, String, String> interface2) {
+        interface2.syske(t, r, u, x, y);
     }
 
 
