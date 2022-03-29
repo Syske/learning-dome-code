@@ -19,7 +19,7 @@ public class Producer {
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer("order_group_1");
 
-        producer.setNamesrvAddr("127.0.0.1:9876");
+        producer.setNamesrvAddr("192.168.0.103:9876");
 
         producer.start();
 
