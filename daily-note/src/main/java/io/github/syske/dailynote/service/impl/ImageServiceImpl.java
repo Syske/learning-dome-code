@@ -36,7 +36,7 @@ public class ImageServiceImpl implements ImageService {
     /**
      * 脚注内容
      */
-    private final String footerContent = "-【每日读书札记】-";
+    private final String footerContent = "-【云中志·读书札记】-";
     private ImageUtil imageUtil = new ImageUtil();
 
     @Value("${note.card.image.save.path}")
@@ -70,12 +70,11 @@ public class ImageServiceImpl implements ImageService {
                         .append("》");
             }
             Date date = new Date();
-            String uuidStr = UUIDUtil.getUUIDStr();
             String imgSaveFullPath = noteCardSavePath + DateUtil.getDateYearMothStr() + PATH_LINE + DateUtil.getDatestrYYYY_MM_dd() + ".jpg";
             String faceImgSaveFullPath = faceImgSave + DateUtil.getDatestrYYYY_MM_dd() + ".jpg";
             String bannerPicUrl = noteBookInfo.getBannerPicUrl();
             imageUtil.createReadingNoteCard(qrCodeImgPath, imgSaveFullPath, bannerPicUrl, noteBookInfo.getNoteContent(), authorInfo.toString(), footerContent, date);
-            StringBuilder content = new StringBuilder("每日读书札记");
+            StringBuilder content = new StringBuilder("云中志·读书札记");
             if (!StringUtils.isEmpty(bookTitle)) {
                 content.append(" | ").append(bookTitle);
             }
@@ -89,11 +88,10 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public String generateBannerPic(BannerInfo bannerInfo) {
         String imgSaveFullPath = faceImgSave + FACE_IMG_PREFIX + UUIDUtil.getUUIDStr() + ".jpg";
-        Color fontColor = null;
         ChineseColorEnum backgroundColorEnum = bannerInfo.getBackgroundColorEnum();
         imageUtil.generateBannerPic(bannerInfo.getTitle(), backgroundColorEnum ,
                 imgSaveFullPath);
-        return null;
+        return imgSaveFullPath;
     }
 
     @Override
@@ -104,7 +102,7 @@ public class ImageServiceImpl implements ImageService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return imgSaveFullPath;
     }
 
     @Override
@@ -115,6 +113,6 @@ public class ImageServiceImpl implements ImageService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return imgSaveFullPath;
     }
 }

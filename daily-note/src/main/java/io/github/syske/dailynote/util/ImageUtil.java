@@ -99,7 +99,6 @@ public class ImageUtil {
         int bigDateY = headerHeight / 2 + getFontAscent(titleFontBig) - titleFontBig.getSize() / 2;
         logger.debug("日期y坐标：" + bigDateY);
         header.drawString(contentFirstLineRight, margin, bigDateY);
-
         int wordHeight = getWordHeight(titleFontBig);
         logger.debug("titleFontBig字体高度：" + wordHeight);
         int fontDescent = getFontDescent(titleFontBig);
@@ -147,16 +146,16 @@ public class ImageUtil {
 
         // 倒计时
         String countDownTips = "";
-        int countDownDays = DateUtil.getCountDownDays("2021-12-25", date);
+        int countDownDays = DateUtil.getCountDownDays("2022-05-01", date);
         if (countDownDays > 0) {
-            countDownTips = "2021年已过半，要好好努力呀！";
+            countDownTips = String.format("距离五一放假还有%s天", countDownDays);
         } else if (countDownDays == 0) {
-            countDownTips = "今天是圣诞节";
+            countDownTips = "今天是五一劳动节";
         }
         header.drawString(countDownTips, contentSecondX, bigDateY + getFontDescent(titleFontSmall));
 
         // 宜忌提醒
-        /*String dateTips = element.getSgz5();
+        String dateTips = element.getSgz5();
         StringBuilder footerTips = new StringBuilder();
         
         if(!StringUtils.isEmpty(dateTips)) {
@@ -166,7 +165,7 @@ public class ImageUtil {
         }
         if(footerTips.length() > 2) {
             header.drawString(footerTips.toString(), margin, bigDateY + titleFontSmall.getSize());
-        }*/
+        }
 
     }
 
