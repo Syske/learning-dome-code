@@ -1,1 +1,4 @@
 org.springframework.boot.SpringApplicationRunListener=io.github.syske.springbootbeanlisttest.listener.MySpringRunListener
+org.springframework.boot.env.PropertySourceLoader=io.github.syske.springbootbeanlisttest.sourceloader.SyskePropertySourceLoader
+org.springframework.context.ApplicationListener=io.github.syske.springbootbeanlisttest.listener.SyskeApplicationListener
+org.springframework.boot.env.EnvironmentPostProcessor=io.github.syske.springbootbeanlisttest.environment.SyskeEnvironmentPostProcessor
