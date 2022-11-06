@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
  * @author: syske
  * @date: 2022-06-06 18:18
  */
-@Service
+//@Service
 public interface TestInterface {
+
+    String hello();
 }

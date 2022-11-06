@@ -63,8 +63,8 @@ public class ImageTest {
 
     @Test
     public void createPic() {
-        String title = "wsl搭建k8s集群补充内容";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1637348982424-d8d179203cf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1229&q=80";
+        String title = "从代码层面看spring boot启动过程";
+        String bannerPicUrl = "https://images.unsplash.com/photo-1481241313664-77db5d6c62e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80";
 
         imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 300);
     }
@@ -72,23 +72,14 @@ public class ImageTest {
     @Test
     public void batchCreatePic() {
 
-        String bannerPicUrl0 = "https://images.unsplash.com/photo-1510832198440-a52376950479?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1167&q=80";
-        String bannerPicUrl1 = "https://images.unsplash.com/photo-1581687004185-f912200c4a31?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
-        String bannerPicUrl2 = "https://images.unsplash.com/photo-1503342521957-a6c73074d732?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80";
-        String bannerPicUrl3 = "https://images.unsplash.com/photo-1581716664010-2ba06ce8f51a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80";
+        String bannerPicUrl0 = "https://images.unsplash.com/photo-1468476396571-4d6f2a427ee7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1958&q=80";
 
 
         List<String> urlList = Lists.newArrayList(
-                bannerPicUrl0,
-                bannerPicUrl1,
-                bannerPicUrl2,
-                bannerPicUrl3
+                bannerPicUrl0
                 );
         List<String> titleList = Lists.newArrayList(
-                " 流式编程时代，效率之王了解下？",
-                " 要想java学的好，optional少不了",
-                "lambda表达式之forEach",
-                "forEach、forItem和forI的性能测试"
+                "还在用if-else，新的解耦方式你确定不了解下？"
                 );
 
         for (int i = 0; i < urlList.size(); i++) {

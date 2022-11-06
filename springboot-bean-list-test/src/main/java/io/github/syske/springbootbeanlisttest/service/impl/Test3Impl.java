@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
  * @author: syske
  * @date: 2022-06-06 18:19
  */
-@Service
+@Service("Test3")
 public class Test3Impl implements TestInterface {
+    @Override
+    public String hello() {
+        return "Test3Impl";
+    }
 }

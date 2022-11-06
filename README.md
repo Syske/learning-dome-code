@@ -67,4 +67,8 @@
 63. [spring-boot-dubbo-demo](./spring-boot-dubbo-demo)：spring-boot整合dubbo
 64. [design-pattern-learning](./design-pattern-learning)：设计模式示例
 65. [spring-boot-counter-limiter](./spring-boot-counter-limiter)：基于redis的计数器限流实现
+66. [springboot-bean-list-test](./springboot-bean-list-test)：基于list的策略模式、spring boot event相关示例
+67. [sofaboot-rpc-demo](./sofaboot-rpc-demo)：sofa boot客户端示例
+68. [sofaboot-rpc-demo2](./sofaboot-rpc-demo2)：sofa boot服务提供者示例
+69. [java-email-demo](./java-email-demo)：java发送邮件示例
 
