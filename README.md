@@ -71,4 +71,24 @@
 67. [sofaboot-rpc-demo](./sofaboot-rpc-demo)：sofa boot客户端示例
 68. [sofaboot-rpc-demo2](./sofaboot-rpc-demo2)：sofa boot服务提供者示例
 69. [java-email-demo](./java-email-demo)：java发送邮件示例
+70. [caffeine-demo](./caffeine-demo): Caffeine 是基于Java 8的高性能，接近最佳的缓存
+71. [first-java-project](./first-java-project): 小黄鸭java教程示例
+72. [function-demo](./function-demo): java函数式编程实践
+73. [guava-demo](./guava-demo): guava工具包示例
+74. [http-server](./http-server): 手写http服务器
+75. [interview-test-case](./interview-test-case): 一次面试机试代码
+76. [java-learning](./java-learning): java学习项目，堆放临时代码
+77. [leetcode-demo](./leetcode-demo): leetcode刷题项目
+78. [netty-demo](./netty-demo): netty学习记录
+79. [redisson-demo](./redisson-demo): redisson客户端示例
+80. [rocketmq-demo](./rocketmq-demo): rocketmq示例
+81. [semaphore-demo](./semaphore-demo): semaphore学习示例
+82. [sofa-boot-test](./sofa-boot-test): sofaboot项目，集成了基本依赖，包括服务提供者和消费者
+83. [spring-boot-bucket-limit](./spring-boot-bucket-limit): 令牌桶限流demo
+84. [spring-boot-nacos-demo](./spring-boot-nacos-demo): nacos简单示例
+85. [spring-boot-sentinel-demo](./spring-boot-sentinel-demo): springboot集成sentinel
+86. [token-bucket-limit-test](./spring-boot-token-bucket-limit): 令牌桶限流算法测试
+87. [spring-mybatis-dynamic-datasource-demo](./spring-mybatis-dynamic-datasource-demo): 动态数据源切换
+88. [springboot-dubbo-demo](./springboot-dubbo-demo): springboot集成dubbo
+89. [thread-locksupport-demo](./thread-locksupport-demo): 多线程locksupport应用示例
 

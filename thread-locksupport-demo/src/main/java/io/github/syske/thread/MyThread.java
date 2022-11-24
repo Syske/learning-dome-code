@@ -1,40 +1,26 @@
+/* Copyright © 2021 syske. All rights reserved. */
 package io.github.syske.thread;
 
 /**
- * @program: thread-locksupport-demo
- * @description:
- * @author: syske
- * @date: 2021-11-29 13:13
+ * @author syske
+ * @version 1.0
+ * @date 2021-11-09 22:03
  */
 public class MyThread extends Thread {
-
-    public MyThread(String name) {
-        super(name);
-    }
-
     @Override
     public void run() {
-        System.out.println(this.getName() + ", " + this.getState());
-        try {
-            blockTest(this);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(this.getName() + ", " +this.getState());
+        State state = Thread.currentThread().getState();
+        System.out.println("run 方法开始执行了");
+        System.out.printf("运行中线程的状态：%s\n", state);
+        System.out.println("run 方法运行结束");
     }
 
-    public static synchronized void blockTest(Thread thread) throws InterruptedException {
-        System.out.println(thread.getName() + ", 进入同步块");
-        System.out.println(thread.getName() + ", " +thread.getState());
-        Thread.sleep(50000);
-        System.out.println(thread.getName() + ", 同步块执行完毕");
-    }
-
-    public static void main(String[] args) {
-        MyThread myThread = new MyThread("t1");
-        MyThread myThread2 = new MyThread("t2");
+    public static void main(String[] args) throws InterruptedException {
+        MyThread myThread = new MyThread();
+        System.out.printf("线程新建后的状态：%s\n" ,myThread.getState());
         myThread.start();
-
-        myThread2.start();
+        System.out.printf("线程启动后的状态：%s\n", myThread.getState());
+        Thread.sleep(1000);
+        System.out.printf("线程运行后的状态：%s\n", myThread.getState());
     }
 }
