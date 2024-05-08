@@ -63,8 +63,8 @@ public class ImageTest {
 
     @Test
     public void createPic() {
-        String title = "从代码层面看spring boot启动过程";
-        String bannerPicUrl = "https://images.unsplash.com/photo-1481241313664-77db5d6c62e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80";
+        String title = "一次思考，一次行动 | 从零开始设计Linux卡片机";
+        String bannerPicUrl = "https://images.unsplash.com/reserve/bOvf94dPRxWu0u3QsPjF_tree.jpg?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2676&q=80";
 
         imageService.generateBannerPicWithImage(title, bannerPicUrl, 1200, 300);
     }

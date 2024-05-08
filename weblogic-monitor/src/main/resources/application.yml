@@ -6,7 +6,7 @@ spring:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
-      url: jdbc:mysql://127.0.0.1:3307/weblogic_monitor?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+      url: jdbc:mysql://127.0.0.1:3306/weblogic_monitor?characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=Asia/Shanghai
       password: Y2YOft/vPjw/JFPkevqZZKi8pCHu5ambR2ivSxgipTbL76pOoxNw3Un5Hcarbe9AqUImr+wS7YI6TjJZOVYjzA==
       connection-properties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJI/xqbyvpVttxfAKulKeSTIb7tZAGaFcPyTnE2r7AHTQ8kOnqKXDda4u59umt9XBFxi7db28KxeVooB138zuRUCAwEAAQ==
       filter:
