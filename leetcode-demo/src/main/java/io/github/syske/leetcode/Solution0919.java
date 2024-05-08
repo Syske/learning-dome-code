@@ -138,6 +138,7 @@ public class Solution0919 {
         if (midNums1 > midNums2) {
 
         }
+        return 0;
     }
 
     public static void main(String[] args) {
