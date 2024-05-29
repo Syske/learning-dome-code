@@ -10,7 +10,7 @@ package io.github.syske.weblogic;
 import io.github.syske.dao.model.ServerRunrecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import weblogic.health.HealthState;
+//import weblogic.health.HealthState;
 
 import javax.management.*;
 import javax.management.remote.JMXConnector;
@@ -415,8 +415,8 @@ public class JmxWeblogic {
         // 状态 State
         String state = getAttribute(serverRuntime, "State", connection);
         // 应用服务器的健康状态 HealthState
-        HealthState healthState = (HealthState) connection.getAttribute(
-                serverRuntime, "HealthState");
+        /*HealthState healthState = (HealthState) connection.getAttribute(
+                serverRuntime, "HealthState");*/
         // 当前打开的Socket数量 OpenSocketsCurrentCount
         Integer openSocketsCurrentCount = getAttribute(serverRuntime,
                 "OpenSocketsCurrentCount", connection);
