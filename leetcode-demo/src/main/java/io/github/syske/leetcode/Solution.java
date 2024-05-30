@@ -3,7 +3,6 @@ package io.github.syske.leetcode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * @program: leetcode-demo
@@ -264,6 +263,41 @@ class Solution {
         return source.substring(start, end).indexOf(target) > -1;
     }
 
+    public int lengthOfLongestSubstring(String s) {
+        int maxLength = 0;
+        int bfMaxLength = 0;
+        Character cha = null;
+        Character bfChar;
+
+        char[] charArray = s.toCharArray();
+        for (int i = 0, charArrayLength = charArray.length; i < charArrayLength; i++) {
+            char c = charArray[i];
+            if (cha == null) {
+                cha = c;
+                maxLength++;
+                continue;
+            }
+            if (i >= 1) {
+                bfChar = charArray[i - 1];
+            } else {
+                bfChar = c;
+            }
+            if (c != cha && c != bfChar) {
+                maxLength++;
+            } else {
+                if (maxLength > bfMaxLength) {
+                    bfMaxLength = maxLength;
+                }
+                cha = null;
+                maxLength = 1;
+            }
+        }
+        if (maxLength > bfMaxLength) {
+            bfMaxLength = maxLength;
+        }
+        return bfMaxLength;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         //
@@ -281,7 +315,9 @@ class Solution {
         //String haystack = "aaa", needle = "aaaa";
         //System.out.println(solution.strStr(haystack, needle));
         String s = "(]";
-        System.out.println(solution.isValid(s));
+        int count = new Solution().lengthOfLongestSubstring("aab");
+        System.out.println(count);
+//        System.out.println(solution.isValid(s));
 
     }
 }
