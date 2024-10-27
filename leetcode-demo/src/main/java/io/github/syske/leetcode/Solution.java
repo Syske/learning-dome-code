@@ -292,33 +292,25 @@ class Solution {
     }
 
     public int lengthOfLongestSubstring2(String s) {
-        if ("".equals(s)) {
-            return 0;
-        }
-
-        int maxIndex = 1;
-
-        for (int i = 0; i < s.length(); i++) {
-            int end = 0;
-
-//            int cnt = 0;
-            Set<Character> chars = new HashSet<>();
-            chars.add(s.toCharArray()[i]);
-            for (int j = i + 1; j <= s.length(); j++) {
-                end = j;
-                if (j < s.length() && !chars.contains(s.toCharArray()[j])) {
-//                    cnt ++;
-                    chars.add(s.toCharArray()[j]);
-                } else {
-                    break;
+        Set<Character> chars = new HashSet<>();
+        int n = s.length();
+        int maxCount = 0;
+        for (int i = 0; i < n; i++) {
+            if (i > 0) {
+                chars.remove(s.charAt(i - 1));
+            }
+            int count = 0;
+            for (int j = i + 1; j < n; j++) {
+                if (!chars.contains(s.charAt(j))) {
+                    count++;
+                    chars.add(s.charAt(j));
                 }
-
             }
-            if (maxIndex < end - i) {
-                maxIndex = end - i;
+            if (count > maxCount) {
+                maxCount = count;
             }
         }
-        return maxIndex;
+        return maxCount;
     }
 
     public static void main(String[] args) {
